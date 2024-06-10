@@ -24,4 +24,8 @@
 ### For subsequent push 
 
 1. git branch (MAKE SURE NOT MAIN)
-2. git status
+2. git status (SEE YOUR EDITS IN RED)
+3. git add .
+4. git status (TO CONFIRM ITS GREEN)
+5. git commit -m "insert what you have done"
+6. git push
