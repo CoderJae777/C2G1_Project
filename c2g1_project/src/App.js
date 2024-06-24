@@ -8,6 +8,7 @@ import ClientHomePage from './ClientHomePage';
 import TrainerHomePage from './TrainerHomePage';
 import Navbar from './NavBar';
 import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path = "/AdminLoginPage" element={<AdminLoginPage/>}/>
           <Route exact path="/ClientLoginPage" element={<ClientLoginPage/>}/>
           <Route exact path="/TrainerLoginPage" element={<TrainerLoginPage/>}/>
+          <Route exact path="/SignUpPage" element={<SignUpPage/>}/>
           <Route path ="/AdminHomePage" element={<AdminHomePage/>}/>
           <Route path ="/ClientHomePage" element={<ClientHomePage/>}/>
           <Route path ="/TrainerHomePage" element={<TrainerHomePage/>}/>

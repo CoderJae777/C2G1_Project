@@ -19,7 +19,7 @@ const Navbar = () => {
                 <button>Our Workshops</button>
                 {/* TBC --> links to a view all trainers page */}
                 <button>Our Trainers</button>
-                <button onClick={handleNavBarSignIn}>Sign in!</button>
+                <button onClick={handleNavBarSignIn}>Log in/out!</button>
                 
             </div>
 

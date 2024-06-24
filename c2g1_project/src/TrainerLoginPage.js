@@ -6,6 +6,7 @@ import { useNavigate} from 'react-router-dom';
 import stockimgtop from './stockimgtop.jpg';
 import stockimgbottom from './stockimgbottom.jpg';
 import dellacademylogo from './DellAcademy.png';
+import SignUpPage from './SignUpPage';
 
 const TrainerLoginPage = () => {
 
@@ -19,6 +20,9 @@ const TrainerLoginPage = () => {
     const handleClientLoginPage = () => {
        nav("/ClientLoginPage");
     }
+    const handleSignUp = () => {
+      nav("/SignUpPage");
+   }
 
 
     return ( 
@@ -55,7 +59,7 @@ const TrainerLoginPage = () => {
                      required
                   />
                   <button className="signin_button" onClick={handleSignIn}>Sign in</button>
-                  <h5>Sign Up!</h5>
+                  <h5 onClick={handleSignUp}>Sign Up!</h5>
                   <h5>Forget password</h5>
                </div>
             <div className='login_details'>

@@ -39,7 +39,7 @@
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin-right: 70px;
+    margin-right: 20px;
     padding: 10px;
     transition: background-color 1000ms;
     transition: color 1000ms;
@@ -64,7 +64,7 @@
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin-right: 70px;
+    margin-right: 20px;
     padding: 10px;
     transition: color 1000ms;
 }
@@ -73,8 +73,7 @@
     background-color: #0083CA;
     color: white;
     padding: 6px 10px;
-    width: 100%;
-    max-width: 445px;
+    width: 50%;
     border-radius: 20px;
     border-width: 5px;
     border-color: black;
