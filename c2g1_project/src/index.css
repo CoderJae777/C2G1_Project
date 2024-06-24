@@ -14,6 +14,8 @@
     margin:auto; 
     display: grid;
     grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
     grid-gap: 20px;
     width:80%;
     margin-top: 50px;
@@ -37,8 +39,7 @@
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin: 5px;
-    margin-right: 20px;
+    margin-right: 70px;
     padding: 10px;
     transition: background-color 1000ms;
     transition: color 1000ms;
@@ -63,8 +64,7 @@
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin: 5px;
-    margin-right: 20px;
+    margin-right: 70px;
     padding: 10px;
     transition: color 1000ms;
 }
@@ -72,22 +72,30 @@
 .signin_button{
     background-color: #0083CA;
     color: white;
-    width: 50%;
-    height: 50px;
+    padding: 6px 10px;
+    width: 100%;
+    max-width: 445px;
     border-radius: 20px;
     border-width: 5px;
     border-color: black;
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    padding: 10px;
     transition: background-color 1000ms;
-    padding: 6px 10px;
     margin-top: 30px;
 }
 
 .signin_button:hover{
     background-color: #28abf1;
+}
+
+.username, .password{
+    width: 50%;
+    padding: 6px 10px;
+    max-width: 600px;
+    border-width: 5px;
+    border-radius: 20px;
+    border-color: #0083CA;
 }
 
 
@@ -126,11 +134,3 @@
     color:white;
 }
 
-.username, .password{
-    width: 50%;
-    padding: 6px 10px;
-    max-width: 600px;
-    border-width: 5px;
-    border-radius: 20px;
-    border-color: #0083CA;
-}
