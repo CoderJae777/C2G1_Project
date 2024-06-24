@@ -1,13 +1,54 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* LoginPage design */
+.login_page{
+    margin:auto; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
+    width:80%;
+    margin-top: 50px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.login_pictures {
+    border: 1px solid red;
+}
+
+.login_words{
+    font-family:roboto; 
+}
+/* LoginPage buttons design */
+.client_login_button, .admin_login_button, .trainer_login_button{
+    background-color: #BFBFBF;
+    color: black;
+    width: 100px;
+    height: 100px;
+    border-radius: 25px;
+    border-width: 0px;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px;
+    transition: color 100ms;
+}
+.admin_login_button:hover, .client_login_button:hover, .trainer_login_button:hover{
+    background-color: #0083CA;
+    color:white;
+}
+
+.client_login_button_blue, .admin_login_button_blue, .trainer_login_button_blue{
+    background-color: #0083CA;
+    color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 25px;
+    border-width: 0px;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px;
+    transition: color 100ms;
 }
