@@ -34,19 +34,29 @@ const TrainerLoginPage = () => {
          </div>          
            <div className="login_page">
               <div className="login_pictures">
-               <div className="login_pictures">
-                  <img src={stockimgtop} alt="Stock Image"/>
-                  <img src={stockimgbottom} alt="Stock Image"/>
+                  <div className="login_pictures">
+                     <img src={stockimgtop} alt="Stock Image"/>
+                     <img src={stockimgbottom} alt="Stock Image"/>
+                  </div>
                </div>
-            </div>
-            <div className="login_buttons">
-               <h1>I am a/ an ... </h1>
-                <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
-                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
-                <button className="trainer_login_button_blue">Trainer</button>
-              </div>
+               <div className="login_buttons">
+                  <h1>I am a/ an ... </h1>
+                  <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
+                  <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
+                  <button className="trainer_login_button_blue">Trainer</button>
+                  <h4>Username/ Staff ID</h4>
+                  <input className = "username"
+                     type='text'
+                     required
+                  />
+                  <h4>Password</h4>
+                  <input className = "password"
+                     type='text'
+                     required
+                  />
+                  <button className="signin_button" onClick={handleSignIn}>Sign in</button>
+               </div>
             <div className='login_details'>
-               <button className="signin_button" onClick={handleSignIn}>Sign in</button>
             </div>
            </div>
         </>

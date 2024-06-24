@@ -40,9 +40,19 @@ const ClientLoginPage = () => {
                <button className="client_login_button_blue">Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
+               <h4>Username/ Staff ID</h4>
+               <input className = "username"
+                  type='text'
+                  required
+               />
+               <h4>Password</h4>
+               <input className = "password"
+                  type='text'
+                  required
+               />
+               <button className="signin_button" onClick={handleSignIn}>Sign in</button>
             </div>
             <div className='login_details'>
-             <button className="signin_button" onClick={handleSignIn}>Sign in</button>
             </div>
          </div>
         </>
