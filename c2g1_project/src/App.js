@@ -7,6 +7,7 @@ import AdminHomePage from './AdminHomePage';
 import ClientHomePage from './ClientHomePage';
 import TrainerHomePage from './TrainerHomePage';
 import Navbar from './NavBar';
+import LoginPage from './LoginPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       </div>
       <div className="App">
         <Routes>
+          <Route exact path = "/" element={<LoginPage/>}/>
           <Route exact path = "/AdminLoginPage" element={<AdminLoginPage/>}/>
           <Route exact path="/ClientLoginPage" element={<ClientLoginPage/>}/>
           <Route exact path="/TrainerLoginPage" element={<TrainerLoginPage/>}/>
