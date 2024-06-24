@@ -14,11 +14,9 @@ const TrainerLoginPage = () => {
         nav("/TrainerHomePage");
     }
     const handleAdminLoginPage = () => {
-      alert("Navigating to Admin Log In")
        nav("/AdminLoginPage");
     }
     const handleClientLoginPage = () => {
-      alert("Navigating to Client Log In")
        nav("/ClientLoginPage");
     }
 
@@ -42,6 +40,7 @@ const TrainerLoginPage = () => {
                </div>
             </div>
             <div className="login_buttons">
+               <h1>I am a/ an ... </h1>
                 <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
                 <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                 <button className="trainer_login_button_blue">Trainer</button>

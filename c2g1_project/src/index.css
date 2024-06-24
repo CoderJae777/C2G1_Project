@@ -24,7 +24,7 @@
 }
 /* LoginPage buttons design */
 .client_login_button, .admin_login_button, .trainer_login_button{
-    background-color: #BFBFBF;
+    background-color: #a1deff;
     color: black;
     width: 100px;
     height: 100px;
@@ -75,11 +75,39 @@
 }
 
 .signin_button:hover{
-    margin:auto; 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    width:80%;
-    margin-top: 50px;
     background-color: #28abf1;
+}
+
+
+
+
+/* Navbar designs */
+.navbar{
+    padding: 20px;
+    display: flex;
+    background-color: #a1deff;
+    border-style: solid;
+    border-width: 5px;
+    border: black;
+    justify-content: center;
+}
+
+.navbar button{
+    background-color: white;
+    color: black;
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
+    border-width: 0px;
+    font-family: roboto;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 20px;
+    padding: 10px;
+    transition: color 100ms;
+}
+
+.navbar button:hover{
+    background-color: #28abf1;
+    color:white;
 }
