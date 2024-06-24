@@ -54,9 +54,10 @@ const LoginPage = () => {
                   required
                />
                <button className="signin_button" onClick={handleSignIn}>Sign in</button>
+               <h5>Sign Up!</h5>
+               <h5>Forget password</h5>
             </div>
-            <div className='login_details'>
-            </div>
+         
          </div>
       </>
      );
