@@ -3,17 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' ;
 import AdminLoginPage from './AdminLoginPage';
 import ClientLoginPage from './ClientLoginPage';
 import TrainerLoginPage from './TrainerLoginPage';
-import LoginPage from './LoginPage';
 import AdminHomePage from './AdminHomePage';
 import ClientHomePage from './ClientHomePage';
 import TrainerHomePage from './TrainerHomePage';
+import Navbar from './NavBar';
 
 function App() {
   return (
     <Router>
+      <div className='NavBar'>
+        < Navbar />
+      </div>
       <div className="App">
         <Routes>
-          <Route exact path ="/" element={<LoginPage/>}/>
           <Route exact path = "/AdminLoginPage" element={<AdminLoginPage/>}/>
           <Route exact path="/ClientLoginPage" element={<ClientLoginPage/>}/>
           <Route exact path="/TrainerLoginPage" element={<TrainerLoginPage/>}/>
