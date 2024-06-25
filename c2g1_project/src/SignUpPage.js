@@ -33,11 +33,9 @@ const SignUpPage = () => {
             isproceed=false;
             error_message += "country \n";
         }
-    
         if (!isproceed){
             alert(error_message);
         }
-
         return isproceed;
     }
 
