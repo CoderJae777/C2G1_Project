@@ -7,6 +7,9 @@ import dellacademylogo from './DellAcademy.png';
 import SignUpPage from './SignUpPage';
 import { useState } from 'react';
 
+// Running Json Server
+// json-server --watch db.json --port 8000
+
 const AdminLoginPage = () => {
 
    const[username, usernameupdate]=useState("");
@@ -15,7 +18,11 @@ const AdminLoginPage = () => {
    const ProceedLogin = (e) => {
       e.preventDefault();
       if(validate()){
-         console.log("gay");
+         fetch("http://localhost:3000/"+username).then((res)=>{
+            return res.json();
+         }) .then((res)=>{
+        
+         })
       }
 
    }
