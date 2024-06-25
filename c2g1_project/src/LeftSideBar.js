@@ -3,7 +3,7 @@ import 'boxicons/css/boxicons.min.css';
 import userprofilepic from "./images/userprofilepic.png";
 import './homepage.css';
 
-const Sidebar = () => {
+const LeftSidebar = ({ userprofilepic }) => {
   return (
     <div className="leftsidebar">
       <div className="column">
@@ -51,4 +51,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default LeftSidebar;
