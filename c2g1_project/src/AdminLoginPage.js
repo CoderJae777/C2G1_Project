@@ -1,9 +1,9 @@
 import ClientLoginPage from './ClientLoginPage';
 import TrainerLoginPage from './TrainerLoginPage';
 import { useNavigate} from 'react-router-dom';
-import stockimgtop from './stockimgtop.jpg';
-import stockimgbottom from './stockimgbottom.jpg';
-import dellacademylogo from './DellAcademy.png';
+import stockimgtop from './images/stockimgtop.jpg';
+import stockimgbottom from './images/stockimgbottom.jpg';
+import dellacademylogo from './images/DellAcademy.png';
 import SignUpPage from './SignUpPage';
 import { useState } from 'react';
 
@@ -101,7 +101,7 @@ const AdminLoginPage = () => {
                         </div>
                      </div>
                      <div className='card_footer'>
-                     <button type="submit" className="signin_button">Sign in</button>
+                     <button type="submit" onClick={handleSignIn} className="signin_button">Sign in</button>
                         <h5 onClick={handleSignUp}>Sign Up!</h5>
                         <h5>Forget password</h5>
                      </div>
