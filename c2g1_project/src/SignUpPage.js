@@ -53,7 +53,7 @@ const SignUpPage = () => {
         if(IsValidate()){
         e.preventDefault();
         let regobj={username,password,fullname,email,country};
-        fetch("http://localhost:8000/user",{
+        fetch("http://localhost:8000/user_data",{
             method:"POST",
             headers:{'content-type':'application/json'},
             body:JSON.stringify(regobj)
