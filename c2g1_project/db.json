@@ -1,7 +1,7 @@
 {
-  "user": [
+  "user_data": [
     {
-      "id": "3e59",
+      "id": "e82b",
       "username": "Jae",
       "password": "Apple123",
       "fullname": "GohYiShen",
@@ -9,11 +9,6 @@
       "country": "Singapore"
     },
     {
-      "id": "27ab",
-      "username": "sdfasdf",
-      "password": "dsadfas",
-      "fullname": "fasdfas",
-      "email": "dsgasd",
       "country": "Singapore"
     }
   ]
