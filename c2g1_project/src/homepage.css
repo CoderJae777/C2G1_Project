@@ -11,6 +11,15 @@ body{
     background: #fff;
 }
 
+
+.admin-home-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100vh;
+    /* padding: 15px; */
+}
+
 .left-panel {
     display: flex;
     flex-direction: column;
@@ -19,7 +28,7 @@ body{
 }
 
 .dell-logo{
-    margin-left: 90px;
+    margin-left: 50px;
 }
 
 
@@ -27,7 +36,7 @@ body{
 .leftsidebar{
     width: 100%;
     max-width: 300px;
-    height: 500px;
+    height: 430px;
     background: #DEDDFF;
     color: #707070;
     border-radius: 20px;
@@ -103,4 +112,24 @@ body{
     color: #fff;
 }
 
-/* --------------------------------------------------------------- */
+/* TRAINER TABLE CSS--------------------------------------------------------------- */
+.content-panel {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px; /* Adjust this value to space out from the left panel */
+}
+
+.workshop-table, .trainer-table {
+    max-width: 600px;
+    width: 600px;
+    height: 270px;
+    background: #DEDDFF;
+    color: #707070;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
