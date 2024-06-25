@@ -24,6 +24,8 @@
 
 .login_words{
     font-family:roboto; 
+    font-size: 23.5px;
+    text-align: left;
 }
 
 .login_buttons{
@@ -33,14 +35,14 @@
 .client_login_button, .admin_login_button, .trainer_login_button{
     background-color: #a1deff;
     color: black;
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     border-radius: 25px;
     border-width: 0px;
     font-family: roboto;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
-    margin-right: 20px;
+    margin: 20px;
     padding: 10px;
     transition: background-color 1000ms;
     transition: color 1000ms;
@@ -57,15 +59,15 @@
 .client_login_button_blue, .admin_login_button_blue, .trainer_login_button_blue{
     background-color: #0083CA;
     color: white;
-    width: 100px;
-    height: 100px;
-    border-radius: 25px;
+    width: 130px;
+    height: 130px;
+    border-radius: 20px;
     border-width: 5px;
     border-color: black;
     font-family: roboto;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
-    margin-right: 20px;
+    margin: 20px;
     padding: 10px;
     transition: color 1000ms;
 }
@@ -79,7 +81,7 @@
     border-width: 5px;
     border-color: black;
     font-family: roboto;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     transition: background-color 1000ms;
     margin-top: 30px;
@@ -96,6 +98,16 @@
     border-width: 5px;
     border-radius: 20px;
     border-color: #0083CA;
+    margin:15px;
+    font-size: 20px;
+    text-align: center;
+    color: #a9a9a9;
+}
+
+.signup, .forget_pw {
+    margin:15px;
+    font-size: 20px;
+    color: #0000ee;
 }
 
 
@@ -103,10 +115,9 @@
 
 /* Navbar designs */
 .navbar{
-    padding: 20px;
+    padding: 50px;
     display: flex;
     background-color: #a1deff;
-    border-radius: 25px;
     border-style: solid;
     border-width: 5px;
     border-color: #0083CA;
@@ -116,12 +127,12 @@
 .navbar button{
     background-color: white;
     color: black;
-    width: 150px;
-    height: 50px;
+    width: 200px;
+    height: 70px;
     border-radius: 25px;
     border-width: 5px;
     font-family: roboto;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     margin-right: 30px;
     padding: 10px;
@@ -182,4 +193,26 @@
 .signup_back_button:hover{
     background-color: darkgrey;
     color:white;
+}
+
+.form_group{
+    margin: 20px;
+    font-size: 25px;
+}
+
+.form_control{
+    margin: 20px;
+    padding: 20px;
+    border-color: #0083CA;
+}
+
+.col-lg-6{
+    height: 100px;
+    text-align-last: center;
+    font-size: 15px;
+
+}
+
+.card-header{
+    margin: 20px;
 }

@@ -9,7 +9,7 @@ import AdminLoginPage from './AdminLoginPage';
 import { useState } from 'react';
 import AdminHomePage from './AdminHomePage';
 import { useEffect } from "react";
-import axios from 'axios';
+import axios from './axios';
 
 
 
@@ -20,12 +20,37 @@ import axios from 'axios';
 const LoginPage = () => {
 
    const nav = useNavigate();
-   const [username, usernameupdate] = useState("");
-   const [password, passwordupdate] = useState("");
+   const [username, usernameupdate] = useState("Username");
+   const [password, passwordupdate] = useState("Password");
+
+   useEffect(() => {
+      let isMounted = true;
+      const controller = new AbortController();
+
+      const getUsernames = async () => {
+         try {
+            const response = await axios.get('/username', {
+               signal: controller.signal
+            });
+            console.log(response.data);
+            isMounted && usernameupdate(response.data);
+         } catch (err) {
+            console.error(err);
+         }
+      }
+
+      getUsernames();
+
+      return() => {
+         isMounted = false;
+         controller.abort();
+      }
+
+   },[])
 
    const [formData, setFormData] = useState({
-      username:'',
-      password:'',
+      username: '',
+      password: '',
    })
    const [errors, setErrors] = useState({});
    const [valid, setValid] = useState(true);
@@ -34,11 +59,11 @@ const LoginPage = () => {
       e.preventDefault();
       let isvalid = true;
       let validationErrors = {}
-      if(formData.username === "" || formData.username === null){
+      if (formData.username === "" || formData.username === null) {
          isvalid = false;
          validationErrors.username = "Username required";
       }
-      if(formData.password === "" || formData.password === null){
+      if (formData.password === "" || formData.password === null) {
          isvalid = false;
          validationErrors.username = "Password required";
       }
@@ -46,25 +71,25 @@ const LoginPage = () => {
       setValid(isvalid);
 
       axios.get('http://localhost:8000/user_data')
-      .then(result => {
-         result.data.map(user=>{
-            if(user.username === formData.username){
-               if(user.password === formData.password){
-                  alert("Login Successful!");
-               } else {
+         .then(result => {
+            result.data.map(user => {
+               if (user.username === formData.username) {
+                  if (user.password === formData.password) {
+                     alert("Login Successful!");
+                  } else {
+                     isvalid = false;
+                     validationErrors.password = "Wrong Password";
+                  }
+               } else if (formData.username != "") {
                   isvalid = false;
-                  validationErrors.password = "Wrong Password";
+                  validationErrors.username = "Wrong username";
                }
-            } else if(formData.username != ""){
-               isvalid = false;
-               validationErrors.username = "Wrong username";
-            }
-         })
-         setErrors(validationErrors);
-         setValid(isvalid);
-      }).catch(err => console.log(err))
+            })
+            setErrors(validationErrors);
+            setValid(isvalid);
+         }).catch(err => console.log(err))
    }
-        
+
 
 
    const validate = () => {
@@ -123,11 +148,10 @@ const LoginPage = () => {
                <form onSubmit={ProceedLogin} className='login_form'>
                   <div className="card">
                      <div className="card-header">
-                        <h2></h2>
                      </div>
                      <div className="card-body">
                         <div className="form-group">
-                           <label>Username <span className='errMsg'></span></label>
+                           <label><span className='errMsg'></span></label>
                            <input value={username} onChange={e => usernameupdate(e.target.value)} className="username"
                               type='text'
 
@@ -135,7 +159,7 @@ const LoginPage = () => {
                         </div>
                      </div>
                      <div className="form-group">
-                        <label>Password <span className='errMsg'></span></label>
+                        <label><span className='errMsg'></span></label>
                         <input value={password} onChange={e => passwordupdate(e.target.value)} className="password"
                            type='password'
                         // this will print out ..... when typing
@@ -145,8 +169,8 @@ const LoginPage = () => {
                   </div>
                   <div className='card_footer'>
                      <button type="submit" className="signin_button">Sign in</button>
-                     <h5 onClick={handleSignUp}>Sign Up!</h5>
-                     <h5>Forget password</h5>
+                     <h5 className="signup" onClick={handleSignUp}>Need an account? Sign Up!</h5>
+                     <h5 className='forget_pw'>Forget password</h5>
                   </div>
                </form>
             </div>
