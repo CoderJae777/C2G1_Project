@@ -8,6 +8,8 @@ import SignUpPage from './SignUpPage';
 import AdminLoginPage from './AdminLoginPage';
 import { useState } from 'react';
 
+// Running Json Server
+// npx json-server --watch db.json --port 8000
 const LoginPage = () => {
 
    const[username, usernameupdate]=useState("");
@@ -58,7 +60,6 @@ const LoginPage = () => {
 
     return ( 
       <> 
-
          <div className='top_of_login'> 
          <div className='login_words'>
             <h1>Grow your skills with Dell Academy</h1>
@@ -78,7 +79,7 @@ const LoginPage = () => {
             <div className="login_buttons">
                <h1>I am a/ an ... </h1>
                <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
-               <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
+               <button className="admin_login_button_blue" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
                <form onSubmit={ProceedLogin} className='login_form'> 
                   <div className="card">

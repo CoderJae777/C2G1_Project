@@ -9,6 +9,8 @@ import TrainerHomePage from './TrainerHomePage';
 import Navbar from './NavBar';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
+import {ToastContainer} from "react-toastify";
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         < Navbar />
       </div>
       <div className="App">
+      <ToastContainer theme="colored">
+      </ToastContainer>
         <Routes>
           <Route exact path = "/" element={<LoginPage/>}/>
           <Route exact path = "/AdminLoginPage" element={<AdminLoginPage/>}/>
