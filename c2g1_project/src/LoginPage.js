@@ -7,6 +7,8 @@ import dellacademylogo from './DellAcademy.png';
 import SignUpPage from './SignUpPage';
 import AdminLoginPage from './AdminLoginPage';
 
+// Running Json Server
+// npx json-server --watch db.json --port 8000
 const LoginPage = () => {
 
    const nav = useNavigate();
@@ -28,7 +30,6 @@ const LoginPage = () => {
 
     return ( 
       <> 
-
          <div className='top_of_login'> 
          <div className='login_words'>
             <h1>Grow your skills with Dell Academy</h1>

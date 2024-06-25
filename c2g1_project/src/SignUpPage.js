@@ -2,13 +2,44 @@
 // npx json-server --watch db.json --port 8000
 import { useNavigate } from 'react-router-dom';
 import LoginPage from './LoginPage';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { isValidElement, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const SignUpPage = () => {
 
     const nav = useNavigate();
+
+    let error_message ="Please enter the value for the following:\n"
+
+    const IsValidate=()=>{
+        let isproceed = true;
+        if (username==null || username==""){
+            isproceed=false;
+            error_message += "username \n";
+        }
+        if (password==null || password==""){
+            isproceed=false;
+            error_message += "password \n";
+        }
+        if (fullname==null || fullname==""){
+            isproceed=false;
+            error_message += "full name \n";
+        }
+        if (email==null || email==""){
+            isproceed=false;
+            error_message += "email \n";
+        }
+        if (country==""){
+            isproceed=false;
+            error_message += "country \n";
+        }
+    
+        if (!isproceed){
+            alert(error_message);
+        }
+
+        return isproceed;
+    }
 
     const handleBack = () => {
         nav("/");
@@ -21,6 +52,7 @@ const SignUpPage = () => {
     const [country, countrychange] = useState("");
 
     const handlesubmit=(e)=>{
+        if(IsValidate()){
         e.preventDefault();
         let regobj={username,password,fullname,email,country};
         fetch("http://localhost:8000/user",{
@@ -31,9 +63,9 @@ const SignUpPage = () => {
             alert("Registration Success!");
             nav("/");
         }).catch((err)=>{
-            alert("Registration Failed")
+            alert("Registration Failed" + error_message)
         });
-    }
+    }}
     
     return (
         <>
