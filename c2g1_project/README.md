@@ -24,7 +24,7 @@ npm start
 ```
 In another terminal,
 ```shell
-npm start
+npx json-server --watch db.json --port 8000
 ```
 
 
