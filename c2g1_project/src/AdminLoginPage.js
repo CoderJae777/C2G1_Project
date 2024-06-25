@@ -67,13 +67,10 @@ const AdminLoginPage = () => {
                <img src={dellacademylogo} alt="logo"></img>
             </div>
          </div> 
-
          <div className="login_page">
             <div className="login_pictures">
-               <div className="login_pictures">
-                  <img src={stockimgtop} alt="Stock Image"/>
-                  <img src={stockimgbottom} alt="Stock Image"/>
-               </div>               
+               <img src={stockimgtop} alt="Stock Image"/>
+               <img src={stockimgbottom} alt="Stock Image"/>             
             </div>
             <div className="login_buttons">
                <h1>I am a/ an ... </h1>
@@ -83,11 +80,11 @@ const AdminLoginPage = () => {
                <form onSubmit={ProceedLogin} className='login_form'> 
                   <div className="card">
                      <div className="card-header">
-                           <h2>Client Login</h2>
+                           <h2>Admin Login</h2>
                      </div>
                      <div className="card-body">
                         <div className="form-group">
-                           <label>User Name <span className='errMsg'></span></label>
+                           <label>Username <span className='errMsg'></span></label>
                            <input value={username} onChange={e=>usernameupdate(e.target.value)} className = "username"
                            type='text'
 
