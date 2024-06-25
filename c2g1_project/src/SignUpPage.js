@@ -33,11 +33,9 @@ const SignUpPage = () => {
             isproceed=false;
             error_message += "country \n";
         }
-    
         if (!isproceed){
             alert(error_message);
         }
-
         return isproceed;
     }
 
@@ -55,7 +53,7 @@ const SignUpPage = () => {
         if(IsValidate()){
         e.preventDefault();
         let regobj={username,password,fullname,email,country};
-        fetch("http://localhost:8000/user",{
+        fetch("http://localhost:8000/user_data",{
             method:"POST",
             headers:{'content-type':'application/json'},
             body:JSON.stringify(regobj)
@@ -74,12 +72,13 @@ const SignUpPage = () => {
                     <form className='contrainer' onSubmit={handlesubmit}>
                         <div className="card">
                             <div className="card-header">
-                                <h1>New User Registration!</h1>
+                                <h1>Create an account today!</h1>
+                                <h3>All fields are required</h3>
                             </div>
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-lg-6">
-                                        <div className="form-group">
+                                        <div className="form_group">
                                             <label>User Name:  <span className="errmsg">* </span></label>
                                             <input value={username} onChange={e=>usernamechange(e.target.value)} className="form_control"></input>
                                         </div>
@@ -108,8 +107,8 @@ const SignUpPage = () => {
                                             <select value={country} onChange={e=>countrychange(e.target.value)} className="form_control">
                                                 <option value="Default">--Select--</option>
                                                 <option value="Singapore">Singapore</option>
-                                                <option value="Singapore">USA</option>
-                                                <option value="Singapore">Malaysia</option>
+                                                <option value="USA">USA</option>
+                                                <option value="Malaysia">Malaysia</option>
                                             </select>
                                         </div>
                                     </div>

@@ -8,6 +8,22 @@
 2. Go to terminal --> make your branch 
 3. Refer to below
 
+### Subsequent Runs
+1. checkout to main
+2. git pull
+3. checkout to your own local branch
+4. git merge main
+5. cd to cdg1_project
+6. npx json-server --watch db.json --port 8000
+7. npm start
+8. DONE!
+
+### In case of errors
+1. npm install npx
+2. npm install json-server
+3. Find Jae
+
+
 ### For subsequent commits/ push
 
 1. Checkout to main
