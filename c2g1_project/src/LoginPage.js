@@ -48,7 +48,7 @@ const LoginPage = () => {
             <div className="login_buttons">
                <h1>I am a/ an ... </h1>
                <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
-               <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
+               <button className="admin_login_button_blue" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
                <h4>Username/ Staff ID</h4>
                <input className = "username"
