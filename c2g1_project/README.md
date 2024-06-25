@@ -1,14 +1,35 @@
 # C2G1_Project
+A resource management web application that manages workshops, trainers and clients using ReactJS for frontend.
 
-## How to run the project 
+## Requirements
+* React
+* npm
+* j-son server
 
-### First Time?
+## Getting started
 
-1. git clone
-2. Go to terminal --> make your branch 
-3. Refer to below
+### Clone repository
+```shell
+git clone https://github.com/CoderJae777/C2G1_Project.git
+```
 
-### Subsequent Runs
+### Install dependencies
+```shell
+npm install
+```
+
+### Running
+```shell
+npm start
+```
+In another terminal,
+```shell
+npm start
+```
+
+
+## For developers : 
+### git practices
 1. checkout to main
 2. git pull
 3. checkout to your own local branch
@@ -18,14 +39,7 @@
 7. npm start
 8. DONE!
 
-### In case of errors
-1. npm install npx
-2. npm install json-server
-3. Find Jae
-
-
 ### For subsequent commits/ push
-
 1. Checkout to main
 2. git pull
 3. Checkout to your branch
@@ -36,12 +50,14 @@
 8. Download Node.js with npm 
 9. npm install 
 
+### In case of errors
+1. npm install 
+2. Ask the group!
 
 ### For subsequent push 
-
 1. git branch (MAKE SURE NOT MAIN)
 2. git status (SEE YOUR EDITS IN RED)
 3. git add .
 4. git status (TO CONFIRM ITS GREEN)
-5. git commit -m "insert what you have done"
-6. git push
+5. git commit -m "insert what you have done" 
+6. git push (set upstream if first time)

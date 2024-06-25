@@ -9,7 +9,12 @@
       "country": "Singapore"
     },
     {
-      "country": "Singapore"
+      "id": "23c7",
+      "username": "apple",
+      "password": "apple",
+      "fullname": "apple",
+      "email": "apple@gmail.com",
+      "country": "Malaysia"
     }
   ]
 }
