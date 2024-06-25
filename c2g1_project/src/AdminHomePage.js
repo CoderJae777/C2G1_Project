@@ -1,22 +1,20 @@
+import React from 'react';
 import './homepage.css';
-import dellacademylogo from './images/DellAcademy.png';
-import userprofilepic from './images/userprofilepic.png';
+import 'boxicons/css/boxicons.min.css';
+import dellacademylogo from "./images/DellAcademy.png";
+import Sidebar from './LeftSideBar';
 
 const AdminHomePage = () => {
-    return ( 
-        <div>
-            <div className="delllogo"></div>
-            <div>
-                <img src={dellacademylogo} alt="Dell Academy Logo" />
-            </div>
-            <div class="leftsidebar">
-                <div class="userprofilepic">
-                    <img class="userprofilepic" src={userprofilepic} alt="User Profile Pic" />
-                </div>    
-                <h1 class="username">Dil Doe</h1>
-            </div>
+  return (
+    <div>
+      <div className="left-panel">
+        <div className="dell-logo">
+          <img src={dellacademylogo} alt="Dell Academy Logo" />
         </div>
-    );
-}
+        <Sidebar /> {/* Use the Sidebar component */}
+      </div>
+    </div>
+  );
+};
 
 export default AdminHomePage;
