@@ -8,7 +8,7 @@ import SignUpPage from './SignUpPage';
 import { useState } from 'react';
 
 // Running Json Server
-// json-server --watch db.json --port 8000
+// npx json-server --watch db.json --port 8000
 
 const AdminLoginPage = () => {
 
