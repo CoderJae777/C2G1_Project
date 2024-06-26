@@ -87,7 +87,7 @@ const ClientLoginPage = () => {
             </div>
             <div className="login_buttons">
                <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-               <h3>I am a/ an ... </h3>
+               <h5>I am a/ an ... </h5>
                <button className="client_login_button_blue">Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
