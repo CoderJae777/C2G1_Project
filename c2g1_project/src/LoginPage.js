@@ -26,34 +26,33 @@ const LoginPage = () => {
    const ProceedLogin = (e) => {
       e.preventDefault();
       if (validate()) {
-         console.log('proceed');
+         console.log('Sign in button registered');
          fetch("http://localhost:8000/user_data/" + username).then((res) => {
             return res.json();
-         }).then((resp) => {
-            console.log(resp)
-            if (Object.keys(resp).length === 0) {
-               alert("Please Enter valid username");
+         }).then((userData) => {
+            console.log(userData);
+            if (Object.keys(userData).length === 0) {
+               alert('Please Enter valid username');
             } else {
-               if(resp.username === username){
-                  if (resp.password === password) {
-                     nav("/AdminHomePage");
-                  } else {
-                     alert("Invalid password");
-                  }
-               } 
+               if (userData.password === password) {
+                  nav('/AdminHomePage')
+               } else {
+                  alert('Invalid Password');
+               }
             }
-         }).catch((err) => {
-            alert("Invalid Username")
-         })
+         }).catch((error) => {
+            alert('Login Failed: User Account does not exist');
+         });
       }
    }
+
    const validate = () => {
       let result = true;
-      if (username === "" || username === null) {
+      if (username === "") {
          result = false;
          alert("Username cannot be empty")
       }
-      if (password === "" || password === null) {
+      if (password === "") {
          result = false;
          alert("Password cannot be empty")
       }

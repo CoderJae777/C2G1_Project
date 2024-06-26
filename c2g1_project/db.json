@@ -1,12 +1,12 @@
 {
   "user_data": [
     {
-      "id": "admin",
       "username": "admin",
+      "id": "admin",
       "password": "admin",
       "fullname": "admin",
       "email": "admin@gmail.com",
-      "country": "Singapore"
+      "country": "USA"
     }
   ]
 }
