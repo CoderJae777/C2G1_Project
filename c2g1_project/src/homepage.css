@@ -14,7 +14,7 @@ body{
 
 .admin-home-page {
     display: flex;
-    align-items: flex-start;
+    align-items: end;
     justify-content: flex-start;
     height: 100vh;
     /* padding: 15px; */
@@ -37,7 +37,7 @@ body{
     width: 100%;
     max-width: 300px;
     height: 430px;
-    background: #DEDDFF;
+    background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
     padding: 10px;
@@ -74,7 +74,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px 16px;
+    padding: 10px 0px;
 }
 
 .leftsidebar-content .leftsidebar-lists{
@@ -84,11 +84,11 @@ body{
 .leftsidebar-list .nav-link{
     display: flex;
     align-items: center;
-    padding: 14px 12px;
+    padding: 12px 12px;
     border-radius: 8px;
-    /* border: 1px solid #707070; */
     text-decoration: none;
     margin-bottom: 10px;
+    margin-right: 20px;
 }
 
 .nav-link:hover{
@@ -113,17 +113,130 @@ body{
 }
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
-.content-panel {
+.middle-column{
     display: flex;
     flex-direction: column;
-    margin-left: 5px; /* Adjust this value to space out from the left panel */
+    margin: 15px;
 }
 
-.workshop-table, .trainer-table {
+.login_words{
+    text-align: center;
+}
+
+.workshop-table, .trainer-table{
     max-width: 600px;
     width: 600px;
     height: 270px;
-    background: #DEDDFF;
+    background: #d7d7d7;
+    color: #707070;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manage-trainers-button,
+.workshop-request-button{
+    
+    max-width: 200px;
+    align-items: center;
+    padding: 14px 12px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    background-color: #80C7FB;
+}
+
+.manage-trainers-button:hover,
+.workshop-request-button:hover{
+    background-color: #0672CB;
+}
+
+/* WORKSHOP TABLE CSS --------------------------------------------------------------------- */
+.workshop-table .workshop-table-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0px;
+}
+
+.workshop-table-content .workshop-table-lists{
+    list-style: none;
+}
+
+.workshop-table-list .wt-link{
+    width: 530px;
+    display: flex;
+    align-items: center;
+    padding: 12px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+
+.wt-link:hover{
+    background-color: #0083CA;
+}
+
+.bx{
+    margin-right: 14px;
+    font-size: 20px;
+    color: #707070;
+}
+
+.wt-link .link{
+    font-size: 16px;
+    color: #707070;
+    font-weight: 400;
+}
+
+.wt-link:hover i,
+.wt-link:hover .link{
+    color: #fff;
+}
+
+/* TRAINER TABLE CSS ------------------------------------------------------------------ */
+.table-striped {
+    flex-direction: column;
+    width: 570px;
+}
+
+.table-striped tbody{
+    background-color: #d7d7d7;
+}
+  
+.table-striped .bg-info{
+    background: #d7d7d7;
+    color: #707070;
+}
+  
+.table-striped .bg-info th{
+    cursor: pointer;
+}
+  
+.table-striped .bg-info th:hover{
+    color: #fff;
+}
+
+/* CSS FOR RIGHT SIDE OF ADMIN PAGE --------------------------------------------------------------------- */
+.right-column{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.admin-graphs{
+    max-width: 600px;
+    width: 600px;
+    height: 620px;
+    background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
     padding: 10px;

@@ -5,44 +5,44 @@ import './homepage.css';
 
 const LeftSidebar = ({ userprofilepic }) => {
   return (
-    <div className="leftsidebar">
-      <div className="column">
+    <div class="leftsidebar">
+      <div class="column">
         <img src={userprofilepic} alt="User Profile Pic" />
         <div>
-          <p className="usernamedisplay">Dil Doe</p>
-          <p className="userroledisplay">Admin</p>
+          <p class="usernamedisplay">Dil Doe</p>
+          <p class="userroledisplay">Admin</p>
         </div>
       </div>
-      <div className="leftsidebar-content">
-        <ul className="leftsidebar-lists">
-          <li className="leftsidebar-list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-home-alt"></i>
-              <span className="link">Home</span>
+      <div class="leftsidebar-content">
+        <ul class="leftsidebar-lists">
+          <li class="leftsidebar-list">
+            <a href="#" class="nav-link">
+              <i class="bx bx-home-alt"></i>
+              <span class="link">Home</span>
             </a>
           </li>
-          <li className="leftsidebar-list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-user"></i>
-              <span className="link">Profile</span>
+          <li class="leftsidebar-list">
+            <a href="#" class="nav-link">
+              <i class="bx bx-user"></i>
+              <span class="link">Profile</span>
             </a>
           </li>
-          <li className="leftsidebar-list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-book-open"></i>
-              <span className="link">My Workshops</span>
+          <li class="leftsidebar-list">
+            <a href="#" class="nav-link">
+              <i class="bx bx-book-open"></i>
+              <span class="link">Workshops</span>
             </a>
           </li>
-          <li className="leftsidebar-list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-cog"></i>
-              <span className="link">Settings</span>
+          <li class="leftsidebar-list">
+            <a href="#" class="nav-link">
+              <i class="bx bx-cog"></i>
+              <span class="link">Settings</span>
             </a>
           </li>
-          <li className="leftsidebar-list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-exit"></i>
-              <span className="link">Sign Out</span>
+          <li class="leftsidebar-list">
+            <a href="#" class="nav-link">
+              <i class="bx bx-exit"></i>
+              <span class="link">Sign Out</span>
             </a>
           </li>
         </ul>
