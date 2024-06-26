@@ -1,20 +1,12 @@
 {
   "user_data": [
     {
-      "id": "e82b",
-      "username": "Jae",
-      "password": "Apple123",
-      "fullname": "GohYiShen",
-      "email": "jae@gmail.com",
+      "id": "admin",
+      "username": "admin",
+      "password": "admin",
+      "fullname": "admin",
+      "email": "admin@gmail.com",
       "country": "Singapore"
-    },
-    {
-      "id": "23c7",
-      "username": "apple",
-      "password": "apple",
-      "fullname": "apple",
-      "email": "apple@gmail.com",
-      "country": "Malaysia"
     }
   ]
 }

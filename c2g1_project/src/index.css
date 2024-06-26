@@ -33,7 +33,7 @@
 }
 
 .client_login_button, .admin_login_button, .trainer_login_button{
-    background-color: #a1deff;
+    background-color: white;
     color: black;
     width: 130px;
     height: 130px;
@@ -44,8 +44,8 @@
     font-weight: bold;
     margin: 20px;
     padding: 10px;
-    transition: background-color 1000ms;
-    transition: color 1000ms;
+    transition: background-color 500ms;
+    transition: color 500ms;
     border-width: 5px;
     border-radius: 20px;
     border-color: #0083CA;
@@ -65,11 +65,10 @@
     border-width: 5px;
     border-color: black;
     font-family: roboto;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     margin: 20px;
     padding: 10px;
-    transition: color 1000ms;
 }
 
 .signin_button{
@@ -136,13 +135,15 @@
     font-weight: bold;
     margin-right: 30px;
     padding: 10px;
-    transition: background-color 1000ms;
+    transition: background-color 500ms;
+    transition: color 0ms;
     border-color: #0083CA;
 }
 
 .navbar button:hover{
     background-color: #28abf1;
     color:white;
+    transition: background-color 500ms;
 }
 
 
