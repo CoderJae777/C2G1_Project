@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './homepage.css';
+import './adminhomepage.css';
 import { useState } from 'react';
 
 const TrainerTable = () => {

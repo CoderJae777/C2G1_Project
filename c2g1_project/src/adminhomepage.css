@@ -12,7 +12,7 @@ body{
 }
 
 
-.admin-home-page {
+.admin-home-page{
     display: flex;
     align-items: end;
     justify-content: flex-start;
@@ -20,7 +20,7 @@ body{
     /* padding: 15px; */
 }
 
-.left-panel {
+.left-panel{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -57,7 +57,7 @@ body{
     margin: 15px;
 }
 
-.usernamedisplay {
+.usernamedisplay{
     white-space: nowrap;
     margin: 0;
     font-size: 28px;
@@ -65,7 +65,7 @@ body{
     margin-left: 5px;
   }
 
-.userroledisplay {
+.userroledisplay{
     margin: 0;
     margin-left: 5px;
   }
@@ -119,7 +119,7 @@ body{
     margin: 15px;
 }
 
-.login_words{
+.admin-home-page-title{
     text-align: center;
 }
 
@@ -158,7 +158,12 @@ body{
     background-color: #0672CB;
 }
 
-/* WORKSHOP TABLE CSS --------------------------------------------------------------------- */
+.admin-home-datetime{
+    text-align: right;
+    margin-right: 15px;
+}
+
+/* WORKSHOP TABLE CSS ------------------------------------------------------------------------------ */
 .workshop-table .workshop-table-content{
     display: flex;
     flex-direction: column;
@@ -203,7 +208,7 @@ body{
 }
 
 /* TRAINER TABLE CSS ------------------------------------------------------------------ */
-.table-striped {
+.table-striped{
     flex-direction: column;
     width: 570px;
 }
@@ -225,7 +230,7 @@ body{
     color: #fff;
 }
 
-/* CSS FOR RIGHT SIDE OF ADMIN PAGE --------------------------------------------------------------------- */
+/* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
 .right-column{
     display: flex;
     flex-direction: column;

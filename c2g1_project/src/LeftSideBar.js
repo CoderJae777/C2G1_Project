@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import userprofilepic from "./images/userprofilepic.png";
-import './homepage.css';
+import './adminhomepage.css';
 
 const LeftSidebar = ({ userprofilepic }) => {
+  const nav = useNavigate();
+  const handleAdminWorkshopRequestPage = () => {
+    nav("/AdminWorkshopRequestPage");
+  }
+
   return (
     <div class="leftsidebar">
       <div class="column">
@@ -30,7 +36,7 @@ const LeftSidebar = ({ userprofilepic }) => {
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               <i class="bx bx-book-open"></i>
-              <span class="link">Workshops</span>
+              <span class="link" onClick={handleAdminWorkshopRequestPage}>Workshops</span>
             </a>
           </li>
           <li class="leftsidebar-list">
