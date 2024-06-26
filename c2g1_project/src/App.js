@@ -28,10 +28,10 @@ function App() {
           <Route exact path="/ClientLoginPage" element={<ClientLoginPage/>}/>
           <Route exact path="/TrainerLoginPage" element={<TrainerLoginPage/>}/>
           <Route exact path="/SignUpPage" element={<SignUpPage/>}/>
-          <Route path ="/AdminHomePage" element={<AdminHomePage/>}/>
-          <Route path ="/ClientHomePage" element={<ClientHomePage/>}/>
-          <Route path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
-          <Route path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
+          <Route exact path ="/AdminHomePage" element={<AdminHomePage/>}/>
+          <Route exact path ="/ClientHomePage" element={<ClientHomePage/>}/>
+          <Route exact path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
+          <Route exact path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
         </Routes>
       </div>
     </Router>
