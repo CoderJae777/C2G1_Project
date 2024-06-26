@@ -17,7 +17,6 @@
     grid-template-columns: 1fr 1fr;
     display: flex;
     justify-content: center;
-    grid-gap: 20px;
     width:80%;
     margin-top: 20px;
 }
@@ -36,11 +35,11 @@
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin-right: 20px;
+    margin: 10px 10px 0px 10px;
     padding: 10px;
     transition: background-color 500ms;
     transition: color 500ms;
-    border-width: 5px;
+    border-width: 3px;
     border-radius: 20px;
     border-color: #0083CA;
 }
@@ -56,12 +55,12 @@
     width: 90px;
     height: 90px;
     border-radius: 20px;
-    border-width: 5px;
+    border-width: 3px;
     border-color: black;
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin-right: 20px;
+    margin: 10px 10px 0px 10px;
     padding: 10px;
 }
 
@@ -71,13 +70,13 @@
     padding: 6px 10px;
     width: 20%;
     border-radius: 20px;
-    border-width: 5px;
+    border-width: 3px;
     border-color: black;
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
     transition: background-color 1000ms;
-    margin-top: 5px;
+    margin: 10px 0px 0px 0px;
 
 }
 
@@ -86,28 +85,25 @@
 }
 
 .username, .password{
-    width: 60%;
+    width: 80%;
     padding: 6px 10px;
-    border-width: 5px;
+    border-width: 3px;
     border-radius: 10px;
     border-color: #0083CA;
-    margin:15px;
+    margin:10px;
     font-size: 15px;
     text-align: center;
     color: #a9a9a9;
 }
 
 .signup, .forget_pw {
-    margin:15px;
+    margin:10px;
     font-size: 15px;
     color: #0000ee;
 }
 
 .login_form{
-    margin: 15px;
-    border-style: solid;
-    border-width: 5px;
-    border-color: #0083CA;
+    margin: 10px;
     text-align: center;
 }
 
@@ -117,17 +113,17 @@
 /* Navbar designs */
 .navbar{
     padding: 50px;
-    background-color: #a1deff;
+    background-color: white;
     border-style: solid;
-    border-width: 5px;
-    border-color: #0083CA;
+    border-width: 0px;
+ 
 }
 
 .navbar_contents{
     display: flex;
     justify-content: center;
     width:100%;
-    margin: 20px;
+    margin-top: 10px;
 }
     
 
@@ -137,11 +133,13 @@
     width: 150px;
     height: 50px;
     border-radius: 25px;
-    border-width: 5px;
+    border-width: 0px;
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
     margin-right: 30px;
+    margin-left: 30px;
+    margin-top: 10px;
     padding: 10px;
     transition: background-color 500ms;
     transition: color 0ms;
@@ -162,29 +160,28 @@
 
 
 /* SignUpPageDesigns */
-/* SignUpPageDesigns */
 .errmsg{
     color: red;
 }
 
 .signup_submit_button{
-    background-color: #0083CA;
+    background-color: #5cdb5c;
     color: white;
     width: 150px;
     height: 50px;
     border-radius: 25px;
-    border-width: 5px;
+    border-width: 3px;
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
     margin-right: 30px;
     padding: 10px;
     transition: background-color 1000ms;
-    border-color: #0083CA;
+    border-color: black;
 }
 
 .signup_submit_button:hover{
-    background-color: #28abf1;
+    background-color: darkgreen;
     color:white;
 }
 
@@ -194,11 +191,10 @@
     width: 150px;
     height: 50px;
     border-radius: 25px;
-    border-width: 5px;
+    border-width: 3px;
     font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    margin-right: 30px;
     padding: 10px;
     transition: background-color 1000ms;
     border-color: black;
@@ -210,23 +206,25 @@
 }
 
 .form_group{
-    margin: 20px;
-    font-size: 25px;
+    margin: 10px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .form_control{
-    margin: 20px;
+    margin: 10px;
     padding: 20px;
-    border-color: #0083CA;
-}
-
-.col-lg-6{
-    height: 100px;
-    text-align-last: left;
-    font-size: 15px;
+    border-radius: 10px;
+    border-width: 3px;
+    text-align: center;
 }
 
 .card-header{
     margin: 20px;
     text-align: center;
 }
+
+.card{
+    text-align: center;
+}
+

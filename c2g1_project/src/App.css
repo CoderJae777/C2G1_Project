@@ -1,8 +1,10 @@
 body{
-    background-color: white;
+    background-color: #ADD8E6;
     font-family: roboto;
     text-align: center;
 }
 
-
+#root{    
+    background-color: white;
+}
 
