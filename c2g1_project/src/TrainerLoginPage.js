@@ -88,7 +88,8 @@ const TrainerLoginPage = () => {
             </div>
             <div className="login_buttons">
                <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-               <h5>I am a/ an ... </h5>               <button className="client_login_button">Client</button>
+               <h5>I am a/ an ... </h5>              
+                <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button_blue" onClick={handleTrainerLoginPage}>Trainer</button>
                <form onSubmit={ProceedLogin} className='login_form'>

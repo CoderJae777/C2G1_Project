@@ -44,6 +44,7 @@
     border-color: #0083CA;
 }
 
+
 .admin_login_button:hover, .client_login_button:hover, .trainer_login_button:hover{
     background-color: #28abf1;
     color:white;

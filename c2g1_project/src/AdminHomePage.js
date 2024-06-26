@@ -24,36 +24,29 @@ const AdminHomePage = () => {
             </div>
             <div class="middle-column">
                 <div class='admin-home-page-title'>
-                    <h1>Hi Dil, welcome back!</h1>
-                    <h4>Here is some important information for you:</h4>
+                    <h3>Hi Dil, welcome back!</h3>
+                    <h5>Here is some important information for you:</h5>
                 </div>
                 <div class="workshop-table">
-                    <button class="workshop-request-button" onClick={handleAdminWorkshopRequestPage}>Workshop Requests</button>
+                    <button className="workshop-request-button" onClick={handleAdminWorkshopRequestPage}>Workshop Requests</button>
                     <div class="workshop-table-content">
                         <ul class="workshop-table-lists">
                             <li class="workshop-table-list">
-                                <a href="#" class="wt-link">
-                                {/* <i class="bx bx-home-alt"></i> */}
-                                <span class="link">[ Pending Workshop Request ] Intro to Power Bi</span>
-                                </a>
+                                <a href="#" class="wt-link"><span class="link">[ Pending Workshop Request ] Intro to Power Bi</span> </a>
+                            </li>
+                            <li class="workshop-table-list">
+                                <a href="#" class="wt-link"><span class="link">[ Pending Workshop Request ] Intro to Computers</span></a>
                             </li>
                             <li class="workshop-table-list">
                                 <a href="#" class="wt-link">
-                                {/* <i class="bx bx-user"></i> */}
-                                <span class="link">[ Pending Workshop Request ] Intro to Computers</span>
-                                </a>
-                            </li>
-                            <li class="workshop-table-list">
-                                <a href="#" class="wt-link">
-                                {/* <i class="bx bx-book-open"></i> */}
-                                <span class="link">[ Pending Workshop Request ] Intro to Excel</span>
+                                    <span class="link">[ Pending Workshop Request ] Intro to Excel</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="trainer-table">
-                    <button class="manage-trainers-button">Manage Trainers</button>
+                    <button className="manage-trainers-button">Manage Trainers</button>
                     <TrainerTable />
                 </div>
             </div>

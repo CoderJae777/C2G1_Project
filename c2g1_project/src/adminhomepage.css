@@ -20,6 +20,10 @@ body{
     /* padding: 15px; */
 }
 
+.admin-home-page-title{
+    padding: 50px;
+}
+
 .left-panel{
     display: flex;
     flex-direction: column;
@@ -28,7 +32,8 @@ body{
 }
 
 .dell-logo{
-    margin-left: 50px;
+    margin: auto;
+    margin-bottom: 5px;
 }
 
 
@@ -36,14 +41,12 @@ body{
 .leftsidebar{
     width: 100%;
     max-width: 300px;
-    height: 430px;
+    height: 100%;
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
     padding: 10px;
     text-align: center;
-    align-items: flex-start;
-    margin-top: 15px;
 }
 
 .column{
@@ -61,20 +64,19 @@ body{
     white-space: nowrap;
     margin: 0;
     font-size: 28px;
-    margin-top: -6px;
-    margin-left: 5px;
+    color: #0083CA;
   }
 
 .userroledisplay{
     margin: 0;
     margin-left: 5px;
+    color:#0083CA
   }
 
 .leftsidebar .leftsidebar-content{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px 0px;
 }
 
 .leftsidebar-content .leftsidebar-lists{
@@ -82,37 +84,63 @@ body{
 }
 
 .leftsidebar-list .nav-link{
-    display: flex;
-    align-items: center;
-    padding: 12px 12px;
     border-radius: 8px;
     text-decoration: none;
     margin-bottom: 10px;
     margin-right: 20px;
 }
 
-.nav-link:hover{
+
+.sidebarbutton {
+    background-color: white;
+    color: black;
+    width: 150px;
+    height: 50x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.sidebarbutton:hover{
     background-color: #0083CA;
+    color: white;
 }
 
-.bx{
-    margin-right: 14px;
-    font-size: 20px;
-    color: #707070;
-}
-
-.nav-link .link{
-    font-size: 16px;
-    color: #707070;
-    font-weight: 400;
-}
-
-.nav-link:hover i,
-.nav-link:hover .link{
-    color: #fff;
-}
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
+.workshop-request-button, .manage-trainers-button{
+    background-color: #0083CA;
+    color: black;
+    width: 200px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 5px 10px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 15px;
+}
+
+.manage-trainers-button:hover,
+.workshop-request-button:hover{
+    background-color: #0672CB;
+    color: white;
+}
+
 .middle-column{
     display: flex;
     flex-direction: column;
@@ -133,30 +161,9 @@ body{
     padding: 10px;
     text-align: center;
     margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.manage-trainers-button,
-.workshop-request-button{
-    
-    max-width: 200px;
-    align-items: center;
-    padding: 14px 12px;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 10px;
-    background-color: #80C7FB;
-}
-
-.manage-trainers-button:hover,
-.workshop-request-button:hover{
-    background-color: #0672CB;
-}
 
 .admin-home-datetime{
     text-align: right;
@@ -180,20 +187,16 @@ body{
     display: flex;
     align-items: center;
     padding: 12px 12px;
-    border-radius: 8px;
     text-decoration: none;
     margin-bottom: 5px;
     margin-right: 20px;
 }
 
-.wt-link:hover{
-    background-color: #0083CA;
-}
-
 .bx{
     margin-right: 14px;
     font-size: 20px;
-    color: #707070;
+    color: black;
+    padding: 10px;
 }
 
 .wt-link .link{

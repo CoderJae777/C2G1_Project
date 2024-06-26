@@ -14,7 +14,7 @@ const LeftSidebar = ({ userprofilepic }) => {
   const handleAdminHomePage = () => {
     nav("/AdminHomePage");
   }
-  
+
   const handleNavBarSignIn = () => {
     nav("/");
   }
@@ -32,32 +32,34 @@ const LeftSidebar = ({ userprofilepic }) => {
         <ul class="leftsidebar-lists">
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <i class="bx bx-home-alt"></i>
-              <span class="link" onClick={handleAdminHomePage}>Home</span>
+              {/* <span class="link" onClick={handleAdminHomePage}>Home</span> */}
+              <button class="sidebarbutton" onClick={handleAdminHomePage}><i class="bx bx-home-alt"></i>Home</button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <i class="bx bx-user"></i>
-              <span class="link">Profile</span>
+
+              <button class="sidebarbutton"><i class="bx bx-user"></i>Profile</button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <i class="bx bx-book-open"></i>
-              <span class="link" onClick={handleAdminWorkshopRequestPage}>Workshops</span>
+
+              <button class="sidebarbutton" onClick={handleAdminWorkshopRequestPage}>
+                <i class="bx bx-book-open">
+
+                </i>Workshops</button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <i class="bx bx-cog"></i>
-              <span class="link">Settings</span>
+
+              <button class="sidebarbutton"><i class="bx bx-cog"></i>Settings</button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <i class="bx bx-exit"></i>
-              <span class="link" onClick={handleNavBarSignIn}>Sign Out</span>
+              <button class="sidebarbutton" onClick={handleNavBarSignIn}><i class="bx bx-exit"></i>Sign Out</button>
             </a>
           </li>
         </ul>
