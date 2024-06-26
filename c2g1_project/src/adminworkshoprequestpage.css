@@ -67,7 +67,9 @@
     padding-top: 10px;
 }
 
-.manage-trainers-button,
+.accept-workshop-request-button,
+.allocate-trainer-to-workshop-button,
+.reject-workshop-request-button,
 .workshop-request-button{
     max-width: 200px;
     align-items: center;
@@ -79,4 +81,70 @@
     background-color: #80C7FB;
     flex: 1;
     margin: 0 5px;
+}
+
+.accept-workshop-request-button{
+    background-color: #37CC5C;
+}
+
+.accept-workshop-request-button:hover{
+    background-color: #247554;
+}
+
+.allocate-trainer-to-workshop-button{
+    background-color: #80C7FB;
+}
+
+.allocate-trainer-to-workshop-button:hover{
+    background-color: #0672CB;
+}
+
+.reject-workshop-request-button{
+    background-color: #ed2157;
+}
+
+.reject-workshop-request-button:hover{
+    background-color: #B30B37;
+}
+
+/* CSS FOR APPROVE WORKSHOP REQUEST POPUP ------------------------------------------------------------------- */
+.approve-workshop-request-popup {
+    width: 400px;
+    background: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-approve-workshop-request-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.approve-workshop-request-popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.approve-workshop-request-popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

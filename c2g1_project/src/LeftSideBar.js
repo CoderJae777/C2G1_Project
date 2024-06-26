@@ -10,10 +10,14 @@ const LeftSidebar = ({ userprofilepic }) => {
   const handleAdminWorkshopRequestPage = () => {
     nav("/AdminWorkshopRequestPage");
   }
+
+  const handleAdminHomePage = () => {
+    nav("/AdminHomePage");
+  }
   
   const handleNavBarSignIn = () => {
     nav("/");
- }
+  }
 
   return (
     <div class="leftsidebar">
@@ -29,7 +33,7 @@ const LeftSidebar = ({ userprofilepic }) => {
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               <i class="bx bx-home-alt"></i>
-              <span class="link">Home</span>
+              <span class="link" onClick={handleAdminHomePage}>Home</span>
             </a>
           </li>
           <li class="leftsidebar-list">
