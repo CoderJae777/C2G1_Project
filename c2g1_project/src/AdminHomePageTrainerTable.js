@@ -1,16 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './homepage.css';
 import { useState } from 'react';
 
-const SortableTable = () => {
+const TrainerTable = () => {
   const [myArray, setMyArray] = useState([
-    { name: 'Michael', age: '30', birthdate: '11/10/1989' },
-    { name: 'Mila', age: '32', birthdate: '10/1/1989' },
-    { name: 'Paul', age: '29', birthdate: '10/14/1990' },
-    { name: 'Dennis', age: '25', birthdate: '11/29/1993' },
-    { name: 'Tim', age: '27', birthdate: '3/12/1991' },
-    { name: 'Erik', age: '24', birthdate: '10/31/1995' }
+    { name: 'Michael', role: 'Training Lead', workshop: 'Intro to Design' },
+    { name: 'Mila', role: 'Training Assistant', workshop: 'Intro to AI' },
+    { name: 'Paul', role: 'Training Assistant', workshop: 'Interview Hacks!' },
+    { name: 'Dennis', role: 'Training Assistant', workshop: 'Cancelled' },
+    { name: 'Tim', role: 'Training Lead', workshop: 'Intro to AI' },
+    { name: 'Erik', role: 'Training Assistant', workshop: 'Resume Review' }
   ]);
-  const [order, setOrder] = useState({ name: 'desc', age: 'desc', birthdate: 'desc' });
+  const [order, setOrder] = useState({ name: 'desc', role: 'desc', workshop: 'desc' });
 
   const handleSort = (column) => {
     const newOrder = order[column] === 'desc' ? 'asc' : 'desc';
@@ -26,17 +27,17 @@ const SortableTable = () => {
   };
 
   return (
-    <table class="table table-striped">
+    <table class="table-striped">
       <thead>
         <tr class="bg-info">
           <th onClick={() => handleSort('name')}>
             Name {order.name === 'desc' ? '▲' : '▼'}
           </th>
-          <th onClick={() => handleSort('age')}>
-            Age {order.age === 'desc' ? '▲' : '▼'}
+          <th onClick={() => handleSort('role')}>
+            Role {order.role === 'desc' ? '▲' : '▼'}
           </th>
-          <th onClick={() => handleSort('birthdate')}>
-            Birthday {order.birthdate === 'desc' ? '▲' : '▼'}
+          <th onClick={() => handleSort('workshop')}>
+            Workshop {order.workshop === 'desc' ? '▲' : '▼'}
           </th>
         </tr>
       </thead>
@@ -44,8 +45,8 @@ const SortableTable = () => {
         {myArray.map((item, index) => (
           <tr key={index}>
             <td>{item.name}</td>
-            <td>{item.age}</td>
-            <td>{item.birthdate}</td>
+            <td>{item.role}</td>
+            <td>{item.workshop}</td>
           </tr>
         ))}
       </tbody>
@@ -53,4 +54,4 @@ const SortableTable = () => {
   );
 };
 
-export default SortableTable;
+export default TrainerTable;
