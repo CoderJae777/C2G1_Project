@@ -20,95 +20,49 @@ import axios from './axios';
 const LoginPage = () => {
 
    const nav = useNavigate();
-   const [username, usernameupdate] = useState("Username");
-   const [password, passwordupdate] = useState("Password");
-
-   useEffect(() => {
-      let isMounted = true;
-      const controller = new AbortController();
-
-      const getUsernames = async () => {
-         try {
-            const response = await axios.get('/username', {
-               signal: controller.signal
-            });
-            console.log(response.data);
-            isMounted && usernameupdate(response.data);
-         } catch (err) {
-            console.error(err);
-         }
-      }
-
-      getUsernames();
-
-      return() => {
-         isMounted = false;
-         controller.abort();
-      }
-
-   },[])
-
-   const [formData, setFormData] = useState({
-      username: '',
-      password: '',
-   })
-   const [errors, setErrors] = useState({});
-   const [valid, setValid] = useState(true);
+   const [username, usernameupdate] = useState("");
+   const [password, passwordupdate] = useState("");
 
    const ProceedLogin = (e) => {
       e.preventDefault();
-      let isvalid = true;
-      let validationErrors = {}
-      if (formData.username === "" || formData.username === null) {
-         isvalid = false;
-         validationErrors.username = "Username required";
-      }
-      if (formData.password === "" || formData.password === null) {
-         isvalid = false;
-         validationErrors.username = "Password required";
-      }
-      setErrors(validationErrors);
-      setValid(isvalid);
-
-      axios.get('http://localhost:8000/user_data')
-         .then(result => {
-            result.data.map(user => {
-               if (user.username === formData.username) {
-                  if (user.password === formData.password) {
-                     alert("Login Successful!");
+      if (validate()) {
+         console.log('proceed');
+         fetch("http://localhost:8000/user_data/" + username).then((res) => {
+            return res.json();
+         }).then((resp) => {
+            console.log(resp)
+            if (Object.keys(resp).length === 0) {
+               alert("Please Enter valid username");
+            } else {
+               if(resp.username === username){
+                  if (resp.password === password) {
+                     nav("/AdminHomePage");
                   } else {
-                     isvalid = false;
-                     validationErrors.password = "Wrong Password";
+                     alert("Invalid password");
                   }
-               } else if (formData.username != "") {
-                  isvalid = false;
-                  validationErrors.username = "Wrong username";
-               }
-            })
-            setErrors(validationErrors);
-            setValid(isvalid);
-         }).catch(err => console.log(err))
+               } 
+            }
+         }).catch((err) => {
+            alert("Invalid Username")
+         })
+      }
    }
-
-
-
    const validate = () => {
       let result = true;
-      if (username === '' || username === null) {
+      if (username === "" || username === null) {
          result = false;
-         alert('Please Enter Username');
+         alert("Username cannot be empty")
       }
-
-      if (password === '' || password === null) {
+      if (password === "" || password === null) {
          result = false;
-         alert('Please Enter Password');
+         alert("Password cannot be empty")
       }
       return result;
    }
 
-   const handleSignIn = () => {
-      nav("/AdminHomePage");
-   }
+   // const handleSignIn = () => {
+   //    nav("/AdminHomePage");
+   // }
    const handleTrainerLoginPage = () => {
       nav("/TrainerLoginPage");
    }
