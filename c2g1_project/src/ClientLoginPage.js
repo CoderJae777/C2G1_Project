@@ -87,19 +87,17 @@ const ClientLoginPage = () => {
             </div>
             <div className="login_buttons">
                <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-               <h1>I am a/ an ... </h1>
+               <h3>I am a/ an ... </h3>
                <button className="client_login_button_blue">Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
                <form onSubmit={ProceedLogin} className='login_form'>
-                  <div className="card">
-                     <div className="card-body">
-                        <div className="form-group">
-                           <label><span className='errMsg'></span></label>
-                           <input placeholder='Username' value={username} onChange={e => usernameupdate(e.target.value)} className="username"
-                              type='text'
-                           />
-                        </div>
+                  <div className="card-body">
+                     <div className="form-group">
+                        <label><span className='errMsg'></span></label>
+                        <input placeholder='Username' value={username} onChange={e => usernameupdate(e.target.value)} className="username"
+                           type='text'
+                        />
                      </div>
                      <div className="form-group">
                         <label><span className='errMsg'></span></label>
