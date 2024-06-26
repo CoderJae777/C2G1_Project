@@ -6,6 +6,7 @@ import TrainerLoginPage from './TrainerLoginPage';
 import AdminHomePage from './AdminHomePage';
 import ClientHomePage from './ClientHomePage';
 import TrainerHomePage from './TrainerHomePage';
+import AdminWorkshopRequestPage from './AdminWorkshopRequestPage';
 import Navbar from './NavBar';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
@@ -30,6 +31,7 @@ function App() {
           <Route path ="/AdminHomePage" element={<AdminHomePage/>}/>
           <Route path ="/ClientHomePage" element={<ClientHomePage/>}/>
           <Route path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
+          <Route path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
         </Routes>
       </div>
     </Router>

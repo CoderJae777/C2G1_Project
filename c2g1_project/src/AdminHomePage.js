@@ -1,5 +1,6 @@
 import React from 'react';
-import './homepage.css';
+import './adminhomepage.css';
+import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
@@ -8,6 +9,11 @@ import DateAndTime from './DateAndTime';
 import TrainerTable from './AdminHomePageTrainerTable';
 
 const AdminHomePage = () => {
+    const nav = useNavigate();
+    const handleAdminWorkshopRequestPage = () => {
+        nav("/AdminWorkshopRequestPage");
+    }
+
     return (
         <div class="admin-home-page">
             <div class="left-panel">
@@ -17,12 +23,12 @@ const AdminHomePage = () => {
                 <Sidebar userprofilepic={userprofilepic} />
             </div>
             <div class="middle-column">
-                <div class='login_words'>
+                <div class='admin-home-page-title'>
                     <h1>Hi Dil, welcome back!</h1>
                     <h4>Here is some important information for you:</h4>
                 </div>
                 <div class="workshop-table">
-                    <button class="workshop-request-button">Workshop Requests</button>
+                    <button class="workshop-request-button" onClick={handleAdminWorkshopRequestPage}>Workshop Requests</button>
                     <div class="workshop-table-content">
                         <ul class="workshop-table-lists">
                             <li class="workshop-table-list">
@@ -52,7 +58,9 @@ const AdminHomePage = () => {
                 </div>
             </div>
             <div class="right-column">
-            <DateAndTime />
+                <div class="admin-home-datetime">
+                    <DateAndTime />
+                </div>
                 <div class="admin-graphs">
                     {/* Placeholder for future table component */}
                     {/* <SortableTable /> */}
