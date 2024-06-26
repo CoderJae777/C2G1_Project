@@ -6,9 +6,14 @@ import './adminhomepage.css';
 
 const LeftSidebar = ({ userprofilepic }) => {
   const nav = useNavigate();
+
   const handleAdminWorkshopRequestPage = () => {
     nav("/AdminWorkshopRequestPage");
   }
+  
+  const handleNavBarSignIn = () => {
+    nav("/");
+ }
 
   return (
     <div class="leftsidebar">
@@ -48,7 +53,7 @@ const LeftSidebar = ({ userprofilepic }) => {
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               <i class="bx bx-exit"></i>
-              <span class="link">Sign Out</span>
+              <span class="link" onClick={handleNavBarSignIn}>Sign Out</span>
             </a>
           </li>
         </ul>
