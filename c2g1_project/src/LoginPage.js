@@ -9,7 +9,6 @@ import AdminLoginPage from './AdminLoginPage';
 import { useState } from 'react';
 import AdminHomePage from './AdminHomePage';
 import { useEffect } from "react";
-import axios from './axios';
 
 
 
@@ -35,7 +34,7 @@ const LoginPage = () => {
                alert('Please Enter valid username');
             } else {
                if (userData.password === password) {
-                  nav('/AdminHomePage')
+                  nav('/AdminHomePage');
                } else {
                   alert('Invalid Password');
                }
@@ -78,42 +77,34 @@ const LoginPage = () => {
    return (
       <>
          <div className='top_of_login'>
-            <div className='login_words'>
-               <h1>Grow your skills with Dell Academy</h1>
-               <h4>Sign up for Award Winning Workshops Today!</h4>
-            </div>
+
             <div>
-               <img src={dellacademylogo} alt="logo"></img>
+
             </div>
          </div>
          <div className="login_page">
             <div className="login_pictures">
-               <div className="login_pictures">
-                  <img src={stockimgtop} alt="Stock Image" />
-                  <img src={stockimgbottom} alt="Stock Image" />
-               </div>
+               <img src={stockimgtop} alt="Stock Image" />
             </div>
             <div className="login_buttons">
+               <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
                <h1>I am a/ an ... </h1>
                <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
                <button className="admin_login_button_blue" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
                <form onSubmit={ProceedLogin} className='login_form'>
                   <div className="card">
-                     <div className="card-header">
-                     </div>
                      <div className="card-body">
                         <div className="form-group">
                            <label><span className='errMsg'></span></label>
-                           <input value={username} onChange={e => usernameupdate(e.target.value)} className="username"
+                           <input placeholder='Username' value={username} onChange={e => usernameupdate(e.target.value)} className="username"
                               type='text'
-
                            />
                         </div>
                      </div>
                      <div className="form-group">
                         <label><span className='errMsg'></span></label>
-                        <input value={password} onChange={e => passwordupdate(e.target.value)} className="password"
+                        <input placeholder="Password" value={password} onChange={e => passwordupdate(e.target.value)} className="password"
                            type='password'
                         // this will print out ..... when typing
 

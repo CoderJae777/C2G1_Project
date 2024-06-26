@@ -1,49 +1,70 @@
 import TrainerLoginPage from './TrainerLoginPage';
-import ClientHomePage from './ClientHomePage';
 import { useNavigate } from 'react-router-dom';
 import stockimgtop from './images/stockimgtop.jpg';
 import stockimgbottom from './images/stockimgbottom.jpg';
 import dellacademylogo from './images/DellAcademy.png';
 import SignUpPage from './SignUpPage';
+import AdminLoginPage from './AdminLoginPage';
 import { useState } from 'react';
+import AdminHomePage from './AdminHomePage';
+import { useEffect } from "react";
+import ClientHomePage from './ClientHomePage';
+
+
+// Running Json Server
+// npx json-server --watch db.json --port 8000
+
 
 const ClientLoginPage = () => {
 
-   const [username, usernameupdate] = useState("Username");
-   const [password, passwordupdate] = useState("Password");
+   const nav = useNavigate();
+   const [username, usernameupdate] = useState("");
+   const [password, passwordupdate] = useState("");
 
    const ProceedLogin = (e) => {
       e.preventDefault();
       if (validate()) {
-         fetch("http://localhost:3000/" + username).then((res) => {
+         console.log('Sign in button registered');
+         fetch("http://localhost:8000/user_data/" + username).then((res) => {
             return res.json();
-         }).then((res) => {
-
-         })
+         }).then((userData) => {
+            console.log(userData);
+            if (Object.keys(userData).length === 0) {
+               alert('Please Enter valid username');
+            } else {
+               if (userData.password === password) {
+                  nav('/ClientHomePage');
+               } else {
+                  alert('Invalid Password');
+               }
+            }
+         }).catch((error) => {
+            alert('Login Failed: User Account does not exist');
+         });
       }
-
    }
 
    const validate = () => {
       let result = true;
-      if (username === '' || username === null) {
+      if (username === "") {
          result = false;
-         alert('Please Enter the Correct Username');
+         alert("Username cannot be empty")
       }
-
-      if (password === '' || password === null) {
+      if (password === "") {
          result = false;
-         alert('Please Enter the Correct Password');
+         alert("Password cannot be empty")
       }
       return result;
    }
 
-   const nav = useNavigate();
-   const handleSignIn = () => {
-      nav("/ClientHomePage");
-   }
+   // const handleSignIn = () => {
+   //    nav("/AdminHomePage");
+   // }
    const handleTrainerLoginPage = () => {
       nav("/TrainerLoginPage");
+   }
+   const handleClientLoginPage = () => {
+      nav("/ClientLoginPage");
    }
    const handleAdminLoginPage = () => {
       nav("/AdminLoginPage");
@@ -54,43 +75,35 @@ const ClientLoginPage = () => {
 
    return (
       <>
-
          <div className='top_of_login'>
-            <div className='login_words'>
-               <h1>Grow your skills with Dell Academy</h1>
-               <h4>Sign up for Award Winning Workshops Today!</h4>
-            </div>
+
             <div>
-               <img src={dellacademylogo} alt="logo"></img>
+
             </div>
          </div>
          <div className="login_page">
             <div className="login_pictures">
                <img src={stockimgtop} alt="Stock Image" />
-               <img src={stockimgbottom} alt="Stock Image" />
             </div>
             <div className="login_buttons">
+               <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
                <h1>I am a/ an ... </h1>
                <button className="client_login_button_blue">Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button" onClick={handleTrainerLoginPage}>Trainer</button>
                <form onSubmit={ProceedLogin} className='login_form'>
                   <div className="card">
-                     <div className="card-header">
-                        
-                     </div>
                      <div className="card-body">
                         <div className="form-group">
                            <label><span className='errMsg'></span></label>
-                           <input value={username} onChange={e => usernameupdate(e.target.value)} className="username"
+                           <input placeholder='Username' value={username} onChange={e => usernameupdate(e.target.value)} className="username"
                               type='text'
-
                            />
                         </div>
                      </div>
                      <div className="form-group">
                         <label><span className='errMsg'></span></label>
-                        <input value={password} onChange={e => passwordupdate(e.target.value)} className="password"
+                        <input placeholder="Password" value={password} onChange={e => passwordupdate(e.target.value)} className="password"
                            type='password'
                         // this will print out ..... when typing
 
@@ -98,7 +111,7 @@ const ClientLoginPage = () => {
                      </div>
                   </div>
                   <div className='card_footer'>
-                     <button type="submit" onClick={handleSignIn} className="signin_button">Sign in</button>
+                     <button type="submit" className="signin_button">Sign in</button>
                      <h5 className="signup" onClick={handleSignUp}>Need an account? Sign Up!</h5>
                      <h5 className='forget_pw'>Forget password</h5>
                   </div>

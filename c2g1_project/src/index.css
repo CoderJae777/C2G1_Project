@@ -3,33 +3,27 @@
 
 /* LoginPage design */
 .login_page{
-    margin:auto; 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    width:80%;
-    margin-top: 50px;
+    width:100%;
+}
+
+.dell_logo{
+    margin: 20px;
 }
 
 .top_of_login{
-    margin:auto; 
     display: grid;
     grid-template-columns: 1fr 1fr;
     display: flex;
     justify-content: center;
     grid-gap: 20px;
     width:80%;
-    margin-top: 50px;
-}
-
-.login_words{
-    font-family:roboto; 
-    font-size: 23.5px;
-    text-align: left;
+    margin-top: 20px;
 }
 
 .login_buttons{
-    font-family: roboto;
+    text-align: center;
 }
 
 .client_login_button, .admin_login_button, .trainer_login_button{
@@ -109,19 +103,33 @@
     color: #0000ee;
 }
 
+.login_form{
+    margin-right: 20px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #0083CA;
+    text-align: center;
+}
+
 
 
 
 /* Navbar designs */
 .navbar{
     padding: 50px;
-    display: flex;
     background-color: #a1deff;
     border-style: solid;
     border-width: 5px;
     border-color: #0083CA;
-    justify-content: center;
 }
+
+.navbar_contents{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    margin: 20px;
+}
+    
 
 .navbar button{
     background-color: white;
@@ -149,6 +157,7 @@
 
 
 
+/* SignUpPageDesigns */
 /* SignUpPageDesigns */
 .errmsg{
     color: red;
@@ -209,11 +218,11 @@
 
 .col-lg-6{
     height: 100px;
-    text-align-last: center;
+    text-align-last: left;
     font-size: 15px;
-
 }
 
 .card-header{
     margin: 20px;
+    text-align: center;
 }
