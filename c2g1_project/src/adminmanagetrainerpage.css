@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:roboto; 
+    box-sizing: border-box;
+}
+
+.admin-manage-trainer-page{
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.manage-trainer-column {
+    flex: 1;
+    padding: 15px;
+}
+
+.title-and-datetime {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.add-trainer-button{
+    background-color: #80C7FB;
+    color: black;
+    width: 200px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.add-trainer-button:hover{
+    background-color: #0672CB;
+    color: white;
+}
+
+.manage-trainer-panel{
+    height: 600px;
+    background: #d7d7d7;
+    color: #707070;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5px;
+    align-items: center;
+}
+
+/* CSS FOR TRAINER INFORMATION TABLE ------------------------------------------------------------------------- */
+
+.trainer-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.trainer-info-table-th, .trainer-info-table-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.trainer-info-table-th {
+    background-color: #f2f2f2;
+}
+
+.trainer-info-table-button {
+    background-color: #80C7FB;
+    color: black;
+    width: 200px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 5px;
+}
+
+.trainer-info-table-button:hover {
+    background-color: #0672CB;
+    color: white;
+}

@@ -7,6 +7,7 @@ import AdminHomePage from './AdminHomePage';
 import ClientHomePage from './ClientHomePage';
 import TrainerHomePage from './TrainerHomePage';
 import AdminWorkshopRequestPage from './AdminWorkshopRequestPage';
+import AdminManageTrainerPage from './AdminManageTrainerPage';
 import Navbar from './NavBar';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
@@ -32,6 +33,7 @@ function App() {
           <Route exact path ="/ClientHomePage" element={<ClientHomePage/>}/>
           <Route exact path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
           <Route exact path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
+          <Route exact path ="/AdminManageTrainerPage" element={<AdminManageTrainerPage/>}/>
         </Routes>
       </div>
     </Router>

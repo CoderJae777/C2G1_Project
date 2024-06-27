@@ -13,6 +13,9 @@ const AdminHomePage = () => {
     const handleAdminWorkshopRequestPage = () => {
         nav("/AdminWorkshopRequestPage");
     }
+    const handleAdminManageTrainerPage = () => {
+        nav("/AdminManageTrainerPage");
+    }
 
     return (
         <div class="admin-home-page">
@@ -46,7 +49,7 @@ const AdminHomePage = () => {
                     </div>
                 </div>
                 <div class="trainer-table">
-                    <button className="manage-trainers-button">Manage Trainers</button>
+                    <button className="manage-trainers-button" onClick={handleAdminManageTrainerPage}>Manage Trainers</button>
                     <TrainerTable />
                 </div>
             </div>
