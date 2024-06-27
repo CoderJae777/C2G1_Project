@@ -6,6 +6,9 @@ import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
 import Sidebar from './LeftSideBar';
 import DateAndTime from './DateAndTime';
+import ApproveWorkshopRequestPopup from './ApproveWorkshopRequestPopup'
+import RejectWorkshopRequestPopup from './RejectWorkshopRequestPopup'
+import AllocateTrainerPopup from './AllocateTrainerPopup'
 
 const AdminWorkshopRequestPage = () => {
     const [isApprovePopupOpen, setIsApprovePopupOpen] = useState(false);
@@ -68,62 +71,6 @@ const AdminWorkshopRequestPage = () => {
                         </div>
                     ))}
                 </div>
-            </div>
-        </div>
-    );
-};
-
-const ApproveWorkshopRequestPopup = ({ onClose }) => {
-    return (
-        <div className="approve-workshop-request-popup open-approve-workshop-request-popup">
-            <h2>Approve Workshop</h2>
-            <p>You are about to approve this workshop.</p>
-            <div className="popup-buttons">
-                <button className="submit-button" type="button" onClick={onClose}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
-            </div>
-        </div>
-    );
-};
-
-const AllocateTrainerPopup = ({ onClose }) => {
-    return (
-        <div className="allocate-trainer-popup open-allocate-trainer-popup">
-            <h2>Assign Trainer</h2>
-            <p>Choose a trainer.</p>
-            <div className="popup-buttons">
-                <button className="submit-button" type="button" onClick={onClose}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
-            </div>
-        </div>
-    );
-};
-
-const RejectWorkshopRequestPopup = ({ onClose }) => {
-    const [rejectReason, setRejectReason] = useState("");
-
-    const handleReasonChange = (event) => {
-        setRejectReason(event.target.value);
-    };
-
-    const handleSubmit = () => {
-        console.log("Reject reason:", rejectReason);
-        onClose();
-    };
-
-    return (
-        <div className="reject-workshop-request-popup open-reject-workshop-request-popup">
-            <h2>Reject Workshop</h2>
-            <p>Please provide a reason for rejecting the workshop request.</p>
-            <textarea 
-                className="reject-reason-input" 
-                value={rejectReason} 
-                onChange={handleReasonChange} 
-                placeholder="Enter reason here"
-            />
-            <div className="popup-buttons">
-                <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
     );
