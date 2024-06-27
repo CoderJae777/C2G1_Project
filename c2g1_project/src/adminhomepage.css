@@ -22,6 +22,7 @@ body{
 
 .admin-home-page-title{
     padding: 50px;
+    margin-bottom: -50px;
 }
 
 .left-panel{
@@ -117,20 +118,19 @@ body{
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
 .workshop-request-button, .manage-trainers-button{
-    background-color: #0083CA;
+    background-color: #80C7FB;
     color: black;
     width: 200px;
     height: 30x;
     border-radius: 25px;
     border-width: 0px;
-    font-family: roboto;
     font-size: 15px;
     font-weight: bold;
-    padding: 5px 5px 10px 10px;
+    padding: 10px 10px;
     transition: background-color 500ms;
     transition: color 500ms;
     border-width: 0px;
-    border-radius: 20px;
+    border-radius: 8px;
     text-align: center;
     margin: 15px;
 }
