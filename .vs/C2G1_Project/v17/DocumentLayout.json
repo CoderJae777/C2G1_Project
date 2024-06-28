@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientLeftSideBar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\ClientLeftSideBar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientHomePage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\ClientHomePage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\AllocateTrainerPopup.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\AllocateTrainerPopup.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clienthomepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\clienthomepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clientworkshoppage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\clientworkshoppage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\ClientWorkshopPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
@@ -22,11 +38,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -35,33 +51,80 @@
               "ViewState": "AQIAACEAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2024-06-27T07:28:32.159Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "AllocateTrainerPopup.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\AllocateTrainerPopup.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\AllocateTrainerPopup.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\AllocateTrainerPopup.js",
+              "RelativeToolTip": "c2g1_project\\src\\AllocateTrainerPopup.js",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-06-28T10:14:44.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "clienthomepage.css",
               "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clienthomepage.css",
               "RelativeDocumentMoniker": "c2g1_project\\src\\clienthomepage.css",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clienthomepage.css",
               "RelativeToolTip": "c2g1_project\\src\\clienthomepage.css",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAAEcAAAAAAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAmwFEAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-06-27T07:38:04.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-28T09:18:26.484Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "clientworkshoppage.css",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clientworkshoppage.css",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\clientworkshoppage.css",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clientworkshoppage.css",
+              "RelativeToolTip": "c2g1_project\\src\\clientworkshoppage.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-28T09:18:22.268Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClientWorkshopPage.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\ClientWorkshopPage.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js",
+              "RelativeToolTip": "c2g1_project\\src\\ClientWorkshopPage.js",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACAAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-06-28T09:14:43.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ClientHomePage.js",
               "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientHomePage.js",
               "RelativeDocumentMoniker": "c2g1_project\\src\\ClientHomePage.js",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientHomePage.js",
               "RelativeToolTip": "c2g1_project\\src\\ClientHomePage.js",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABkAAAAmAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAkwCUAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-06-27T07:19:23.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClientLeftSideBar.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientLeftSideBar.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\ClientLeftSideBar.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientLeftSideBar.js",
+              "RelativeToolTip": "c2g1_project\\src\\ClientLeftSideBar.js",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAABYAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-06-27T14:25:15.976Z",
               "EditorCaption": ""
             }
           ]

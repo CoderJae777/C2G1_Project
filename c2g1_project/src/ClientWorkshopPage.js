@@ -8,7 +8,7 @@ import stockimgtop from "./images/stockimgtop.jpg";
 import Sidebar from './ClientLeftSideBar';
 import DateAndTime from './DateAndTime';
 
-const ClientHomePage = () => {
+const ClientWorkshopPage = () => {
     
     return ( 
         <div class="client-home-page">
@@ -23,24 +23,23 @@ const ClientHomePage = () => {
                     <div className='client-home-page-title'>
                         <h4>Hi Dil, welcome back!</h4>
                         <h4>Hereis some important information for you:</h4>
-                        <h4>Submit Workshop Request</h4>
+                        <h4>Workshops</h4>
                     </div>
                     <div className="client-home-datetime">
                         <DateAndTime />
                     </div>
                 </div>
                 <div className="workshop-column">
-                    <textarea
-                        className="reject-reason-input"
-                        placeholder="Enter reason here"
-                    />
-                    {[].map((request) => (
+                    {[{ name: 'Workshop 1', desc: 'descrip t1312312313123 141241tsfaasdd', img: dellacademylogo, imgdesc: 'Workshop 1 image' },
+                        { name: 'Workshop 2', desc: 'description', img: userprofilepic, imgdesc: 'Workshop 2 image' },
+                        { name: 'Workshop 3', desc: 'description', img: dellacademylogo, imgdesc: 'Workshop 3 image' },
+                        { name: 'Workshop 4', desc: 'some kinda description that exceeds two lines', img: stockimgtop, imgdesc: 'Workshop 4 image' }].map((request) => (
                         <div className="workshop-panel">
-                            {request.name}
-                            <img className="workshop-image" src={request.img} alt={request.imgdesc} />
-                            <div className="workshop-desc">
-                                {request.desc}
-                            </div>
+                                {request.name}
+                                <img className="workshop-image" src={request.img} alt={request.imgdesc}/>
+                                <div className="workshop-desc">
+                                    {request.desc}
+                                </div>
                         </div>
                     ))}
                 </div>
@@ -49,4 +48,4 @@ const ClientHomePage = () => {
      );
 }
  
-export default ClientHomePage;
+export default ClientWorkshopPage;
