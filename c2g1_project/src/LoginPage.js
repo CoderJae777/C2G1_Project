@@ -24,38 +24,8 @@ const LoginPage = () => {
 
    const ProceedLogin = (e) => {
       e.preventDefault();
-      if (validate()) {
-         console.log('Sign in button registered');
-         fetch("http://localhost:8000/user_data/" + username).then((res) => {
-            return res.json();
-         }).then((userData) => {
-            console.log(userData);
-            if (Object.keys(userData).length === 0) {
-               alert('Please Enter valid username');
-            } else {
-               if (userData.password === password) {
-                  nav('/AdminHomePage');
-               } else {
-                  alert('Invalid Password');
-               }
-            }
-         }).catch((error) => {
-            alert('Login Failed: User Account does not exist');
-         });
-      }
-   }
-
-   const validate = () => {
-      let result = true;
-      if (username === "") {
-         result = false;
-         alert("Username cannot be empty")
-      }
-      if (password === "") {
-         result = false;
-         alert("Password cannot be empty")
-      }
-      return result;
+      alert("Please pick your role");
+      window.location.reload();
    }
 
    // const handleSignIn = () => {
