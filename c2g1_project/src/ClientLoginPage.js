@@ -10,6 +10,9 @@ import AdminHomePage from './AdminHomePage';
 import { useEffect } from "react";
 import ClientHomePage from './ClientHomePage';
 
+import useAxiosPost from "./api/useAxiosPost.jsx";
+import { config } from "./config/config.js";
+import { endpoints } from "./config/endpoints.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
@@ -21,28 +24,29 @@ const ClientLoginPage = () => {
    const [username, usernameupdate] = useState("");
    const [password, passwordupdate] = useState("");
 
-   const ProceedLogin = (e) => {
-      e.preventDefault();
-      if (validate()) {
-         console.log('Sign in button registered');
-         fetch("http://localhost:8000/user_data/" + username).then((res) => {
-            return res.json();
-         }).then((userData) => {
-            console.log(userData);
-            if (Object.keys(userData).length === 0) {
-               alert('Please Enter valid username');
-            } else {
-               if (userData.password === password) {
-                  nav('/ClientHomePage');
-               } else {
-                  alert('Invalid Password');
-               }
-            }
-         }).catch((error) => {
-            alert('Login Failed: User Account does not exist');
-         });
-      }
-   }
+   const handleSuccess = (data) => {
+      nav('/AdminHomePage');
+    };
+   
+    const handleError = (error) => {
+      alert('Login failed, User Account does not exist.');
+    };
+   
+     const { data, loading, error, setBody, refetch } = useAxiosPost(
+       config.base_url + endpoints.login.client,
+       {},
+       [],
+       handleSuccess,
+       handleError
+     );
+   
+     const ProceedLogin = (e) => {
+       e.preventDefault();
+       if (validate()) {
+         setBody({ username, password });
+         refetch();
+       }
+     };
 
    const validate = () => {
       let result = true;
