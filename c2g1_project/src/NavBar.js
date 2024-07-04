@@ -16,15 +16,14 @@ const Navbar = () => {
   };
 
   const handleHomePage = () => {
-    nav("./");
-    window.location.reload();
+    nav("/");
   };
 
   return (
     <nav className="navbar">
       <div className="navbar_contents">
         <img
-          onClick={handleNavBarSignIn}
+          onClick={handleHomePage}
           className="navbarlogo"
           src={dellacademylogo_small}
         ></img>
