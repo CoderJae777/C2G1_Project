@@ -24,8 +24,8 @@ const LeftSidebar = ({ userprofilepic }) => {
       <div class="column">
         <img src={userprofilepic} alt="User Profile Pic" />
         <div>
-          <p class="usernamedisplay">Dil Doe</p>
-          <p class="userroledisplay">Admin</p>
+          <h5 class="usernamedisplay">Dil Doe</h5>
+          <h6 class="userroledisplay">Admin</h6>
         </div>
       </div>
       <div class="leftsidebar-content">

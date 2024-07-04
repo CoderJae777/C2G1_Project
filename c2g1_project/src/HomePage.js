@@ -11,6 +11,8 @@ import AdminHomePage from "./AdminHomePage";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "./NavBar";
+import homepageimg1 from "./images/homepage_img_1.png"
+
 
 const HomePage = () => {
   const [move, setMove] = useState(false);
