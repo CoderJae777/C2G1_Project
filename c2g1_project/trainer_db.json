@@ -2,7 +2,6 @@
     [
         {
             "blank" : "",
-            "blank" : "",
             "trainer_ID": "T01",
             "name": "Jack",
             "gender": "male",
@@ -12,7 +11,6 @@
             "workshops_completed_total": 50
         },
         {
-            "blank" : "",
             "blank" : "",
             "trainer_ID": "T02",
             "name": "Emily",
@@ -24,7 +22,6 @@
         },
         {
             "blank" : "",
-            "blank" : "",
             "trainer_ID": "T04",
             "name": "Sophia",
             "gender": "female",
@@ -34,7 +31,6 @@
             "workshops_completed_total": 72
         },
         {
-            "blank" : "",
             "blank" : "",
             "trainer_ID": "T05",
             "name": "Michael",
@@ -46,7 +42,6 @@
         },
         {
             "blank" : "",
-            "blank" : "",
             "trainer_ID": "T06",
             "name": "Olivia",
             "gender": "female",
@@ -57,7 +52,6 @@
         },
         {
             "blank" : "",
-            "blank" : "",
             "trainer_ID": "T07",
             "name": "Daniel",
             "gender": "male",
@@ -67,7 +61,6 @@
             "workshops_completed_total": 4
         },
         {
-            "blank" : "",
             "blank" : "",
             "trainer_ID": "T09",
             "name": "Ethan",

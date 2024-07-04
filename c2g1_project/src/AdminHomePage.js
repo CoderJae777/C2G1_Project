@@ -1,15 +1,15 @@
 import React from "react";
-import "./adminhomepage.css";
+import "./styles/adminhomepage.css";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
-import Sidebar from "./LeftSideBar";
+import Sidebar from "./components/LeftSideBar";
 import DateAndTime from "./DateAndTime";
 import TrainerTable from "./AdminHomePageTrainerTable";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import useFetch from "./useFetch";
+import useFetch from "./components/useFetch";
 
 import {
   PieChart,

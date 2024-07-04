@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './adminhomepage.css';
-import './adminworkshoprequestpage.css';
+import "./styles/adminhomepage.css";
+import './styles//adminworkshoprequestpage.css';
 import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
-import Sidebar from './LeftSideBar';
+import Sidebar from "./components/LeftSideBar";
 import DateAndTime from './DateAndTime';
 import ApproveWorkshopRequestPopup from './ApproveWorkshopRequestPopup'
 import RejectWorkshopRequestPopup from './RejectWorkshopRequestPopup'
