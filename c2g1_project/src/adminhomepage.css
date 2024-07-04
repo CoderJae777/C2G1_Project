@@ -252,8 +252,14 @@ body{
     justify-content: center;
 }
 
-/* admin home page graphs */
-.graph_buttons{
+/* admin home page graphs and buttons design*/
+
+.graph_chooser, .graph_buttons:hover{
+    background-color: #0672CB;
+    color: white;
+}
+
+.graph_chooser, .graph_buttons{
     background-color: #80C7FB;
     color: black;
     width: 200px;
@@ -269,9 +275,5 @@ body{
     border-radius: 8px;
     text-align: center;
     margin: 15px;
-}
-
-.graph_buttons:hover{
-    background-color: #0672CB;
-    color: white;
+    align-self: center;
 }

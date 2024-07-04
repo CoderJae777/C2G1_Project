@@ -7,7 +7,8 @@
             "gender": "male",
             "experience": "5",
             "workshops_completed_this_month": 3,
-            "workshops_completed_total": 6
+            "ongoing_workshops" : 3,
+            "workshops_completed_total": 50
         },
         {
             "blank" : "",
@@ -16,7 +17,8 @@
             "gender": "female",
             "experience": "8",
             "workshops_completed_this_month": 1,
-            "workshops_completed_total": 2
+            "ongoing_workshops" : 2,
+            "workshops_completed_total": 49
         },
         {
             "blank" : "",
@@ -25,7 +27,8 @@
             "gender": "female",
             "experience": "3",
             "workshops_completed_this_month": 0,
-            "workshops_completed_total": 2
+            "ongoing_workshops" : 5,
+            "workshops_completed_total": 72
         },
         {
             "blank" : "",
@@ -34,7 +37,8 @@
             "gender": "male",
             "experience": "6",
             "workshops_completed_this_month": 2,
-            "workshops_completed_total": 4
+            "ongoing_workshops" : 2,
+            "workshops_completed_total": 36
         },
         {
             "blank" : "",
@@ -43,7 +47,8 @@
             "gender": "female",
             "experience": "10",
             "workshops_completed_this_month": 4,
-            "workshops_completed_total": 8
+            "ongoing_workshops" : 2,
+            "workshops_completed_total": 79
         },
         {
             "blank" : "",
@@ -52,6 +57,7 @@
             "gender": "male",
             "experience": "4",
             "workshops_completed_this_month": 2,
+            "ongoing_workshops" : 4,
             "workshops_completed_total": 4
         },
         {
@@ -61,7 +67,8 @@
             "gender": "male",
             "experience": "7",
             "workshops_completed_this_month": 1,
-            "workshops_completed_total": 2
+            "ongoing_workshops" : 2,
+            "workshops_completed_total": 56
         }
     ]
 }
