@@ -11,21 +11,21 @@ import AdminManageTrainerPage from './AdminManageTrainerPage';
 import Navbar from './NavBar';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
+import HomePage from './HomePage';
 import ClientWorkshopPage from "./ClientWorkshopPage"
+
 
 
 function App() {
   return (
     <Router>
-      <div className='NavBar'>
-        < Navbar />
-      </div>
       <div className="App">
       <ToastContainer theme="colored">
       </ToastContainer>
         <Routes>
-          <Route exact path = "/" element={<LoginPage/>}/>
+          <Route exact path ="/" element={<HomePage/>}/>
+          <Route exact path = "/LoginPage" element={<LoginPage/>}/>
           <Route exact path = "/AdminLoginPage" element={<AdminLoginPage/>}/>
           <Route exact path="/ClientLoginPage" element={<ClientLoginPage/>}/>
           <Route exact path="/TrainerLoginPage" element={<TrainerLoginPage/>}/>

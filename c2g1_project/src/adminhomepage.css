@@ -16,13 +16,12 @@ body{
     display: flex;
     align-items: end;
     justify-content: flex-start;
-    height: 100vh;
-    /* padding: 15px; */
+        /* padding: 15px; */
 }
 
 .admin-home-page-title{
-    padding: 50px;
-    margin-bottom: -50px;
+    padding: 25px;
+    margin-bottom: -5\100px;
 }
 
 .left-panel{
@@ -34,7 +33,7 @@ body{
 
 .dell-logo{
     margin: auto;
-    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 
@@ -64,7 +63,6 @@ body{
 .usernamedisplay{
     white-space: nowrap;
     margin: 0;
-    font-size: 28px;
     color: #0083CA;
   }
 
@@ -100,9 +98,9 @@ body{
     border-radius: 25px;
     border-width: 0px;
     font-family: roboto;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
-    padding: 10px 10px 10px 10px;
+    padding: 5px;
     transition: background-color 500ms;
     transition: color 500ms;
     border-width: 0px;
@@ -249,8 +247,31 @@ body{
     border-radius: 20px;
     padding: 10px;
     text-align: center;
-    margin-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* admin home page graphs */
+.graph_buttons{
+    background-color: #80C7FB;
+    color: black;
+    width: 200px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 15px;
+}
+
+.graph_buttons:hover{
+    background-color: #0672CB;
+    color: white;
 }

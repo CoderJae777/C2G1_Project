@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import userprofilepic from "./images/userprofilepic.png";
-import './adminhomepage.css';
+import './leftsidebar.css';
 
 const LeftSidebar = ({ userprofilepic }) => {
   const nav = useNavigate();
@@ -24,8 +24,8 @@ const LeftSidebar = ({ userprofilepic }) => {
       <div class="column">
         <img src={userprofilepic} alt="User Profile Pic" />
         <div>
-          <p class="usernamedisplay">Dil Doe</p>
-          <p class="userroledisplay">Admin</p>
+          <h5 class="usernamedisplay">Dil Doe</h5>
+          <h6 class="userroledisplay">Admin</h6>
         </div>
       </div>
       <div class="leftsidebar-content">
@@ -33,33 +33,27 @@ const LeftSidebar = ({ userprofilepic }) => {
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               {/* <span class="link" onClick={handleAdminHomePage}>Home</span> */}
-              <button class="sidebarbutton" onClick={handleAdminHomePage}><i class="bx bx-home-alt"></i>Home</button>
+              <button class="sidebarbutton" onClick={handleAdminHomePage}><i class="bx bx-home-alt"></i><span>Home</span></button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-
-              <button class="sidebarbutton"><i class="bx bx-user"></i>Profile</button>
+              <button class="sidebarbutton"><i class="bx bx-user"></i><span>Profile</span></button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-
-              <button class="sidebarbutton" onClick={handleAdminWorkshopRequestPage}>
-                <i class="bx bx-book-open">
-
-                </i>Workshops</button>
+              <button class="sidebarbutton" onClick={handleAdminWorkshopRequestPage}><i class="bx bx-book-open"></i><span>Workshops</span></button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-
-              <button class="sidebarbutton"><i class="bx bx-cog"></i>Settings</button>
+              <button class="sidebarbutton"><i class="bx bx-cog"></i ><span>Settings</span></button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <button class="sidebarbutton" onClick={handleNavBarSignIn}><i class="bx bx-exit"></i>Sign Out</button>
+              <button class="sidebarbutton" onClick={handleNavBarSignIn}><i class="bx bx-exit"></i><span>Sign Out</span></button>
             </a>
           </li>
         </ul>
