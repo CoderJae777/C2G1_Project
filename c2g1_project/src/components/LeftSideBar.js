@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
-import userprofilepic from "./images/userprofilepic.png";
-import './leftsidebar.css';
+import userprofilepic from "../images/userprofilepic.png";
+import '../styles/leftsidebar.css';
 
 const LeftSidebar = ({ userprofilepic }) => {
   const nav = useNavigate();

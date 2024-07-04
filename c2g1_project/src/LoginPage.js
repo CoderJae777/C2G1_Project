@@ -10,7 +10,7 @@ import { useState } from 'react';
 import AdminHomePage from './AdminHomePage';
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import Navbar from './NavBar';
+import Navbar from "./components/NavBar.js";
 
 
 

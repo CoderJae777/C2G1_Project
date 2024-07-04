@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import useAxiosPost from "./api/useAxiosPost.jsx";
 import { config } from "./config/config.js";
 import { endpoints } from "./config/endpoints.js";
-import Navbar from './NavBar.js';
+import Navbar from "./components/NavBar.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
