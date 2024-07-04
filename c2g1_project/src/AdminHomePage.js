@@ -24,16 +24,31 @@ import {
 } from "recharts";
 
 const AdminHomePage = () => {
-  const [graphTitle, setGraphTitle] = useState("");
-  const [ key, setKey ] = useState("experience");
+  const [graphTitle, setGraphTitle] = useState("View Trainer Statistics");
+  const [key, setKey] = useState("blank");
+  const [domainMax, setDomainMax] = useState(20);
+
 
   const viewworkshop = () => {
     setGraphTitle("Workshops Completed This Month");
     setKey("workshops_completed_this_month");
+    setDomainMax(20);
   };
   const viewexperience = () => {
     setGraphTitle("Trainers' Experience");
     setKey("experience");
+    setDomainMax(20);
+
+  };
+  const resetview = () => {
+    setGraphTitle("View Trainer Statistics");
+    setKey("blank");
+    setDomainMax(0);
+  };
+  const viewtotal = () => {
+    setGraphTitle("Total Workshops Completed");
+    setKey("workshops_completed_total");
+    setDomainMax(100);
   };
 
   const { trainer_data } = useFetch();
@@ -54,15 +69,14 @@ const AdminHomePage = () => {
       transition={{ duration: 0.5 }}
     >
       <div class="left-panel">
+        <Sidebar userprofilepic={userprofilepic} />
         <div class="dell-logo">
           <img src={dellacademylogo} alt="Dell Academy Logo" />
         </div>
-        <Sidebar userprofilepic={userprofilepic} />
       </div>
       <div class="middle-column">
         <div class="admin-home-page-title">
-          <h3>Hi Dil, welcome back!</h3>
-          <h5>Here is some important information for you:</h5>
+          <h4>Hi Dil, welcome back!</h4>
         </div>
         <div class="workshop-table">
           <button
@@ -114,14 +128,23 @@ const AdminHomePage = () => {
         <div class="admin-graphs">
           {/* Placeholder for future table component */}
           {/* <SortableTable /> */}
-          <button className="graph_buttons" onClick={viewexperience}>
-            Years of Experience
-          </button>
-          <button className="graph_buttons" onClick={viewworkshop}>
-            Workshops Completed
-          </button>
+          <div className="graph_buttons_div">
+            <button className="graph_buttons" onClick={viewtotal}>
+              Total Workshops
+            </button>
+            <button className="graph_buttons" onClick={viewworkshop}>
+              Monthly Workshops
+            </button>
+            <button className="graph_buttons" onClick={viewexperience}>
+              Years of Experience
+            </button>
+            <button className="graph_buttons" onClick={resetview}>
+              Reset
+            </button>
+          </div>
 
-          <h3>{graphTitle}</h3>
+          <h5>{graphTitle}</h5>
+       
           <BarChart
             width={600}
             height={300}
@@ -134,12 +157,8 @@ const AdminHomePage = () => {
             }}
             barSize={20}
           >
-            <XAxis
-              dataKey="name"
-              scale="point"
-              padding={{ left: 20, right: 30 }}
-            />
-            <YAxis />
+            <XAxis dataKey="name" padding={{ left: 10, right: 10 }} />
+            <YAxis interval="preserveStartEnd" domain={[0, domainMax]} />
             <Tooltip />
             <Legend />
             <Bar
