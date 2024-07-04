@@ -254,7 +254,7 @@ body{
 
 /* admin home page graphs and buttons design*/
 
-.graph_chooser, .graph_buttons:hover{
+.graph_chooser:hover, .graph_buttons:hover{
     background-color: #0672CB;
     color: white;
 }
