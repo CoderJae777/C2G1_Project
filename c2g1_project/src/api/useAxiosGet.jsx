@@ -1,7 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-const useAxiosGet = (initialUrl, initialParams = {}, reloadOn = [], initialFetch = true) => {
+const useAxiosGet = (
+  initialUrl,
+  initialParams = {},
+  reloadOn = [],
+  initialFetch = true
+) => {
   axios.defaults.withCredentials = true;
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,7 +33,7 @@ const useAxiosGet = (initialUrl, initialParams = {}, reloadOn = [], initialFetch
       fetchData();
       setShouldFetch(false);
     }
-  }, [fetchData, shouldFetch, ...reloadOn]);
+  }, [fetchData, shouldFetch, url, ...reloadOn]);
 
   return {
     data,
