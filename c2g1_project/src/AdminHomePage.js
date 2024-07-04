@@ -57,7 +57,7 @@ const AdminHomePage = () => {
     setGraphTitle("View Trainer Statistics");
     setKey("blank");
     setDomainMax(0);
-  }
+  };
 
   const viewtotal = () => {
     setGraphTitle("Total Workshops Completed");
@@ -141,10 +141,10 @@ const AdminHomePage = () => {
         </div>
         <div className="admin-graphs">
           <h5>{graphTitle}</h5>
-          
-          {/* Both buttons (Workshop Statistics and Trainer's History) are only displayed
-          when neither showWorkshopStats nor showExperienceStats is true.
-          i.e. if one is true, none of the buttons will show --> use this to hide
+
+          {/* Both buttons (Workshop Statistics and Trainer's History) are only displayed 
+          when neither showWorkshopStats nor showExperienceStats is true. 
+          i.e. if one is true, none of the buttons will show --> use this to hide 
           them once clicked*/}
 
           {!showWorkshopStats && !showExperienceStats && (
@@ -183,7 +183,6 @@ const AdminHomePage = () => {
                   Reset
                 </button>
               </div>
-
 
               <BarChart
                 width={600}
