@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-import userprofilepic from "../images/userprofilepic.png";
-import "../styles/leftsidebar.css";
-import { config } from "../config/config";
-import { endpoints } from "../config/endpoints";
-import useAxiosGet from "../api/useAxiosGet";
+import userprofilepic from "./images/userprofilepic.png";
+import "./adminhomepage.css";
+import useAxiosGet from "./api/useAxiosGet";
+import { config } from "./config/config";
+import { endpoints } from "./config/endpoints";
 
 const LeftSidebar = ({ userprofilepic }) => {
   const nav = useNavigate();
@@ -41,8 +41,8 @@ const LeftSidebar = ({ userprofilepic }) => {
       <div class="column">
         <img src={userprofilepic} alt="User Profile Pic" />
         <div>
-          <h5 class="usernamedisplay">Dil Doe</h5>
-          <h6 class="userroledisplay">Admin</h6>
+          <p class="usernamedisplay">Dil Doe</p>
+          <p class="userroledisplay">Admin</p>
         </div>
       </div>
       <div class="leftsidebar-content">
@@ -51,16 +51,14 @@ const LeftSidebar = ({ userprofilepic }) => {
             <a href="#" class="nav-link">
               {/* <span class="link" onClick={handleAdminHomePage}>Home</span> */}
               <button class="sidebarbutton" onClick={handleAdminHomePage}>
-                <i class="bx bx-home-alt"></i>
-                <span>Home</span>
+                <i class="bx bx-home-alt"></i>Home
               </button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               <button class="sidebarbutton">
-                <i class="bx bx-user"></i>
-                <span>Profile</span>
+                <i class="bx bx-user"></i>Profile
               </button>
             </a>
           </li>
@@ -70,24 +68,21 @@ const LeftSidebar = ({ userprofilepic }) => {
                 class="sidebarbutton"
                 onClick={handleAdminWorkshopRequestPage}
               >
-                <i class="bx bx-book-open"></i>
-                <span>Workshops</span>
+                <i class="bx bx-book-open"></i>Workshops
               </button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               <button class="sidebarbutton">
-                <i class="bx bx-cog"></i>
-                <span>Settings</span>
+                <i class="bx bx-cog"></i>Settings
               </button>
             </a>
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
               <button class="sidebarbutton" onClick={handleNavBarSignOut}>
-                <i class="bx bx-exit"></i>
-                <span>Sign Out</span>
+                <i class="bx bx-exit"></i>Sign Out
               </button>
             </a>
           </li>
@@ -98,3 +93,4 @@ const LeftSidebar = ({ userprofilepic }) => {
 };
 
 export default LeftSidebar;
+

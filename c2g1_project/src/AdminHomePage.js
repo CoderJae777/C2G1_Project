@@ -11,6 +11,10 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import useFetch from "./components/useFetch";
 
+import useAxiosGet from "./api/useAxiosGet.jsx";
+import { config } from "./config/config.js";
+import { endpoints } from "./config/endpoints.js";
+
 import {
   PieChart,
   Pie,
@@ -75,7 +79,11 @@ const AdminHomePage = () => {
     nav("/AdminManageTrainerPage");
   };
 
-  return (
+  const { data, loading, error, setBody, refetch } = useAxiosGet(
+    config.base_url + endpoints.verify
+  );
+
+  return data !== null && data.status === true ? (
     <motion.div
       className="admin-home-page"
       initial={{ opacity: 0, scale: 0.5 }}
@@ -253,6 +261,8 @@ const AdminHomePage = () => {
         </div>
       </div>
     </motion.div>
+    ) : (
+      <div>Not logged in</div>
   );
 };
 

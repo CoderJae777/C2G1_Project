@@ -1,12 +1,12 @@
-import TrainerLoginPage from './TrainerLoginPage';
-import { useNavigate } from 'react-router-dom';
-import stockimgtop from './images/stockimgtop.jpg';
-import stockimgbottom from './images/stockimgbottom.jpg';
-import dellacademylogo from './images/DellAcademy.png';
-import SignUpPage from './SignUpPage';
-import AdminLoginPage from './AdminLoginPage';
-import { useState } from 'react';
-import AdminHomePage from './AdminHomePage';
+import TrainerLoginPage from "./TrainerLoginPage";
+import { useNavigate } from "react-router-dom";
+import stockimgtop from "./images/stockimgtop.jpg";
+import stockimgbottom from "./images/stockimgbottom.jpg";
+import dellacademylogo from "./images/DellAcademy.png";
+import SignUpPage from "./SignUpPage";
+import AdminLoginPage from "./AdminLoginPage";
+import { useState } from "react";
+import AdminHomePage from "./AdminHomePage";
 import { useEffect } from "react";
 import ClientHomePage from './ClientHomePage';
 import { motion } from "framer-motion";
@@ -19,66 +19,61 @@ import Navbar from "./components/NavBar.js";
 // Running Json Server
 // npx json-server --watch db.json --port 8000
 
-
 const ClientLoginPage = () => {
-
    const nav = useNavigate();
    const [username, usernameupdate] = useState("");
    const [password, passwordupdate] = useState("");
    const [move, setMove] = useState(false);
 
    const handleSuccess = (data) => {
-      nav('/AdminHomePage');
-    };
-   
-    const handleError = (error) => {
-      alert('Login failed, User Account does not exist.');
-    };
-   
-     const { data, loading, error, setBody, refetch } = useAxiosPost(
-       config.base_url + endpoints.login.client,
-       {},
-       [],
-       handleSuccess,
-       handleError
-     );
-   
-     const ProceedLogin = (e) => {
-       e.preventDefault();
-       if (validate()) {
-         setBody({ username, password });
-         refetch();
-       }
-     };
-
-   const validate = () => {
-      let result = true;
-      if (username === "") {
-         result = false;
-         alert("Username cannot be empty")
-      }
-      if (password === "") {
-         result = false;
-         alert("Password cannot be empty")
-      }
-      return result;
+      nav("/AdminHomePage");
    }
 
-   // const handleSignIn = () => {
-   //    nav("/AdminHomePage");
-   // }
-   const handleTrainerLoginPage = () => {
-      nav("/TrainerLoginPage");
-   }
-   const handleClientLoginPage = () => {
-      nav("/ClientLoginPage");
-   }
-   const handleAdminLoginPage = () => {
-      nav("/AdminLoginPage");
-   }
-   const handleSignUp = () => {
-      nav("/SignUpPage");
-   }
+  const handleError = (error) => {
+    alert("Login failed, User Account does not exist.");
+  };
+
+  const { data, loading, error, setBody, refetch } = useAxiosPost(
+    config.base_url + endpoints.login.client,
+    {},
+    [],
+    handleSuccess,
+    handleError
+  );
+
+  const ProceedLogin = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      setBody({ username, password });
+      refetch();
+    }
+  };
+
+  const validate = () => {
+    let result = true;
+    if (username === "") {
+      result = false;
+      alert("Username cannot be empty");
+    }
+    if (password === "") {
+      result = false;
+      alert("Password cannot be empty");
+    }
+    return result;
+  };
+
+  const handleTrainerLoginPage = () => {
+    nav("/TrainerLoginPage");
+  };
+  const handleClientLoginPage = () => {
+    nav("/ClientLoginPage");
+  };
+  const handleAdminLoginPage = () => {
+    nav("/AdminLoginPage");
+  };
+  const handleSignUp = () => {
+    nav("/SignUpPage");
+  };
 
    return (
       <>
