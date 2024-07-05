@@ -29,7 +29,8 @@ const AdminLoginPage = () => {
   };
 
   const handleError = (error) => {
-    alert('Login failed, User Account does not exist.');
+    alert(error.response.data.message);
+    // alert('Login failed : User Account does not exist and/or Incorrect.');
   };
 
   const { data, loading, error, setBody, refetch } = useAxiosPost(

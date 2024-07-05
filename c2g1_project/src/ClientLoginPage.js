@@ -26,28 +26,28 @@ const ClientLoginPage = () => {
    const [move, setMove] = useState(false);
 
    const handleSuccess = (data) => {
-      nav("/AdminHomePage");
-   }
-
-  const handleError = (error) => {
-    alert("Login failed, User Account does not exist.");
-  };
-
-  const { data, loading, error, setBody, refetch } = useAxiosPost(
-    config.base_url + endpoints.login.client,
-    {},
-    [],
-    handleSuccess,
-    handleError
-  );
-
-  const ProceedLogin = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      setBody({ username, password });
-      refetch();
-    }
-  };
+      nav('/ClientHomePage');
+    };
+   
+    const handleError = (error) => {
+      alert('Login failed, User Account does not exist.');
+    };
+   
+     const { data, loading, error, setBody, refetch } = useAxiosPost(
+       config.base_url + endpoints.login.client,
+       {},
+       [],
+       handleSuccess,
+       handleError
+     );
+   
+     const ProceedLogin = (e) => {
+       e.preventDefault();
+       if (validate()) {
+         setBody({ username, password });
+         refetch();
+       }
+     };
 
   const validate = () => {
     let result = true;
