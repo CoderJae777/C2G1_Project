@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' ;
 import AdminLoginPage from './AdminLoginPage';
 import ClientLoginPage from './ClientLoginPage';
@@ -8,7 +8,6 @@ import ClientHomePage from './ClientHomePage';
 import TrainerHomePage from './TrainerHomePage';
 import AdminWorkshopRequestPage from './AdminWorkshopRequestPage';
 import AdminManageTrainerPage from './AdminManageTrainerPage';
-import Navbar from './NavBar';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import {ToastContainer} from "react-toastify";

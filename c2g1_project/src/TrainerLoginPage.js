@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import ClientLoginPage from './ClientLoginPage';
 import TrainerHomePage from './TrainerHomePage';
 import { motion } from "framer-motion";
-import Navbar from './NavBar';
+import Navbar from "./components/NavBar.js";
 
 
 
