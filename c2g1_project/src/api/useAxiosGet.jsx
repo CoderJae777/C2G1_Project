@@ -33,7 +33,7 @@ const useAxiosGet = (
       fetchData();
       setShouldFetch(false);
     }
-  }, [fetchData, shouldFetch, ...reloadOn]);
+  }, [fetchData, shouldFetch, url, ...reloadOn]);
 
   return {
     data,

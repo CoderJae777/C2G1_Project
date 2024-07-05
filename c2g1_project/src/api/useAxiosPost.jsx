@@ -42,8 +42,8 @@ const useAxiosPost = (
     data,
     loading,
     error,
-    setUrl,
     setBody,
+    setUrl,
     refetch: () => setShouldFetch(true),
   };
 };

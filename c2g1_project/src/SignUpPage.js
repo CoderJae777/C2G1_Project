@@ -9,10 +9,9 @@ import { config } from './config/config';
 import { endpoints } from './config/endpoints';
 
 const SignUpPage = () => {
+  const nav = useNavigate();
 
-    const nav = useNavigate();
-
-    let error_message = "Please enter the value for the following:\n"
+    let error_message = "Please enter the value for the following:\n";
 
     const IsValidate = () => {
         let isproceed = true;
@@ -94,60 +93,83 @@ const SignUpPage = () => {
     //     }
     // }
 
-    return (
-        <>
-            <div>
-                <div className="signuppage">
-                    <form className='contrainer' onSubmit={handlesubmit}>
-                        <div className="card">
-                            <div className="card-header">
-                                <h3>Create an account today!</h3>
-                                <h5>All fields are required</h5>
-                            </div>
-                            <div className="card-body">
-                                <div className="row">
+  return (
+    <>
+      <div>
+        <div className="signuppage">
+          <form className="contrainer" onSubmit={handlesubmit}>
+            <div className="card">
+              <div className="card-header">
+                <h3>Create an account today!</h3>
+                <h5>All fields are required</h5>
+              </div>
+              <div className="card-body">
+                <div className="row">
+                  <div className="form_group">
+                    <input
+                      placeholder="Username"
+                      value={username}
+                      onChange={(e) => usernamechange(e.target.value)}
+                      className="form_control"
+                    ></input>
+                  </div>
 
-                                    <div className="form_group">
-                                        <input placeholder="Username" value={username} onChange={e => usernamechange(e.target.value)} className="form_control"></input>
+                  <div className="form_group">
+                    <input
+                      placeholder="Password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => passwordchange(e.target.value)}
+                      className="form_control"
+                    ></input>
+                  </div>
 
-                                    </div>
+                  <div className="form_group">
+                    <input
+                      placeholder="Fullname"
+                      value={fullname}
+                      onChange={(e) => fullnamechange(e.target.value)}
+                      className="form_control"
+                    ></input>
+                  </div>
 
-                                    <div className="form_group">
-                                        <input placeholder="Password" type='password' value={password} onChange={e => passwordchange(e.target.value)} className="form_control"></input>
+                  <div className="form_group">
+                    <input
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => emailchange(e.target.value)}
+                      className="form_control"
+                    ></input>
+                  </div>
 
-                                    </div>
-
-                                    <div className="form_group">
-                                        <input placeholder="Fullname" value={fullname} onChange={e => fullnamechange(e.target.value)} className="form_control"></input>
-
-                                    </div>
-
-                                    <div className="form_group">
-                                        <input placeholder="Email" value={email} onChange={e => emailchange(e.target.value)} className="form_control"></input>
-                                    </div>
-
-
-                                    <div className="form_group">
-                                        <select value={country} onChange={e => countrychange(e.target.value)} className="form_control">
-                                            <option value="Default">-- Country --</option>
-                                            <option value="Singapore">Singapore</option>
-                                            <option value="USA">USA</option>
-                                            <option value="Malaysia">Malaysia</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div classname="card-footer">
-                                <button type="submit" className="signup_submit_button">Register</button>
-                                <button className="signup_back_button" onClick={handleBack}>Back</button>
-                            </div>
-                        </div>
-                    </form>
+                  <div className="form_group">
+                    <select
+                      value={country}
+                      onChange={(e) => countrychange(e.target.value)}
+                      className="form_control"
+                    >
+                      <option value="Default">-- Country --</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="USA">USA</option>
+                      <option value="Malaysia">Malaysia</option>
+                    </select>
+                  </div>
                 </div>
+              </div>
+              <div classname="card-footer">
+                <button type="submit" className="signup_submit_button">
+                  Register
+                </button>
+                <button className="signup_back_button" onClick={handleBack}>
+                  Back
+                </button>
+              </div>
             </div>
-        </>
-    );
-}
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default SignUpPage;

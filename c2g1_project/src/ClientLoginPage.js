@@ -1,15 +1,16 @@
-import TrainerLoginPage from './TrainerLoginPage';
-import { useNavigate } from 'react-router-dom';
-import stockimgtop from './images/stockimgtop.jpg';
-import stockimgbottom from './images/stockimgbottom.jpg';
-import dellacademylogo from './images/DellAcademy.png';
-import SignUpPage from './SignUpPage';
-import AdminLoginPage from './AdminLoginPage';
-import { useState } from 'react';
-import AdminHomePage from './AdminHomePage';
+import TrainerLoginPage from "./TrainerLoginPage";
+import { useNavigate } from "react-router-dom";
+import stockimgtop from "./images/stockimgtop.jpg";
+import stockimgbottom from "./images/stockimgbottom.jpg";
+import dellacademylogo from "./images/DellAcademy.png";
+import SignUpPage from "./SignUpPage";
+import AdminLoginPage from "./AdminLoginPage";
+import { useState } from "react";
+import AdminHomePage from "./AdminHomePage";
 import { useEffect } from "react";
 import ClientHomePage from './ClientHomePage';
 import { motion } from "framer-motion";
+import ClientHomePage from "./ClientHomePage";
 
 import useAxiosPost from "./api/useAxiosPost.jsx";
 import { config } from "./config/config.js";
@@ -19,12 +20,10 @@ import Navbar from "./components/NavBar.js";
 // Running Json Server
 // npx json-server --watch db.json --port 8000
 
-
 const ClientLoginPage = () => {
-
-   const nav = useNavigate();
-   const [username, usernameupdate] = useState("");
-   const [password, passwordupdate] = useState("");
+  const nav = useNavigate();
+  const [username, usernameupdate] = useState("");
+  const [password, passwordupdate] = useState("");
    const [move, setMove] = useState(false);
 
    const handleSuccess = (data) => {
@@ -51,44 +50,46 @@ const ClientLoginPage = () => {
        }
      };
 
-   const validate = () => {
-      let result = true;
-      if (username === "") {
-         result = false;
-         alert("Username cannot be empty")
-      }
-      if (password === "") {
-         result = false;
-         alert("Password cannot be empty")
-      }
-      return result;
-   }
+  const validate = () => {
+    let result = true;
+    if (username === "") {
+      result = false;
+      alert("Username cannot be empty");
+    }
+    if (password === "") {
+      result = false;
+      alert("Password cannot be empty");
+    }
+    return result;
+  };
 
-   // const handleSignIn = () => {
-   //    nav("/AdminHomePage");
-   // }
-   const handleTrainerLoginPage = () => {
-      nav("/TrainerLoginPage");
-   }
-   const handleClientLoginPage = () => {
-      nav("/ClientLoginPage");
-   }
-   const handleAdminLoginPage = () => {
-      nav("/AdminLoginPage");
-   }
-   const handleSignUp = () => {
-      nav("/SignUpPage");
-   }
+  const handleTrainerLoginPage = () => {
+    nav("/TrainerLoginPage");
+  };
+  const handleClientLoginPage = () => {
+    nav("/ClientLoginPage");
+  };
+  const handleAdminLoginPage = () => {
+    nav("/AdminLoginPage");
+  };
+  const handleSignUp = () => {
+    nav("/SignUpPage");
+  };
 
    return (
       <>
-      <Navbar/>
+         <div className='top_of_login'>
+
+            <div>
+
+            </div>
+         </div>
          <div className="login_page">
-         <motion.div animate={{x : move ? 0:200}} transition={{ type: "inertia", velocity: 40 }} className="login_pictures">
-         <img src={stockimgtop} alt="Stock Image" />
-            </motion.div>
-            <motion.div animate={{scale:1}} initial={{scale:0}} transition={{type:"spring" , delay:0.25}} className="login_buttons">
-            <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
+            <div className="login_pictures">
+               <img src={stockimgtop} alt="Stock Image" />
+            </div>
+            <div className="login_buttons">
+               <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
                <h5>I am a/ an ... </h5>
                <button className="client_login_button_blue">Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
@@ -116,7 +117,7 @@ const ClientLoginPage = () => {
                      <h5 className='forget_pw'>Forget password</h5>
                   </div>
                </form>
-            </motion.div>
+            </div>
 
          </div>
       </>
