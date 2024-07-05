@@ -13,9 +13,12 @@ import { Link } from "react-router-dom";
 const LeftSidebar = ({}) => {
   const nav = useNavigate();
 
-  const [sidebar, setsidebar] = useState(false);
+  // Store side bar status
+  const [sidebarstatus, setsidebarstatus] = useState(false);
+
+  // function to toggle sidebar status 
   const showsidebar = () => {
-    setsidebar(!sidebar);
+    setsidebarstatus (!sidebarstatus);
   };
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
@@ -49,7 +52,7 @@ const LeftSidebar = ({}) => {
       <Link to="#" className="menu-bars">
         <FaIcons.FaBars onClick={showsidebar} />
       </Link>
-      <nav className={sidebar ? "nav-menu-active" : "nav-menu"}>
+      <nav className={sidebarstatus ? "nav-menu-active" : "nav-menu"}>
         <div class="leftsidebar">
           <div class="column">
             <img src={userprofilepic} alt="User Profile Pic" />

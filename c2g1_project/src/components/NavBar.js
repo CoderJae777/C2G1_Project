@@ -20,7 +20,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <motion.nav
+      className="navbar"
+
+    >
       <div className="navbar_contents">
         <img
           onClick={handleHomePage}
@@ -58,7 +61,7 @@ const Navbar = () => {
           Sign Up!
         </motion.button>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

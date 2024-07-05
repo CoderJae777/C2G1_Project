@@ -25,7 +25,7 @@ const AdminLoginPage = () => {
   const [move, setMove] = useState(false);
 
   const handleSuccess = (data) => {
-    nav('/AdminHomePage');
+    nav("/AdminHomePage");
   };
 
   const handleError = (error) => {
@@ -76,32 +76,43 @@ const AdminLoginPage = () => {
   };
 
   return (
-    <><Navbar/>
+    <>
+      <Navbar />
       <motion.div className="login_page">
-        <motion.div animate={{ x: move ? 0 : 200 }} transition={{ type: "inertia", velocity: 40 }} className="login_pictures">
+        <motion.div
+          animate={{ x: 200 }}
+          transition={{ type: "inertia", velocity: 40 }}
+          className="login_pictures"
+        >
           <img src={stockimgtop} alt="Stock Image" />
         </motion.div>
-        <motion.div animate={{ scale: 1 }} initial={{ scale: 0 }} transition={{ type: "spring", delay: 0.25 }} className="login_buttons">
+        <motion.div className="login_buttons">
           <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-          <h5>I am a/ an ... </h5>{" "}
-          <button
+          <h5>Pick your role: </h5>{" "}
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
             className="client_login_button"
             onClick={handleClientLoginPage}
           >
             Client
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
             className="admin_login_button_blue"
             onClick={handleAdminLoginPage}
           >
             Admin
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
             className="trainer_login_button"
             onClick={handleTrainerLoginPage}
           >
             Trainer
-          </button>
+          </motion.button>
           <form onSubmit={ProceedLogin} className="login_form">
             <div className="card-body">
               <div className="form-group">
@@ -126,14 +137,19 @@ const AdminLoginPage = () => {
                   onChange={(e) => passwordupdate(e.target.value)}
                   className="password"
                   type="password"
-                // this will print out ..... when typing
+                  // this will print out ..... when typing
                 />
               </div>
             </div>
             <div className="card_footer">
-              <button type="submit" className="signin_button">
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                type="submit"
+                className="signin_button"
+              >
                 Sign in
-              </button>
+              </motion.button>
               <h5 className="signup" onClick={handleSignUp}>
                 Need an account? Sign Up!
               </h5>

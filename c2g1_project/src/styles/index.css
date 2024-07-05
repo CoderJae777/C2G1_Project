@@ -230,7 +230,17 @@
 }
 
 /* homepage designs */
-.homepage{
+.homepageinfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:80%;
+    padding: 10px;
+    margin: auto;
+    align-items: center;
+}
+
+
+.homepage-images{
     display: flex;
-    justify-content: center;
+    justify-content:center ;
 }
