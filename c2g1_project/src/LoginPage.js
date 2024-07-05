@@ -9,6 +9,8 @@ import AdminLoginPage from './AdminLoginPage';
 import { useState } from 'react';
 import AdminHomePage from './AdminHomePage';
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+import Navbar from "./components/NavBar.js";
 
 
 
@@ -21,6 +23,7 @@ const LoginPage = () => {
    const nav = useNavigate();
    const [username, usernameupdate] = useState("");
    const [password, passwordupdate] = useState("");
+   const [move, setMove] = useState(false);
 
    const ProceedLogin = (e) => {
       e.preventDefault();
@@ -46,17 +49,12 @@ const LoginPage = () => {
 
    return (
       <>
-         <div className='top_of_login'>
-
-            <div>
-
-            </div>
-         </div>
-         <div className="login_page">
-            <div className="login_pictures">
+      <Navbar/>
+         <motion.div className="login_page">
+            <motion.div animate={{x : move ? 200:-200}} transition={{ type: "inertia", velocity: 40 }} className="login_pictures">
                <img src={stockimgtop} alt="Stock Image" />
-            </div>
-            <div className="login_buttons">
+            </motion.div>
+            <motion.div animate={{scale:1}} transition={{delay:0.5 }} initial={{scale:0}} className="login_buttons">
                <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
                <h5>I am a/ an ... </h5>               <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
@@ -79,14 +77,14 @@ const LoginPage = () => {
                      </div>
                   </div>
                   <div className='card_footer'>
-                     <button type="submit" className="signin_button">Sign in</button>
+                     <motion.button animate={{ scale: 1 }} initial={{ scale: 0 }} type="submit" className="signin_button">Sign in</motion.button>
                      <h5 className="signup" onClick={handleSignUp}>Need an account? Sign Up!</h5>
                      <h5 className='forget_pw'>Forget password</h5>
                   </div>
                </form>
-            </div>
+            </motion.div>
 
-         </div>
+         </motion.div>
       </>
    );
 }

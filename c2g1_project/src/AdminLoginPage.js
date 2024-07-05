@@ -8,10 +8,12 @@ import SignUpPage from "./SignUpPage";
 import { useState } from "react";
 import AdminHomePage from "./AdminHomePage";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 import useAxiosPost from "./api/useAxiosPost.jsx";
 import { config } from "./config/config.js";
 import { endpoints } from "./config/endpoints.js";
+import Navbar from "./components/NavBar.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
@@ -20,14 +22,15 @@ const AdminLoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
+  const [move, setMove] = useState(false);
 
   const handleSuccess = (data) => {
-   nav('/AdminHomePage');
- };
+    nav('/AdminHomePage');
+  };
 
- const handleError = (error) => {
-   alert('Login failed, User Account does not exist.');
- };
+  const handleError = (error) => {
+    alert('Login failed, User Account does not exist.');
+  };
 
   const { data, loading, error, setBody, refetch } = useAxiosPost(
     config.base_url + endpoints.login.admin,
@@ -72,15 +75,12 @@ const AdminLoginPage = () => {
   };
 
   return (
-    <>
-      <div className="top_of_login">
-        <div></div>
-      </div>
-      <div className="login_page">
-        <div className="login_pictures">
+    <><Navbar/>
+      <motion.div className="login_page">
+        <motion.div animate={{ x: move ? 0 : 200 }} transition={{ type: "inertia", velocity: 40 }} className="login_pictures">
           <img src={stockimgtop} alt="Stock Image" />
-        </div>
-        <div className="login_buttons">
+        </motion.div>
+        <motion.div animate={{ scale: 1 }} initial={{ scale: 0 }} transition={{ type: "spring", delay: 0.25 }} className="login_buttons">
           <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
           <h5>I am a/ an ... </h5>{" "}
           <button
@@ -125,7 +125,7 @@ const AdminLoginPage = () => {
                   onChange={(e) => passwordupdate(e.target.value)}
                   className="password"
                   type="password"
-                  // this will print out ..... when typing
+                // this will print out ..... when typing
                 />
               </div>
             </div>
@@ -139,8 +139,8 @@ const AdminLoginPage = () => {
               <h5 className="forget_pw">Forget password</h5>
             </div>
           </form>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './adminhomepage.css';
-import './adminmanagetrainerpage.css';
+import "./styles/adminhomepage.css";
+import './styles/adminmanagetrainerpage.css';
 import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
-import Sidebar from './LeftSideBar';
+import Sidebar from "./components/LeftSideBar";
 import DateAndTime from './DateAndTime';
 
 const AdminManageTrainerPage = () => {

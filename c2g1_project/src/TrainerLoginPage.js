@@ -9,6 +9,8 @@ import AdminHomePage from './AdminHomePage';
 import { useEffect } from "react";
 import ClientLoginPage from './ClientLoginPage';
 import TrainerHomePage from './TrainerHomePage';
+import { motion } from "framer-motion";
+import Navbar from "./components/NavBar.js";
 
 
 
@@ -21,6 +23,7 @@ const TrainerLoginPage = () => {
    const nav = useNavigate();
    const [username, usernameupdate] = useState("");
    const [password, passwordupdate] = useState("");
+   const [move, setMove] = useState(false);
 
    const ProceedLogin = (e) => {
       e.preventDefault();
@@ -75,21 +78,15 @@ const TrainerLoginPage = () => {
    }
 
    return (
-      <>
-         <div className='top_of_login'>
-
-            <div>
-
-            </div>
-         </div>
+      <><Navbar/>
          <div className="login_page">
-            <div className="login_pictures">
+            <motion.div animate={{ x: move ? 0 : 200 }} transition={{ type: "inertia", velocity: 40 }} className="login_pictures">
                <img src={stockimgtop} alt="Stock Image" />
-            </div>
-            <div className="login_buttons">
+            </motion.div>
+            <motion.div animate={{ scale: 1 }} initial={{ scale: 0 }} transition={{ type: "spring", delay: 0.25 }} className="login_buttons">
                <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-               <h5>I am a/ an ... </h5>              
-                <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
+               <h5>I am a TRAINER </h5>
+               <button className="client_login_button" onClick={handleClientLoginPage}>Client</button>
                <button className="admin_login_button" onClick={handleAdminLoginPage}>Admin</button>
                <button className="trainer_login_button_blue" onClick={handleTrainerLoginPage}>Trainer</button>
                <form onSubmit={ProceedLogin} className='login_form'>
@@ -115,7 +112,7 @@ const TrainerLoginPage = () => {
                      <h5 className='forget_pw'>Forget password</h5>
                   </div>
                </form>
-            </div>
+            </motion.div>
 
          </div>
       </>

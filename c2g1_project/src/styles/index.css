@@ -229,3 +229,8 @@
     text-align: center;
 }
 
+/* homepage designs */
+.homepage{
+    display: flex;
+    justify-content: center;
+}
