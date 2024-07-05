@@ -52,12 +52,12 @@ const SignUpPage = () => {
     const [country, countrychange] = useState("");
 
     const handleSuccess = (data) => {
-        nav("/ClientLoginPage");
-      };
-    
-      const handleError = (error) => {
-        alert("Sign up failed, please contact the administrator.");
-      };
+      nav("/ClientLoginPage");
+    };
+  
+    const handleError = (error) => {
+      alert("Sign up failed, please contact the administrator.");
+    };
     
       const { data, loading, error, setBody, refetch } = useAxiosPost(
         config.base_url + endpoints.signup,
