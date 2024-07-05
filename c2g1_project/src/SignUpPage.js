@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import { isValidElement, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import useAxiosPost from './api/useAxiosPost';
+import { config } from './config/config';
+import { endpoints } from './config/endpoints';
 
 const SignUpPage = () => {
 
@@ -21,18 +24,18 @@ const SignUpPage = () => {
             isproceed = false;
             error_message += "Password \n";
         }
-        if (fullname == null || fullname == "") {
-            isproceed = false;
-            error_message += "Fullname \n";
-        }
+        // if (fullname == null || fullname == "") {
+        //     isproceed = false;
+        //     error_message += "Fullname \n";
+        // }
         if (email == null || email == "") {
             isproceed = false;
             error_message += "Email \n";
         }
-        if (country == "") {
-            isproceed = false;
-            error_message += "Country \n";
-        }
+        // if (country == "") {
+        //     isproceed = false;
+        //     error_message += "Country \n";
+        // }
         if (!isproceed) {
             alert(error_message);
         }
@@ -49,22 +52,47 @@ const SignUpPage = () => {
     const [email, emailchange] = useState("");
     const [country, countrychange] = useState("");
 
-    const handlesubmit = (e) => {
+    const handleSuccess = (data) => {
+        nav("/ClientLoginPage");
+      };
+    
+      const handleError = (error) => {
+        alert("Sign up failed, please contact the administrator.");
+      };
+    
+      const { data, loading, error, setBody, refetch } = useAxiosPost(
+        config.base_url + endpoints.signup,
+        {},
+        [],
+        handleSuccess,
+        handleError
+      );
+    
+      const handlesubmit = (e) => {
+        e.preventDefault();
         if (IsValidate()) {
-            e.preventDefault();
-            let regobj = { username, password, fullname, email, country };
-            fetch("http://localhost:8000/user_data", {
-                method: "POST",
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(regobj)
-            }).then((res) => {
-                alert("Registration Success!");
-                nav("/");
-            }).catch((err) => {
-                alert("Registration Failed" + error_message)
-            });
+          e.preventDefault();
+          setBody({ username, password, email });
+          refetch();
         }
-    }
+      };
+
+    // const handlesubmit = (e) => {
+    //     if (IsValidate()) {
+    //         e.preventDefault();
+    //         let regobj = { username, password, fullname, email, country };
+    //         fetch("http://localhost:8000/user_data", {
+    //             method: "POST",
+    //             headers: { 'content-type': 'application/json' },
+    //             body: JSON.stringify(regobj)
+    //         }).then((res) => {
+    //             alert("Registration Success!");
+    //             nav("/");
+    //         }).catch((err) => {
+    //             alert("Registration Failed" + error_message)
+    //         });
+    //     }
+    // }
 
     return (
         <>
