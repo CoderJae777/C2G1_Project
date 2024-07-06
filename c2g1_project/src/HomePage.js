@@ -70,7 +70,11 @@ const HomePage = () => {
         initial={{ scale: 0 }}
         className="homepage-div-5"
       >
-        <div className="info1">
+        <motion.div
+          className="info1"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >
           <div className="infoimg">
             <img
               src={homepageinfoimg1}
@@ -81,8 +85,12 @@ const HomePage = () => {
           <div className="infotext">
             <h5>Comprehensive</h5>
           </div>
-        </div>
-        <div className="info2">
+        </motion.div>
+        <motion.div
+          className="info2"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >
           <div className="infoimg">
             <img
               src={homepageinfoimg2}
@@ -93,8 +101,12 @@ const HomePage = () => {
           <div className="infotext">
             <h5>Professional</h5>
           </div>
-        </div>
-        <div className="info3">
+        </motion.div>
+        <motion.div
+          className="info3"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >
           <div className="infoimg">
             <img
               src={homepageinfoimg3}
@@ -105,8 +117,12 @@ const HomePage = () => {
           <div className="infotext">
             <h5>Efficient Booking</h5>
           </div>
-        </div>
-        <div className="info4">
+        </motion.div>
+        <motion.div
+          className="info4"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >
           <div className="infoimg">
             <img
               src={homepageinfoimg4}
@@ -117,7 +133,7 @@ const HomePage = () => {
           <div className="infotext">
             <h5>Verified Trainers</h5>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
       <motion.div
