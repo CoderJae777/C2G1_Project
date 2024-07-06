@@ -125,9 +125,14 @@
   height: 180px;
   background-image: url("../images/homepageimg2.jpg");
   background-size: "cover";
-  opacity: 1;
+  position: relative;
 }
-
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
 .navbar_contents {
   display: flex;
   justify-content: center;
@@ -247,6 +252,7 @@
   color: #0083ca;
 }
 
+
 .homepage {
   background-image: url("../images/homepageimg2.jpg");
   background-size: "cover";
@@ -265,6 +271,12 @@
   margin-top: 50px;
 }
 
+.about2 {
+    grid-column-start: 2;
+    padding: 25px;
+    margin-top: 50px;
+  }
+  
 .testimonials {
   grid-column-start: 2;
   padding: 25px;
