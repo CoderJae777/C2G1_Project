@@ -4,12 +4,16 @@ import './styles/adminmanagetrainerpage.css';
 import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
+import TopLeftSidebar from "./components/TopLeftSideBar";
 import Sidebar from "./components/LeftSideBar";
 import DateAndTime from './DateAndTime';
 
 const AdminManageTrainerPage = () => {
     return (
         <div className="admin-manage-trainer-page">
+            <div className="left-panel">
+                <TopLeftSidebar />
+            </div>
             <div className="left-panel">
                 <div className="dell-logo">
                     <img src={dellacademylogo} alt="Dell Academy Logo" />
