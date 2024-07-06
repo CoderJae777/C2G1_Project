@@ -3,6 +3,8 @@ import TrainerLoginPage from "./TrainerLoginPage";
 import { useNavigate } from "react-router-dom";
 import stockimgtop from "./images/stockimgtop.jpg";
 import stockimgbottom from "./images/stockimgbottom.jpg";
+import homepageimg from "./images/homepageimg.jpg";
+import homepageimg2 from "./images/homepageimg2.jpg";
 import dellacademylogo from "./images/DellAcademy.png";
 import SignUpPage from "./SignUpPage";
 import AdminLoginPage from "./AdminLoginPage";
@@ -20,33 +22,80 @@ const HomePage = () => {
   const [move, setMove] = useState(false);
   return (
     <>
-      <Navbar />
       {""}
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        transition={{ delay: 0.25 }}
+        transition={{ delay: 0.5 }}
         className="homepage"
       >
+        <Navbar />
         <div className="homepageinfo">
-          <div>
-            <About/>
+          <div className="about">
+            <About />
           </div>
-          <div>
-            <Team />
-          </div>
-          <div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ delay: 1 }}
+        className="homepage-div-2"
+      >
+        <div className="homepageinfo">
+          <div className="testimonials">
             <Testimonials />
           </div>
         </div>
       </motion.div>
+
       <motion.div
         animate={{ scale: 1 }}
-        transition={{ delay: 1.25 }}
+        transition={{ delay: 1.5 }}
         initial={{ scale: 0 }}
-        className="homepage-images"
+        className="homepage-div-3"
       >
-        <img src={stockimgtop} alt="Stock Image" />
+        <h2>Why Dell Academy?</h2>
+      </motion.div>
+
+      <motion.div
+        animate={{ scale: 1 }}
+        transition={{ delay: 1.5 }}
+        initial={{ scale: 0 }}
+        className="homepage-div-4"
+      >
+        <h5>What we offer: </h5>
+      </motion.div>
+
+      <motion.div
+        animate={{ scale: 1 }}
+        transition={{ delay: 1.5 }}
+        initial={{ scale: 0 }}
+        className="homepage-div-5"
+      >
+        <div className="info1">
+          <p>stuff</p>
+        </div>
+        <div className="info2">
+          <p>stuff</p>
+        </div>
+        <div className="info3">
+          <p>stuff</p>
+        </div>
+        <div className="info4">
+          <p>stuff</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        animate={{ scale: 1 }}
+        initial={{ scale: 0 }}
+        className="bottom-of-homepage"
+      >
+        <div className="title">
+          <h3>Contact Us</h3>
+        </div>
       </motion.div>
     </>
   );

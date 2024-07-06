@@ -7,9 +7,9 @@ const About = () => {
       <motion.h1
         animate={{ scale: 0.75, opacity: 1 }}
         initial={{ opacity: 0, scale: 1 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 1.5 }}
       >
-        About Us
+        Grow your skills with Dell Academy
       </motion.h1>
     </>
   );
