@@ -8,8 +8,8 @@
     width:100%;
 }
 
-.dell_logo{
-    margin: 20px;
+.trainer-img, .client-img, .admin-img{
+    margin-bottom: 24px;
 }
 
 .top_of_login{
