@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import stockimgtop from "./images/stockimgtop.jpg";
 import stockimgbottom from "./images/stockimgbottom.jpg";
 import dellacademylogo from "./images/DellAcademy.png";
+import adminimg from "./images/adminimg.png";
 import SignUpPage from "./SignUpPage";
 import { useState } from "react";
 import AdminHomePage from "./AdminHomePage";
@@ -87,7 +88,9 @@ const AdminLoginPage = () => {
         >
         </motion.div>
         <motion.div className="login_buttons">
-          <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
+          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
+          <img src={adminimg} className="admin-img" alt="adminimg"></img>
+
           <h5>Pick your role: </h5>{" "}
           <motion.button
             whileHover={{ scale: 1.2 }}

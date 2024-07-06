@@ -1,246 +1,408 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 /* LoginPage design */
-.login_page{
-    display: grid;
-    grid-template-columns: 1fr;
-    width:100%;
+.login_page {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  margin-top: 35px;
 }
 
-.dell_logo{
-    margin: 20px;
+.trainer-img,
+.client-img,
+.admin-img {
+  margin-bottom: 24px;
 }
 
-.top_of_login{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    display: flex;
-    justify-content: center;
-    width:80%;
-    margin-top: 20px;
+.top_of_login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-top: 20px;
 }
 
-.login_buttons{
-    text-align: center;
+.login_buttons {
+  text-align: center;
 }
 
-.client_login_button, .admin_login_button, .trainer_login_button{
-    background-color: white;
-    color: black;
-    width: 90px;
-    height: 90px;
-    border-radius: 25px;
-    border-width: 0px;
-    font-family: roboto;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px 10px 0px 10px;
-    padding: 10px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 3px;
-    border-radius: 20px;
-    border-color: #0083CA;
+.client_login_button,
+.admin_login_button,
+.trainer_login_button {
+  background-color: white;
+  color: black;
+  width: 90px;
+  height: 90px;
+  border-radius: 25px;
+  border-width: 0px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 10px 0px 10px;
+  padding: 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 3px;
+  border-radius: 20px;
+  border-color: #0083ca;
 }
 
-
-.admin_login_button:hover, .client_login_button:hover, .trainer_login_button:hover{
-    background-color: #28abf1;
-    color:white;
+.admin_login_button:hover,
+.client_login_button:hover,
+.trainer_login_button:hover {
+  background-color: #28abf1;
+  color: white;
 }
 
-.client_login_button_blue, .admin_login_button_blue, .trainer_login_button_blue{
-    background-color: #0083CA;
-    color: white;
-    width: 90px;
-    height: 90px;
-    border-radius: 20px;
-    border-width: 3px;
-    border-color: black;
-    font-family: roboto;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px 10px 0px 10px;
-    padding: 10px;
+.client_login_button_blue,
+.admin_login_button_blue,
+.trainer_login_button_blue {
+  background-color: #0083ca;
+  color: white;
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  border-width: 3px;
+  border-color: black;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 10px 0px 10px;
+  padding: 10px;
 }
 
-.signin_button{
-    background-color: #0083CA;
-    color: white;
-    padding: 6px 10px;
-    width: 10%;
-    border-radius: 20px;
-    border-width: 3px;
-    border-color: black;
-    font-family: roboto;
-    font-size: 15px;
-    font-weight: bold;
-    transition: background-color 1000ms;
-    margin: 10px 0px 0px 0px;
-
+.signin_button {
+  background-color: #0083ca;
+  color: white;
+  padding: 6px 10px;
+  width: 10%;
+  border-radius: 20px;
+  border-width: 3px;
+  border-color: black;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 1000ms;
+  margin: 10px 0px 0px 0px;
 }
 
 .signin_button:hover {
-    background-color: #28abf1;
+  background-color: #28abf1;
 }
 
-.username, .password{
-    width: 20%;
-    padding: 6px 10px;
-    border-width: 3px;
-    border-radius: 10px;
-    border-color: #0083CA;
-    margin:10px;
-    font-size: 15px;
-    text-align: center;
-    color: #a9a9a9;
+.username,
+.password {
+  width: 20%;
+  padding: 6px 10px;
+  border-width: 3px;
+  border-radius: 10px;
+  border-color: #0083ca;
+  margin: 10px;
+  font-size: 15px;
+  text-align: center;
+  color: #a9a9a9;
 }
 
-.signup, .forget_pw {
-    margin:10px;
-    font-size: 15px;
-    color: #0000ee;
+.signup,
+.forget_pw {
+  margin: 10px;
+  font-size: 15px;
+  color: #0000ee;
 }
 
-.login_form{
-    margin: 10px;
-    text-align: center;
+.login_form {
+  margin: 10px;
+  text-align: center;
 }
-
-
-
 
 /* Navbar designs */
-.navbar{
-    padding: 50px;
-    background-color: white;
-    border-style: solid;
-    border-width: 0px;
-    height: 180px;
+.navbar {
+  padding: 50px;
+  background-color: #e3f2fd;
+  border-style: solid;
+  border-width: 0px;
+  height: 180px;
+  background-image: url("../images/homepageimg2.jpg");
+  background-size: "cover";
+  opacity: 1;
 }
 
-.navbar_contents{
-    display: flex;
-    justify-content: center;
-    width:100%;
-    margin-top: 10px;
-}
-    
-
-.navbar button{
-    background-color: white;
-    color: black;
-    width: 150px;
-    height: 50px;
-    border-radius: 25px;
-    border-width: 0px;
-    font-family: roboto;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 30px;
-    margin-left: 30px;
-    margin-top: 10px;
-    padding: 10px;
-    transition: background-color 500ms;
-    transition: color 0ms;
-    border-color: #0083CA;
+.navbar_contents {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
 }
 
-.navbar button:hover{
-    background-color: #28abf1;
-    color:white;
-    transition: background-color 500ms;
+.navbar button,
+.testibutton {
+  background-color: #eef8ff;
+  color: black;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 0px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top: 10px;
+  padding: 10px;
+  transition: background-color 500ms;
+  transition: color 0ms;
+  border-color: #0083ca;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
-.card{
-    border: none;
+.navbar button:hover,
+.testibutton:hover {
+  background-color: #28abf1;
+  color: white;
+  transition: background-color 500ms;
 }
 
-
-
+.card {
+  border: none;
+}
 
 /* SignUpPageDesigns */
-.errmsg{
-    color: red;
+.errmsg {
+  color: red;
 }
 
-.signup_submit_button{
-    background-color: #5cdb5c;
-    color: white;
-    width: 150px;
-    height: 50px;
-    border-radius: 25px;
-    border-width: 3px;
-    font-family: roboto;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 30px;
-    padding: 10px;
-    transition: background-color 1000ms;
-    border-color: black;
+.signup_submit_button {
+  background-color: #5cdb5c;
+  color: white;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 3px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 30px;
+  padding: 10px;
+  transition: background-color 1000ms;
+  border-color: black;
 }
 
-.signup_submit_button:hover{
-    background-color: darkgreen;
-    color:white;
+.signup_submit_button:hover {
+  background-color: darkgreen;
+  color: white;
 }
 
-.signup_back_button{
-    background-color:#BFBFBF;
-    color: white;
-    width: 150px;
-    height: 50px;
-    border-radius: 25px;
-    border-width: 3px;
-    font-family: roboto;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px;
-    transition: background-color 1000ms;
-    border-color: black;
+.signup_back_button {
+  background-color: #bfbfbf;
+  color: white;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 3px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  transition: background-color 1000ms;
+  border-color: black;
 }
 
-.signup_back_button:hover{
-    background-color: darkgrey;
-    color:white;
+.signup_back_button:hover {
+  background-color: darkgrey;
+  color: white;
 }
 
-.form_group{
-    margin: 10px;
-    font-size: 15px;
-    text-align: center;
+.form_group {
+  margin: 10px;
+  font-size: 15px;
+  text-align: center;
 }
 
-.form_control{
-    margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
-    border-width: 3px;
-    text-align: center;
+.form_control {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  border-width: 3px;
+  text-align: center;
 }
 
-.card-header{
-    margin: 20px;
-    text-align: center;
+.card-header {
+  margin: 20px;
+  text-align: center;
 }
 
-.card{
-    text-align: center;
+.card {
+  text-align: center;
 }
 
 /* homepage designs */
-.homepageinfo{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width:80%;
-    padding: 10px;
-    margin: auto;
-    align-items: center;
+.homepageinfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 700px;
+  width: 100%;
+  height: 300px;
+  color: #0083ca;
 }
 
+.homepage {
+  background-image: url("../images/homepageimg2.jpg");
+  background-size: "cover";
+  opacity: 0.5;
+}
 
-.homepage-images{
-    display: flex;
-    justify-content:center ;
+.homepage-div-2 {
+  background-image: url("../images/homepageimg.jpg");
+  background-size: "cover";
+  opacity: 0.5;
+}
+
+.about {
+  grid-column-start: 1;
+  padding: 25px;
+  margin-top: 50px;
+}
+
+.testimonials {
+  grid-column-start: 2;
+  padding: 25px;
+  margin-top: 50px;
+}
+
+.homepage-div-3 {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  background-image: url("../images/homepageimg3.jpg");
+  background-size: "cover";
+  height: 250px;
+  color: #e3f2fd;
+  align-items: center;
+  justify-items: center;
+}
+
+.homepage-div-3-title1 {
+  grid-row-start: 1;
+  margin-top: 50px;
+}
+
+.homepage-div-3-title2 {
+  grid-row-start: 2;
+  margin-bottom: 150px;
+}
+
+.homepage-div-5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  width: 100%;
+  height: 380px;
+  background-color: #e3f2fd;
+}
+
+.info1 {
+  grid-column-start: 1;
+  margin-top: 50px;
+  border-style: 50px;
+  border-radius: 35px;
+  width: 250px;
+  height: 250px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  padding: 20px;
+}
+
+.info2 {
+  grid-column-start: 2;
+  margin-top: 50px;
+  border-style: 50px;
+  border-radius: 35px;
+  width: 250px;
+  height: 250px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  padding: 20px;
+}
+
+.info3 {
+  grid-column-start: 3;
+  margin-top: 50px;
+  border-style: 50px;
+  border-radius: 35px;
+  width: 250px;
+  height: 250px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  padding: 20px;
+}
+
+.info4 {
+  grid-column-start: 4;
+  margin-top: 50px;
+  border-style: 50px;
+  border-radius: 35px;
+  width: 250px;
+  height: 250px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  padding: 20px;
+}
+
+.info1:hover,
+.info2:hover,
+.info3:hover,
+.info4:hover {
+  background-color: #0083ca;
+  color: white;
+  box-shadow: #28abf1 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  transition: background-color 500ms;
+}
+
+.infoimg {
+  grid-row-start: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.infotext {
+  grid-row-start: 2;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-of-homepage {
+  background-color: #e3f2fd;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  color: #a9a9a9;
+}
+
+.title {
+  margin-top: 50px;
+}
+
+/* testimonial design */
+.testibutton {
 }

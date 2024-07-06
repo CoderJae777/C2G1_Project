@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import stockimgtop from "./images/stockimgtop.jpg";
 import stockimgbottom from "./images/stockimgbottom.jpg";
+import trainerimg from "./images/trainerimg.png";
+
 import dellacademylogo from "./images/DellAcademy.png";
 import SignUpPage from "./SignUpPage";
 import AdminLoginPage from "./AdminLoginPage";
@@ -88,7 +90,8 @@ const TrainerLoginPage = () => {
           {/* <img src={stockimgtop} alt="Stock Image" /> */}
         </motion.div>
         <motion.div className="login_buttons">
-          <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
+          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
+          <img src={trainerimg} className="trainer-img" alt="trainerimg"></img>
           <motion.h5> Pick your role: </motion.h5>
           <motion.button
             whileHover={{ scale: 1.2 }}

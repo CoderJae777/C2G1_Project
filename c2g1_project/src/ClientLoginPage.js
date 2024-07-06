@@ -2,6 +2,7 @@ import TrainerLoginPage from "./TrainerLoginPage";
 import { useNavigate } from "react-router-dom";
 import stockimgtop from "./images/stockimgtop.jpg";
 import stockimgbottom from "./images/stockimgbottom.jpg";
+import clientimg from "./images/clientimg.png";
 import dellacademylogo from "./images/DellAcademy.png";
 import SignUpPage from "./SignUpPage";
 import AdminLoginPage from "./AdminLoginPage";
@@ -80,22 +81,22 @@ const ClientLoginPage = () => {
       <Navbar />
       <div className="login_page">
         <motion.div
-          animate={{ x: move ? -200 : 200, y:400 }}
+          animate={{ x: move ? -200 : 200, y: 400 }}
           transition={{ type: "inertia", velocity: 50 }}
           className="login_pictures"
         >
           {/* <img src={stockimgtop} alt="Stock Image" /> */}
         </motion.div>
-        <motion.div     
-          className="login_buttons"
-        >
-          <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
+        <motion.div className="login_buttons">
+          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
+          <img src={clientimg} className="client-img" alt="clientimg"></img>
           <h5>Pick your role: </h5>
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             className="client_login_button_blue"
           >
+  
             Client
           </motion.button>
           <motion.button
