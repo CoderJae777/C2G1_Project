@@ -48,7 +48,7 @@ const Navbar = () => {
           whileTap={{ scale: 0.9 }}
           onClick={handleHomePage}
         >
-          Dell Academy
+          Home
         </motion.button>
         {/* TBC --> links to the workshops page */}
         <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>

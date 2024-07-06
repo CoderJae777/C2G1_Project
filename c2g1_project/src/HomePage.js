@@ -7,9 +7,14 @@ import { motion } from "framer-motion";
 import Navbar from "./components/NavBar.js";
 import { Testimonials } from "./components/Testimonials.js";
 import About from "./components/about.js";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [move, setMove] = useState(false);
+  const nav = useNavigate();
+  const handleSignUp = () => {
+    nav("/SignUpPage");
+  };
   return (
     <>
       {""}
@@ -40,6 +45,7 @@ const HomePage = () => {
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 className="testibutton"
+                onClick={handleSignUp}
               >
                 Sign up today!
               </motion.button>
@@ -68,9 +74,7 @@ const HomePage = () => {
               Learn more!
             </motion.button>
           </div>
-          <div>
-      
-          </div>
+          <div></div>
         </div>
       </motion.div>
 
@@ -86,7 +90,7 @@ const HomePage = () => {
           initial={{ opacity: 0 }}
           transition={{ delay: 2 }}
         >
-          <h2>Why Dell Academy?</h2>
+          <h3>What we offer : </h3>
         </motion.div>
         <motion.div
           className="homepage-div-3-title2"
@@ -113,6 +117,9 @@ const HomePage = () => {
         initial={{ scale: 0 }}
         className="homepage-div-5"
       >
+        <div className="homepage-div-5-title">
+          <h3>Why Dell Academy?</h3>
+        </div>
         <motion.div
           className="info1"
           whileHover={{ scale: 1.2 }}
@@ -126,7 +133,7 @@ const HomePage = () => {
             ></img>
           </div>
           <div className="infotext">
-            <h5>Comprehensive</h5>
+            <h5>Comprehensive Workshops</h5>
           </div>
         </motion.div>
         <motion.div
@@ -142,7 +149,7 @@ const HomePage = () => {
             ></img>
           </div>
           <div className="infotext">
-            <h5>Professional</h5>
+            <h5>Professional Trainers</h5>
           </div>
         </motion.div>
         <motion.div
@@ -174,7 +181,7 @@ const HomePage = () => {
             ></img>
           </div>
           <div className="infotext">
-            <h5>Verified Trainers</h5>
+            <h5>Verified Results</h5>
           </div>
         </motion.div>
       </motion.div>
