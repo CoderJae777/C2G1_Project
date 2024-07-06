@@ -80,7 +80,9 @@ nav.open .sidebar{
 }
 
 .nav-link:hover{
-    background-color: #4070f4;
+    background-color: #28abf1;
+    color:white;
+
 }
 
 .nav-link .icon{

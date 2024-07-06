@@ -52,7 +52,7 @@ const LoginPage = () => {
           transition={{ type: "inertia", velocity: 50 }}
           className="login_pictures"
         >
-          <img src={stockimgtop} alt="Stock Image" />
+          {/* <img src={stockimgtop} alt="Stock Image" /> */}
         </motion.div>
         <motion.div
           animate={{ scale: 1 }}
