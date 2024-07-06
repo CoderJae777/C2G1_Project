@@ -21,6 +21,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
+      {""}
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}

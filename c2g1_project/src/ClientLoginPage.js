@@ -80,11 +80,11 @@ const ClientLoginPage = () => {
       <Navbar />
       <div className="login_page">
         <motion.div
-          animate={{ x: move ? 0 : 200 }}
-          transition={{ type: "inertia", velocity: 40 }}
+          animate={{ x: move ? -200 : 200, y:400 }}
+          transition={{ type: "inertia", velocity: 50 }}
           className="login_pictures"
         >
-          <img src={stockimgtop} alt="Stock Image" />
+          {/* <img src={stockimgtop} alt="Stock Image" /> */}
         </motion.div>
         <motion.div     
           className="login_buttons"

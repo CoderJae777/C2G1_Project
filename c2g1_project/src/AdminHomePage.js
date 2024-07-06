@@ -28,6 +28,7 @@ import {
   CartesianGrid,
   Bar,
 } from "recharts";
+import TopLeftSideBar from "./components/TopLeftSideBar.js";
 
 const AdminHomePage = () => {
   const [graphTitle, setGraphTitle] = useState("View Trainer Statistics");
@@ -93,10 +94,10 @@ const AdminHomePage = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="left-panel">
-        <Sidebar userprofilepic={userprofilepic} />
-        <div className="dell-logo">
+        <TopLeftSideBar />{" "}
+        {/* <div className="dell-logo">
           <img src={dellacademylogo} alt="Dell Academy Logo" />
-        </div>
+        </div> */}
       </div>
       <div className="middle-column">
         <div className="admin-home-page-title">

@@ -85,7 +85,7 @@ const TrainerLoginPage = () => {
           transition={{ type: "inertia", velocity: 40 }}
           className="login_pictures"
         >
-          <img src={stockimgtop} alt="Stock Image" />
+          {/* <img src={stockimgtop} alt="Stock Image" /> */}
         </motion.div>
         <motion.div className="login_buttons">
           <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
