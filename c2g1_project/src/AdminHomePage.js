@@ -10,7 +10,9 @@ import TrainerTable from "./AdminHomePageTrainerTable";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import useFetch from "./components/useFetch";
-
+import About from "./components/about.js";
+import { Testimonials } from "./components/Testimonials.js";
+import { Team } from "./components/Team.js";
 import useAxiosGet from "./api/useAxiosGet.jsx";
 import { config } from "./config/config.js";
 import { endpoints } from "./config/endpoints.js";
@@ -261,8 +263,8 @@ const AdminHomePage = () => {
         </div>
       </div>
     </motion.div>
-    ) : (
-      <div>Not logged in</div>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 

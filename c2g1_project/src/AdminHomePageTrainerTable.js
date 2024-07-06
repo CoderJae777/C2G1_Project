@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/adminhomepage.css";
 import { useState } from 'react';
+import useFetch from './components/useFetch';
 
 const TrainerTable = () => {
   const [myArray, setMyArray] = useState([
@@ -11,6 +12,8 @@ const TrainerTable = () => {
     { name: 'Tim', role: 'Training Lead', workshop: 'Intro to AI' },
     { name: 'Erik', role: 'Training Assistant', workshop: 'Resume Review' }
   ]);
+  const { trainer_data } = useFetch();
+
   const [order, setOrder] = useState({ name: 'desc', role: 'desc', workshop: 'desc' });
 
   const handleSort = (column) => {
