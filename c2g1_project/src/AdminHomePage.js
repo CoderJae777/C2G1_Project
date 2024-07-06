@@ -86,7 +86,6 @@ const AdminHomePage = () => {
 
   return data !== null && data.status === true ? (
     <>
-      <LeftSidebar />
       <motion.div
         className="admin-home-page"
         initial={{ opacity: 0, scale: 0.5 }}
@@ -94,12 +93,11 @@ const AdminHomePage = () => {
         transition={{ duration: 0.5 }}
       >
         {" "}
+        <LeftSidebar />{" "}
         <div className="dell-logo">
-            <img src={dellacademylogo} alt="Dell Academy Logo" />
-          </div>
-        <div className="left-panel">
-          
+          <img src={dellacademylogo} alt="Dell Academy Logo" />
         </div>
+        <div className="left-panel"></div>
         <div className="middle-column">
           <div className="admin-home-page-title">
             <h4>Hi Dil, welcome back!</h4>

@@ -13,13 +13,13 @@ import { Link } from "react-router-dom";
 const LeftSidebar = ({}) => {
   const nav = useNavigate();
 
-  // Store side bar status
-  const [sidebarstatus, setsidebarstatus] = useState(false);
+  // // Store side bar status
+  // const [sidebarstatus, setsidebarstatus] = useState(false);
 
-  // function to toggle sidebar status 
-  const showsidebar = () => {
-    setsidebarstatus (!sidebarstatus);
-  };
+  // // function to toggle sidebar status 
+  // const showsidebar = () => {
+  //   setsidebarstatus (!sidebarstatus);
+  // };
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     "",
@@ -49,10 +49,10 @@ const LeftSidebar = ({}) => {
 
   return (
     <>
-      <Link to="#" className="menu-bars">
+      {/* <Link to="#" className="menu-bars">
         <FaIcons.FaBars onClick={showsidebar} />
-      </Link>
-      <nav className={sidebarstatus ? "nav-menu-active" : "nav-menu"}>
+      </Link> */}
+      {/* <nav className={sidebarstatus ? "nav-menu-active" : "nav-menu"}> */}
         <div class="leftsidebar">
           <div class="column">
             <img src={userprofilepic} alt="User Profile Pic" />
@@ -109,7 +109,7 @@ const LeftSidebar = ({}) => {
             </ul>
           </div>
         </div>
-      </nav>
+      {/* </nav> */}
     </>
   );
 };
