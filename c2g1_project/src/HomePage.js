@@ -71,32 +71,52 @@ const HomePage = () => {
         className="homepage-div-5"
       >
         <div className="info1">
-          <img
-            src={homepageinfoimg1}
-            className="homepageinfoimg"
-            alt="homepageinfoimg"
-          ></img>
+          <div className="infoimg">
+            <img
+              src={homepageinfoimg1}
+              className="homepageinfoimg"
+              alt="homepageinfoimg"
+            ></img>
+          </div>
+          <div className="infotext">
+            <h5>Comprehensive</h5>
+          </div>
         </div>
         <div className="info2">
-          <img
-            src={homepageinfoimg2}
-            className="homepageinfoimg"
-            alt="homepageinfoimg"
-          ></img>
+          <div className="infoimg">
+            <img
+              src={homepageinfoimg2}
+              className="homepageinfoimg"
+              alt="homepageinfoimg"
+            ></img>
+          </div>
+          <div className="infotext">
+            <h5>Professional</h5>
+          </div>
         </div>
         <div className="info3">
-          <img
-            src={homepageinfoimg3}
-            className="homepageinfoimg"
-            alt="homepageinfoimg"
-          ></img>
+          <div className="infoimg">
+            <img
+              src={homepageinfoimg3}
+              className="homepageinfoimg"
+              alt="homepageinfoimg"
+            ></img>
+          </div>
+          <div className="infotext">
+            <h5>Efficient Booking</h5>
+          </div>
         </div>
         <div className="info4">
-          <img
-            src={homepageinfoimg4}
-            className="homepageinfoimg"
-            alt="homepageinfoimg"
-          ></img>
+          <div className="infoimg">
+            <img
+              src={homepageinfoimg4}
+              className="homepageinfoimg"
+              alt="homepageinfoimg"
+            ></img>
+          </div>
+          <div className="infotext">
+            <h5>Verified Trainers</h5>
+          </div>
         </div>
       </motion.div>
 
