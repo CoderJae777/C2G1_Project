@@ -97,8 +97,6 @@ const AdminHomePage = () => {
       </div>
       <div className="middle-column">
         <div className="admin-home-page-title">
-          <img src={userprofilepic} alt="User Profile Pic" />
-
           <h4>Hi Dil, welcome back!</h4>
         </div>
         <div className="workshop-table">
