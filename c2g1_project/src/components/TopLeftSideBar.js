@@ -57,12 +57,12 @@ const TopLeftSideBar = () => {
       <nav className={navOpen ? 'open' : ''}>
         <div className="logo">
           <i className='bx bx-menu menu-icon' onClick={toggleNav}></i>
-          <span className="logo-name">Dashboard</span>
+          <span className="logo-name">Menu</span>
         </div>
         <div className="sidebar">
           <div className="logo">
             <i className='bx bx-menu menu-icon' onClick={toggleNav}></i>
-            <span className="logo-name">Dashboard</span>
+            <span className="logo-name">Menu</span>
           </div>
           <div className="sidebar-content">
             <ul className="lists">
@@ -81,13 +81,13 @@ const TopLeftSideBar = () => {
               <li className="list">
                 <a href="#" className="nav-link" onClick={handleAdminWorkshopRequestPage}>
                   <i className='bx bx-clipboard icon'></i>
-                  <span className="link">Workshops</span>
+                  <span className="link">Workshop Requests</span>
                 </a>
               </li>
               <li className="list">
                 <a href="#" className="nav-link" onClick={handleAdminManageTrainerPage}>
                   <i className='bx bx-group icon'></i>
-                  <span className="link">Trainers</span>
+                  <span className="link">Manage Trainers</span>
                 </a>
               </li>
             </ul>
