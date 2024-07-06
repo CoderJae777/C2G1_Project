@@ -13,7 +13,9 @@
 }
 
 .client-home-page-right-panel {
-    align-items: end;
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 .header-container {
@@ -26,7 +28,7 @@
 .client-home-page-title {
     flex: 1;
     text-align: center;
-    margin-bottom: -30px;
+    margin-left: 300px;
 }
 
 .client-home-datetime {
@@ -95,4 +97,8 @@
     color: #333;
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
+}
+
+.form_group {
+    overflow-y: scroll;
 }

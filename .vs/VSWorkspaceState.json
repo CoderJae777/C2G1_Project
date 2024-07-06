@@ -3,7 +3,9 @@
     "",
     "\\c2g1_project",
     "\\c2g1_project\\public",
-    "\\c2g1_project\\src"
+    "\\c2g1_project\\src",
+    "\\c2g1_project\\src\\styles"
   ],
+  "SelectedNode": "\\c2g1_project\\src\\ClientWorkshopPage.js",
   "PreviewInSolutionExplorer": false
 }
