@@ -48,12 +48,6 @@ const LoginPage = () => {
       <Navbar />
       <motion.div className="login_page">
         <motion.div
-
-          className="login_pictures"
-        >
-          {/* <img src={stockimgtop} alt="Stock Image" /> */}
-        </motion.div>
-        <motion.div
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
           initial={{ opacity: 0 }}

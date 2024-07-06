@@ -80,12 +80,6 @@ const ClientLoginPage = () => {
     <>
       <Navbar />
       <div className="login_page">
-        <motion.div
-        
-          className="login_pictures"
-        >
-          {/* <img src={stockimgtop} alt="Stock Image" /> */}
-        </motion.div>
         <motion.div className="login_buttons">
           {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
           <img src={clientimg} className="client-img" alt="clientimg"></img>
@@ -95,7 +89,6 @@ const ClientLoginPage = () => {
             whileTap={{ scale: 0.9 }}
             className="client_login_button_blue"
           >
-  
             Client
           </motion.button>
           <motion.button

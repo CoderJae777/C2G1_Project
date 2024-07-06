@@ -81,16 +81,9 @@ const AdminLoginPage = () => {
       <Navbar />
       <div></div>
       <motion.div className="login_page">
-        <motion.div
-          animate={{ x: 200 }}
-          transition={{ type: "inertia", velocity: 40 }}
-          className="login_pictures"
-        >
-        </motion.div>
         <motion.div className="login_buttons">
           {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
           <img src={adminimg} className="admin-img" alt="adminimg"></img>
-
           <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
             whileHover={{ scale: 1.2 }}
