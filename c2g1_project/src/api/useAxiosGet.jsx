@@ -1,13 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-const useAxiosGet = (initialUrl, initialParams = {}, reloadOn = []) => {
+const useAxiosGet = (
+  initialUrl,
+  initialParams = {},
+  reloadOn = [],
+  initialFetch = true
+) => {
+  axios.defaults.withCredentials = true;
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(initialUrl);
   const [params, setParams] = useState(initialParams);
-  const [shouldFetch, setShouldFetch] = useState(false);
+  const [shouldFetch, setShouldFetch] = useState(initialFetch);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -25,8 +31,9 @@ const useAxiosGet = (initialUrl, initialParams = {}, reloadOn = []) => {
   useEffect(() => {
     if (shouldFetch) {
       fetchData();
+      setShouldFetch(false);
     }
-  }, [fetchData, shouldFetch, ...reloadOn]);
+  }, [fetchData, shouldFetch, url, ...reloadOn]);
 
   return {
     data,

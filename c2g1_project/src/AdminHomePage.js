@@ -10,6 +10,12 @@ import TrainerTable from "./AdminHomePageTrainerTable";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import useFetch from "./components/useFetch";
+import About from "./components/about.js";
+import { Testimonials } from "./components/Testimonials.js";
+import { Team } from "./components/Team.js";
+import useAxiosGet from "./api/useAxiosGet.jsx";
+import { config } from "./config/config.js";
+import { endpoints } from "./config/endpoints.js";
 
 import {
   PieChart,
@@ -22,6 +28,7 @@ import {
   CartesianGrid,
   Bar,
 } from "recharts";
+import TopLeftSideBar from "./components/TopLeftSideBar.js";
 
 const AdminHomePage = () => {
   const [graphTitle, setGraphTitle] = useState("View Trainer Statistics");
@@ -75,7 +82,11 @@ const AdminHomePage = () => {
     nav("/AdminManageTrainerPage");
   };
 
-  return (
+  const { data, loading, error, setBody, refetch } = useAxiosGet(
+    config.base_url + endpoints.verify
+  );
+
+  return data !== null && data.status === true ? (
     <motion.div
       className="admin-home-page"
       initial={{ opacity: 0, scale: 0.5 }}
@@ -83,10 +94,7 @@ const AdminHomePage = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="left-panel">
-        <Sidebar userprofilepic={userprofilepic} />
-        <div className="dell-logo">
-          <img src={dellacademylogo} alt="Dell Academy Logo" />
-        </div>
+        <TopLeftSideBar />
       </div>
       <div className="middle-column">
         <div className="admin-home-page-title">
@@ -253,6 +261,8 @@ const AdminHomePage = () => {
         </div>
       </div>
     </motion.div>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 
