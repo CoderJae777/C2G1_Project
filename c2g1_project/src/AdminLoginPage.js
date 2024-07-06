@@ -91,7 +91,7 @@ const AdminLoginPage = () => {
           {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
           <img src={adminimg} className="admin-img" alt="adminimg"></img>
 
-          <h5>Pick your role: </h5>{" "}
+          <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}

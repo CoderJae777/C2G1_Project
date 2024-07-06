@@ -5,13 +5,23 @@
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  margin-top: 35px;
+  background-image: url("../images/adminhomepgimg1.jpg");
 }
 
 .trainer-img,
 .client-img,
-.admin-img {
+.admin-img{
   margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.dell_logo {
+  margin-bottom: 20.5px;
+  margin-top: 20.5px;
+}
+
+.role{
+  color: #0083ca;
 }
 
 .top_of_login {
@@ -128,11 +138,11 @@
   position: relative;
 }
 .sticky-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
 .navbar_contents {
   display: flex;
   justify-content: center;
@@ -252,7 +262,6 @@
   color: #0083ca;
 }
 
-
 .homepage {
   background-image: url("../images/homepageimg2.jpg");
   background-size: "cover";
@@ -272,11 +281,11 @@
 }
 
 .about2 {
-    grid-column-start: 2;
-    padding: 25px;
-    margin-top: 50px;
-  }
-  
+  grid-column-start: 2;
+  padding: 25px;
+  margin-top: 50px;
+}
+
 .testimonials {
   grid-column-start: 2;
   padding: 25px;
@@ -309,7 +318,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
   width: 100%;
-  height: 380px;
+  height: 450px;
   background-color: #e3f2fd;
 }
 
@@ -318,8 +327,8 @@
   margin-top: 50px;
   border-style: 50px;
   border-radius: 35px;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   background-color: #eef8ff;
@@ -334,8 +343,8 @@
   margin-top: 50px;
   border-style: 50px;
   border-radius: 35px;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   background-color: #eef8ff;
@@ -350,8 +359,8 @@
   margin-top: 50px;
   border-style: 50px;
   border-radius: 35px;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   background-color: #eef8ff;
@@ -366,8 +375,8 @@
   margin-top: 50px;
   border-style: 50px;
   border-radius: 35px;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   background-color: #eef8ff;
@@ -388,8 +397,19 @@
   transition: background-color 500ms;
 }
 
+.homepage-div-5-title {
+  display: flex;
+  justify-content: center;
+  
+  align-items: center;
+  margin-top: 50px;
+  width: 100%;
+  grid-column-start: span 4;
+}
+
 .infoimg {
   grid-row-start: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
@@ -398,6 +418,7 @@
 
 .infotext {
   grid-row-start: 2;
+  display: flex;
   justify-content: center;
   align-items: center;
 }

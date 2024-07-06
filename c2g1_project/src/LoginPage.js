@@ -48,20 +48,19 @@ const LoginPage = () => {
       <Navbar />
       <motion.div className="login_page">
         <motion.div
-          animate={{ x: move ? 200 : -200 }}
-          transition={{ type: "inertia", velocity: 50 }}
+
           className="login_pictures"
         >
           {/* <img src={stockimgtop} alt="Stock Image" /> */}
         </motion.div>
         <motion.div
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3 }}
-          initial={{ scale: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          initial={{ opacity: 0 }}
           className="login_buttons"
         >
           <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-          <h5>Pick your role: </h5>{" "}
+          <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}

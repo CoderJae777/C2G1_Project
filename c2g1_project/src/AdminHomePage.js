@@ -2,16 +2,11 @@ import React from "react";
 import "./styles/adminhomepage.css";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-import dellacademylogo from "./images/DellAcademy.png";
-import userprofilepic from "./images/userprofilepic.png";
 import DateAndTime from "./DateAndTime";
 import TrainerTable from "./AdminHomePageTrainerTable";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import useFetch from "./components/useFetch";
-import About from "./components/about.js";
-import { Testimonials } from "./components/Testimonials.js";
-import { Team } from "./components/Team.js";
 import useAxiosGet from "./api/useAxiosGet.jsx";
 import { config } from "./config/config.js";
 import { endpoints } from "./config/endpoints.js";
@@ -79,6 +74,10 @@ const AdminHomePage = () => {
   };
   const handleAdminManageTrainerPage = () => {
     nav("/AdminManageTrainerPage");
+  };
+
+  const handleSignUp = () => {
+    nav("/SignUpPage");
   };
 
   const { data, loading, error, setBody, refetch } = useAxiosGet(
