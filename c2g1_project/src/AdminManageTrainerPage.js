@@ -14,11 +14,6 @@ const AdminManageTrainerPage = () => {
             <div className="left-panel">
                 <TopLeftSidebar />
             </div>
-            <div className="left-panel">
-                {/* <div className="dell-logo">
-                    <img src={dellacademylogo} alt="Dell Academy Logo" />
-                </div> */}
-            </div>
             <div className="manage-trainer-column">
                 <div className="title-and-datetime">
                     <button className="add-trainer-button" >Add Trainer</button>

@@ -12,11 +12,20 @@ body{
 }
 
 
-.admin-home-page{
+/* .admin-home-page{
     display: flex;
     align-items: end;
     justify-content: flex-start;
-        /* padding: 15px; */
+} */
+
+.admin-home-page {
+    display: grid;
+    grid-template-areas:
+        "left-panel middle-column right-column";
+    grid-template-rows: auto; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    margin: 20px;
 }
 
 .admin-home-page-title{
@@ -24,11 +33,15 @@ body{
     margin-bottom: -5\100px;
 }
 
-.left-panel{
+/* .left-panel{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 15px;
+} */
+ 
+.left-panel {
+    grid-area: left-panel;
 }
 
 .dell-logo{
@@ -38,7 +51,7 @@ body{
 
 
 /* LEFT SIDEBAR CSS ---------------------------------------------------------------- */
-.leftsidebar{
+/* .leftsidebar{
     width: 100%;
     max-width: 300px;
     height: 100%;
@@ -111,7 +124,7 @@ body{
 .sidebarbutton:hover{
     background-color: #0083CA;
     color: white;
-}
+} */
 
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
@@ -139,14 +152,22 @@ body{
     color: white;
 }
 
-.middle-column{
+/* .middle-column{
     display: flex;
     flex-direction: column;
     margin: 15px;
+} */
+
+
+.middle-column {
+    grid-area: middle-column;
+    padding: 15px;
 }
 
 .admin-home-page-title{
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: -30px;
 }
 
 .workshop-table, .trainer-table{
@@ -165,7 +186,8 @@ body{
 
 .admin-home-datetime{
     text-align: right;
-    margin-right: 15px;
+    margin-top: 40px;
+    margin-bottom: -50px;
 }
 
 /* WORKSHOP TABLE CSS ------------------------------------------------------------------------------ */
@@ -232,16 +254,24 @@ body{
 }
 
 /* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
-.right-column{
+/* .right-column{
     display: flex;
     flex-direction: column;
     margin: 15px;
+} */
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: right; 
+    padding: 15px;
 }
 
 .admin-graphs{
     max-width: 600px;
     width: 600px;
-    height: 620px;
+    height: 560px;
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
@@ -249,7 +279,7 @@ body{
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 /* admin home page graphs and buttons design*/

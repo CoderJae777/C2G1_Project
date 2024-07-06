@@ -94,10 +94,7 @@ const AdminHomePage = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="left-panel">
-        <TopLeftSideBar />{" "}
-        {/* <div className="dell-logo">
-          <img src={dellacademylogo} alt="Dell Academy Logo" />
-        </div> */}
+        <TopLeftSideBar />
       </div>
       <div className="middle-column">
         <div className="admin-home-page-title">

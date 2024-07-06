@@ -54,10 +54,8 @@ const AdminWorkshopRequestPage = () => {
           <RejectWorkshopRequestPopup onClose={handleCloseRejectPopup} />
         )}
         <div className="left-panel">
-          {/* <div className="dell-logo">
-            <img src={dellacademylogo} alt="Dell Academy Logo" />
-          </div> */}
           <TopLeftSideBar />
+          {/* <h2>WorkShop Requests</h2> */}
         </div>
         <div className="admin-workshop-request-page-right-panel">
           <div className="header-container">
