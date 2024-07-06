@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/topleftsidebar.css";
 import 'boxicons/css/boxicons.min.css';
-import dellacademylogo from "../images/NavBarLogo.png";
-
-// Backend
-import { useNavigate } from "react-router-dom";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
@@ -20,15 +17,23 @@ const TopLeftSideBar = () => {
     false
   );
 
-  const handleAdminWorkshopRequestPage = () => {
+  const handleAdminWorkshopRequestPage = (e) => {
+    e.preventDefault();
     nav("/AdminWorkshopRequestPage");
   };
 
-  const handleAdminHomePage = () => {
+  const handleAdminManageTrainerPage = (e) => {
+    e.preventDefault();
     nav("/AdminHomePage");
   };
 
-  const handleNavBarSignOut = () => {
+  const handleAdminHomePage = (e) => {
+    e.preventDefault();
+    nav("/AdminHomePage");
+  };
+
+  const handleNavBarSignOut = (e) => {
+    e.preventDefault();
     setUrl(config.base_url + endpoints.logout);
     refetch();
   };
@@ -52,59 +57,39 @@ const TopLeftSideBar = () => {
       <nav className={navOpen ? 'open' : ''}>
         <div className="logo">
           <i className='bx bx-menu menu-icon' onClick={toggleNav}></i>
-          {/* <img src={dellacademylogo} alt="Dell Academy Logo" />
-
-          <span className="logo-name">Dell Academy</span> */}
+          <span className="logo-name">Dashboard</span>
         </div>
         <div className="sidebar">
           <div className="logo">
             <i className='bx bx-menu menu-icon' onClick={toggleNav}></i>
-            <span className="logo-name">Menu</span>
+            <span className="logo-name">Dashboard</span>
           </div>
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link">
+                <a href="#" className="nav-link" onClick={handleAdminHomePage}>
                   <i className='bx bx-home-alt icon'></i>
-                  <span className="link" onClick={handleAdminHomePage}>Dashboard</span>
+                  <span className="link">Home</span>
                 </a>
               </li>
               <li className="list">
                 <a href="#" className="nav-link">
                   <i className='bx bx-bar-chart-alt-2 icon'></i>
-                  <span className="link" >Trainers</span>
+                  <span className="link">Profile</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link">
-                  <i className='bx bx-bell icon'></i>
-                  <span className="link" onClick={handleAdminWorkshopRequestPage}>View Requests</span>
-                </a>
-              </li>
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className='bx bx-chat icon'></i>
+                <a href="#" className="nav-link" onClick={handleAdminWorkshopRequestPage}>
+                  <i className='bx bx-clipboard icon'></i>
                   <span className="link">Workshops</span>
                 </a>
               </li>
-              {/* <li className="list">
-                <a href="#" className="nav-link">
-                  <i className='bx bx-pie-chart-alt-2 icon'></i>
-                  <span className="link">Analytics</span>
+              <li className="list">
+                <a href="#" className="nav-link" onClick={handleAdminManageTrainerPage}>
+                  <i className='bx bx-group icon'></i>
+                  <span className="link">Trainers</span>
                 </a>
               </li>
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className='bx bx-heart icon'></i>
-                  <span className="link">Likes</span>
-                </a>
-              </li>
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className='bx bx-folder icon'></i>
-                  <span className="link">Files</span>
-                </a>
-              </li> */}
             </ul>
             <div className="bottom-content">
               <li className="list">
@@ -114,9 +99,9 @@ const TopLeftSideBar = () => {
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link">
+                <a href="#" className="nav-link" onClick={handleNavBarSignOut}>
                   <i className='bx bx-log-out icon'></i>
-                  <span className="link" onClick={handleNavBarSignOut}>Logout</span>
+                  <span className="link">Logout</span>
                 </a>
               </li>
             </div>
