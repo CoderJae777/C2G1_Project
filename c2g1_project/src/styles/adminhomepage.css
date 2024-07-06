@@ -38,7 +38,7 @@ body{
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
 .workshop-request-button, .manage-trainers-button{
     background-color: #80C7FB;
-    color: #707070;
+    color: black;
     width: 200px;
     height: 30x;
     border-radius: 25px;
@@ -76,7 +76,7 @@ body{
     width: 600px;
     height: 270px;
     background: #d7d7d7;
-    color: #707070;
+    color: black;
     border-radius: 20px;
     padding: 10px;
     text-align: center;
@@ -123,7 +123,7 @@ body{
 
 .wt-link .link{
     font-size: 16px;
-    color: #707070;
+    color: black;
     font-weight: 400;
 }
 
@@ -144,7 +144,7 @@ body{
   
 .table-striped .bg-info{
     background: #d7d7d7;
-    color: #707070;
+    color: black;
 }
   
 .table-striped .bg-info th{
@@ -168,15 +168,15 @@ body{
 .admin-graphs{
     max-width: 600px;
     width: 600px;
-    height: 560px;
+    height: 630px;
     background: #d7d7d7;
-    color: #707070;
+    color: black;
     border-radius: 20px;
     /* padding: 10px; */
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 /* admin home page graphs and buttons design*/
@@ -188,7 +188,7 @@ body{
 
 .graph_chooser, .graph_buttons{
     background-color: #80C7FB;
-    color: #707070;
+    color: black;
     width: 200px;
     height: 30x;
     border-radius: 25px;
