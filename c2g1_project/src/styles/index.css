@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
+  margin-top: 50px;
 }
 
 .trainer-img,
@@ -118,10 +119,13 @@
 /* Navbar designs */
 .navbar {
   padding: 50px;
-  background-color: white;
+  background-color: #e3f2fd;
   border-style: solid;
   border-width: 0px;
   height: 180px;
+  background-image: url("../images/homepageimg2.jpg");
+  background-size: "cover";
+   opacity: 0.5;
 }
 
 .navbar_contents {
@@ -132,7 +136,7 @@
 }
 
 .navbar button {
-  background-color: white;
+  background-color: #eef8ff;
   color: black;
   width: 150px;
   height: 50px;
@@ -148,6 +152,8 @@
   transition: background-color 500ms;
   transition: color 0ms;
   border-color: #0083ca;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 .navbar button:hover {
@@ -235,18 +241,21 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 700px;
   width: 100%;
-  height: 300px;
+  height: 250px;
   color: #0083ca;
 }
 
 .homepage {
   background-image: url("../images/homepageimg2.jpg");
   background-size: "cover";
+   opacity: 0.5;
 }
 
 .homepage-div-2 {
   background-image: url("../images/homepageimg.jpg");
   background-size: "cover";
+  opacity: 0.5;
+
 }
 
 .about {
@@ -262,20 +271,24 @@
 }
 
 .homepage-div-3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
   background-image: url("../images/homepageimg3.jpg");
   background-size: "cover";
   height: 250px;
-  color: whitesmoke;
+  color: #e3f2fd;
+  align-items: center;
+  justify-items: center;
 }
 
-.homepage-div-4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
+.homepage-div-3-title1 {
+  grid-row-start: 1;
+  margin-top: 50px;
+}
+
+.homepage-div-3-title2 {
+  grid-row-start: 2;
+  margin-bottom: 150px;
 }
 
 .homepage-div-5 {
@@ -283,50 +296,73 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
   width: 100%;
+  height: 380px;
+  background-color: #e3f2fd;
 }
 
 .info1 {
   grid-column-start: 1;
+  margin-top: 50px;
+  border-style: 50px;
+  border-radius: 35px;
   width: 250px;
   height: 250px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  background-color: #e0ffff;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 .info2 {
   grid-column-start: 2;
-  justify-items: center;
+  margin-top: 50px;
   width: 250px;
+  border-style: 50px;
+  border-radius: 35px;
   height: 250px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  background-color: #e0ffff;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 .info3 {
   grid-column-start: 3;
-  justify-items: center;
+  border-style: 50px;
+  border-radius: 35px;
+  margin-top: 50px;
   width: 250px;
   height: 250px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  background-color: #e0ffff;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 .info4 {
   grid-column-start: 4;
   justify-items: center;
   width: 250px;
+  border-style: 50px;
+  border-radius: 35px;
+  margin-top: 50px;
   height: 250px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  background-color: #e0ffff;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #eef8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 .bottom-of-homepage {
-  margin-top: 50px;
-  background-color: #e0ffff;
+  background-color: #e3f2fd;
   width: 100%;
   height: 500px;
   display: flex;
