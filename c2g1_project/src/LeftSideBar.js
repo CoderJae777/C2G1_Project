@@ -25,6 +25,10 @@ const LeftSidebar = ({ userprofilepic }) => {
     nav("/AdminHomePage");
   };
 
+  const handleProfilePage = () => {
+    nav("/ProfilePage");
+  };
+
   const handleNavBarSignOut = () => {
     setUrl(config.base_url + endpoints.logout);
     refetch();
@@ -57,7 +61,7 @@ const LeftSidebar = ({ userprofilepic }) => {
           </li>
           <li class="leftsidebar-list">
             <a href="#" class="nav-link">
-              <button class="sidebarbutton">
+              <button class="sidebarbutton" onClick={handleProfilePage}>
                 <i class="bx bx-user"></i>Profile
               </button>
             </a>
