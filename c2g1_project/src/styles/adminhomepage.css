@@ -11,13 +11,6 @@ body{
     background: #fff;
 }
 
-
-/* .admin-home-page{
-    display: flex;
-    align-items: end;
-    justify-content: flex-start;
-} */
-
 .admin-home-page {
     display: grid;
     grid-template-areas:
@@ -32,13 +25,6 @@ body{
     padding: 25px;
     margin-bottom: -5\100px;
 }
-
-/* .left-panel{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 15px;
-} */
  
 .left-panel {
     grid-area: left-panel;
@@ -49,88 +35,10 @@ body{
     margin-top: 10px;
 }
 
-
-/* LEFT SIDEBAR CSS ---------------------------------------------------------------- */
-/* .leftsidebar{
-    width: 100%;
-    max-width: 300px;
-    height: 100%;
-    background: #d7d7d7;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-}
-
-.column{
-    display: flex;
-    align-items: center;
-    text-align: left;
-}
-
-.column img{
-    border-radius: 50%;
-    margin: 15px;
-}
-
-.usernamedisplay{
-    white-space: nowrap;
-    margin: 0;
-    color: #0083CA;
-  }
-
-.userroledisplay{
-    margin: 0;
-    margin-left: 5px;
-    color:#0083CA
-  }
-
-.leftsidebar .leftsidebar-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.leftsidebar-content .leftsidebar-lists{
-    list-style: none;
-}
-
-.leftsidebar-list .nav-link{
-    border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 10px;
-    margin-right: 20px;
-}
-
-
-.sidebarbutton {
-    background-color: white;
-    color: black;
-    width: 150px;
-    height: 50x;
-    border-radius: 25px;
-    border-width: 0px;
-    font-family: roboto;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 0px;
-    border-radius: 20px;
-    text-align: left;
-}
-
-.sidebarbutton:hover{
-    background-color: #0083CA;
-    color: white;
-} */
-
-
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
 .workshop-request-button, .manage-trainers-button{
     background-color: #80C7FB;
-    color: black;
+    color: #707070;
     width: 200px;
     height: 30x;
     border-radius: 25px;
@@ -151,13 +59,6 @@ body{
     background-color: #0672CB;
     color: white;
 }
-
-/* .middle-column{
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-} */
-
 
 .middle-column {
     grid-area: middle-column;
@@ -187,7 +88,8 @@ body{
 .admin-home-datetime{
     text-align: right;
     margin-top: 40px;
-    margin-bottom: -50px;
+    margin-bottom: -60px;
+    margin-right: 20px;
 }
 
 /* WORKSHOP TABLE CSS ------------------------------------------------------------------------------ */
@@ -254,11 +156,6 @@ body{
 }
 
 /* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
-/* .right-column{
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-} */
 
 .right-column {
     display: flex;
@@ -275,7 +172,7 @@ body{
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -291,7 +188,7 @@ body{
 
 .graph_chooser, .graph_buttons{
     background-color: #80C7FB;
-    color: black;
+    color: #707070;
     width: 200px;
     height: 30x;
     border-radius: 25px;

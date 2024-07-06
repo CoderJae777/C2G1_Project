@@ -24,7 +24,7 @@ const TopLeftSideBar = () => {
 
   const handleAdminManageTrainerPage = (e) => {
     e.preventDefault();
-    nav("/AdminHomePage");
+    nav("/AdminManageTrainerPage");
   };
 
   const handleAdminHomePage = (e) => {
