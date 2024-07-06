@@ -1,66 +1,74 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family:roboto; 
+    font-family: roboto;
     box-sizing: border-box;
 }
 
-.admin-workshop-request-page{
+.admin-workshop-request-page {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    flex-direction: column;
     height: 100vh;
 }
 
-.admin-workshop-request-page-right-panel{
-    align-items: end;
+.left-panel {
+    flex: 0 0 auto;
+    background-color: #f8f9fa;
+    z-index: 1;
 }
 
-.header-container{
+.admin-workshop-request-page-right-panel {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-top: 50px;
+    margin-bottom: -15px;
+    background: #fff; 
 }
 
-.admin-workshop-request-page-title{
+.admin-workshop-request-page-title {
     flex: 1;
     text-align: center;
-    margin-bottom: -30px;
+    margin-left: 550px;
 }
 
-.workshop-request-datetime{
+.workshop-request-datetime {
     flex: 1;
     text-align: right;
-    margin-right: 30px;
-    margin-bottom: -30px;
+    margin-right: 150px;
 }
 
-.workshop-request-column{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
-    margin: 15px;
+.workshop-request-column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
 }
 
-.workshop-request-panel{
+.workshop-request-panel {
+    flex: 1 1 45%;
     max-width: 600px;
-    width: 600px;
+    min-width: 300px;
     height: 300px;
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
     padding: 10px;
     text-align: center;
-    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.workshop-request-buttons{
+.workshop-request-buttons {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -70,7 +78,7 @@
 .accept-workshop-request-button,
 .allocate-trainer-to-workshop-button,
 .reject-workshop-request-button,
-.workshop-request-button{
+.workshop-request-button {
     max-width: 200px;
     align-items: center;
     padding: 12px 10px;
@@ -83,26 +91,26 @@
     margin: 0 5px;
 }
 
-.accept-workshop-request-button{
+.accept-workshop-request-button {
     background-color: #37CC5C;
 }
 
-.accept-workshop-request-button:hover{
+.accept-workshop-request-button:hover {
     background-color: #247554;
 }
 
-.allocate-trainer-to-workshop-button{
+.allocate-trainer-to-workshop-button {
     background-color: #80C7FB;
 }
 
-.allocate-trainer-to-workshop-button:hover{
+.allocate-trainer-to-workshop-button:hover {
     background-color: #0672CB;
 }
 
-.reject-workshop-request-button{
+.reject-workshop-request-button {
     background-color: #ed2157;
 }
 
-.reject-workshop-request-button:hover{
+.reject-workshop-request-button:hover {
     background-color: #B30B37;
 }
