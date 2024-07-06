@@ -5,7 +5,6 @@ import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
 import TopLeftSidebar from "./components/TopLeftSideBar";
-import Sidebar from "./components/LeftSideBar";
 import DateAndTime from './DateAndTime';
 
 const AdminManageTrainerPage = () => {

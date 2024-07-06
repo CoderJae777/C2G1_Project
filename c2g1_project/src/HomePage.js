@@ -16,7 +16,7 @@ const HomePage = () => {
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 1 }}
         className="homepage"
       >
         <Navbar />
@@ -24,6 +24,27 @@ const HomePage = () => {
           <div className="about">
             <About />
           </div>
+
+          <motion.div
+            className="about2"
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ delay: 2 }}
+          >
+            <h2>Come join our Award Winning Workshops!</h2>
+            <div>
+              <motion.button
+                transition={{ delay: 0.25 }}
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="testibutton"
+              >
+                Sign up today!
+              </motion.button>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 
@@ -36,6 +57,19 @@ const HomePage = () => {
         <div className="homepageinfo">
           <div className="testimonials">
             <Testimonials />
+            <motion.button
+              transition={{ delay: 0.25 }}
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              className="testibutton"
+            >
+              Learn more!
+            </motion.button>
+          </div>
+          <div>
+      
           </div>
         </div>
       </motion.div>
@@ -60,7 +94,16 @@ const HomePage = () => {
           initial={{ opacity: 0 }}
           transition={{ delay: 2.25 }}
         >
-          <h3>What we offer: </h3>
+          <motion.button
+            transition={{ delay: 0.25 }}
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            className="testibutton"
+          >
+            Our Workshops
+          </motion.button>
         </motion.div>
       </motion.div>
 

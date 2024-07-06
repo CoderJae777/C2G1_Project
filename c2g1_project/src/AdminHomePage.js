@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
-import Sidebar from "./components/LeftSideBar";
 import DateAndTime from "./DateAndTime";
 import TrainerTable from "./AdminHomePageTrainerTable";
 import { motion } from "framer-motion";
@@ -98,6 +97,8 @@ const AdminHomePage = () => {
       </div>
       <div className="middle-column">
         <div className="admin-home-page-title">
+          <img src={userprofilepic} alt="User Profile Pic" />
+
           <h4>Hi Dil, welcome back!</h4>
         </div>
         <div className="workshop-table">

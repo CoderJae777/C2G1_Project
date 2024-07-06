@@ -13,18 +13,7 @@ export const Testimonials = (props) => {
           Hear what clients say!
         </motion.h1>
       </div>
-      <div>
-        <motion.button
-          transition={{ delay: 0.25 }}
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          className="testibutton"
-        >
-          Learn more!
-        </motion.button>
-      </div>
+      
     </>
   );
 };
