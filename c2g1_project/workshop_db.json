@@ -1,0 +1,124 @@
+{
+    "workshop_data": [
+        {
+            "month": "Jan",
+            "2024": "15",
+            "Actual_Attendance_2024_Per_Month": "1950",
+            "Expected_Attendance_2024_Per_Month": "2070",
+            "2023": "25",
+            "2022": "20",
+            "2021": "18",
+            "projection": "35"
+        },
+        {
+            "month": "Feb",
+            "2024": "27",
+            "Actual_Attendance_2024_Per_Month": "1820",
+            "Expected_Attendance_2024_Per_Month": "2190",
+            "2023": "30",
+            "2022": "22",
+            "2021": "25",
+            "projection": "40"
+        },
+        {
+            "month": "Mar",
+            "2024": "50",
+            "Actual_Attendance_2024_Per_Month": "2470",
+            "Expected_Attendance_2024_Per_Month": "2760",
+            "2023": "55",
+            "2022": "45",
+            "2021": "50",
+            "projection": "70"
+        },
+        {
+            "month": "Apr",
+            "2024": "32",
+            "Actual_Attendance_2024_Per_Month": "1630",
+            "Expected_Attendance_2024_Per_Month": "1920",
+            "2023": "40",
+            "2022": "38",
+            "2021": "35",
+            "projection": "55"
+        },
+        {
+            "month": "May",
+            "2024": "68",
+            "Actual_Attendance_2024_Per_Month": "2640",
+            "Expected_Attendance_2024_Per_Month": "2860",
+            "2023": "55",
+            "2022": "60",
+            "2021": "62",
+            "projection": "75"
+        },
+        {
+            "month": "Jun",
+            "2024": "83",
+            "Actual_Attendance_2024_Per_Month": "2950",
+            "Expected_Attendance_2024_Per_Month": "3070",
+            "2023": "85",
+            "2022": "80",
+            "2021": "78",
+            "projection": "90"
+        },
+        {
+            "month": "Jul",
+            "2024": "45",
+            "Actual_Attendance_2024_Per_Month": "2150",
+            "Expected_Attendance_2024_Per_Month": "2480",
+            "2023": "35",
+            "2022": "40",
+            "2021": "42",
+            "projection": "60"
+        },
+        {
+            "month": "Aug",
+            "2024": "60",
+            "Actual_Attendance_2024_Per_Month": "2380",
+            "Expected_Attendance_2024_Per_Month": "2650",
+            "2023": "50",
+            "2022": "55",
+            "2021": "52",
+            "projection": "70"
+        },
+        {
+            "month": "Sep",
+            "2024": "38",
+            "Actual_Attendance_2024_Per_Month": "1730",
+            "Expected_Attendance_2024_Per_Month": "1980",
+            "2023": "20",
+            "2022": "25",
+            "2021": "28",
+            "projection": "55"
+        },
+        {
+            "month": "Oct",
+            "2024": "75",
+            "Actual_Attendance_2024_Per_Month": "2820",
+            "Expected_Attendance_2024_Per_Month": "2990",
+            "2023": "80",
+            "2022": "78",
+            "2021": "70",
+            "projection": "85"
+        },
+        {
+            "month": "Nov",
+            "2024": "90",
+            "Actual_Attendance_2024_Per_Month": "2930",
+            "Expected_Attendance_2024_Per_Month": "3140",
+            "2023": "72",
+            "2022": "65",
+            "2021": "60",
+            "projection": "95"
+        },
+        {
+            "month": "Dec",
+            "2024": "23",
+            "Actual_Attendance_2024_Per_Month": "1540",
+            "Expected_Attendance_2024_Per_Month": "1760",
+            "2023": "30",
+            "2022": "35",
+            "2021": "32",
+            "projection": "50"
+        }
+    ]
+}
