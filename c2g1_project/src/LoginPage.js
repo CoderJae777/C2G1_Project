@@ -14,6 +14,7 @@ import Navbar from "./components/NavBar.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
+// npx json-server --watch trainer_db.json --port 8000
 
 const LoginPage = () => {
   const nav = useNavigate();
