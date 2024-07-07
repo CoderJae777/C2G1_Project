@@ -92,7 +92,6 @@ const AdminHomePage = () => {
       </div>
       <div className="left-column">
         <div className="admin-home-page-title">
-          <h2>Hi Dil, welcome back!</h2>
         </div>
 
         {/* Workshop summary starts here */}
@@ -161,9 +160,7 @@ const AdminHomePage = () => {
 
       {/* Graphs nonsense starts here */}
       <div className="right-column">
-        <div className="admin-home-datetime">
-          <DateAndTime />
-        </div>
+      
 
         <div className="admin-graphs">
           {/* Right column MAIN DIV NUMBER 1 */}
