@@ -8,10 +8,18 @@ import TopLeftSidebar from "./components/TopLeftSideBar";
 import DateAndTime from './DateAndTime';
 import EditTrainerDetailsPopup from './EditTrainerDetailsPopup';
 import TrainerAvailPopup from './TrainerAvailPopup';
+import AddTrainerPopup from './AddTrainerPopup';
 
 const AdminManageTrainerPage = () => {
     const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] = useState(false);
     const [isTrainerAvailPopupOpen, setIsTrainerAvailPopupOpen] = useState(false);
+    const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
+    const [trainers, setTrainers] = useState([
+        { name: 'Jake', role: 'Training Lead', trainerId: '1007328', isAvailable: true },
+        { name: 'Sally', role: 'Training Assistant', trainerId: '1004893', isAvailable: true }
+        // Add more trainers as needed
+    ]);
+    const [popupIndex, setPopupIndex] = useState(null); // Define popupIndex state
 
     const handleOpenTrainerDetailsPopup = () => {
         setIsTrainerDetailsPopupOpen(true);
@@ -21,12 +29,27 @@ const AdminManageTrainerPage = () => {
         setIsTrainerDetailsPopupOpen(false);
     };
 
-    const handleOpenTrainerAvailPopup = () => {
+    const handleOpenTrainerAvailPopup = (index) => {
         setIsTrainerAvailPopupOpen(true);
+        setPopupIndex(index);
     };
 
     const handleCloseTrainerAvailPopup = () => {
         setIsTrainerAvailPopupOpen(false);
+    };
+
+    const handleAvailabilityChange = (selectedAvailability, index) => {
+        const updatedTrainers = [...trainers];
+        updatedTrainers[index].isAvailable = selectedAvailability === 'Available';
+        setTrainers(updatedTrainers);
+    };
+
+    const handleOpenAddTrainerPopup = (index) => {
+        setIsAddTrainerPopupOpen(true);
+    };
+
+    const handleCloseAddTrainerPopup = () => {
+        setIsAddTrainerPopupOpen(false);
     };
 
     return (
@@ -35,7 +58,14 @@ const AdminManageTrainerPage = () => {
                 <EditTrainerDetailsPopup onClose={handleCloseTrainerDetailsPopup} />
             )}
             {isTrainerAvailPopupOpen && (
-                <TrainerAvailPopup onClose={handleCloseTrainerAvailPopup} />
+                <TrainerAvailPopup
+                    onClose={handleCloseTrainerAvailPopup}
+                    onAvailabilityChange={handleAvailabilityChange}
+                    index={popupIndex}
+                />
+            )}
+            {isAddTrainerPopupOpen && (
+                <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
             )}
             <div className="admin-manage-trainer-page">
                 <div className="top-panel">
@@ -43,7 +73,7 @@ const AdminManageTrainerPage = () => {
                 </div>
                 <div className="manage-trainer-column">
                     <div className="title-and-datetime">
-                        <button className="add-trainer-button">Add Trainer</button>
+                        <button className="add-trainer-button" onClick={handleOpenAddTrainerPopup}>Add Trainer</button>
                         <h3>Manage Trainers</h3>
                         <DateAndTime />
                     </div>
@@ -58,45 +88,28 @@ const AdminManageTrainerPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td className="trainer-info-table-td">Jake</td>
-                                    <td className="trainer-info-table-td">Training Lead</td>
-                                    <td className="trainer-info-table-td">1007328</td>
-                                    <td className="trainer-info-table-td">
-                                        <button className="trainer-info-table-button">View Schedule</button>
-                                        <button
-                                            className="trainer-info-table-button"
-                                            onClick={handleOpenTrainerDetailsPopup}
-                                        >
-                                            Edit Details
-                                        </button>
-                                        <button 
-                                            className="trainer-info-table-button"
-                                            onClick={handleOpenTrainerAvailPopup}
-                                        >
-                                            Available</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="trainer-info-table-td">Sally</td>
-                                    <td className="trainer-info-table-td">Training Assistant</td>
-                                    <td className="trainer-info-table-td">1004893</td>
-                                    <td className="trainer-info-table-td">
-                                        <button className="trainer-info-table-button">View Schedule</button>
-                                        <button
-                                            className="trainer-info-table-button"
-                                            onClick={handleOpenTrainerDetailsPopup}
-                                        >
-                                            Edit Details
-                                        </button>
-                                        <button 
-                                            className="trainer-info-table-button"
-                                            onClick={handleOpenTrainerAvailPopup}
-                                        >
-                                            Available</button>
-                                    </td>
-                                </tr>
-                                {/* Add more trainer rows as needed */}
+                                {trainers.map((trainer, index) => (
+                                    <tr key={index}>
+                                        <td className="trainer-info-table-td">{trainer.name}</td>
+                                        <td className="trainer-info-table-td">{trainer.role}</td>
+                                        <td className="trainer-info-table-td">{trainer.trainerId}</td>
+                                        <td className="trainer-info-table-td">
+                                            <button className="trainer-info-table-button">View Schedule</button>
+                                            <button
+                                                className="trainer-info-table-button"
+                                                onClick={handleOpenTrainerDetailsPopup}
+                                            >
+                                                Edit Details
+                                            </button>
+                                            <button
+                                                className="trainer-info-table-button"
+                                                onClick={() => handleOpenTrainerAvailPopup(index)}
+                                            >
+                                                {trainer.isAvailable ? 'Available' : 'Unavailable'}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>

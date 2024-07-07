@@ -91,10 +91,10 @@ const AdminHomePage = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="left-panel">
+      <div className="top-panel">
         <TopLeftSideBar />
       </div>
-      <div className="middle-column">
+      <div className="left-column">
         <div className="admin-home-page-title">
           <h4>Hi Dil, welcome back!</h4>
         </div>
