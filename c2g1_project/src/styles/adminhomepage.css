@@ -16,10 +16,11 @@ body {
   grid-template-areas: "top-panel left-column right-column";
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr;
-  margin: 20px;
   padding: 20px;
   background-image: url("../images/dashboardbackground.jpg");
   justify-content: center;
+
+
 }
 
 .admin-home-page-title {
@@ -41,54 +42,82 @@ body {
 }
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
-.workshop-request-button,
-.manage-trainers-button {
-  background-color: #80c7fb;
-  color: black;
-  width: 200px;
-  height: 30x;
-  border-radius: 25px;
-  border-width: 0px;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 10px 10px;
-  transition: background-color 500ms;
-  transition: color 500ms;
-  border-width: 0px;
-  border-radius: 8px;
-  text-align: center;
-  margin: 15px;
-}
-
-.manage-trainers-button:hover,
-.workshop-request-button:hover {
-  background-color: #0672cb;
-  color: white;
-}
-
 .left-column {
   grid-column-start: 1;
-  margin-top: 10px;
   padding: 15px;
   width: 80%;
-
 }
 
 .admin-home-page-title {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: -30px;
   justify-content: center;
-  width: 500px; 
+  width: 500px;
   /* edit this to centralise welcome back words by matching workshop request size */
 }
 
-.welcomeback {
-  grid-column-start: 2;
-  padding: 20px;
+.workshop-table {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  max-width: 1000px;
+  width: 500px;
+  height: 400px;
+  background: #e3f2fd;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px;
+  align-items: center;
 }
 
-.workshop-table,
-.trainer-table {
+.workshop-table-title {
+  grid-row-start: 1;
+  padding: 5px;
+  color: #0672cb;
+}
+.workshopstoday {
+  grid-row-start: 2;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.trainersworking {
+  grid-row-start: 3;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.workshopattendees {
+  grid-row-start: 4;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.attendancepercentage {
+  grid-row-start: 5;
+  color: #37cc5c;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.breakdown-of-attendance-div{
   max-width: 1000px;
   width: 500px;
   height: 270px;
@@ -99,55 +128,16 @@ body {
   text-align: center;
   margin-top: 15px;
   align-items: center;
+  color: #0672cb;
 }
 
 .admin-home-datetime {
   text-align: right;
-  margin-top: 40px;
+  margin-top: 50px;
   margin-bottom: -60px;
   margin-right: 20px;
   width: 900px;
-    /* edit this to align left f date time by matching admin graph div size */
-}
-
-/* WORKSHOP TABLE CSS ------------------------------------------------------------------------------ */
-.workshop-table .workshop-table-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 5px 0px;
-}
-
-.workshop-table-content .workshop-table-lists {
-  list-style: none;
-}
-
-.workshop-table-list .wt-link {
-  width: 530px;
-  display: flex;
-  align-items: center;
-  padding: 12px 12px;
-  text-decoration: none;
-  margin-bottom: 5px;
-  margin-right: 20px;
-}
-
-.bx {
-  margin-right: 14px;
-  font-size: 20px;
-  color: black;
-  padding: 10px;
-}
-
-.wt-link .link {
-  font-size: 16px;
-  color: black;
-  font-weight: 400;
-}
-
-.wt-link:hover i,
-.wt-link:hover .link {
-  color: #fff;
+  /* edit this to align left f date time by matching admin graph div size */
 }
 
 /* TRAINER TABLE CSS ------------------------------------------------------------------ */
@@ -162,7 +152,7 @@ body {
 
 .table-striped .bg-info {
   background: #e3f2fd;
-  color: black;
+  color: #0672cb;
 }
 
 .table-striped .bg-info th {
@@ -183,33 +173,42 @@ body {
   padding: 15px;
 }
 
+.workshop-stats {
+  grid-row-start: 1;
+  color: #0672cb;
+}
+
+.trainer-stats {
+  grid-row-start: 2;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .admin-graphs {
   max-width: 1000x;
   width: 900px;
-  height: 580px;
+  height: 700px;
   background-color: #e3f2fd;
-  color: black;
+  color: #0672cb;
   border-radius: 20px;
   /* padding: 10px; */
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 50px;
 }
 
 /* admin home page graphs and buttons design*/
 
-.graph_chooser:hover,
 .graph_buttons:hover {
   background-color: #0672cb;
   color: white;
 }
 
-.graph_chooser,
 .graph_buttons {
   background-color: #80c7fb;
   color: black;
-  width: 100px;
+  width: 150px;
   height: 50px;
   border-radius: 25px;
   border-width: 0px;
@@ -221,6 +220,6 @@ body {
   border-width: 0px;
   border-radius: 8px;
   text-align: center;
-  margin: 15px;
+  margin: 5px;
   align-self: center;
 }

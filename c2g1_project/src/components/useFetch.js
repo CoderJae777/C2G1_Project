@@ -11,7 +11,29 @@ const useFetch = () => {
         setTrainerData(data);
       });
   });
-  return { trainer_data };
+
+  const [workshop_data, setWorkshopData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8002/workshop_data/")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data2) => {
+        setWorkshopData(data2);
+      });
+  });
+
+  const [today_data, setTodayData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8003/today_data/")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data3) => {
+        setTodayData(data3);
+      });
+  });
+  return { trainer_data, workshop_data, today_data };
 };
 
 export default useFetch;
