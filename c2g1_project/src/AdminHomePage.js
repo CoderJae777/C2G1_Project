@@ -1,19 +1,18 @@
 import React from "react";
+import useFetch from "./components/useFetch";
 import "./styles/adminhomepage.css";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import DateAndTime from "./DateAndTime";
-import TrainerTable from "./AdminHomePageTrainerTable";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import useFetch from "./components/useFetch";
 import useAxiosGet from "./api/useAxiosGet.jsx";
 import { config } from "./config/config.js";
 import { endpoints } from "./config/endpoints.js";
 
 import {
-  PieChart,
-  Pie,
+  Area,
+  AreaChart,
   Tooltip,
   BarChart,
   XAxis,
@@ -21,52 +20,53 @@ import {
   Legend,
   CartesianGrid,
   Bar,
+  Line,
+  LineChart,
 } from "recharts";
 import TopLeftSideBar from "./components/TopLeftSideBar.js";
 
 const AdminHomePage = () => {
-  const [graphTitle, setGraphTitle] = useState("View Trainer Statistics");
-  const [key, setKey] = useState("blank");
+  const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
+    "View Trainer statistics"
+  );
+  const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
+    "Workshop Completed Over the Years"
+  );
+
+  const [key, setKey] = useState("workshops_completed_total");
+  const [key_ws, setKeyWS] = useState("completed");
+
   const [domainMax, setDomainMax] = useState(0);
-  const [showWorkshopStats, setShowWorkshopStats] = useState(false);
-  const [showExperienceStats, setShowExperienceStats] = useState(false);
 
   const viewworkshop = () => {
-    setGraphTitle("Workshops Completed This Month");
+    setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
     setKey("workshops_completed_this_month");
     setDomainMax(20);
   };
   const viewongoing = () => {
-    setGraphTitle("Ongoing Workshops");
+    setTrainerGraphsTitle("Ongoing Workshops per Trainer");
     setKey("ongoing_workshops");
     setDomainMax(10);
   };
   const viewexperience = () => {
-    setGraphTitle("Trainers' Experience");
+    setTrainerGraphsTitle("Trainers' Experience");
     setKey("experience");
     setDomainMax(20);
   };
   const resetview = () => {
-    setGraphTitle("View Trainer Statistics");
-    setKey("blank");
-    setDomainMax(0);
-    setShowExperienceStats(false);
-    setShowWorkshopStats(false);
-  };
-
-  const resetgraph = () => {
-    setGraphTitle("View Trainer Statistics");
+    setTrainerGraphsTitle("View Trainer Statistics");
     setKey("blank");
     setDomainMax(0);
   };
 
   const viewtotal = () => {
-    setGraphTitle("Total Workshops Completed");
+    setTrainerGraphsTitle("Total Workshops Completed per Trainer");
     setKey("workshops_completed_total");
     setDomainMax(100);
   };
 
-  const { trainer_data } = useFetch();
+  // CALLING DATA FROM JSON
+  const { trainer_data, workshop_data, today_data } = useFetch();
 
   const nav = useNavigate();
   const handleAdminWorkshopRequestPage = () => {
@@ -74,10 +74,6 @@ const AdminHomePage = () => {
   };
   const handleAdminManageTrainerPage = () => {
     nav("/AdminManageTrainerPage");
-  };
-
-  const handleSignUp = () => {
-    nav("/SignUpPage");
   };
 
   const { data, loading, error, setBody, refetch } = useAxiosGet(
@@ -96,166 +92,165 @@ const AdminHomePage = () => {
       </div>
       <div className="left-column">
         <div className="admin-home-page-title">
-          <h4>Hi Dil, welcome back!</h4>
+          <h2>Hi Dil, welcome back!</h2>
         </div>
+
+        {/* Workshop summary starts here */}
         <div className="workshop-table">
-          <button
-            className="workshop-request-button"
-            onClick={handleAdminWorkshopRequestPage}
-          >
-            Workshop Requests
-          </button>
-          <div className="workshop-table-content">
-            <ul className="workshop-table-lists">
-              <li className="workshop-table-list">
-                <a href="#" className="wt-link">
-                  <span className="link">
-                    [ Pending Workshop Request ] Intro to Power Bi
-                  </span>{" "}
-                </a>
-              </li>
-              <li className="workshop-table-list">
-                <a href="#" className="wt-link">
-                  <span className="link">
-                    [ Pending Workshop Request ] Intro to Computers
-                  </span>
-                </a>
-              </li>
-              <li className="workshop-table-list">
-                <a href="#" className="wt-link">
-                  <span className="link">
-                    [ Pending Workshop Request ] Intro to Excel
-                  </span>
-                </a>
-              </li>
-            </ul>
+          {" "}
+          <div className="workshop-table-title">
+            <h4>This is today's workshops' statistics: </h4>
+          </div>
+          <div className="workshopstoday">
+            <h2>{today_data[0].ongoingworkshopstoday}</h2>
+            <h5>Ongoing workshops today</h5>
+          </div>
+          <div className="trainersworking">
+            <h2>{today_data[0].trainertoday}</h2>
+            <h5>Trainers conducting across all workshops</h5>
+          </div>
+          <div className="workshopattendees">
+            <h2>{today_data[0].participantstoday}</h2>
+            <h5>Total Participants across all workshops</h5>
+          </div>
+          <div className="attendancepercentage">
+            <h2>{today_data[0].attendance}</h2>
+            <h5>Today's Attendance</h5>
           </div>
         </div>
-        <div className="trainer-table">
-          <button
-            className="manage-trainers-button"
-            onClick={handleAdminManageTrainerPage}
+        {/* Workshop summary ends here */}
+        <div className="breakdown-of-attendance-div">
+          <h5>Breakdown of Attendance in 2024</h5>
+          <AreaChart
+            width={500}
+            height={200}
+            data={workshop_data}
+            margin={{ top: 10, right: 80, left: 0, bottom: 0 }}
           >
-            Manage Trainers
-          </button>
-          <TrainerTable />
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#0083ca" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#0083ca" stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="month" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="Expected_Attendance_2024_Per_Month"
+              stroke="#82ca9d"
+              fillOpacity={1}
+              fill="url(#colorPv)"
+            />
+            <Area
+              type="monotone"
+              dataKey="Actual_Attendance_2024_Per_Month"
+              stroke="#0083ca"
+              fillOpacity={1}
+              fill="url(#colorUv)"
+            />
+          </AreaChart>
         </div>
       </div>
+
+      {/* Graphs nonsense starts here */}
       <div className="right-column">
         <div className="admin-home-datetime">
           <DateAndTime />
         </div>
+
         <div className="admin-graphs">
-          <h5>{graphTitle}</h5>
+          {/* Right column MAIN DIV NUMBER 1 */}
+          <div className="workshop-stats">
+            <h5>{workshopgraphsTitle}</h5>
+            <LineChart
+              width={920}
+              height={250}
+              data={workshop_data}
+              margin={{
+                top: 30,
+                right: 50,
+                left: 0,
+                bottom: 20,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" angle={0} textAnchor="end" dy={0} />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="2024" stroke="black" />
+              <Line type="monotone" dataKey="2023" stroke="red" />
+              <Line type="monotone" dataKey="2022" stroke="purple" />
+              <Line type="monotone" dataKey="2021" stroke="blue" />
+              <Line
+                type="monotone"
+                dataKey="projection"
+                stroke="#37cc5c"
+                label={{ position: "top" }}
+              />
+              <Legend />
+            </LineChart>
+          </div>
 
-          {/* Both buttons (Workshop Statistics and Trainer's History) are only displayed 
-          when neither showWorkshopStats nor showExperienceStats is true. 
-          i.e. if one is true, none of the buttons will show --> use this to hide 
-          them once clicked*/}
-
-          {!showWorkshopStats && !showExperienceStats && (
-            <>
-              <button
-                className="graph_chooser"
-                onClick={() => setShowWorkshopStats(true)}
-              >
-                Workshop Statistics
+          {/* Right column MAIN DIV NUMBER 2 */}
+          <div className="trainer-stats">
+            {" "}
+            <h5>{trainergraphsTitle}</h5>
+          </div>
+          <>
+            <div className="graph_buttons_div">
+              <button className="graph_buttons" onClick={viewtotal}>
+                Total Workshops Completed
               </button>
-              <button
-                className="graph_chooser"
-                onClick={() => setShowExperienceStats(true)}
-              >
-                Trainer's History
+              <button className="graph_buttons" onClick={viewworkshop}>
+                Workshops Completed
               </button>
-            </>
-          )}
-          {showWorkshopStats && (
-            <>
-              {/* when back button is clicked, it resets all the graphs and goes back*/}
-              <button className="graph_chooser" onClick={resetview}>
-                Back
+              <button className="graph_buttons" onClick={viewongoing}>
+                Ongoing Workshops
               </button>
-              <div className="graph_buttons_div">
-                <button className="graph_buttons" onClick={viewtotal}>
-                  Total Workshops Completed
-                </button>
-                <button className="graph_buttons" onClick={viewworkshop}>
-                  July Workshops Completed
-                </button>
-                <button className="graph_buttons" onClick={viewongoing}>
-                  Ongoing Workshops
-                </button>
-                <button className="graph_buttons" onClick={resetgraph}>
-                  Reset
-                </button>
-              </div>
-
-              <BarChart
-                width={920}
-                height={300}
-                data={trainer_data}
-                margin={{
-                  top: 20,
-                  right: 50,
-                  left: 0,
-                  bottom: 10,
-                }}
-                barSize={20}
-              >
-                <XAxis dataKey="name" padding={{ left: 10, right: 10 }} />
-                <YAxis interval="preserveStartEnd" domain={[0, domainMax]} />
-                <Tooltip />
-                <Legend />
-                <Bar
-                  dataKey={key}
-                  fill="#0083CA"
-                  background={{ fill: "#80c7fb" }}
-                  label={{ position: "top" }}
-                />
-              </BarChart>
-            </>
-          )}
-
-          {showExperienceStats && (
-            <>
-              {/* when back button is clicked, it resets all the graphs and goes back*/}
-              <button className="graph_chooser" onClick={resetview}>
-                Back
+              <button className="graph_buttons" onClick={viewexperience}>
+                Years of Experience
               </button>
-              <div className="graph_buttons_div">
-                <button className="graph_buttons" onClick={viewexperience}>
-                  Years of Experience
-                </button>
-                <button className="graph_buttons" onClick={resetgraph}>
-                  Reset
-                </button>
-              </div>
+              <button className="graph_buttons" onClick={resetview}>
+                Reset
+              </button>
+            </div>
 
-              <BarChart
-                width={600}
-                height={300}
-                data={trainer_data}
-                margin={{
-                  top: 20,
-                  right: 50,
-                  left: 0,
-                  bottom: 10,
-                }}
-                barSize={20}
-              >
-                <XAxis dataKey="name" padding={{ left: 10, right: 10 }} />
-                <YAxis interval="preserveStartEnd" domain={[0, domainMax]} />
-                <Tooltip />
-                <Legend />
-                <Bar
-                  dataKey={key}
-                  fill="#0083CA"
-                  background={{ fill: "#f5f5f5" }}
-                  label={{ position: "top" }}
-                />
-              </BarChart>
-            </>
-          )}
+            <BarChart
+              width={920}
+              height={240}
+              data={trainer_data}
+              margin={{
+                top: 30,
+                right: 50,
+                left: 0,
+                bottom: 50,
+              }}
+              barSize={20}
+            >
+              <XAxis
+                dataKey="name"
+                padding={{ left: 10, right: 10 }}
+                angle={-60}
+                textAnchor="end"
+                dy={0}
+              />
+              <YAxis interval="preserveStartEnd" domain={[0, domainMax]} />
+              <Tooltip />
+              <Bar
+                dataKey={key}
+                fill="#0083CA"
+                background={{ fill: "#ffffff" }}
+                label={{ position: "top" }}
+              />
+            </BarChart>
+          </>
         </div>
       </div>
     </motion.div>

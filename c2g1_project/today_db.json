@@ -1,0 +1,11 @@
+{
+    "today_data": [
+        {
+            "ongoingworkshopstoday": "5",
+            "trainertoday": "7",
+            "participantstoday": "127",
+            "participants-expected": "150",
+            "attendance": "85%"
+        }
+    ]
+}
