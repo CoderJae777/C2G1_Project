@@ -42,38 +42,14 @@ body {
 }
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
-.manage-trainers-button {
-  background-color: #80c7fb;
-  color: black;
-  width: 200px;
-  height: 30x;
-  border-radius: 25px;
-  border-width: 0px;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 10px 10px;
-  transition: background-color 500ms;
-  transition: color 500ms;
-  border-width: 0px;
-  border-radius: 8px;
-  text-align: center;
-  margin: 15px;
-}
-
-.manage-trainers-button:hover {
-  background-color: #0672cb;
-  color: white;
-}
-
 .left-column {
   grid-column-start: 1;
-  margin-top: 10px;
   padding: 15px;
   width: 80%;
 }
 
 .admin-home-page-title {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: -30px;
   justify-content: center;
   width: 500px;
@@ -204,7 +180,7 @@ body {
 
 .trainer-stats {
   grid-row-start: 2;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 .admin-graphs {
@@ -219,6 +195,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 50px;
 }
 
 /* admin home page graphs and buttons design*/
