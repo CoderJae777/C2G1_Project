@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import LoginPage from "../LoginPage";
-import SignUpPage from "../SignUpPage";
+
 import dellacademylogo_small from "../images/NavBarLogo.png";
-import HomePage from "../HomePage";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
