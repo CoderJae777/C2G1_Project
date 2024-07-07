@@ -17,7 +17,6 @@
 
 .top-panel {
     flex: 0 0 auto;
-    background-color: #f8f9fa;
     z-index: 1;
 }
 
@@ -31,9 +30,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 60px;
     margin-bottom: -15px;
-    background: #fff; 
 }
 
 .admin-workshop-request-page-title {

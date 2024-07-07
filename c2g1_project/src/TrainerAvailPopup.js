@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
 
-const TrainerAvailPopup = ({ onClose }) => {
+const TrainerAvailPopup = ({ onClose, onAvailabilityChange, index }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
@@ -11,7 +11,12 @@ const TrainerAvailPopup = ({ onClose }) => {
     };
 
     const handleItemClick = (item) => {
-        setSelectedItem(item === selectedItem ? null : item);
+        setSelectedItem(item);
+    };
+
+    const handleSubmit = () => {
+        onAvailabilityChange(selectedItem, index); // Pass selectedItem and index to onAvailabilityChange
+        onClose();
     };
 
     return (
@@ -46,7 +51,7 @@ const TrainerAvailPopup = ({ onClose }) => {
                 )}
             </div>
             <div className="popup-buttons">
-                <button className="submit-button" type="button" onClick={onClose}>Submit</button>
+                <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
                 <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
