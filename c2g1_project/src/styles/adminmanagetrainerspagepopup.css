@@ -8,7 +8,7 @@
 }
 
 .approve-workshop-request-popup,
-.allocate-trainer-popup,
+.trainer-role-popup,
 .reject-workshop-request-popup {
     width: 400px;
     background: #fff;
@@ -25,7 +25,7 @@
 }
 
 .open-approve-workshop-request-popup,
-.open-allocate-trainer-popup,
+.open-trainer-role-popup,
 .open-reject-workshop-request-popup {
     visibility: visible;
     top: 50%;
@@ -33,7 +33,7 @@
 }
 
 .approve-workshop-request-popup h2,
-.allocate-trainer-popup h2,
+.trainer-role-popup h2,
 .reject-workshop-request-popup h2{
     font-size: 38px;
     font-weight: 500;
@@ -41,7 +41,7 @@
 }
 
 .approve-workshop-request-popup button,
-.allocate-trainer-popup button,
+.trainer-role-popup button,
 .reject-workshop-request-popup button{
     width: 100%;
     margin-top: 50px;

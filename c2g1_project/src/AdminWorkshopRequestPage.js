@@ -52,7 +52,7 @@ const AdminWorkshopRequestPage = () => {
         {isRejectPopupOpen && (
           <RejectWorkshopRequestPopup onClose={handleCloseRejectPopup} />
         )}
-        <div className="left-panel">
+        <div className="top-panel">
           <TopLeftSideBar />
           {/* <h2>WorkShop Requests</h2> */}
         </div>
