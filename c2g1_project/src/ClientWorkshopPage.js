@@ -18,12 +18,11 @@ import ws5img from "./images/ws5img.png";
 import ws6img from "./images/ws6img.png";
 import ws7img from "./images/ws7img.png";
 import ws8img from "./images/ws8img.png";
-import TopLeftSideBar from "./components/TopLeftSideBar.js";
-
+import ClientTopLeftSideBar from "./components/ClientTopLeftSideBar.js";
 const ClientWorkshopPage = () => {
   return (
     <>
-      <TopLeftSideBar />
+      <ClientTopLeftSideBar />
       <motion.div
         className="workshoppage"
         animate={{ opacity: 1 }}

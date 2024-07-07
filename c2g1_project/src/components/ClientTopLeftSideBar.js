@@ -8,7 +8,7 @@ import useAxiosGet from "../api/useAxiosGet";
 import DateAndTime from "../DateAndTime";
 
 
-const TopLeftSideBar = () => {
+const ClientTopLeftSideBar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const nav = useNavigate();
 
@@ -88,7 +88,7 @@ const TopLeftSideBar = () => {
               <li className="list">
                 <a href="#" className="nav-link" onClick={handleClientWorkshopPage}>
                   <i className='bx bx-clipboard icon'></i>
-                  <span className="link">Workshops</span>
+                  <span className="link">See all workshops</span>
                 </a>
               </li>
             </ul>
@@ -114,4 +114,4 @@ const TopLeftSideBar = () => {
   );
 };
 
-export default TopLeftSideBar;
+export default ClientTopLeftSideBar;
