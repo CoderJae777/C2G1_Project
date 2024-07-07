@@ -7,6 +7,22 @@
       "fullname": "admin",
       "email": "admin@gmail.com",
       "country": "USA"
+    },
+    {
+      "id": "428b",
+      "username": "ryanclient",
+      "password": "abc",
+      "fullname": "ryan cheong",
+      "email": "ryancheong07@gmail.com",
+      "country": "Singapore"
+    },
+    {
+      "id": "7097",
+      "username": "ryanclient",
+      "password": "abc",
+      "fullname": "ryan cheong",
+      "email": "ryancheong07@gmail.com",
+      "country": "Singapore"
     }
   ]
 }
