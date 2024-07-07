@@ -1,29 +1,19 @@
-import React from "react";
-import "./styles/clienthomepage.css";
-import "./styles/clientworkshoppage.css";
-import { useNavigate } from "react-router-dom";
-import "boxicons/css/boxicons.min.css";
-import dellacademylogo from "./images/DellAcademy.png";
-import userprofilepic from "./images/userprofilepic.png";
-import stockimgtop from "./images/stockimgtop.jpg";
-import Sidebar from "./components/ClientTopLeftSideBar.js";
-import DateAndTime from "./DateAndTime";
+import Navbar from "./NavBar";
 import { motion } from "framer-motion";
-import "./styles/workshoppage.css";
-import ws1img from "./images/ws1img.png";
-import ws2img from "./images/ws2img.png";
-import ws3img from "./images/ws3img.png";
-import ws4img from "./images/ws4img.png";
-import ws5img from "./images/ws5img.png";
-import ws6img from "./images/ws6img.png";
-import ws7img from "./images/ws7img.png";
-import ws8img from "./images/ws8img.png";
-import TopLeftSideBar from "./components/TopLeftSideBar.js";
+import "../styles/workshoppage.css";
+import ws1img from "../images/ws1img.png";
+import ws2img from "../images/ws2img.png";
+import ws3img from "../images/ws3img.png";
+import ws4img from "../images/ws4img.png";
+import ws5img from "../images/ws5img.png";
+import ws6img from "../images/ws6img.png";
+import ws7img from "../images/ws7img.png";
+import ws8img from "../images/ws8img.png";
 
-const ClientWorkshopPage = () => {
+const OurWorkshopPage = () => {
   return (
     <>
-      <TopLeftSideBar />
+      <Navbar />
       <motion.div
         className="workshoppage"
         animate={{ opacity: 1 }}
@@ -42,7 +32,9 @@ const ClientWorkshopPage = () => {
             </div>
             <h4>Introduction to Python</h4>
             <h5>WSID : 01</h5>
-            <h6>Nothing to do with the snake</h6>
+            <h6>
+              Nothing to do with the snake
+            </h6>
           </motion.div>
           <motion.div
             className="workshoppage-1-ws2"
@@ -55,7 +47,9 @@ const ClientWorkshopPage = () => {
             </div>
             <h4>Introduction to Java 21</h4>
             <h5>WSID : 02</h5>
-            <h6>No it is not about Indonesia</h6>
+            <h6>
+              No it is not about Indonesia
+            </h6>
           </motion.div>
           <motion.div
             className="workshoppage-1-ws3"
@@ -68,7 +62,9 @@ const ClientWorkshopPage = () => {
             </div>
             <h4>Introduction to AI</h4>
             <h5>WSID : 03</h5>
-            <h6>Machine Learning on steroids</h6>
+            <h6>
+              Machine Learning on steroids
+            </h6>
           </motion.div>
           <motion.div
             className="workshoppage-1-ws4"
@@ -138,4 +134,4 @@ const ClientWorkshopPage = () => {
   );
 };
 
-export default ClientWorkshopPage;
+export default OurWorkshopPage;

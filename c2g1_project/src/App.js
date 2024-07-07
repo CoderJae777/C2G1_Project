@@ -12,9 +12,8 @@ import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import {ToastContainer} from "react-toastify";
 import HomePage from './HomePage';
+import OurWorkshopPage from './components/OurWorkshopPage';
 import ClientWorkshopPage from "./ClientWorkshopPage"
-
-
 
 function App() {
   return (
@@ -33,6 +32,8 @@ function App() {
           <Route exact path ="/ClientHomePage" element={<ClientHomePage/>}/>
           <Route exact path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
           <Route exact path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
+          <Route exact path ="/AdminManageTrainerPage" element={<AdminManageTrainerPage/>}/>
+          <Route exact path ="/OurWorkshopPage" element={<OurWorkshopPage/>}/>
           <Route exact path="/AdminManageTrainerPage" element={<AdminManageTrainerPage />} />
           <Route exact path="/ClientWorkshopPage" element={<ClientWorkshopPage />} />
         </Routes>

@@ -1,0 +1,104 @@
+/* Whole work shop page */
+.workshoppage {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  background-image: url("../images/homepageimg3.jpg");
+  margin-top: 80px;
+}
+
+/* Row 1 */
+.workshoppage-1 {
+  display: grid;
+  grid-row-start: 1;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* Row 1 Col 1 */
+.workshoppage-1-ws1,
+.workshoppage-1-ws2,
+.workshoppage-1-ws3,
+.workshoppage-1-ws4,
+.workshoppage-2-ws1,
+.workshoppage-2-ws2,
+.workshoppage-2-ws3,
+.workshoppage-2-ws4 {
+  display: grid;
+  grid-column-start: 1;
+  justify-content: center;
+  margin-top: 50px;
+  margin-left: 40px;
+  width: 300px;
+  height: 300px;
+  border-style: solid;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: #e3f2fd;
+}
+
+.workshoppage-1-ws1:hover,
+.workshoppage-1-ws2:hover,
+.workshoppage-1-ws3:hover,
+.workshoppage-1-ws4:hover,
+.workshoppage-2-ws1:hover,
+.workshoppage-2-ws2:hover,
+.workshoppage-2-ws3:hover,
+.workshoppage-2-ws4:hover {
+  background-color: #0083ca;
+  color: white;
+}
+
+/* Row 1 Col 2 */
+.workshoppage-1-ws2 {
+  display: grid;
+  grid-column-start: 2;
+}
+
+/* Row 1 Col 3 */
+.workshoppage-1-ws3 {
+  display: grid;
+  grid-column-start: 3;
+}
+
+/* Row 1 Col 4 */
+.workshoppage-1-ws4 {
+  display: grid;
+  grid-column-start: 4;
+}
+
+/* Row 2 */
+.workshoppage-2 {
+  display: grid;
+  grid-row-start: 2;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+/* Row 2 Col 2 */
+.workshoppage-2-ws2 {
+  display: grid;
+  grid-column-start: 2;
+}
+
+/* Row 2 Col 3 */
+.workshoppage-2-ws3 {
+  display: grid;
+  grid-column-start: 3;
+}
+
+/* Row 2 Col 4 */
+.workshoppage-2-ws4 {
+  display: grid;
+  grid-column-start: 4;
+}
+
+/* Row 3 */
+.workshoppage-3 {
+  display: grid;
+  grid-row-start: 3;
+}
+
+/* Row 4 */
+.workshoppage-4 {
+  display: grid;
+  grid-row-start: 4;
+}
