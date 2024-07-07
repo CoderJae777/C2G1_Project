@@ -7,9 +7,11 @@ import userprofilepic from "./images/userprofilepic.png";
 import TopLeftSidebar from "./components/TopLeftSideBar";
 import DateAndTime from './DateAndTime';
 import EditTrainerDetailsPopup from './EditTrainerDetailsPopup';
+import TrainerAvailPopup from './TrainerAvailPopup';
 
 const AdminManageTrainerPage = () => {
     const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] = useState(false);
+    const [isTrainerAvailPopupOpen, setIsTrainerAvailPopupOpen] = useState(false);
 
     const handleOpenTrainerDetailsPopup = () => {
         setIsTrainerDetailsPopupOpen(true);
@@ -19,10 +21,21 @@ const AdminManageTrainerPage = () => {
         setIsTrainerDetailsPopupOpen(false);
     };
 
+    const handleOpenTrainerAvailPopup = () => {
+        setIsTrainerAvailPopupOpen(true);
+    };
+
+    const handleCloseTrainerAvailPopup = () => {
+        setIsTrainerAvailPopupOpen(false);
+    };
+
     return (
         <>
             {isTrainerDetailsPopupOpen && (
                 <EditTrainerDetailsPopup onClose={handleCloseTrainerDetailsPopup} />
+            )}
+            {isTrainerAvailPopupOpen && (
+                <TrainerAvailPopup onClose={handleCloseTrainerAvailPopup} />
             )}
             <div className="admin-manage-trainer-page">
                 <div className="top-panel">
@@ -57,7 +70,11 @@ const AdminManageTrainerPage = () => {
                                         >
                                             Edit Details
                                         </button>
-                                        <button className="trainer-info-table-button">Available</button>
+                                        <button 
+                                            className="trainer-info-table-button"
+                                            onClick={handleOpenTrainerAvailPopup}
+                                        >
+                                            Available</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -72,7 +89,11 @@ const AdminManageTrainerPage = () => {
                                         >
                                             Edit Details
                                         </button>
-                                        <button className="trainer-info-table-button">Available</button>
+                                        <button 
+                                            className="trainer-info-table-button"
+                                            onClick={handleOpenTrainerAvailPopup}
+                                        >
+                                            Available</button>
                                     </td>
                                 </tr>
                                 {/* Add more trainer rows as needed */}
