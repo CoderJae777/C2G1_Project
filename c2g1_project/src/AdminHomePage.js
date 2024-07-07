@@ -191,7 +191,7 @@ const AdminHomePage = () => {
               </div>
 
               <BarChart
-                width={600}
+                width={920}
                 height={300}
                 data={trainer_data}
                 margin={{
@@ -209,7 +209,7 @@ const AdminHomePage = () => {
                 <Bar
                   dataKey={key}
                   fill="#0083CA"
-                  background={{ fill: "#f5f5f5" }}
+                  background={{ fill: "#80c7fb" }}
                   label={{ position: "top" }}
                 />
               </BarChart>
