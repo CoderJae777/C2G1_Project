@@ -1,5 +1,6 @@
 import React from 'react';
-import './clienthomepage.css';
+import './styles/clienthomepage.css';
+import './styles/clientworkshoppage.css';
 import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
@@ -18,10 +19,7 @@ const ClientWorkshopPage = () => {
             <div className="client-home-right-panel">
                 <div className="header-container">
                     <div className='client-home-page-title'>
-                        <h4>Workshops</h4>
-                    </div>
-                    <div className="client-home-datetime">
-                        <DateAndTime />
+                        <h1>Workshops</h1>
                     </div>
                 </div>
                 <div className="workshop-column">

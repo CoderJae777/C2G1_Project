@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './clienthomepage.css';
+import './styles/clienthomepage.css';
 import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
@@ -22,10 +22,7 @@ const ClientHomePage = () => {
             <div className="client-home-page-right-panel">
                 <div className="header-container">
                     <div className='client-home-page-title'>
-                        <h4>Submit Workshop Request</h4>
-                    </div>
-                    <div className="client-home-datetime">
-                        <DateAndTime />
+                        <h1>Submit Workshop Request</h1>
                     </div>
                 </div>  
                 <div className="form_group">
@@ -93,19 +90,19 @@ const ClientHomePage = () => {
                     <div>
                         <text> Number of attendees</text>
                         <textarea
-                            className="reject-reason-input"
+                            className="workshop_request_field"
                         />
                     </div>
                     <div>
                         <text> Venue Address</text>
                         <textarea
-                            className="reject-reason-input"
+                            className="workshop_request_field"
                         />
                     </div>
                     <div>
                         <text>Deal size potential (SGD)</text>
                         <textarea
-                            className="reject-reason-input"
+                            className="workshop_request_field"
                         />
                     </div>
                     <div>

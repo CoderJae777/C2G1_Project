@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
 import userprofilepic from "./images/userprofilepic.png";
-import './clienthomepage.css';
+import './styles/clienthomepage.css';
 
 const ClientLeftSidebar = ({ userprofilepic }) => {
   const nav = useNavigate();

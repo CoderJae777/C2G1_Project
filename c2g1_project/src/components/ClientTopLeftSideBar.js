@@ -5,6 +5,8 @@ import 'boxicons/css/boxicons.min.css';
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
+import DateAndTime from "../DateAndTime";
+
 
 const TopLeftSideBar = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -51,8 +53,18 @@ const TopLeftSideBar = () => {
     <>
       <nav className={navOpen ? 'open' : ''}>
         <div className="logo">
-          <i className='bx bx-menu menu-icon' onClick={toggleNav}></i>
-          <span className="logo-name">Menu</span>
+           <div className="hamburger">
+            <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <span className="logo-name">Menu</span>
+          </div>
+          <div className="welcome">
+            <span className="logo-name">Hi Dil, Welcome Back!</span>
+          </div>
+          <div className="date">
+            <span className="logo-name">
+              <DateAndTime />
+            </span>
+          </div>
         </div>
         <div className="sidebar">
           <div className="logo">
