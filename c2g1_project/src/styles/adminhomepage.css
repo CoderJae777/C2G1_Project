@@ -1,206 +1,226 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family:roboto; 
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: roboto;
+  box-sizing: border-box;
 }
 
-body{
-    background: #fff;
+body {
+  background: #fff;
 }
 
 .admin-home-page {
-    display: grid;
-    grid-template-areas:
-        "left-panel middle-column right-column";
-    grid-template-rows: auto; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;
-    margin: 20px;
+  display: grid;
+  grid-template-areas: "top-panel left-column right-column";
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px;
+  padding: 20px;
+  background-image: url("../images/dashboardbackground.jpg");
+  justify-content: center;
 }
 
-.admin-home-page-title{
-    padding: 25px;
-    margin-bottom: -5\100px;
-}
- 
-.left-panel {
-    grid-area: left-panel;
+.admin-home-page-title {
+  padding: 25px;
+  margin-bottom: -5px;
+  justify-content: center;
+  text-align: center;
 }
 
-.dell-logo{
-    margin: auto;
-    margin-top: 10px;
+.top-panel {
+  grid-area: top-panel;
+  background-image: url("../images/dashboardbackground.jpg");
+  width: 10px;
+}
+
+.dell-logo {
+  margin: auto;
+  margin-top: 10px;
 }
 
 /* TRAINER TABLE CSS--------------------------------------------------------------- */
-.workshop-request-button, .manage-trainers-button{
-    background-color: #80C7FB;
-    color: #707070;
-    width: 200px;
-    height: 30x;
-    border-radius: 25px;
-    border-width: 0px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 10px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 0px;
-    border-radius: 8px;
-    text-align: center;
-    margin: 15px;
+.workshop-request-button,
+.manage-trainers-button {
+  background-color: #80c7fb;
+  color: black;
+  width: 200px;
+  height: 30x;
+  border-radius: 25px;
+  border-width: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px;
 }
 
 .manage-trainers-button:hover,
-.workshop-request-button:hover{
-    background-color: #0672CB;
-    color: white;
+.workshop-request-button:hover {
+  background-color: #0672cb;
+  color: white;
 }
 
-.middle-column {
-    grid-area: middle-column;
-    padding: 15px;
+.left-column {
+  grid-column-start: 1;
+  margin-top: 10px;
+  padding: 15px;
+  width: 80%;
+
 }
 
-.admin-home-page-title{
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: -30px;
+.admin-home-page-title {
+  margin-top: 20px;
+  margin-bottom: -30px;
+  justify-content: center;
+  width: 500px; 
+  /* edit this to centralise welcome back words by matching workshop request size */
 }
 
-.workshop-table, .trainer-table{
-    max-width: 600px;
-    width: 600px;
-    height: 270px;
-    background: #d7d7d7;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    margin-top: 15px;
-    align-items: center;
+.welcomeback {
+  grid-column-start: 2;
+  padding: 20px;
 }
 
+.workshop-table,
+.trainer-table {
+  max-width: 1000px;
+  width: 500px;
+  height: 270px;
+  background: #e3f2fd;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 15px;
+  align-items: center;
+}
 
-.admin-home-datetime{
-    text-align: right;
-    margin-top: 40px;
-    margin-bottom: -60px;
-    margin-right: 20px;
+.admin-home-datetime {
+  text-align: right;
+  margin-top: 40px;
+  margin-bottom: -60px;
+  margin-right: 20px;
+  width: 900px;
+    /* edit this to align left f date time by matching admin graph div size */
 }
 
 /* WORKSHOP TABLE CSS ------------------------------------------------------------------------------ */
-.workshop-table .workshop-table-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px 0px;
+.workshop-table .workshop-table-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 0px;
 }
 
-.workshop-table-content .workshop-table-lists{
-    list-style: none;
+.workshop-table-content .workshop-table-lists {
+  list-style: none;
 }
 
-.workshop-table-list .wt-link{
-    width: 530px;
-    display: flex;
-    align-items: center;
-    padding: 12px 12px;
-    text-decoration: none;
-    margin-bottom: 5px;
-    margin-right: 20px;
+.workshop-table-list .wt-link {
+  width: 530px;
+  display: flex;
+  align-items: center;
+  padding: 12px 12px;
+  text-decoration: none;
+  margin-bottom: 5px;
+  margin-right: 20px;
 }
 
-.bx{
-    margin-right: 14px;
-    font-size: 20px;
-    color: black;
-    padding: 10px;
+.bx {
+  margin-right: 14px;
+  font-size: 20px;
+  color: black;
+  padding: 10px;
 }
 
-.wt-link .link{
-    font-size: 16px;
-    color: #707070;
-    font-weight: 400;
+.wt-link .link {
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
 }
 
 .wt-link:hover i,
-.wt-link:hover .link{
-    color: #fff;
+.wt-link:hover .link {
+  color: #fff;
 }
 
 /* TRAINER TABLE CSS ------------------------------------------------------------------ */
-.table-striped{
-    flex-direction: column;
-    width: 570px;
+.table-striped {
+  flex-direction: column;
+  width: 480px;
 }
 
-.table-striped tbody{
-    background-color: #d7d7d7;
+.table-striped tbody {
+  background-color: #e3f2fd;
 }
-  
-.table-striped .bg-info{
-    background: #d7d7d7;
-    color: #707070;
+
+.table-striped .bg-info {
+  background: #e3f2fd;
+  color: black;
 }
-  
-.table-striped .bg-info th{
-    cursor: pointer;
+
+.table-striped .bg-info th {
+  cursor: pointer;
 }
-  
-.table-striped .bg-info th:hover{
-    color: #fff;
+
+.table-striped .bg-info th:hover {
+  color: #fff;
 }
 
 /* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
 
 .right-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    align-items: right; 
-    padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: right;
+  padding: 15px;
 }
 
-.admin-graphs{
-    max-width: 600px;
-    width: 600px;
-    height: 560px;
-    background: #d7d7d7;
-    color: #707070;
-    border-radius: 20px;
-    /* padding: 10px; */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+.admin-graphs {
+  max-width: 1000x;
+  width: 900px;
+  height: 580px;
+  background-color: #e3f2fd;
+  color: black;
+  border-radius: 20px;
+  /* padding: 10px; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* admin home page graphs and buttons design*/
 
-.graph_chooser:hover, .graph_buttons:hover{
-    background-color: #0672CB;
-    color: white;
+.graph_chooser:hover,
+.graph_buttons:hover {
+  background-color: #0672cb;
+  color: white;
 }
 
-.graph_chooser, .graph_buttons{
-    background-color: #80C7FB;
-    color: #707070;
-    width: 200px;
-    height: 30x;
-    border-radius: 25px;
-    border-width: 0px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 10px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 0px;
-    border-radius: 8px;
-    text-align: center;
-    margin: 15px;
-    align-self: center;
+.graph_chooser,
+.graph_buttons {
+  background-color: #80c7fb;
+  color: black;
+  width: 100px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 0px;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 10px 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px;
+  align-self: center;
 }

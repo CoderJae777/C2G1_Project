@@ -102,3 +102,10 @@
 .form_group {
     overflow-y: scroll;
 }
+
+.reject-reason-input {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    box-sizing: border-box;
+} 

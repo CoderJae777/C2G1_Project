@@ -4,7 +4,6 @@ import "./styles//adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
-import Sidebar from "./components/LeftSideBar";
 import DateAndTime from "./DateAndTime";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
@@ -53,7 +52,7 @@ const AdminWorkshopRequestPage = () => {
         {isRejectPopupOpen && (
           <RejectWorkshopRequestPopup onClose={handleCloseRejectPopup} />
         )}
-        <div className="left-panel">
+        <div className="top-panel">
           <TopLeftSideBar />
           {/* <h2>WorkShop Requests</h2> */}
         </div>

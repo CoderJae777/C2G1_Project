@@ -11,12 +11,16 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\SignUpPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\components\\ClientTopLeftSideBar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\components\\ClientTopLeftSideBar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\ClientWorkshopPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clienthomepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\clienthomepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ApproveWorkshopRequestPopup.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\ApproveWorkshopRequestPopup.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
@@ -30,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -43,34 +47,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2024-06-27T07:28:32.159Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientWorkshopPage.js",
-              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js",
-              "RelativeDocumentMoniker": "c2g1_project\\src\\ClientWorkshopPage.js",
-              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js",
-              "RelativeToolTip": "c2g1_project\\src\\ClientWorkshopPage.js",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACMAAACVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-06T16:46:43.418Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "clienthomepage.css",
-              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clienthomepage.css",
-              "RelativeDocumentMoniker": "c2g1_project\\src\\clienthomepage.css",
-              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\clienthomepage.css",
-              "RelativeToolTip": "c2g1_project\\src\\clienthomepage.css",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAAGYAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-07-06T16:03:31.49Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -80,9 +57,48 @@
               "RelativeDocumentMoniker": "c2g1_project\\src\\SignUpPage.js",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\SignUpPage.js",
               "RelativeToolTip": "c2g1_project\\src\\SignUpPage.js",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAAAKoAAABMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-06T15:15:03.187Z",
+              "WhenOpened": "2024-07-07T09:59:24.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApproveWorkshopRequestPopup.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ApproveWorkshopRequestPopup.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\ApproveWorkshopRequestPopup.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ApproveWorkshopRequestPopup.js",
+              "RelativeToolTip": "c2g1_project\\src\\ApproveWorkshopRequestPopup.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-07T09:58:40.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClientWorkshopPage.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\ClientWorkshopPage.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientWorkshopPage.js",
+              "RelativeToolTip": "c2g1_project\\src\\ClientWorkshopPage.js",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACEAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-07T09:14:01.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientTopLeftSideBar.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\components\\ClientTopLeftSideBar.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\components\\ClientTopLeftSideBar.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\components\\ClientTopLeftSideBar.js",
+              "RelativeToolTip": "c2g1_project\\src\\components\\ClientTopLeftSideBar.js",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAFAAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-07T09:08:30.729Z",
               "EditorCaption": ""
             },
             {
@@ -93,7 +109,7 @@
               "RelativeDocumentMoniker": "c2g1_project\\src\\ClientHomePage.js",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\ClientHomePage.js",
               "RelativeToolTip": "c2g1_project\\src\\ClientHomePage.js",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAAAGIAAAAWAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHYAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-06T15:13:37.835Z",
               "EditorCaption": ""

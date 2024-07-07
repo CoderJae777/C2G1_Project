@@ -5,7 +5,7 @@ import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
 import stockimgtop from "./images/stockimgtop.jpg";
-import Sidebar from './ClientLeftSideBar';
+import Sidebar from "./components/ClientTopLeftSideBar.js";
 import DateAndTime from './DateAndTime';
 
 const ClientWorkshopPage = () => {
@@ -13,16 +13,11 @@ const ClientWorkshopPage = () => {
     return ( 
         <div class="client-home-page">
             <div class="left-panel">
-                <div class="dell-logo">
-                    <img src={dellacademylogo} alt="Dell Academy Logo" />
-                </div>
                 <Sidebar userprofilepic={userprofilepic} />
             </div>
             <div className="client-home-right-panel">
                 <div className="header-container">
                     <div className='client-home-page-title'>
-                        <h4>Hi Dil, welcome back!</h4>
-                        <h4>Hereis some important information for you:</h4>
                         <h4>Workshops</h4>
                     </div>
                     <div className="client-home-datetime">

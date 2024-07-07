@@ -17,19 +17,14 @@ const TopLeftSideBar = () => {
     false
   );
 
-  const handleAdminWorkshopRequestPage = (e) => {
+  const handleClientWorkshopPage = (e) => {
     e.preventDefault();
-    nav("/AdminWorkshopRequestPage");
+      nav("/ClientWorkshopPage");
   };
 
-  const handleAdminManageTrainerPage = (e) => {
+  const handleClientHomePage = (e) => {
     e.preventDefault();
-    nav("/AdminManageTrainerPage");
-  };
-
-  const handleAdminHomePage = (e) => {
-    e.preventDefault();
-    nav("/AdminHomePage");
+      nav("/ClientHomePage");
   };
 
   const handleNavBarSignOut = (e) => {
@@ -67,7 +62,7 @@ const TopLeftSideBar = () => {
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleAdminHomePage}>
+                <a href="#" className="nav-link" onClick={handleClientHomePage}>
                   <i className='bx bx-home-alt icon'></i>
                   <span className="link">Home</span>
                 </a>
@@ -79,15 +74,9 @@ const TopLeftSideBar = () => {
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleAdminWorkshopRequestPage}>
+                <a href="#" className="nav-link" onClick={handleClientWorkshopPage}>
                   <i className='bx bx-clipboard icon'></i>
-                  <span className="link">Workshop Requests</span>
-                </a>
-              </li>
-              <li className="list">
-                <a href="#" className="nav-link" onClick={handleAdminManageTrainerPage}>
-                  <i className='bx bx-group icon'></i>
-                  <span className="link">Manage Trainers</span>
+                  <span className="link">Workshops</span>
                 </a>
               </li>
             </ul>

@@ -5,20 +5,18 @@ import 'boxicons/css/boxicons.min.css';
 import dellacademylogo from "./images/DellAcademy.png";
 import userprofilepic from "./images/userprofilepic.png";
 import stockimgtop from "./images/stockimgtop.jpg";
-import Sidebar from './ClientLeftSideBar';
+import Sidebar from "./components/ClientTopLeftSideBar.js";
 import DateAndTime from './DateAndTime';
 
 const ClientHomePage = () => {
     const [year, yearchange] = useState("");
     const [month, monthchange] = useState(""); 
     const [day, daychange] = useState("");
-    
+    const [workshop, workshopchange] = useState("");
+
     return ( 
         <div class="client-home-page">
             <div class="left-panel">
-                <div class="dell-logo">
-                    <img src={dellacademylogo} alt="Dell Academy Logo" />
-                </div>
                 <Sidebar userprofilepic={userprofilepic} />
             </div>
             <div className="client-home-page-right-panel">
@@ -80,23 +78,48 @@ const ClientHomePage = () => {
                     </select>
                     <select
                         id='request-workshop-sel'
-                        value={year}
-                        onChange={(e) => { yearchange(e.target.value); document.getElementById('request-workshop-sel').size = '1'; }}
+                        value={workshop}
+                        onChange={(e) => { workshopchange(e.target.value); document.getElementById('request-workshop-sel').size = '1'; }}
                         className="form_control"
                         onFocus={() => { document.getElementById('request-workshop-sel').size = '1'; }}
                         onBlur={() => { document.getElementById('request-workshop-sel').size = '1'; }}
                     >
                         <option value="Workshop">-- Workshop --</option>
                         <option value="Workshop A">Workshop A</option>
-                        <option value="Workshop B">Workshop B</option>
+                        <option value="Workshop B"> Workshop B</option>
                     </select>
                 </div>
                 <div className="workshop-column">
-                    <text> Number of attendees</text>
-                    <textarea
-                        className="reject-reason-input"
-                    />
+                    <div>
+                        <text> Number of attendees</text>
+                        <textarea
+                            className="reject-reason-input"
+                        />
+                    </div>
+                    <div>
+                        <text> Venue Address</text>
+                        <textarea
+                            className="reject-reason-input"
+                        />
+                    </div>
+                    <div>
+                        <text>Deal size potential (SGD)</text>
+                        <textarea
+                            className="reject-reason-input"
+                        />
+                    </div>
+                    <div>
+                        <div>
+                            <text>Comments / Resources Required</text>
+                            <textarea
+                                className="reject-reason-input"
+                            />
+                        </div>
+                    </div>
                 </div>
+                <button type="submit" className="signup_submit_button">
+                    Submit Request
+                </button>
             </div>
         </div>
      );
