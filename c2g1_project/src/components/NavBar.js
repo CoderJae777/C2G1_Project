@@ -4,7 +4,6 @@ import dellacademylogo_small from "../images/NavBarLogo.png";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-
 const Navbar = () => {
   const nav = useNavigate();
   const [stickyClass, setStickyClass] = useState("");
@@ -31,6 +30,9 @@ const Navbar = () => {
   const handleHomePage = () => {
     nav("/");
   };
+  const handleworkshop = () => {
+    nav("/OurWorkshopPage");
+  };
 
   return (
     <motion.nav className={`navbar ${stickyClass}`}>
@@ -49,7 +51,7 @@ const Navbar = () => {
           Home
         </motion.button>
         {/* TBC --> links to the workshops page */}
-        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
+        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={handleworkshop}>
           Our Workshops
         </motion.button>
         {/* TBC --> links to a view all trainers page */}

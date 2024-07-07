@@ -12,6 +12,7 @@ import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import {ToastContainer} from "react-toastify";
 import HomePage from './HomePage';
+import OurWorkshopPage from './components/OurWorkshopPage';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route exact path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
           <Route exact path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
           <Route exact path ="/AdminManageTrainerPage" element={<AdminManageTrainerPage/>}/>
+          <Route exact path ="/OurWorkshopPage" element={<OurWorkshopPage/>}/>
         </Routes>
       </div>
     </Router>
