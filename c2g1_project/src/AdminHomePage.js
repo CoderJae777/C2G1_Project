@@ -89,22 +89,28 @@ const AdminHomePage = () => {
           <div className="workshop-table-title">
             <h4>This is today's workshops' statistics: </h4>
           </div>
-          <div className="workshopstoday">
-            <h2>{today_data[0].ongoingworkshopstoday}</h2>
-            <h5>Ongoing workshops today</h5>
-          </div>
-          <div className="trainersworking">
-            <h2>{today_data[0].trainertoday}</h2>
-            <h5>Trainers conducting across all workshops</h5>
-          </div>
-          <div className="workshopattendees">
-            <h2>{today_data[0].participantstoday}</h2>
-            <h5>Total Participants across all workshops</h5>
-          </div>
-          <div className="attendancepercentage">
-            <h2>{today_data[0].attendance}</h2>
-            <h5>Today's Attendance</h5>
-          </div>
+          {today_data && today_data[0] ? (
+            <>
+              <div className="workshopstoday">
+                <h2>{today_data[0].ongoingworkshopstoday}</h2>
+                <h5>Ongoing workshops today</h5>
+              </div>
+              <div className="trainersworking">
+                <h2>{today_data[0].trainertoday}</h2>
+                <h5>Trainers conducting across all workshops</h5>
+              </div>
+              <div className="workshopattendees">
+                <h2>{today_data[0].participantstoday}</h2>
+                <h5>Total Participants across all workshops</h5>
+              </div>
+              <div className="attendancepercentage">
+                <h2>{today_data[0].attendance}</h2>
+                <h5>Today's Attendance</h5>
+              </div>
+            </>
+          ) : (
+            <div>Calculating all data... This may take awhile...</div>
+          )}
         </div>
         {/* Workshop summary ends here */}
         <div className="breakdown-of-attendance-div">
@@ -149,8 +155,6 @@ const AdminHomePage = () => {
 
       {/* Graphs nonsense starts here */}
       <div className="right-column">
-      
-
         <div className="admin-graphs">
           {/* Right column MAIN DIV NUMBER 1 */}
           <div className="workshop-stats">
