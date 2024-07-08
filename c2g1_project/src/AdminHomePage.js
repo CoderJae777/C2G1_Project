@@ -1,15 +1,13 @@
 import React from "react";
 import useFetch from "./components/useFetch";
+import useAxiosGet from "./api/useAxiosGet.jsx";
 import "./styles/adminhomepage.css";
-import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-import DateAndTime from "./DateAndTime";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import useAxiosGet from "./api/useAxiosGet.jsx";
 import { config } from "./config/config.js";
 import { endpoints } from "./config/endpoints.js";
-
+import TopLeftSideBar from "./components/TopLeftSideBar.js";
 import {
   Area,
   AreaChart,
@@ -23,7 +21,6 @@ import {
   Line,
   LineChart,
 } from "recharts";
-import TopLeftSideBar from "./components/TopLeftSideBar.js";
 
 const AdminHomePage = () => {
   const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
@@ -67,14 +64,6 @@ const AdminHomePage = () => {
 
   // CALLING DATA FROM JSON
   const { trainer_data, workshop_data, today_data } = useFetch();
-
-  const nav = useNavigate();
-  const handleAdminWorkshopRequestPage = () => {
-    nav("/AdminWorkshopRequestPage");
-  };
-  const handleAdminManageTrainerPage = () => {
-    nav("/AdminManageTrainerPage");
-  };
 
   const { data, loading, error, setBody, refetch } = useAxiosGet(
     config.base_url + endpoints.verify
