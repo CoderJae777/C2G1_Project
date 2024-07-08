@@ -16,17 +16,17 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  height: 20px;
   width: 100%;
-  background: #e3f2fd;
+  background-color: white;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-  background-image: url("../images/dashboardbackground.jpg");
 }
 
 .logo {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* Adjusted to three equal columns */
-  padding: 30px;
+  padding: 20px;
+  box-shadow: rgba(136, 165, 191, 0.48) 12px 2px 16px 0px,
+  rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 .hamburger {

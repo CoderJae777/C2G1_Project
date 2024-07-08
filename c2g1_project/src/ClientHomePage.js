@@ -2,146 +2,185 @@ import React, { useState } from "react";
 import "./styles/clienthomepage.css";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-import dellacademylogo from "./images/DellAcademy.png";
-import userprofilepic from "./images/userprofilepic.png";
-import stockimgtop from "./images/stockimgtop.jpg";
-import Sidebar from "./components/ClientTopLeftSideBar.js";
-import DateAndTime from "./DateAndTime";
 import ClientTopLeftSideBar from "./components/ClientTopLeftSideBar.js";
+import { motion } from "framer-motion";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
 
 const ClientHomePage = () => {
   const [year, yearchange] = useState("");
   const [month, monthchange] = useState("");
   const [day, daychange] = useState("");
   const [workshop, workshopchange] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [attendees, setAttendees] = useState("0");
+  const [wsname, setWsname] = useState("null");
+  const [comments, setComments] = useState("null");
+
+  // This is to ensure all booking are within today and last day of 2024
+  const minDate = new Date();
+  const maxDate = new Date("2024-12-31");
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
+  const handleresetreq = () => {
+    setEndDate(null);
+    setStartDate(null);
+    setAttendees("0");
+    setWsname("null");
+    setComments("null")
+  }
 
   return (
-    <div class="client-home-page">
-      <div class="left-panel">
+    <>
+      <div className="left-panel">
         <ClientTopLeftSideBar />
       </div>
-      <div className="client-home-page-right-panel">
-        <div className="header-container">
-          <div className="client-home-page-title">
-            <h1>Submit Workshop Request</h1>
+      <motion.div
+        className="client-home-page"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="client-home-page-left">
+          <div className="find-ws">
+            <h3>Available Workshops</h3>
+            <select
+              id="request-workshop-sel"
+              value={workshop}
+              onChange={(e) => {
+                workshopchange(e.target.value);
+                document.getElementById("request-workshop-sel").size = "1";
+              }}
+              className="form_control"
+              onFocus={() => {
+                document.getElementById("request-workshop-sel").size = "1";
+              }}
+              onBlur={() => {
+                document.getElementById("request-workshop-sel").size = "1";
+              }}
+            >
+              <option value="Workshop">-- Workshop --</option>
+              <option value="Workshop A">Workshop A</option>
+              <option value="Workshop B"> Workshop B</option>
+            </select>
+            <h3>Workshop details : </h3>
+            <h4>Status</h4>
+            <h4>{workshop}</h4>
+            <h4>Workshop Capacity</h4>
+            <h4>Workshop Venue</h4>
+            <h4>Number of Trainers Provided</h4>
+            <h4>Price</h4>
           </div>
         </div>
-        <div className="form_group">
-          <select
-            id="request-year-sel"
-            value={year}
-            onChange={(e) => {
-              yearchange(e.target.value);
-              document.getElementById("request-year-sel").size = "1";
-            }}
-            className="form_control"
-            onFocus={() => {
-              document.getElementById("request-year-sel").size = "1";
-            }}
-            onBlur={() => {
-              document.getElementById("request-year-sel").size = "1";
-            }}
-          >
-            <option value="Year">-- Year --</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-          </select>
-          <select
-            id="request-month-sel"
-            value={month}
-            onChange={(e) => {
-              monthchange(e.target.value);
-              document.getElementById("request-month-sel").size = "1";
-            }}
-            className="form_control"
-            onFocus={() => {
-              document.getElementById("request-month-sel").size = "1";
-            }}
-            onBlur={() => {
-              document.getElementById("request-month-sel").size = "1";
-            }}
-          >
-            <option value="Month">-- Month --</option>
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-          </select>
-          <select
-            id="request-day-sel"
-            value={day}
-            onChange={(e) => {
-              daychange(e.target.value);
-              document.getElementById("request-day-sel").size = "1";
-            }}
-            className="form_control"
-            onFocus={() => {
-              document.getElementById("request-day-sel").size = "1";
-            }}
-            onBlur={() => {
-              document.getElementById("request-day-sel").size = "1";
-            }}
-          >
-            <option value="Day">-- Day --</option>
-            {[...Array(31).keys()].map((request) => (
-              <option value={(request + 1).toString()}>
-                {(request + 1).toString()}
-              </option>
-            ))}
-          </select>
-          <select
-            id="request-workshop-sel"
-            value={workshop}
-            onChange={(e) => {
-              workshopchange(e.target.value);
-              document.getElementById("request-workshop-sel").size = "1";
-            }}
-            className="form_control"
-            onFocus={() => {
-              document.getElementById("request-workshop-sel").size = "1";
-            }}
-            onBlur={() => {
-              document.getElementById("request-workshop-sel").size = "1";
-            }}
-          >
-            <option value="Workshop">-- Workshop --</option>
-            <option value="Workshop A">Workshop A</option>
-            <option value="Workshop B"> Workshop B</option>
-          </select>
+        <div className="client-home-page-right">
+          <div className="view-request">
+            <h3>View Workshop Requests</h3>
+          </div>
         </div>
-        <div className="workshop-column">
-          <div>
-            <text> Number of attendees</text>
-            <textarea className="workshop_request_field" />
-          </div>
-          <div>
-            <text> Venue Address</text>
-            <textarea className="workshop_request_field" />
-          </div>
-          <div>
-            <text>Deal size potential (SGD)</text>
-            <textarea className="workshop_request_field" />
-          </div>
-          <div>
-            <div>
-              <text>Comments / Resources Required</text>
-              <textarea className="reject-reason-input" />
+        <div className="client-home-page-footer">
+          <div className="submit-requests">
+            <div className="sr-title">
+              <h3>Submit Workshop Requests</h3>
+            </div>
+            <div className="sr-datepicker">
+              <div className="startdate">
+                <h4>Workshop start date and time </h4>
+                <DatePicker
+                  selected={startDate}
+                  onChange={handleStartDateChange}
+                  dateFormat="dd/MM/yyyy hh:mm"
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  showTimeSelect
+                  timeIntervals={30}
+                  timeFormat="hh:mm"
+                />{" "}
+              </div>
+              <div className="enddate">
+                {" "}
+                <h4>Workshop end date and time </h4>
+                <DatePicker
+                  selected={endDate}
+                  onChange={handleEndDateChange}
+                  dateFormat="dd/MM/yyyy hh:mm"
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  showTimeSelect
+                  timeIntervals={30}
+                  timeFormat="hh:mm"
+                />
+              </div>
+            </div>
+            <div className="sr-workshop-deets">
+              <div>
+                <label> Number of attendees</label>
+                <textarea
+                  className="workshop_request_field"
+                  value={attendees}
+                  onChange={(e) => setAttendees(e.target.value)}
+                />
+              </div>
+              <div>
+                <label>Workshop name/ ID</label>
+                <textarea
+                  className="workshop_request_field"
+                  value={wsname}
+                  onChange={(e) => setWsname(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="sr-comments">
+              <div>
+                <label>Comments / Resources Required</label>
+                <textarea
+                  className="reject-reason-input"
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="sr-summary">
+              <div className="fields">
+                <h4>Checkout Summary</h4>
+                <h4 className="green-text">Start Date:</h4>
+                <h4 className="red-text">End Date:</h4>
+                <h4>Number of attendees:</h4>
+                <h4>Workshop ID/ Name:</h4>
+                <h4>Additional Requests:</h4>
+              </div>
+              <div className="output">
+                <h4>-----</h4>
+                <h4 className="green-text">
+                  {startDate ? startDate.toLocaleString() : "N/A"}
+                </h4>
+                <h4 className="red-text">
+                  {endDate ? endDate.toLocaleString() : "N/A"}
+                </h4>
+                <h4>{attendees}</h4>
+                <h4>{wsname}</h4>
+                <h4>{comments}</h4>
+              </div>
+            </div>
+            <div className="sr-submit">
+              <button type="submit" className="submit-req-button">
+                Submit Request
+              </button>
+              <button type="submit" className="clear-req-button" onClick={handleresetreq}>
+                Clear
+              </button>
             </div>
           </div>
         </div>
-        <button type="submit" className="signup_submit_button">
-          Submit Request
-        </button>
-      </div>
-    </div>
+      </motion.div>
+    </>
   );
 };
 
