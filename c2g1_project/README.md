@@ -1,63 +1,65 @@
-# C2G1_Project
+# C2G1_Project (Dell Academy)
 A resource management web application that manages workshops, trainers and clients using ReactJS for frontend.
 
-## Requirements
+## Requirements :
+---
+### Frontend
 * React
 * npm
 * j-son server
 
-## Getting started
+### Backend
+* docker
+* C2G1_Backend 
 
-### Clone repository
+
+## Getting started
+---
+
+### Clone Frontend repository
 ```shell
 git clone https://github.com/CoderJae777/C2G1_Project.git
 ```
+### Clone Backend Repository
+```shell
+git clone https://github.com/leesean5150/C2G1_Backend.git
+```
 
 ### Install dependencies
+In your terminal, 
 ```shell
 npm install
 ```
 
-### Running
+In the event of errors  there are 2 things you can do : 
+```shell
+npm audit fix
+```
+```shell
+npm audit fix --force
+```
+Contact developers if you still run into issuess
+
+## Running
+---
+Json-server needs to be ran to read the local backend database (backend implementation is in the works)
+
+```shell
+npx json-server --watch trainer_db.json --port 8000
+```
+```shell
+npx json-server --watch workshop_db.json --port 8002
+```
+```shell
+npx json-server --watch today_db.json --port 8003
+```
+
+Starting the web Application
+
 ```shell
 npm start
 ```
-In another terminal,
-```shell
-npx json-server --watch db.json --port 8000
-```
 
-
-## For developers : 
-### git practices
-1. checkout to main
-2. git pull
-3. checkout to your own local branch
-4. git merge main
-5. cd to cdg1_project
-6. npx json-server --watch db.json --port 8000
-7. npm start
-8. DONE!
-
-### For subsequent commits/ push
-1. Checkout to main
-2. git pull
-3. Checkout to your branch
-4. git merge main 
-5. cd to cdg1_project
-6. npm start
-7. Make sure you have npm and node installed, use npm --version to check if you have it installed. If a version appears you have it installed, if not, install it 
-8. Download Node.js with npm 
-9. npm install 
-
-### In case of errors
-1. npm install 
-2. Ask the group!
-
-### For subsequent push 
-1. git branch (MAKE SURE NOT MAIN)
-2. git status (SEE YOUR EDITS IN RED)
-3. git add .
-4. git status (TO CONFIRM ITS GREEN)
-5. git commit -m "insert what you have done" 
-6. git push (set upstream if first time)
+## What to expect
+---
+screenshot of homepage
