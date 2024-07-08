@@ -58,6 +58,8 @@ export default useFetch;
 // }, [count]
 // ) ==> 
 
+// adding the count means it would re render everytime count changes
+
 
 
 //////////////////////

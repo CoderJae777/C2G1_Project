@@ -1,15 +1,8 @@
 import React from "react";
 import "./styles/clienthomepage.css";
 import "./styles/clientworkshoppage.css";
-import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-import dellacademylogo from "./images/DellAcademy.png";
-import userprofilepic from "./images/userprofilepic.png";
-import stockimgtop from "./images/stockimgtop.jpg";
-import Sidebar from "./components/ClientTopLeftSideBar.js";
-import DateAndTime from "./DateAndTime";
 import { motion } from "framer-motion";
-import "./styles/workshoppage.css";
 import ws1img from "./images/ws1img.png";
 import ws2img from "./images/ws2img.png";
 import ws3img from "./images/ws3img.png";

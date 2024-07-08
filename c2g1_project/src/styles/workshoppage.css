@@ -3,7 +3,6 @@
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   background-image: url("../images/homepageimg3.jpg");
-  margin-top: 80px;
 }
 
 /* Row 1 */
