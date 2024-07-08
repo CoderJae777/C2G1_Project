@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./styles/adminhomepage.css";
 import './styles/adminmanagetrainerpage.css';
 import 'boxicons/css/boxicons.min.css';
-import dellacademylogo from "./images/DellAcademy.png";
-import userprofilepic from "./images/userprofilepic.png";
 import TopLeftSidebar from "./components/TopLeftSideBar";
-import DateAndTime from './DateAndTime';
 import EditTrainerDetailsPopup from './EditTrainerDetailsPopup';
 import TrainerAvailPopup from './TrainerAvailPopup';
 import AddTrainerPopup from './AddTrainerPopup';
+import useFetch from "./components/useFetch";
 
 const AdminManageTrainerPage = () => {
     const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] = useState(false);
     const [isTrainerAvailPopupOpen, setIsTrainerAvailPopupOpen] = useState(false);
     const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
-    const [trainers, setTrainers] = useState([
-        { name: 'Jake', role: 'Training Lead', trainerId: '1007328', isAvailable: true },
-        { name: 'Sally', role: 'Training Assistant', trainerId: '1004893', isAvailable: true }
-        // Add more trainers as needed
-    ]);
-    const [popupIndex, setPopupIndex] = useState(null); // Define popupIndex state
+    const [popupIndex, setPopupIndex] = useState(null);
+
+    const { trainer_data } = useFetch();
 
     const handleOpenTrainerDetailsPopup = () => {
         setIsTrainerDetailsPopupOpen(true);
@@ -39,12 +34,14 @@ const AdminManageTrainerPage = () => {
     };
 
     const handleAvailabilityChange = (selectedAvailability, index) => {
-        const updatedTrainers = [...trainers];
+        const updatedTrainers = [...trainer_data];
         updatedTrainers[index].isAvailable = selectedAvailability === 'Available';
-        setTrainers(updatedTrainers);
+        // Assuming you would update the state with the new trainers data.
+        // You might need a separate state to manage the availability if you don't want to mutate fetched data directly.
+        // setTrainers(updatedTrainers);
     };
 
-    const handleOpenAddTrainerPopup = (index) => {
+    const handleOpenAddTrainerPopup = () => {
         setIsAddTrainerPopupOpen(true);
     };
 
@@ -72,47 +69,48 @@ const AdminManageTrainerPage = () => {
                     <TopLeftSidebar />
                 </div>
                 <div className="manage-trainer-column">
-                    <div className="title-and-datetime">
+                    <div className="manage-trainer-title">
                         <button className="add-trainer-button" onClick={handleOpenAddTrainerPopup}>Add Trainer</button>
-                        <h3>Manage Trainers</h3>
-                        <DateAndTime />
+                        <h2>Manage Trainers</h2>
                     </div>
-                    <div className='manage-trainer-panel'>
-                        <table className="trainer-info-table">
-                            <thead>
-                                <tr>
-                                    <th className="trainer-info-table-th">Name</th>
-                                    <th className="trainer-info-table-th">Role</th>
-                                    <th className="trainer-info-table-th">Trainer ID</th>
-                                    <th className="trainer-info-table-th">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {trainers.map((trainer, index) => (
-                                    <tr key={index}>
-                                        <td className="trainer-info-table-td">{trainer.name}</td>
-                                        <td className="trainer-info-table-td">{trainer.role}</td>
-                                        <td className="trainer-info-table-td">{trainer.trainerId}</td>
-                                        <td className="trainer-info-table-td">
-                                            <button className="trainer-info-table-button">View Schedule</button>
-                                            <button
-                                                className="trainer-info-table-button"
-                                                onClick={handleOpenTrainerDetailsPopup}
-                                            >
-                                                Edit Details
-                                            </button>
-                                            <button
-                                                className="trainer-info-table-button"
-                                                onClick={() => handleOpenTrainerAvailPopup(index)}
-                                            >
-                                                {trainer.isAvailable ? 'Available' : 'Unavailable'}
-                                            </button>
-                                        </td>
+                    <div className='manage-trainer-panel-outer'>
+                        <div className='manage-trainer-panel'>
+                            <table className="trainer-info-table">
+                                <thead>
+                                    <tr>
+                                        <th className="trainer-info-table-th">Name</th>
+                                        <th className="trainer-info-table-th">Role</th>
+                                        <th className="trainer-info-table-th">Trainer ID</th>
+                                        <th className="trainer-info-table-th">Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {trainer_data.map((trainer, index) => (
+                                        <tr key={index}>
+                                            <td className="trainer-info-table-td">{trainer.name}</td>
+                                            <td className="trainer-info-table-td">{trainer.trainer_role}</td>
+                                            <td className="trainer-info-table-td">{trainer.trainer_ID}</td>
+                                            <td className="trainer-info-table-td">
+                                                <button className="trainer-info-table-button">View Schedule</button>
+                                                <button
+                                                    className="trainer-info-table-button"
+                                                    onClick={handleOpenTrainerDetailsPopup}
+                                                >
+                                                    Edit Details
+                                                </button>
+                                                <button
+                                                    className="trainer-info-table-button"
+                                                    onClick={() => handleOpenTrainerAvailPopup(index)}
+                                                >
+                                                    {trainer.isAvailable ? 'Available' : 'Unavailable'}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>    
                 </div>
             </div>
         </>
