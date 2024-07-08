@@ -53,7 +53,6 @@ body {
   margin-bottom: -30px;
   justify-content: center;
   width: 500px;
-  /* edit this to centralise welcome back words by matching workshop request size */
 }
 
 .workshop-table {
@@ -137,7 +136,6 @@ body {
   margin-bottom: -60px;
   margin-right: 20px;
   width: 900px;
-  /* edit this to align left f date time by matching admin graph div size */
 }
 
 /* TRAINER TABLE CSS ------------------------------------------------------------------ */
