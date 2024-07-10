@@ -31,19 +31,12 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 60px;
-    margin-bottom: -15px;
+    margin-bottom: -10px;
 }
 
 .admin-workshop-request-page-title {
     flex: 1;
     text-align: center;
-    margin-left: 550px;
-}
-
-.workshop-request-datetime {
-    flex: 1;
-    text-align: right;
-    margin-right: 150px;
 }
 
 .workshop-request-column {
@@ -69,6 +62,34 @@
     align-items: center;
     justify-content: space-between;
 }
+
+/* CSS FOR WORKSHOP REQUEST DETAILS ----------------------------------------------------------------------------- */
+
+.workshop-request-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .workshop-request-table-row {
+    display: table-row;
+  }
+  
+  .workshop-request-table-cell {
+    display: table-cell;
+    padding: 8px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+  
+  .workshop-request-details {
+    width: 560PX;
+    margin-bottom: 5px;
+    overflow: auto;
+  }
+  
+
+/* CSS FOR WORKSHOP REQUEST BUTTONS ----------------------------------------------------------------------------- */
 
 .workshop-request-buttons {
     display: flex;
