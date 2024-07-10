@@ -31,7 +31,7 @@
             "gender": "female",
             "experience": "3",
             "trainer_role": "Training Lead",
-            "availability": "Available",
+            "availability": "Unvailable",
             "workshops_completed_this_month": 0,
             "ongoing_workshops": 5,
             "workshops_completed_total": 72
@@ -55,7 +55,7 @@
             "gender": "female",
             "experience": "10",
             "trainer_role": "Training Lead",
-            "availability": "Available",
+            "availability": "Unavailable",
             "workshops_completed_this_month": 4,
             "ongoing_workshops": 2,
             "workshops_completed_total": 79
@@ -103,7 +103,7 @@
             "gender": "male",
             "experience": "2",
             "trainer_role": "Training Lead",
-            "availability": "Available",
+            "availability": "Unavailable",
             "workshops_completed_this_month": 1,
             "ongoing_workshops": 1,
             "workshops_completed_total": 12
@@ -115,7 +115,7 @@
             "gender": "female",
             "experience": "6",
             "trainer_role": "Training Assistant",
-            "availability": "Available",
+            "availability": "Unavailable",
             "workshops_completed_this_month": 0,
             "ongoing_workshops": 4,
             "workshops_completed_total": 47
@@ -127,7 +127,7 @@
             "gender": "male",
             "experience": "3",
             "trainer_role": "Training Lead",
-            "availability": "Available",
+            "availability": "Unavailable",
             "workshops_completed_this_month": 2,
             "ongoing_workshops": 2,
             "workshops_completed_total": 23
@@ -139,7 +139,7 @@
             "gender": "female",
             "experience": "5",
             "trainer_role": "Training Assistant",
-            "availability": "Available",
+            "availability": "Unavailable",
             "workshops_completed_this_month": 3,
             "ongoing_workshops": 1,
             "workshops_completed_total": 30

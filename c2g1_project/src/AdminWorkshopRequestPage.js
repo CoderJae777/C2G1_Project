@@ -62,7 +62,7 @@ const workshop_request_data = [
     location: "Singapore",
     venue: "SUTD",
     attendees: "60",
-    comments: "This table is not very good for glamping."
+    comments: "This table is not very good for glamping. HI HIH HI HIH HI HIH I HI HI HI HI HI HI HI H IHI HI H IH IH IH IH IH IH IH IH IH IH IH IH IH IH I HI HI HI H HI H."
   }
 ];
 

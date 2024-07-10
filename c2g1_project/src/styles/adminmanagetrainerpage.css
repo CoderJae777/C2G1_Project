@@ -21,14 +21,17 @@
 }
 
 .manage-trainer-title {
+    width: 80%;
     display: flex;
-    justify-content: space-between; /* Aligns items to both ends */
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .manage-trainer-title h2 {
-    margin-right: 650px;
+    margin-right: 480px;
 }
 
 .add-trainer-button{
@@ -56,6 +59,7 @@
 
 .manage-trainer-panel-outer {
     height: 540px;
+    width: 80%;
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
@@ -63,8 +67,9 @@
     text-align: center;
     margin-top: 5px;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 .manage-trainer-panel {
     height: 500px;
@@ -87,7 +92,7 @@
 }
 
 .trainer-info-table-th, .trainer-info-table-td {
-    border: 1px solid #ddd;
+    border: 1px solid #d7d7d7;
     padding: 8px;
     text-align: center;
 }
