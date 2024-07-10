@@ -11,7 +11,7 @@
 
 .trainer-img,
 .client-img,
-.admin-img{
+.admin-img {
   margin-bottom: 24px;
   margin-top: 24px;
 }
@@ -21,7 +21,7 @@
   margin-top: 20.5px;
 }
 
-.role{
+.role {
   color: #0083ca;
 }
 
@@ -151,7 +151,8 @@
 }
 
 .navbar button,
-.testibutton {
+.testibutton,
+.signin_button {
   background-color: #eef8ff;
   color: black;
   width: 150px;
@@ -173,7 +174,8 @@
 }
 
 .navbar button:hover,
-.testibutton:hover {
+.testibutton:hover,
+.signin_button {
   background-color: #28abf1;
   color: white;
   transition: background-color 500ms;
@@ -385,13 +387,13 @@
 .homepage-div-5-title {
   display: flex;
   justify-content: center;
-  
+  font-size: 22px;
+  color: #0083ca;
   align-items: center;
   margin-top: 50px;
   width: 100%;
   grid-column-start: span 4;
 }
-
 
 .infotext {
   align-items: left;
@@ -403,19 +405,55 @@
 }
 
 .bottom-of-homepage {
+  display: grid;
+  grid-template-rows: 80px 1fr;
   background-color: #e3f2fd;
-
   width: 100%;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  color: #a9a9a9;
+  color: #0083ca;
+  font-size: 22px;
+  height: 100%;
 }
 
-.title {
+.contactustitle {
+  display: grid;
+  grid-row-start: 1;
   margin-top: 50px;
+  margin: 20px;
+}
+/* Style form groups uniformly */
+.form_group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.form_control {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #0083ca;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
+.form_control:focus {
+  border-color: #28abf1;
+  outline: none;
+}
+.contactform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px; /* Adjust the width as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
 /* testimonial design */
 .testibutton {
   align-items: center;

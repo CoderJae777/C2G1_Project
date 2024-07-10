@@ -15,11 +15,13 @@ import HomePage from './HomePage';
 import OurWorkshopPage from './components/OurWorkshopPage';
 import ClientWorkshopPage from "./ClientWorkshopPage"
 import ProfilePage from './ProfilePage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
       <div className="App">
+      <ScrollToTop/>
       <ToastContainer theme="colored">
       </ToastContainer>
         <Routes>
