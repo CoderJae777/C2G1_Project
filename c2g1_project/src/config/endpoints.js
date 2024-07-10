@@ -7,6 +7,9 @@ const endpoints = {
   verify: "/auth/verify",
   logout: "/auth/logout",
   signup: "/auth/signup",
+  admin: {
+    addTrainer: "/auth/trainers",
+  },
 };
 
 export { endpoints };

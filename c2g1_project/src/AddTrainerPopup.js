@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
+import useAxiosPost from './api/useAxiosPost';
+import { config } from './config/config';
+import { endpoints } from './config/endpoints';
 
 const AddTrainerPopup = ({ onClose }) => {
     const [trainerName, setTrainerName] = useState("");
@@ -37,14 +40,31 @@ const AddTrainerPopup = ({ onClose }) => {
         setTrainerPassword(event.target.value);
     };
 
-    const handleSubmit = () => {
+    const handleSuccess = (data) => {
+        onClose();
+      };
+    
+      const handleError = (error) => {
+        alert("Error creating trainer, please contact the administrator.");
+      };
+    
+      const { data, loading, error, setBody, refetch } = useAxiosPost(
+        config.base_url + endpoints.admin.addTrainer,
+        {},
+        [],
+        handleSuccess,
+        handleError
+      );
+
+    const handleSubmit = (e) => {
         // Handle submission logic here
         console.log("Trainer Name:", trainerName);
         console.log("Trainer Role:", trainerRole);
         console.log("Trainer ID:", trainerId);
         console.log("Trainer Email:", trainerEmail);
         console.log("Trainer Password:", trainerPassword);
-        onClose();
+        setBody({ username: trainerName, password: trainerPassword, email: trainerEmail });
+        refetch();
     };
 
     return (
