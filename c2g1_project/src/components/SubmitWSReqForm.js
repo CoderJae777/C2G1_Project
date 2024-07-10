@@ -132,6 +132,19 @@ const SubmitWSReqForm = () => {
         />
       </div>
       <div className="ws_req_form_group">
+        <label className="label" htmlFor="company">
+          Number of Attendees
+        </label>
+        <input
+          className="ws_req_form_control"
+          type="text"
+          id="company"
+          name="company"
+          value={formData.company}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="ws_req_form_group">
         <label className="label" htmlFor="message">
           Message *
         </label>
