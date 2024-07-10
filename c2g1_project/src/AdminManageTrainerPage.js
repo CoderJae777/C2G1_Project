@@ -36,7 +36,7 @@ const AdminManageTrainerPage = () => {
 
   const handleAvailabilityChange = (selectedAvailability, index) => {
     const updatedTrainers = [...trainer_data];
-    updatedTrainers[index].isAvailable = selectedAvailability === "Available";
+    updatedTrainers[index].availability = selectedAvailability;
     // Assuming you would update the state with the new trainers data.
     // You might need a separate state to manage the availability if you don't want to mutate fetched data directly.
     // setTrainers(updatedTrainers);
@@ -114,7 +114,7 @@ const AdminManageTrainerPage = () => {
                           className="trainer-info-table-button"
                           onClick={() => handleOpenTrainerAvailPopup(index)}
                         >
-                          {trainer.isAvailable ? "Available" : "Unavailable"}
+                          {trainer.availability}
                         </button>
                       </td>
                     </tr>

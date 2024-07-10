@@ -6,8 +6,9 @@ import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import DateAndTime from "../DateAndTime";
+import ProfilePage from "../ProfilePage";
 
-const TopLeftSideBar = () => {
+const TrainerTopLeftSideBar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const nav = useNavigate();
 
@@ -18,22 +19,17 @@ const TopLeftSideBar = () => {
     false
   );
 
-  const handleAdminWorkshopRequestPage = (e) => {
+  const handleTrainerWorkshopPage = (e) => {
     e.preventDefault();
-    nav("/AdminWorkshopRequestPage");
+    nav("/TrainerWorkshopPage");
   };
 
-  const handleAdminManageTrainerPage = (e) => {
+  const handleTrainerHomePage = (e) => {
     e.preventDefault();
-    nav("/AdminManageTrainerPage");
+    nav("/TrainerHomePage");
   };
 
-  const handleAdminHomePage = (e) => {
-    e.preventDefault();
-    nav("/AdminHomePage");
-  };
-
-  const handleProfilePage = () => {
+  const handleprofile = () => {
     nav("/ProfilePage")
   }
 
@@ -82,35 +78,25 @@ const TopLeftSideBar = () => {
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleAdminHomePage}>
+                <a href="#" className="nav-link" onClick={handleTrainerHomePage}>
                   <i className="bx bx-home-alt icon"></i>
                   <span className="link">Home</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleProfilePage}>
+                <a href="#" className="nav-link">
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
-                  <span className="link">Profile</span>
+                  <span className="link" onClick={handleprofile}>Profile</span>
                 </a>
               </li>
               <li className="list">
                 <a
                   href="#"
                   className="nav-link"
-                  onClick={handleAdminWorkshopRequestPage}
+                  onClick={handleTrainerWorkshopPage}
                 >
                   <i className="bx bx-clipboard icon"></i>
-                  <span className="link">Workshop Requests</span>
-                </a>
-              </li>
-              <li className="list">
-                <a
-                  href="#"
-                  className="nav-link"
-                  onClick={handleAdminManageTrainerPage}
-                >
-                  <i className="bx bx-group icon"></i>
-                  <span className="link">Manage Trainers</span>
+                  <span className="link">Workshop</span>
                 </a>
               </li>
             </ul>
@@ -139,4 +125,4 @@ const TopLeftSideBar = () => {
   );
 };
 
-export default TopLeftSideBar;
+export default TrainerTopLeftSideBar;

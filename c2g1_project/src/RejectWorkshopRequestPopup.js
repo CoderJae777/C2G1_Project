@@ -21,7 +21,7 @@ const RejectWorkshopRequestPopup = ({ onClose }) => {
                 className="reject-reason-input" 
                 value={rejectReason} 
                 onChange={handleReasonChange} 
-                placeholder="Enter reason here"
+                placeholder=" Enter reason here"
             />
             <div className="popup-buttons">
                 <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
