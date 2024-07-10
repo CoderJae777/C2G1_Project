@@ -5,9 +5,9 @@
     "\\c2g1_project\\public",
     "\\c2g1_project\\src",
     "\\c2g1_project\\src\\components",
-    "\\c2g1_project\\src\\images",
+    "\\c2g1_project\\src\\config",
     "\\c2g1_project\\src\\styles"
   ],
-  "SelectedNode": "\\c2g1_project\\src\\styles\\clienthomepage.css",
+  "SelectedNode": "\\c2g1_project\\src\\ClientHomePage.js",
   "PreviewInSolutionExplorer": false
 }
