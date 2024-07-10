@@ -2,7 +2,7 @@
 .workshoppage {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    background-image: url("../images/homepageimg3.jpg");
+    background-image: url("../images/workshopbg.jpg");
     margin-top: 80px;
   }
   
@@ -32,8 +32,8 @@
     border-style: solid;
     border-radius: 15px;
     padding: 25px;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-      rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    /* box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+      rgba(255, 255, 255, 0.8) -6px -2px 16px 0px; */
     background-color: #e3f2fd;
   }
   
@@ -45,8 +45,7 @@
   .workshoppage-2-ws2:hover,
   .workshoppage-2-ws3:hover,
   .workshoppage-2-ws4:hover {
-    background-color: #0083ca;
-    color: white;
+    
   }
   
   /* Row 1 Col 2 */
