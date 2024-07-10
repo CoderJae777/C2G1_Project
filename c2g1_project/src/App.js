@@ -15,11 +15,14 @@ import HomePage from './HomePage';
 import OurWorkshopPage from './components/OurWorkshopPage';
 import ClientWorkshopPage from "./ClientWorkshopPage"
 import ProfilePage from './ProfilePage';
+import ScrollToTop from './components/ScrollToTop';
+import TrainerWorkshopPage from "./TrainerWorkshopPage"
 
 function App() {
   return (
     <Router>
       <div className="App">
+      <ScrollToTop/>
       <ToastContainer theme="colored">
       </ToastContainer>
         <Routes>
@@ -38,6 +41,7 @@ function App() {
           <Route exact path="/AdminManageTrainerPage" element={<AdminManageTrainerPage />} />
           <Route exact path="/ClientWorkshopPage" element={<ClientWorkshopPage />} />
           <Route exact path='/ProfilePage' element={<ProfilePage/>}/>
+          <Route exact path="/TrainerWorkshopPage" element={<TrainerWorkshopPage />} />
         </Routes>
       </div>
     </Router>

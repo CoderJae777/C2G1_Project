@@ -6,6 +6,8 @@ const AddTrainerPopup = ({ onClose }) => {
     const [trainerName, setTrainerName] = useState("");
     const [trainerRole, setTrainerRole] = useState("");
     const [trainerId, setTrainerId] = useState("");
+    const [trainerEmail, setTrainerEmail] = useState("");
+    const [trainerPassword, setTrainerPassword] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [selectedRole, setSelectedRole] = useState(null);
 
@@ -15,8 +17,8 @@ const AddTrainerPopup = ({ onClose }) => {
 
     const handleRoleSelect = (role) => {
         setSelectedRole(role);
-        setTrainerRole(role); // Optionally update the state for trainerRole
-        setIsOpen(false); // Close dropdown after selection
+        setTrainerRole(role);
+        setIsOpen(false);
     };
 
     const handleNameChange = (event) => {
@@ -27,11 +29,21 @@ const AddTrainerPopup = ({ onClose }) => {
         setTrainerId(event.target.value);
     };
 
+    const handleEmailChange = (event) => {
+        setTrainerEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setTrainerPassword(event.target.value);
+    };
+
     const handleSubmit = () => {
         // Handle submission logic here
         console.log("Trainer Name:", trainerName);
         console.log("Trainer Role:", trainerRole);
         console.log("Trainer ID:", trainerId);
+        console.log("Trainer Email:", trainerEmail);
+        console.log("Trainer Password:", trainerPassword);
         onClose();
     };
 
@@ -52,6 +64,20 @@ const AddTrainerPopup = ({ onClose }) => {
                 value={trainerId}
                 onChange={handleIdChange}
                 placeholder="Enter trainer ID"
+            />
+            <input
+                className="trainer-email-input"
+                type="text"
+                value={trainerEmail}
+                onChange={handleEmailChange}
+                placeholder="Enter trainer email"
+            />
+            <input
+                className="trainer-pw-input"
+                type="text"
+                value={trainerPassword}
+                onChange={handlePasswordChange}
+                placeholder="Enter trainer password"
             />
             <div className="select-menu-container">
                 <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>

@@ -44,7 +44,7 @@
 .trainer-role-popup button,
 .add-trainer-popup button{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
     padding: 10px 0;
     border: 0;
     outline: none;
@@ -89,7 +89,7 @@
     height: 100px;
     margin-top: 10px;
     box-sizing: border-box;
-} 
+}
 
 /* CSS FOR MULTIPLE OPTION SELECT MENU ------------------------------------------------------------------------- */
 
@@ -99,6 +99,7 @@
     width: 100%;
     border-radius: 8px;
     margin: 20px 0;
+    margin-left: 10px;
 }
 
 .select-btn {
@@ -205,7 +206,9 @@
 /* CSS FOR ADD TRAINER POPUP --------------------------------------------------------------------------------- */
 
 .trainer-name-input,
-.trainer-id-input {
+.trainer-id-input,
+.trainer-email-input,
+.trainer-pw-input {
     width: 80%;
     padding: 6px 10px;
     border-width: 3px;

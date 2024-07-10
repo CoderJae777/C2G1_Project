@@ -8,6 +8,7 @@ import Navbar from "./components/NavBar.js";
 import { Testimonials } from "./components/Testimonials.js";
 import About from "./components/about.js";
 import { useNavigate } from "react-router-dom";
+import ContactForm from "./ContactForm.js";
 
 const HomePage = () => {
   const [move, setMove] = useState(false);
@@ -167,8 +168,13 @@ const HomePage = () => {
         initial={{ scale: 0 }}
         className="bottom-of-homepage"
       >
-        <div className="title">
+        <div className="contactustitle">
           <h3>Contact Us</h3>
+        </div>
+        <div className="contactform">
+          <form>
+            <ContactForm />
+          </form>
         </div>
       </motion.div>
     </>

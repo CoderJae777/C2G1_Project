@@ -29,6 +29,7 @@ const Navbar = () => {
 
   const handleHomePage = () => {
     nav("/");
+  
   };
   const handleworkshop = () => {
     nav("/OurWorkshopPage");
