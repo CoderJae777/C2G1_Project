@@ -13,6 +13,9 @@ import ClientLoginPage from "./ClientLoginPage";
 import TrainerHomePage from "./TrainerHomePage";
 import { motion } from "framer-motion";
 import Navbar from "./components/NavBar.js";
+import useAxiosPost from "./api/useAxiosPost.jsx";
+import { config } from "./config/config.js";
+import { endpoints } from "./config/endpoints.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
@@ -23,29 +26,27 @@ const TrainerLoginPage = () => {
   const [password, passwordupdate] = useState("");
   const [move, setMove] = useState(false);
 
+  const handleSuccess = (data) => {
+    nav("/TrainerHomePage");
+  };
+
+  const handleError = (error) => {
+    alert(error.response.data.message);
+  };
+
+  const { data, loading, error, setBody, refetch } = useAxiosPost(
+    config.base_url + endpoints.login.trainer,
+    {},
+    [],
+    handleSuccess,
+    handleError
+  );
+
   const ProceedLogin = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Sign in button registered");
-      fetch("http://localhost:8000/user_data/" + username)
-        .then((res) => {
-          return res.json();
-        })
-        .then((userData) => {
-          console.log(userData);
-          if (Object.keys(userData).length === 0) {
-            alert("Please Enter valid username");
-          } else {
-            if (userData.password === password) {
-              nav("/TrainerHomePage");
-            } else {
-              alert("Invalid Password");
-            }
-          }
-        })
-        .catch((error) => {
-          alert("Login Failed: User Account does not exist");
-        });
+      setBody({ username, password });
+      refetch();
     }
   };
 
