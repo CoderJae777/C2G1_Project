@@ -12,7 +12,7 @@ const useFetch = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setTrainerData(data);
+        setTrainerData(data.data);
       });
   }, []); // Empty dependency array ensures useEffect runs only once
 
