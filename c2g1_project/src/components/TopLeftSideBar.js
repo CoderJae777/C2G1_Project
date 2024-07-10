@@ -6,6 +6,7 @@ import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import DateAndTime from "../DateAndTime";
+import ProfilePage from "../ProfilePage";
 
 const TopLeftSideBar = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -32,6 +33,10 @@ const TopLeftSideBar = () => {
     e.preventDefault();
     nav("/AdminHomePage");
   };
+
+  const handleprofile = () => {
+    nav("/ProfilePage")
+  }
 
   const handleNavBarSignOut = (e) => {
     e.preventDefault();
@@ -86,7 +91,7 @@ const TopLeftSideBar = () => {
               <li className="list">
                 <a href="#" className="nav-link">
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
-                  <span className="link">Profile</span>
+                  <span className="link" onClick={handleprofile}>Profile</span>
                 </a>
               </li>
               <li className="list">

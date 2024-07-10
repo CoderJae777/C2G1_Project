@@ -21,7 +21,7 @@ const HomePage = () => {
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.25 }}
         className="homepage"
       >
         <Navbar />
@@ -34,16 +34,16 @@ const HomePage = () => {
             className="about2"
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
-            transition={{ delay: 2 }}
+            transition={{ delay: 1 }}
           >
             <h2>Come join our Award Winning Workshops!</h2>
             <div>
               <motion.button
-                transition={{ delay: 0.25 }}
-                animate={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
+                transition={{ delay: 1.25 }}
+                animate={{ scale: 1 }}
+                initial={{ scale: 0 }}
                 whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.4 }}
                 className="testibutton"
                 onClick={handleSignUp}
               >
@@ -57,16 +57,16 @@ const HomePage = () => {
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        transition={{ delay: 0.75 }}
+        transition={{ delay: 0.5 }}
         className="homepage-div-2"
       >
         <div className="homepageinfo">
           <div className="testimonials">
             <Testimonials />
             <motion.button
-              transition={{ delay: 0.25 }}
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
+              transition={{ delay: 1.25 }}
+              animate={{ scale: 1 }}
+              initial={{ scale: 0 }}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               className="testibutton"
@@ -79,16 +79,16 @@ const HomePage = () => {
       </motion.div>
 
       <motion.div
-        animate={{ scale: 1 }}
-        transition={{ delay: 1 }}
-        initial={{ scale: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.75 }}
+        initial={{ opacity: 0 }}
         className="homepage-div-3"
       >
         <motion.div
           className="homepage-div-3-title1"
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 1 }}
         >
           <h3>What we offer : </h3>
         </motion.div>
@@ -96,12 +96,12 @@ const HomePage = () => {
           className="homepage-div-3-title2"
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
-          transition={{ delay: 2.25 }}
+          transition={{ delay: 1.25 }}
         >
           <motion.button
-            transition={{ delay: 0.25 }}
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
+            transition={{ delay: 1.25 }}
+            animate={{ scale: 1 }}
+            initial={{ scale: 0 }}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             className="testibutton"
@@ -113,7 +113,7 @@ const HomePage = () => {
 
       <motion.div
         animate={{ scale: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 0 }}
         initial={{ scale: 0 }}
         className="homepage-div-5"
       >
@@ -125,13 +125,7 @@ const HomePage = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
         >
-          <div className="infoimg">
-            <img
-              src={homepageinfoimg1}
-              className="homepageinfoimg"
-              alt="homepageinfoimg"
-            ></img>
-          </div>
+          <div className="infoimg"></div>
           <div className="infotext">
             <h5>Comprehensive Workshops</h5>
           </div>
@@ -141,13 +135,7 @@ const HomePage = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
         >
-          <div className="infoimg">
-            <img
-              src={homepageinfoimg2}
-              className="homepageinfoimg"
-              alt="homepageinfoimg"
-            ></img>
-          </div>
+          <div className="infoimg"></div>
           <div className="infotext">
             <h5>Professional Trainers</h5>
           </div>
@@ -157,13 +145,7 @@ const HomePage = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
         >
-          <div className="infoimg">
-            <img
-              src={homepageinfoimg3}
-              className="homepageinfoimg"
-              alt="homepageinfoimg"
-            ></img>
-          </div>
+          <div className="infoimg"></div>
           <div className="infotext">
             <h5>Efficient Booking</h5>
           </div>
@@ -173,13 +155,7 @@ const HomePage = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
         >
-          <div className="infoimg">
-            <img
-              src={homepageinfoimg4}
-              className="homepageinfoimg"
-              alt="homepageinfoimg"
-            ></img>
-          </div>
+          <div className="infoimg"></div>
           <div className="infotext">
             <h5>Verified Results</h5>
           </div>
