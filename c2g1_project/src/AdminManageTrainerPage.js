@@ -4,15 +4,17 @@ import "./styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
 import TopLeftSidebar from "./components/TopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
-import TrainerAvailPopup from "./TrainerAvailPopup";
+import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
 import useFetch from "./components/useFetch";
+import TrainerScheduleCalendar from "./components/TrainerScheduleCalendar";
 
 const AdminManageTrainerPage = () => {
   const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
     useState(false);
-  const [isTrainerAvailPopupOpen, setIsTrainerAvailPopupOpen] = useState(false);
+  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] = useState(false);
   const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
+  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] = useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
 
   const { trainer_data } = useFetch();
@@ -25,20 +27,20 @@ const AdminManageTrainerPage = () => {
     setIsTrainerDetailsPopupOpen(false);
   };
 
-  const handleOpenTrainerAvailPopup = (index) => {
-    setIsTrainerAvailPopupOpen(true);
+  const handleOpenTrainerActivityPopup = (index) => {
+    setIsTrainerActivityPopupOpen(true);
     setPopupIndex(index);
   };
 
-  const handleCloseTrainerAvailPopup = () => {
-    setIsTrainerAvailPopupOpen(false);
+  const handleCloseTrainerActivityPopup = () => {
+    setIsTrainerActivityPopupOpen(false);
   };
 
-  const handleAvailabilityChange = (selectedAvailability, index) => {
+  const handleActivityChange = (selectedActivity, index) => {
     const updatedTrainers = [...trainer_data];
-    updatedTrainers[index].availability = selectedAvailability;
+    updatedTrainers[index].activity = selectedActivity;
     // Assuming you would update the state with the new trainers data.
-    // You might need a separate state to manage the availability if you don't want to mutate fetched data directly.
+    // You might need a separate state to manage the activity if you don't want to mutate fetched data directly.
     // setTrainers(updatedTrainers);
   };
 
@@ -50,20 +52,31 @@ const AdminManageTrainerPage = () => {
     setIsAddTrainerPopupOpen(false);
   };
 
+  const handleOpenTrainerScheduleCalendar = () => {
+    setIsTrainerScheduleCalendarOpen(true);
+  };
+
+  const handleCloseTrainerScheduleCalendar = () => {
+    setIsTrainerScheduleCalendarOpen(false);
+  };
+
   return trainer_data !== null ? (
     <>
       {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup onClose={handleCloseTrainerDetailsPopup} />
       )}
-      {isTrainerAvailPopupOpen && (
-        <TrainerAvailPopup
-          onClose={handleCloseTrainerAvailPopup}
-          onAvailabilityChange={handleAvailabilityChange}
+      {isTrainerActivityPopupOpen && (
+        <TrainerActivityPopup
+          onClose={handleCloseTrainerActivityPopup}
+          onActivityChange={handleActivityChange}
           index={popupIndex}
         />
       )}
       {isAddTrainerPopupOpen && (
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
+      )}
+      {isTrainerScheduleCalendarOpen && (
+        <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
       )}
       <div className="admin-manage-trainer-page">
         <div className="top-panel">
@@ -101,7 +114,10 @@ const AdminManageTrainerPage = () => {
                         {trainer.trainer_ID}
                       </td>
                       <td className="trainer-info-table-td">
-                        <button className="trainer-info-table-button">
+                        <button 
+                          className="trainer-info-table-button"
+                          onClick={handleOpenTrainerScheduleCalendar}
+                        >
                           View Schedule
                         </button>
                         <button
@@ -112,9 +128,9 @@ const AdminManageTrainerPage = () => {
                         </button>
                         <button
                           className="trainer-info-table-button"
-                          onClick={() => handleOpenTrainerAvailPopup(index)}
+                          onClick={() => handleOpenTrainerActivityPopup(index)}
                         >
-                          {trainer.availability}
+                          {trainer.activity}
                         </button>
                       </td>
                     </tr>

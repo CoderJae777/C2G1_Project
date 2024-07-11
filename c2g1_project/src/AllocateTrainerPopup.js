@@ -28,7 +28,6 @@ const AllocateTrainerPopup = ({ onClose }) => {
                         <div className="fa-solid fa-chevron-down">
                             <box-icon name='chevron-down'></box-icon>
                         </div>
-                        
                     </span>
                 </div>
                 {isOpen && (
