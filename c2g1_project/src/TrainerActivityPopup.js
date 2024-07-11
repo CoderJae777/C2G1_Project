@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
 
-const TrainerAvailPopup = ({ onClose, onAvailabilityChange, index }) => {
+const TrainerActivityPopup = ({ onClose, onActivityChange, index }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
@@ -15,16 +15,16 @@ const TrainerAvailPopup = ({ onClose, onAvailabilityChange, index }) => {
     };
 
     const handleSubmit = () => {
-        onAvailabilityChange(selectedItem, index); // Pass selectedItem and index to onAvailabilityChange
+        onActivityChange(selectedItem, index);
         onClose();
     };
 
     return (
-        <div className="trainer-avail-popup open-trainer-avail-popup">
-            <h2>Select Availability</h2>
+        <div className="trainer-activity-popup open-trainer-activity-popup">
+            <h2>Select Activity</h2>
             <div className="select-menu-container">
                 <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
-                    <span className="btn-text">{selectedItem ? selectedItem : 'Select Availability'}</span>
+                    <span className="btn-text">{selectedItem ? selectedItem : 'Select Activity'}</span>
                     <span className="arrow-dwn">
                         <div className="fa-solid fa-chevron-down">
                             <box-icon name='chevron-down'></box-icon>
@@ -33,7 +33,7 @@ const TrainerAvailPopup = ({ onClose, onAvailabilityChange, index }) => {
                 </div>
                 {isOpen && (
                     <ul className="list-items">
-                        {['Available', 'Unavailable'].map((trainer, index) => (
+                        {['Active', 'Inactive'].map((trainer, index) => (
                             <li
                                 key={index}
                                 className={`item ${selectedItem === trainer ? 'checked' : ''}`}
@@ -58,4 +58,4 @@ const TrainerAvailPopup = ({ onClose, onAvailabilityChange, index }) => {
     );
 };
 
-export default TrainerAvailPopup;
+export default TrainerActivityPopup;

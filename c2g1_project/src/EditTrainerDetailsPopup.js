@@ -5,6 +5,7 @@ import 'boxicons/css/boxicons.min.css';
 const EditTrainerDetailsPopup = ({ onClose }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [newTrainerPassword, setNewTrainerPassword] = useState("");
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -14,9 +15,14 @@ const EditTrainerDetailsPopup = ({ onClose }) => {
         setSelectedItem(item === selectedItem ? null : item);
     };
 
+    const handlePasswordChange = (event) => {
+        setNewTrainerPassword(event.target.value);
+    }
+
     return (
         <div className="trainer-role-popup open-trainer-role-popup">
-            <h2>Select Role</h2>
+            <h2>Edit Details</h2>
+            {/* add trainer name and ID so admin knows whose details are being edited, just a QoL thing */}
             <div className="select-menu-container">
                 <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
                     <span className="btn-text">{selectedItem ? selectedItem : 'Select Role'}</span>
@@ -45,6 +51,13 @@ const EditTrainerDetailsPopup = ({ onClose }) => {
                     </ul>
                 )}
             </div>
+            <input
+                className="new-trainer-pw-input"
+                type="text"
+                value={newTrainerPassword}
+                onChange={handlePasswordChange}
+                placeholder="Enter new password"
+            />
             <div className="popup-buttons">
                 <button className="submit-button" type="button" onClick={onClose}>Submit</button>
                 <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
