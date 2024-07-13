@@ -1,103 +1,83 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
+import emailjs from '@emailjs/browser';
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    message: "",
-  });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [phone, setPhone] = useState('');
+  const [company_name, setCompanyName] = useState('');  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form data submitted:", formData);
-  };
+
+    // Your EmailJS service ID, template ID, and Public Key
+    const serviceId = 'service_cj1xpjr';
+    const templateId = 'template_quyan3n';
+    const publicKey = 'wFwJ1xYLVkfwNbAUj';
+
+    // Create a new object that contains dynamic template params
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: 'DellAcademy',
+      message: message,
+      phone: phone,
+      company_name: company_name 
+    };
+
+    // Send the email using EmailJS
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        setName('');
+        setEmail('');
+        setMessage('');
+        setPhone('');
+        setCompanyName('');
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+      });
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="contactform">
-      <div className="form_group">
-        <label className="label" htmlFor="name">
-          Name *
-        </label>
-        <input
-          className="form_control username"
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form_group">
-        <label className="label" htmlFor="email">
-          Email *
-        </label>
-        <input
-          className="form_control username"
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form_group">
-        <label className="label" htmlFor="phone">
-          Phone
-        </label>
-        <input
-          className="form_control username"
-          type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form_group">
-        <label className="label" htmlFor="company">
-          Company
-        </label>
-        <input
-          className="form_control username"
-          type="text"
-          id="company"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form_group">
-        <label className="label" htmlFor="message">
-          Message *
-        </label>
-        <textarea
-          className="form_control"
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form_group">
-        <button type="submit" className="signin_button">
-          Send Message
-        </button>
-      </div>
+    <form onSubmit={handleSubmit} className='emailForm'>
+      <input
+        type="text"
+        placeholder="Your Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Your Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="phone"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+      <input
+        type="company_name"
+        placeholder="Your Company"
+        value={company_name}
+        onChange={(e) => setCompanyName(e.target.value)}
+      />
+      <textarea
+        cols="30"
+        rows="10"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      >
+      </textarea>
+      <button type="submit">Send Email</button>
     </form>
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm
