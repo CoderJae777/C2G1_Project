@@ -12,13 +12,19 @@ const ClientHomePage = () => {
   const [message, setMessage] = useState("");
   const [phone, setPhone] = useState("");
   const [company_name, setCompanyName] = useState("");
+  const [pax, setPax] = useState("");
+  const [dealSize, setDealSize] = useState("");
+  const [location, setLocation] = useState("");
+  const [workshopId, setWorkshopId] = useState("");
+  const [workshopName, setWorkshopName] = useState("");
+  const [role, setRole] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Your EmailJS service ID, template ID, and Public Key
     const serviceId = "service_ks4czg2";
-    const templateId = "template_oypb9n6";
+    const templateId = "template_s99g3id";
     const publicKey = "1T7xmpr5tqQhyh-GS";
 
     // Create a new object that contains dynamic template params
@@ -29,6 +35,12 @@ const ClientHomePage = () => {
       message: message,
       phone: phone,
       company_name: company_name,
+      pax: pax,
+      dealSize: dealSize,
+      location: location,
+      workshopId: workshopId,
+      workshopName: workshopName,
+      role: role,
     };
 
     // Send the email using EmailJS
@@ -41,6 +53,12 @@ const ClientHomePage = () => {
         setMessage("");
         setPhone("");
         setCompanyName("");
+        setDealSize("");
+        setPax("");
+        setLocation("");
+        setWorkshopId("");
+        setWorkshopName("");
+        setRole("");
       })
       .catch((error) => {
         console.error("Error sending email:", error);
@@ -70,6 +88,34 @@ const ClientHomePage = () => {
         {/* LAYER 2 RIGHT */}
         <div className="client-home-page-right">
           <form onSubmit={handleSubmit} className="ws_req_form_group">
+            <h2 className="ws_req_form_heading">Submit Workshop Request</h2>
+            <div className="ws_req_form_workshop_id">
+              <input
+                type="text"
+                placeholder="Workshop ID"
+                value={workshopId}
+                onChange={(e) => setWorkshopId(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_workshop_name">
+              <input
+                type="text"
+                placeholder="Workshop Name"
+                value={workshopName}
+                onChange={(e) => setWorkshopName(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_role">
+              <input
+                type="text"
+                placeholder="Role at Company"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
             <div className="ws_req_form_name">
               <input
                 type="text"
@@ -106,6 +152,33 @@ const ClientHomePage = () => {
                 className="ws_req_form_control"
               />
             </div>
+            <div className="ws_req_form_pax">
+              <input
+                type="number"
+                placeholder="Number of Pax"
+                value={pax}
+                onChange={(e) => setPax(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_deal_size">
+              <input
+                type="text"
+                placeholder="Deal Size Potential"
+                value={dealSize}
+                onChange={(e) => setDealSize(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_location">
+              <input
+                type="text"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
             <div className="ws_req_form_message">
               <textarea
                 cols="30"
@@ -116,7 +189,7 @@ const ClientHomePage = () => {
                 className="ws_req_form_control"
               ></textarea>
             </div>
-            <div>
+            <div className="ws_req_form_button">
               <button type="submit" className="ws_req_submit_button">
                 Submit Request
               </button>

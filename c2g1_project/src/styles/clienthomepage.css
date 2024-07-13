@@ -24,16 +24,28 @@
   grid-row-start: 1;
   width: 90%;
   height: 20%;
-  background-color: #0083ca;
   margin: 30px;
+  background: #e3f2fd;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  color: #0672cb;
 }
 
 .client-home-page-left-bottom {
   grid-row-start: 2;
   width: 90%;
   height: 20%;
-  background-color: #0083ca;
   margin: 30px;
+  background: #e3f2fd;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  color: #0672cb;
 }
 
 /* LAYER 3 RIGHT */
@@ -41,6 +53,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px; /* Adds space between inputs */
+}
+
+.ws_req_form_heading {
+  grid-column: 1 / span 2; /* Spans the heading across both columns */
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .ws_req_form_group input,
@@ -60,8 +79,65 @@
   outline: none;
 }
 
+.ws_req_form_workshop_id {
+  grid-row-start: 2;
+  grid-column-start: 1;
+}
+
+.ws_req_form_workshop_name {
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+
+.ws_req_form_role {
+  grid-row-start: 3;
+  grid-column-start: 1;
+}
+
+.ws_req_form_name {
+  grid-row-start: 3;
+  grid-column-start: 2;
+}
+
+.ws_req_form_email {
+  grid-row-start: 4;
+  grid-column-start: 1;
+}
+
+.ws_req_form_phone {
+  grid-row-start: 4;
+  grid-column-start: 2;
+}
+
+.ws_req_form_company {
+  grid-row-start: 5;
+  grid-column-start: 1;
+}
+
+.ws_req_form_pax {
+  grid-row-start: 5;
+  grid-column-start: 2;
+}
+
+.ws_req_form_deal_size {
+  grid-row-start: 6;
+  grid-column-start: 1;
+}
+
+.ws_req_form_location {
+  grid-row-start: 6;
+  grid-column-start: 2;
+}
+
 .ws_req_form_message {
   grid-column: 1 / span 2;
+}
+
+.ws_req_form_button {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: center; /* Centralizes the submit button */
+  margin-top: 20px; /* Adds some space before the button */
 }
 
 .ws_req_submit_button {
@@ -74,8 +150,6 @@
   font-family: roboto;
   font-size: 15px;
   font-weight: bold;
-  margin-top: 20px; /* Adds some space before the button */
   transition: background-color 1000ms;
   border-color: black;
-  grid-column: 1 / span 2; /* Makes the button span both columns */
 }
