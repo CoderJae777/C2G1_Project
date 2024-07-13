@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/adminworkshoprequestpagepopups.css';
+import '../styles/adminworkshoprequestpagepopups.css';
 
 const RejectWorkshopRequestPopup = ({ onClose }) => {
     const [rejectReason, setRejectReason] = useState("");

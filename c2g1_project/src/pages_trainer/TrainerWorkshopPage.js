@@ -1,17 +1,17 @@
 import React from "react";
-import "./styles/clienthomepage.css";
-import "./styles/clientworkshoppage.css";
+import "../styles/clienthomepage.css";
+import "../styles/clientworkshoppage.css";
 import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
-import ws1img from "./images/ws1img.png";
-import ws2img from "./images/ws2img.png";
-import ws3img from "./images/ws3img.png";
-import ws4img from "./images/ws4img.png";
-import ws5img from "./images/ws5img.png";
-import ws6img from "./images/ws6img.png";
-import ws7img from "./images/ws7img.png";
-import ws8img from "./images/ws8img.png";
-import ClientTopLeftSideBar from "./components/ClientTopLeftSideBar.js";
+import ws1img from "../images/ws1img.png";
+import ws2img from "../images/ws2img.png";
+import ws3img from "../images/ws3img.png";
+import ws4img from "../images/ws4img.png";
+import ws5img from "../images/ws5img.png";
+import ws6img from "../images/ws6img.png";
+import ws7img from "../images/ws7img.png";
+import ws8img from "../images/ws8img.png";
+import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
 const ClientWorkshopPage = () => {
   return (
     <>

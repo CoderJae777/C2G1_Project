@@ -46,6 +46,7 @@ const SubmitWSReqForm = () => {
     e.preventDefault();
     // Handle form submission logic here
     console.log("Form data submitted:", formData);
+    alert("confirm submission?");
   };
 
   return (
@@ -163,6 +164,7 @@ const SubmitWSReqForm = () => {
         </button>
       </div>
     </form>
+    
   );
 };
 

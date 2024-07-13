@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/adminworkshoprequestpagepopups.css';
+import '../styles/adminworkshoprequestpagepopups.css';
 import 'boxicons/css/boxicons.min.css';
 
 const AllocateTrainerPopup = ({ onClose }) => {

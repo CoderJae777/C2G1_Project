@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./styles/adminhomepage.css";
-import "./styles/adminmanagetrainerpage.css";
+import "../styles/adminhomepage.css";
+import "../styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
-import TopLeftSidebar from "./components/TopLeftSideBar";
+import TopLeftSidebar from "../components/TopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
 import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
-import useFetch from "./components/useFetch";
-import TrainerScheduleCalendar from "./components/TrainerScheduleCalendar";
+import useFetch from "../components/useFetch";
+import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar";
 
 const AdminManageTrainerPage = () => {
   const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =

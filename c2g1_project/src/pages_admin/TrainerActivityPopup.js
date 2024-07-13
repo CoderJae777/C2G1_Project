@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/adminmanagetrainerspagepopup.css';
+import '../styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
 
 const TrainerActivityPopup = ({ onClose, onActivityChange, index }) => {

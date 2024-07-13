@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/adminworkshoprequestpagepopups.css';
+import '../styles/adminworkshoprequestpagepopups.css';
 
 const ApproveWorkshopRequestPopup = ({ onClose }) => {
     return (
