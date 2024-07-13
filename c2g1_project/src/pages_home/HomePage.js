@@ -6,6 +6,7 @@ import About from "../components/about.js";
 import { useNavigate } from "react-router-dom";
 import ContactForm from "../components/ContactForm.js";
 
+
 const HomePage = () => {
   const [move, setMove] = useState(false);
   const nav = useNavigate();
@@ -13,8 +14,8 @@ const HomePage = () => {
     nav("/SignUpPage");
   };
   const handleworkshop = () => {
-    nav("/OurWorkshopPage");
-  };
+    nav("/OurWorkshopPage")
+  }
   return (
     <>
       {""}
@@ -172,7 +173,7 @@ const HomePage = () => {
           <h3>Contact Us</h3>
         </div>
         <div className="contactform">
-          <ContactForm />
+            <ContactForm />
         </div>
       </motion.div>
     </>

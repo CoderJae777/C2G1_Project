@@ -99,13 +99,14 @@ const SignUpPage = () => {
     <>
       <Navbar />
       <div>
-        <motion.div
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          transition={{ delay: 0.25 }}
-          className="signuppage"
-        >
-          <form className="contrainer" onSubmit={handlesubmit}>
+        <motion.div className="signuppage">
+          <motion.form
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ delay: 0.3 }}
+            className="contrainer"
+            onSubmit={handlesubmit}
+          >
             <div className="card">
               <div className="card-header">
                 <h3>Create an account today!</h3>
@@ -173,7 +174,7 @@ const SignUpPage = () => {
                 </button>
               </div>
             </div>
-          </form>
+          </motion.form>
         </motion.div>
       </div>
     </>

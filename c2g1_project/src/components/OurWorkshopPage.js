@@ -14,12 +14,7 @@ const OurWorkshopPage = () => {
   return (
     <>
       <Navbar />
-      <motion.div
-        className="workshoppage"
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ delay: 0.5 }}
-      >
+      <motion.div className="workshoppage">
         <div className="workshoppage-1">
           <motion.div
             className="workshoppage-1-ws1"
@@ -32,9 +27,7 @@ const OurWorkshopPage = () => {
             </div>
             <h4>Introduction to Python</h4>
             <h5>WSID : 01</h5>
-            <h6>
-              Nothing to do with the snake
-            </h6>
+            <h6>Nothing to do with the snake</h6>
           </motion.div>
           <motion.div
             className="workshoppage-1-ws2"
@@ -47,9 +40,7 @@ const OurWorkshopPage = () => {
             </div>
             <h4>Introduction to Java 21</h4>
             <h5>WSID : 02</h5>
-            <h6>
-              No it is not about Indonesia
-            </h6>
+            <h6>No it is not about Indonesia</h6>
           </motion.div>
           <motion.div
             className="workshoppage-1-ws3"
@@ -62,9 +53,7 @@ const OurWorkshopPage = () => {
             </div>
             <h4>Introduction to AI</h4>
             <h5>WSID : 03</h5>
-            <h6>
-              Machine Learning on steroids
-            </h6>
+            <h6>Machine Learning on steroids</h6>
           </motion.div>
           <motion.div
             className="workshoppage-1-ws4"
@@ -90,7 +79,12 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1.3 }}
           >
-            <img src={ws5img}></img>
+            <div className="ws5img">
+              <img src={ws5img}></img>
+            </div>
+            <h4>Introduction to AI</h4>
+            <h5>WSID : 05</h5>
+            <h6>Its more than just Chat GPT</h6>
           </motion.div>
           <motion.div
             className="workshoppage-2-ws2"
@@ -98,7 +92,12 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1.2 }}
           >
-            <img src={ws6img}></img>
+            <div className="ws6img">
+              <img src={ws6img}></img>
+            </div>
+            <h4>Introduction to Excel</h4>
+            <h5>WSID : 06</h5>
+            <h6>If you cant code, learn this!</h6>
           </motion.div>
           <motion.div
             className="workshoppage-2-ws3"
@@ -106,7 +105,12 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1.1 }}
           >
-            <img src={ws7img}></img>
+            <div className="ws7img">
+              <img src={ws7img}></img>
+            </div>
+            <h4>Introduction to Word</h4>
+            <h5>WSID : 07</h5>
+            <h6>Because who uses Google docs?</h6>
           </motion.div>
           <motion.div
             className="workshoppage-2-ws4"
@@ -114,7 +118,12 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1 }}
           >
-            <img src={ws8img}></img>
+            <div className="ws8img">
+              <img src={ws8img}></img>
+            </div>
+            <h4>Introduction to Linux</h4>
+            <h5>WSID : 08</h5>
+            <h6>No its not club penguin</h6>
           </motion.div>
         </div>
         <div className="workshoppage-3">

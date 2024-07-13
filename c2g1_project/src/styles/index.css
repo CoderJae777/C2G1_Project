@@ -6,7 +6,7 @@
   grid-template-columns: 1fr;
   width: 100%;
   height: 900px;
-  background-image: url("../images/adminhomepgimg1.jpg");
+  background-image: url("../images/dashboardbackground.jpg");
 }
 
 .trainer-img,
@@ -130,29 +130,26 @@
 /* Navbar designs */
 .navbar {
   background-color: #e3f2fd;
-  border-style: solid;
-  border-width: 0px;
   height: 100px;
-  background-image: url("../images/homepageimg2.jpg");
+  background-image: url("../images/dashboardbackground.jpg");
   background-size: "cover";
   position: relative;
 }
-.sticky-nav {
+/* .sticky-nav {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-}
+} */
 .navbar_contents {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 10px;
+  padding: 10px;
 }
 
 .navbar button,
-.testibutton,
-.signin_button {
+.testibutton {
   background-color: #eef8ff;
   color: black;
   width: 150px;
@@ -174,8 +171,7 @@
 }
 
 .navbar button:hover,
-.testibutton:hover,
-.signin_button {
+.testibutton:hover {
   background-color: #28abf1;
   color: white;
   transition: background-color 500ms;
@@ -186,6 +182,12 @@
 }
 
 /* SignUpPageDesigns */
+
+.signuppage {
+  background-image: url("../images/dashboardbackground.jpg");
+  padding: 20px;
+  height: 100%;
+}
 .errmsg {
   color: red;
 }
@@ -200,6 +202,7 @@
   font-family: roboto;
   font-size: 15px;
   font-weight: bold;
+  margin-top: 25px;
   margin-right: 30px;
   padding: 10px;
   transition: background-color 1000ms;
@@ -232,13 +235,12 @@
 }
 
 .form_group {
-  margin: 10px;
   font-size: 15px;
   text-align: center;
 }
 
 .form_control {
-  margin: 10px;
+  margin: 20px;
   padding: 20px;
   border-radius: 10px;
   border-width: 3px;
@@ -246,8 +248,9 @@
 }
 
 .card-header {
-  margin: 20px;
   text-align: center;
+  font-size: 20px;
+  padding: 10px;
 }
 
 .card {
@@ -319,17 +322,16 @@
 }
 
 .homepage-div-5 {
+  background-image: url("../images/dashboardbackground.jpg");
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
   width: 100%;
-  height: 450px;
-  background-color: #e3f2fd;
+  height: 350px;
 }
 
 .info1 {
   grid-column-start: 1;
-  margin-top: 50px;
   border-style: 50px;
   width: 300px;
   height: 200px;
@@ -341,7 +343,6 @@
 
 .info2 {
   grid-column-start: 2;
-  margin-top: 50px;
   border-style: 50px;
   width: 300px;
   height: 200px;
@@ -353,7 +354,6 @@
 
 .info3 {
   grid-column-start: 3;
-  margin-top: 50px;
   border-style: 50px;
   width: 300px;
   height: 200px;
@@ -365,7 +365,6 @@
 
 .info4 {
   grid-column-start: 4;
-  margin-top: 50px;
   border-style: 50px;
   width: 300px;
   height: 200px;
@@ -390,7 +389,6 @@
   font-size: 22px;
   color: #0083ca;
   align-items: center;
-  margin-top: 50px;
   width: 100%;
   grid-column-start: span 4;
 }
@@ -407,7 +405,7 @@
 .bottom-of-homepage {
   display: grid;
   grid-template-rows: 80px 1fr;
-  background-color: #e3f2fd;
+  background-image: url("../images/dashboardbackground.jpg");
   width: 100%;
   color: #0083ca;
   font-size: 22px;
@@ -417,19 +415,16 @@
 .contactustitle {
   display: grid;
   grid-row-start: 1;
-  margin-top: 50px;
-  margin: 20px;
+  margin-top: 20px;
 }
 /* Style form groups uniformly */
 .form_group {
   width: 100%;
-  margin-bottom: 15px;
 }
 .label {
   display: block;
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 5px;
 }
 .form_control {
   width: 70%;
@@ -451,10 +446,25 @@
   width: 100%;
   max-width: 600px; /* Adjust the width as needed */
   margin: 0 auto;
-  padding: 20px;
   border-radius: 10px;
 }
-/* testimonial design */
-.testibutton {
-  align-items: center;
+
+.sendemailbutton {
+  background-color: #5cdb5c;
+  color: white;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 3px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 1000ms;
+  border-color: black;
+}
+
+
+.sendemailbutton:hover {
+  background-color: darkgreen;
+  color: white;
 }

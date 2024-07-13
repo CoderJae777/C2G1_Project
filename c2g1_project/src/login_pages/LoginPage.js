@@ -42,7 +42,7 @@ const LoginPage = () => {
       <motion.div className="login_page">
         <motion.div
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.3 }}
           initial={{ opacity: 0 }}
           className="login_buttons"
         >
