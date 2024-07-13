@@ -5,6 +5,7 @@ import "boxicons/css/boxicons.min.css";
 import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
 import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 const ClientHomePage = () => {
   const [name, setName] = useState("");
@@ -160,7 +161,12 @@ const ClientHomePage = () => {
       )}
 
       {/* Main Content */}
-      <div className="client-home-page">
+      <motion.div
+        className="client-home-page"
+        animate={{ scale: 1 }}
+        initial={{ scale: 0 }}
+        transition={{ delay: 0.5 }}
+      >
         {/* Left Side */}
         <div className="client-home-page-left">
           {/* Top Section */}
@@ -287,7 +293,7 @@ const ClientHomePage = () => {
             </div>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

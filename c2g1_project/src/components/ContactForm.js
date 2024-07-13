@@ -31,6 +31,7 @@ const ContactForm = () => {
       .send(serviceId, templateId, templateParams, publicKey)
       .then((response) => {
         console.log("Email sent successfully!", response);
+        alert("Your Message Has Been Sent! An Admin will contact you within 3 working days")
         setName("");
         setEmail("");
         setMessage("");
@@ -79,8 +80,8 @@ const ContactForm = () => {
         onChange={(e) => setMessage(e.target.value)}
         className="form_control"
       ></textarea>
-      <button type="submit" className="testibutton">
-        Send Email
+      <button type="submit" className="sendemailbutton">
+        Send!
       </button>
     </form>
   );

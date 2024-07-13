@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/clienthomepage.css";
-import "../styles/clientworkshoppage.css";
+import "../styles/workshoppage.css";
 import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
 import ws1img from "../images/ws1img.png";
