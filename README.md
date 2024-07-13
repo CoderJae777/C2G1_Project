@@ -59,27 +59,21 @@ Contact developers if you still run into issuess
 <a id="running"></a>
 ## Running
 ---
-Json-server needs to be ran to read the local backend database (backend implementation is in the works)
-
-```shell
-npx json-server --watch trainer_db.json --port 8000
+Navigate to the backend repo, open a new terminal and paste in : 
 ```
-```shell
-npx json-server --watch workshop_db.json --port 8002
+docker compose up
 ```
-```shell
-npx json-server --watch today_db.json --port 8003
-```
+Ensure that docker is up and running
 
 Starting the web Application
 
 ```shell
 npm start
 ```
-Open in [http://localhost:3000](http://localhost:3000)
-
 
 <a id="outcome"></a>
 ## What to expect
 ---
-screenshot of homepage
+If your web browser did not start automatically, click this link :
+[http://localhost:3000](http://localhost:3000)
+
