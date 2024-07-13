@@ -19,6 +19,10 @@ const ClientHomePage = () => {
   const [workshopName, setWorkshopName] = useState("");
   const [role, setRole] = useState("");
 
+  const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
+
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -43,49 +47,136 @@ const ClientHomePage = () => {
       role: role,
     };
 
-    // Send the email using EmailJS
+    // Show summary modal
+    setShowSummary(true);
+
+    // You can optionally remove the actual sending code from handleSubmit
+    // and move it to a function that confirms the submission upon user confirmation.
+    // This is to simulate the behavior you requested where the user confirms before submitting.
+  };
+
+  const clearForm = () => {
+    setName("");
+    setEmail("");
+    setMessage("");
+    setPhone("");
+    setCompanyName("");
+    setDealSize("");
+    setPax("");
+    setLocation("");
+    setWorkshopId("");
+    setWorkshopName("");
+    setRole("");
+  };
+
+  const handleConfirmRequest = () => {
+    // Send the email using EmailJS or any other necessary final actions
+    const serviceId = "service_ks4czg2";
+    const templateId = "template_s99g3id";
+    const publicKey = "1T7xmpr5tqQhyh-GS";
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: "DellAcademy",
+      message: message,
+      phone: phone,
+      company_name: company_name,
+      pax: pax,
+      dealSize: dealSize,
+      location: location,
+      workshopId: workshopId,
+      workshopName: workshopName,
+      role: role,
+    };
+
     emailjs
       .send(serviceId, templateId, templateParams, publicKey)
       .then((response) => {
         console.log("Email sent successfully!", response);
-        setName("");
-        setEmail("");
-        setMessage("");
-        setPhone("");
-        setCompanyName("");
-        setDealSize("");
-        setPax("");
-        setLocation("");
-        setWorkshopId("");
-        setWorkshopName("");
-        setRole("");
+        alert("Your Request has been sent.");
+        // Clear form fields
+        clearForm();
+        // Close summary modal
+        setShowSummary(false);
       })
       .catch((error) => {
         console.error("Error sending email:", error);
       });
   };
+
+  const handleEditRequest = () => {
+    // Close summary modal and allow user to continue editing
+    setShowSummary(false);
+  };
+
   return (
     <>
       <ClientTopLeftSideBar />
 
-      {/* LAYER 1 */}
-      <div className="client-home-page">
-        {/* LAYER 2 LEFT */}
-        <div className="client-home-page-left">
-          {/* LAYER 3 TOP */}
-          <div className="client-home-page-left-top">
-            <div className="view-avail-ws">
-              <h4>View Available Workshops</h4>
-            </div>
-          </div>
-          {/* LAYER 3 BOTTOM */}
-          <div className="client-home-page-left-bottom">
-            <div className="view-req-st">
-              <h4>view Request Status</h4>
+      {/* Summary Modal */}
+      {showSummary && (
+        <div className="summary-modal">
+          <div className="summary-content">
+            <h2>Summary of Workshop Request</h2>
+            <p>
+              <strong>Workshop ID:</strong> {workshopId}
+            </p>
+            <p>
+              <strong>Workshop Name:</strong> {workshopName}
+            </p>
+            <p>
+              <strong>Role at Company:</strong> {role}
+            </p>
+            <p>
+              <strong>Name:</strong> {name}
+            </p>
+            <p>
+              <strong>Email:</strong> {email}
+            </p>
+            <p>
+              <strong>Phone Number:</strong> {phone}
+            </p>
+            <p>
+              <strong>Company Name:</strong> {company_name}
+            </p>
+            <p>
+              <strong>Number of Pax:</strong> {pax}
+            </p>
+            <p>
+              <strong>Deal Size Potential:</strong> {dealSize}
+            </p>
+            <p>
+              <strong>Location:</strong> {location}
+            </p>
+            <p>
+              <strong>Message:</strong> {message}
+            </p>
+            <div className="summary-buttons">
+              <button onClick={handleConfirmRequest}>Confirm Request</button>
+              <button onClick={handleEditRequest}>Edit Request</button>
             </div>
           </div>
         </div>
-        {/* LAYER 2 RIGHT */}
+      )}
+
+      {/* Main Content */}
+      <div className="client-home-page">
+        {/* Left Side */}
+        <div className="client-home-page-left">
+          {/* Top Section */}
+          <div className="client-home-page-left-top">
+            <div className="view-avail-ws">
+              <h4 className="ws_req_form_heading">View Available Workshops</h4>
+            </div>
+          </div>
+          {/* Bottom Section */}
+          <div className="client-home-page-left-bottom">
+            <div className="view-req-st">
+              <h4 className="ws_req_form_heading">View Request Status</h4>
+            </div>
+          </div>
+        </div>
+        {/* Right Side */}
         <div className="client-home-page-right">
           <form onSubmit={handleSubmit} className="ws_req_form_group">
             <h2 className="ws_req_form_heading">Submit Workshop Request</h2>
