@@ -1,13 +1,13 @@
 // Running Json Server
 // npx json-server --watch db.json --port 8000
 import { useNavigate } from "react-router-dom";
-import LoginPage from "./LoginPage";
+import LoginPage from "../login_pages/LoginPage";
 import { isValidElement, useState } from "react";
 import { Navigate } from "react-router-dom";
-import useAxiosPost from "./api/useAxiosPost";
-import { config } from "./config/config";
-import { endpoints } from "./config/endpoints";
-import Navbar from "./components/NavBar";
+import useAxiosPost from "../api/useAxiosPost";
+import { config } from "../config/config";
+import { endpoints } from "../config/endpoints";
+import Navbar from "../components/NavBar";
 import { motion } from "framer-motion";
 
 const SignUpPage = () => {

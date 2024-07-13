@@ -1,41 +1,33 @@
 import { useNavigate } from "react-router-dom";
-import stockimgtop from "./images/stockimgtop.jpg";
-import stockimgbottom from "./images/stockimgbottom.jpg";
-import trainerimg from "./images/trainerimg.png";
-
-import dellacademylogo from "./images/DellAcademy.png";
-import SignUpPage from "./SignUpPage";
-import AdminLoginPage from "./AdminLoginPage";
+import adminimg from "../images/adminimg.png";
 import { useState } from "react";
-import AdminHomePage from "./AdminHomePage";
-import { useEffect } from "react";
-import ClientLoginPage from "./ClientLoginPage";
-import TrainerHomePage from "./TrainerHomePage";
 import { motion } from "framer-motion";
-import Navbar from "./components/NavBar.js";
-import useAxiosPost from "./api/useAxiosPost.jsx";
-import { config } from "./config/config.js";
-import { endpoints } from "./config/endpoints.js";
+
+import useAxiosPost from "../api/useAxiosPost.jsx";
+import { config } from "../config/config.js";
+import { endpoints } from "../config/endpoints.js";
+import Navbar from "../components/NavBar.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
 
-const TrainerLoginPage = () => {
+const AdminLoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
   const [move, setMove] = useState(false);
 
   const handleSuccess = (data) => {
-    nav("/TrainerHomePage");
+    nav("/AdminHomePage");
   };
 
   const handleError = (error) => {
     alert(error.response.data.message);
+    // alert('Login failed : User Account does not exist and/or Incorrect.');
   };
 
   const { data, loading, error, setBody, refetch } = useAxiosPost(
-    config.base_url + endpoints.login.trainer,
+    config.base_url + endpoints.login.admin,
     {},
     [],
     handleSuccess,
@@ -63,9 +55,6 @@ const TrainerLoginPage = () => {
     return result;
   };
 
-  // const handleSignIn = () => {
-  //    nav("/AdminHomePage");
-  // }
   const handleTrainerLoginPage = () => {
     nav("/TrainerLoginPage");
   };
@@ -82,10 +71,11 @@ const TrainerLoginPage = () => {
   return (
     <>
       <Navbar />
-      <div className="login_page">
+      <div></div>
+      <motion.div className="login_page">
         <motion.div className="login_buttons">
           {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
-          <img src={trainerimg} className="trainer-img" alt="trainerimg"></img>
+          <img src={adminimg} className="admin-img" alt="adminimg"></img>
           <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
             whileHover={{ scale: 1.2 }}
@@ -98,7 +88,7 @@ const TrainerLoginPage = () => {
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
-            className="admin_login_button"
+            className="admin_login_button_blue"
             onClick={handleAdminLoginPage}
           >
             Admin
@@ -106,7 +96,7 @@ const TrainerLoginPage = () => {
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
-            className="trainer_login_button_blue"
+            className="trainer_login_button"
             onClick={handleTrainerLoginPage}
           >
             Trainer
@@ -155,9 +145,9 @@ const TrainerLoginPage = () => {
             </div>
           </form>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 };
 
-export default TrainerLoginPage;
+export default AdminLoginPage;

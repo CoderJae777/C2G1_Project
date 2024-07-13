@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./styles/adminmanagetrainerspagepopup.css";
+import "../styles/adminmanagetrainerspagepopup.css";
 import "boxicons/css/boxicons.min.css";
-import useAxiosPost from "./api/useAxiosPost";
-import { config } from "./config/config";
-import { endpoints } from "./config/endpoints";
+import useAxiosPost from "../api/useAxiosPost";
+import { config } from "../config/config";
+import { endpoints } from "../config/endpoints";
 
 const AddTrainerPopup = ({ onClose }) => {
   const [trainerName, setTrainerName] = useState("");

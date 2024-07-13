@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./styles/adminhomepage.css";
-import "./styles/adminworkshoprequestpage.css";
+import "../styles/adminhomepage.css";
+import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
 import AllocateTrainerPopup from "./AllocateTrainerPopup";
-import TopLeftSideBar from "./components/TopLeftSideBar";
+import TopLeftSideBar from "../components/TopLeftSideBar";
 
 const workshop_request_data = [
   {

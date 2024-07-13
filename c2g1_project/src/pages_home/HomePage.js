@@ -1,14 +1,11 @@
-import homepageinfoimg1 from "./images/homepageinfoimg1.png";
-import homepageinfoimg2 from "./images/homepageinfoimg2.png";
-import homepageinfoimg3 from "./images/homepageinfoimg3.png";
-import homepageinfoimg4 from "./images/homepageinfoimg4.png";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "./components/NavBar.js";
-import { Testimonials } from "./components/Testimonials.js";
-import About from "./components/about.js";
+import Navbar from "../components/NavBar.js";
+import { Testimonials } from "../components/Testimonials.js";
+import About from "../components/about.js";
 import { useNavigate } from "react-router-dom";
-import ContactForm from "./ContactForm.js";
+import ContactForm from "../components/ContactForm.js";
+
 
 const HomePage = () => {
   const [move, setMove] = useState(false);
@@ -16,6 +13,9 @@ const HomePage = () => {
   const handleSignUp = () => {
     nav("/SignUpPage");
   };
+  const handleworkshop = () => {
+    nav("/OurWorkshopPage")
+  }
   return (
     <>
       {""}
@@ -106,6 +106,7 @@ const HomePage = () => {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             className="testibutton"
+            onClick={handleworkshop}
           >
             Our Workshops
           </motion.button>

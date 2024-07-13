@@ -1,68 +1,28 @@
-import TrainerLoginPage from "./TrainerLoginPage";
 import { useNavigate } from "react-router-dom";
-import stockimgtop from "./images/stockimgtop.jpg";
-import stockimgbottom from "./images/stockimgbottom.jpg";
-import clientimg from "./images/clientimg.png";
-import dellacademylogo from "./images/DellAcademy.png";
-import SignUpPage from "./SignUpPage";
-import AdminLoginPage from "./AdminLoginPage";
+import dellacademylogo from "../images/DellAcademy.png";
 import { useState } from "react";
-import AdminHomePage from "./AdminHomePage";
-import { useEffect } from "react";
-import ClientHomePage from "./ClientHomePage";
 import { motion } from "framer-motion";
-
-import useAxiosPost from "./api/useAxiosPost.jsx";
-import { config } from "./config/config.js";
-import { endpoints } from "./config/endpoints.js";
-import Navbar from "./components/NavBar.js";
+import Navbar from "../components/NavBar.js";
 
 // Running Json Server
 // npx json-server --watch db.json --port 8000
+// npx json-server --watch trainer_db.json --port 8000
 
-const ClientLoginPage = () => {
+const LoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
   const [move, setMove] = useState(false);
 
-  const handleSuccess = (data) => {
-    nav("/ClientHomePage");
-  };
-
-  const handleError = (error) => {
-    alert("Login failed, User Account does not exist.");
-  };
-
-  const { data, loading, error, setBody, refetch } = useAxiosPost(
-    config.base_url + endpoints.login.client,
-    {},
-    [],
-    handleSuccess,
-    handleError
-  );
-
   const ProceedLogin = (e) => {
     e.preventDefault();
-    if (validate()) {
-      setBody({ username, password });
-      refetch();
-    }
+    alert("Please pick your role");
+    window.location.reload();
   };
 
-  const validate = () => {
-    let result = true;
-    if (username === "") {
-      result = false;
-      alert("Username cannot be empty");
-    }
-    if (password === "") {
-      result = false;
-      alert("Password cannot be empty");
-    }
-    return result;
-  };
-
+  // const handleSignIn = () => {
+  //    nav("/AdminHomePage");
+  // }
   const handleTrainerLoginPage = () => {
     nav("/TrainerLoginPage");
   };
@@ -79,15 +39,20 @@ const ClientLoginPage = () => {
   return (
     <>
       <Navbar />
-      <div className="login_page">
-        <motion.div className="login_buttons">
-          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
-          <img src={clientimg} className="client-img" alt="clientimg"></img>
+      <motion.div className="login_page">
+        <motion.div
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          initial={{ opacity: 0 }}
+          className="login_buttons"
+        >
+          <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
           <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
-            className="client_login_button_blue"
+            className="client_login_button"
+            onClick={handleClientLoginPage}
           >
             Client
           </motion.button>
@@ -151,9 +116,9 @@ const ClientLoginPage = () => {
             </div>
           </form>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 };
 
-export default ClientLoginPage;
+export default LoginPage;

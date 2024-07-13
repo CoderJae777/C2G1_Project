@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import "./styles/clienthomepage.css";
+import "../styles/clienthomepage.css";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
-import ClientTopLeftSideBar from "./components/ClientTopLeftSideBar.js";
+import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
 import { motion } from "framer-motion";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
-import SubmitWSReqForm from "./components/SubmitWSReqForm.js";
+import SubmitWSReqForm from "../components/SubmitWSReqForm.js";
 
 const ClientHomePage = () => {
   const [workshop, workshopchange] = useState("");
