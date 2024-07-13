@@ -3,94 +3,127 @@ import "../styles/clienthomepage.css";
 import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
-import { motion } from "framer-motion";
 import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
-import SubmitWSReqForm from "../components/SubmitWSReqForm.js";
+import emailjs from "@emailjs/browser";
 
 const ClientHomePage = () => {
-  const [workshop, workshopchange] = useState("");
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [attendees, setAttendees] = useState("0");
-  const [wsname, setWsname] = useState("null");
-  const [comments, setComments] = useState("null");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [company_name, setCompanyName] = useState("");
 
-  // This is to ensure all booking are within today and last day of 2024
-  const minDate = new Date();
-  const maxDate = new Date("2024-12-31");
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
+    // Your EmailJS service ID, template ID, and Public Key
+    const serviceId = "service_ks4czg2";
+    const templateId = "template_oypb9n6";
+    const publicKey = "1T7xmpr5tqQhyh-GS";
+
+    // Create a new object that contains dynamic template params
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: "DellAcademy",
+      message: message,
+      phone: phone,
+      company_name: company_name,
+    };
+
+    // Send the email using EmailJS
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log("Email sent successfully!", response);
+        setName("");
+        setEmail("");
+        setMessage("");
+        setPhone("");
+        setCompanyName("");
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
   };
-
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
-
-  const handleresetreq = () => {
-    setEndDate(null);
-    setStartDate(null);
-    setAttendees("0");
-    setWsname("null");
-    setComments("null");
-  };
-
   return (
     <>
-      <div className="left-panel">
-        <ClientTopLeftSideBar />
-      </div>
-      <motion.div
-        className="client-home-page"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+      <ClientTopLeftSideBar />
+
+      {/* LAYER 1 */}
+      <div className="client-home-page">
+        {/* LAYER 2 LEFT */}
         <div className="client-home-page-left">
-          <div className="find-ws">
-            <h3>Available Workshops</h3>
-            <select
-              id="request-workshop-sel"
-              value={workshop}
-              onChange={(e) => {
-                workshopchange(e.target.value);
-                document.getElementById("request-workshop-sel").size = "1";
-              }}
-              className="form_control"
-              onFocus={() => {
-                document.getElementById("request-workshop-sel").size = "1";
-              }}
-              onBlur={() => {
-                document.getElementById("request-workshop-sel").size = "1";
-              }}
-            >
-              <option value="Workshop">-- Workshop --</option>
-              <option value="Workshop A">Workshop A</option>
-              <option value="Workshop B"> Workshop B</option>
-            </select>
-            <h3>Workshop details : </h3>
-            <h4>Status</h4>
-            <h4>{workshop}</h4>
-            <h4>Workshop Capacity</h4>
-            <h4>Workshop Venue</h4>
-            <h4>Number of Trainers Provided</h4>
-            <h4>Price</h4>
-          </div>
-        </div>
-        <div className="client-home-page-right">
-          <div className="view-request">
-            <h3>View Workshop Requests</h3>
-          </div>
-        </div>
-        <div className="client-home-page-footer">
-          <div className="submit-requests">
-            <div className="sr-title">
-              <h3>Submit Workshop Requests</h3>
+          {/* LAYER 3 TOP */}
+          <div className="client-home-page-left-top">
+            <div className="view-avail-ws">
+              <h4>View Available Workshops</h4>
             </div>
-            <SubmitWSReqForm />
+          </div>
+          {/* LAYER 3 BOTTOM */}
+          <div className="client-home-page-left-bottom">
+            <div className="view-req-st">
+              <h4>view Request Status</h4>
+            </div>
           </div>
         </div>
-      </motion.div>
+        {/* LAYER 2 RIGHT */}
+        <div className="client-home-page-right">
+          <form onSubmit={handleSubmit} className="ws_req_form_group">
+            <div className="ws_req_form_name">
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_email">
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_phone">
+              <input
+                type="phone"
+                placeholder="Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_company">
+              <input
+                type="text"
+                placeholder="Your Company"
+                value={company_name}
+                onChange={(e) => setCompanyName(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_message">
+              <textarea
+                cols="30"
+                rows="10"
+                placeholder="Your Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="ws_req_form_control"
+              ></textarea>
+            </div>
+            <div>
+              <button type="submit" className="ws_req_submit_button">
+                Submit Request
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 };
