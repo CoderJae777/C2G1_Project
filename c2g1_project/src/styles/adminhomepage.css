@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: roboto;
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
 
@@ -19,15 +19,6 @@ body {
   padding: 20px;
   background-image: url("../images/dashboardbackground.jpg");
   justify-content: center;
-
-
-}
-
-.admin-home-page-title {
-  padding: 25px;
-  margin-bottom: -5px;
-  justify-content: center;
-  text-align: center;
 }
 
 .top-panel {
@@ -73,7 +64,9 @@ body {
 .workshop-table-title {
   grid-row-start: 1;
   padding: 5px;
-  color: #0672cb;
+  color: black;
+  font-size: 20px;
+  border-bottom: 2px solid #0672cb;
 }
 .workshopstoday {
   grid-row-start: 2;
@@ -116,7 +109,7 @@ body {
   padding: 5px;
 }
 
-.breakdown-of-attendance-div{
+.breakdown-of-attendance-div {
   max-width: 1000px;
   width: 500px;
   height: 270px;
@@ -127,7 +120,12 @@ body {
   text-align: center;
   margin-top: 15px;
   align-items: center;
-  color: #0672cb;
+}
+
+.breakdown-of-attendance-title {
+  font-size: 25px;
+  color: black;
+  border-bottom: 2px solid #0672cb;
 }
 
 .admin-home-datetime {
@@ -173,22 +171,33 @@ body {
 
 .workshop-stats {
   grid-row-start: 1;
-  color: #0672cb;
+  color: black;
 }
 
+.workshop-stats-title {
+  font-size: 20px;
+  color: black;
+  border-bottom: 2px solid #0672cb;
+}
 .trainer-stats {
   grid-row-start: 2;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.trainer-stats-title {
+  font-size: 20px;
+  color: black;
+  border-bottom: 2px solid #0672cb;
+}
+
 .admin-graphs {
-  max-width: 1000x;
+  max-width: 1000px;
   width: 900px;
   height: 700px;
   background-color: #e3f2fd;
   color: #0672cb;
   border-radius: 20px;
-  /* padding: 10px; */
   text-align: center;
   display: flex;
   flex-direction: column;
