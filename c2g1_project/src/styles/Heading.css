@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+div {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  text-transform: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+.outerContainer {
+  box-shadow: 2px 4px 8px grey;
+}
+.animated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  position: relative;
+  font-family: roboto;
+  font-weight: 400;
+  text-align: center;
+}
+.slider {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 67px;
+  text-align: center;
+  font-weight: 700;
+}
+.slide {
+  clear: both;
+  position: relative;
+  height: 67px;
+  margin-bottom: 67px;
+  text-align: center;
+  color: #0083ca;
+  box-sizing: border-box;
+  flex-basis: 100%;
+  width: 100%;
+  padding: 0 10px;
+}
+.slide:first-child {
+  animation: slide 8s ease-in-out infinite;
+}
+@keyframes slide {
+  0% {
+    margin-top: -570px;
+  }
+  5% {
+    margin-top: -392px;
+  }
+  10% {
+    margin-top: -412px;
+  }
+  15% {
+    margin-top: -402px;
+  }
+  30% {
+    margin-top: -402px;
+  }
+  35% {
+    margin-top: -258px;
+  }
+  40% {
+    margin-top: -278px;
+  }
+  45% {
+    margin-top: -268px;
+  }
+  50% {
+    margin-top: -268px;
+  }
+  55% {
+    margin-top: -124px;
+  }
+  60% {
+    margin-top: -144px;
+  }
+  65% {
+    margin-top: -134px;
+  }
+  70% {
+    margin-top: -134px;
+  }
+  75% {
+    margin-top: 10px;
+  }
+  80% {
+    margin-top: -10px;
+  }
+  85% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: 0px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .heading_animated {
+    display: none;
+  }
+}

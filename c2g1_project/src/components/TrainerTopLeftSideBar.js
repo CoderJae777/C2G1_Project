@@ -5,8 +5,7 @@ import "boxicons/css/boxicons.min.css";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
-import DateAndTime from "../DateAndTime";
-import ProfilePage from "../ProfilePage";
+import DateAndTime from "./DateAndTime";
 
 const TrainerTopLeftSideBar = () => {
   const [navOpen, setNavOpen] = useState(false);

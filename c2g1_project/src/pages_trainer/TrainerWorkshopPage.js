@@ -1,6 +1,8 @@
-import Navbar from "./NavBar";
-import { motion } from "framer-motion";
+import React from "react";
+import "../styles/clienthomepage.css";
 import "../styles/workshoppage.css";
+import "boxicons/css/boxicons.min.css";
+import { motion } from "framer-motion";
 import ws1img from "../images/ws1img.png";
 import ws2img from "../images/ws2img.png";
 import ws3img from "../images/ws3img.png";
@@ -9,12 +11,17 @@ import ws5img from "../images/ws5img.png";
 import ws6img from "../images/ws6img.png";
 import ws7img from "../images/ws7img.png";
 import ws8img from "../images/ws8img.png";
-
-const OurWorkshopPage = () => {
+import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
+const ClientWorkshopPage = () => {
   return (
     <>
-      <Navbar />
-      <motion.div className="workshoppage">
+      <ClientTopLeftSideBar />
+      <motion.div
+        className="workshoppage"
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ delay: 0.5 }}
+      >
         <div className="workshoppage-1">
           <motion.div
             className="workshoppage-1-ws1"
@@ -79,12 +86,7 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1.3 }}
           >
-            <div className="ws5img">
-              <img src={ws5img}></img>
-            </div>
-            <h4>Introduction to AI</h4>
-            <h5>WSID : 05</h5>
-            <h6>Its more than just Chat GPT</h6>
+            <img src={ws5img}></img>
           </motion.div>
           <motion.div
             className="workshoppage-2-ws2"
@@ -92,12 +94,7 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1.2 }}
           >
-            <div className="ws6img">
-              <img src={ws6img}></img>
-            </div>
-            <h4>Introduction to Excel</h4>
-            <h5>WSID : 06</h5>
-            <h6>If you cant code, learn this!</h6>
+            <img src={ws6img}></img>
           </motion.div>
           <motion.div
             className="workshoppage-2-ws3"
@@ -105,12 +102,7 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1.1 }}
           >
-            <div className="ws7img">
-              <img src={ws7img}></img>
-            </div>
-            <h4>Introduction to Word</h4>
-            <h5>WSID : 07</h5>
-            <h6>Because who uses Google docs?</h6>
+            <img src={ws7img}></img>
           </motion.div>
           <motion.div
             className="workshoppage-2-ws4"
@@ -118,12 +110,7 @@ const OurWorkshopPage = () => {
             initial={{ opacity: 0 }}
             transition={{ delay: 1 }}
           >
-            <div className="ws8img">
-              <img src={ws8img}></img>
-            </div>
-            <h4>Introduction to Linux</h4>
-            <h5>WSID : 08</h5>
-            <h6>No its not club penguin</h6>
+            <img src={ws8img}></img>
           </motion.div>
         </div>
         <div className="workshoppage-3">
@@ -143,4 +130,4 @@ const OurWorkshopPage = () => {
   );
 };
 
-export default OurWorkshopPage;
+export default ClientWorkshopPage;

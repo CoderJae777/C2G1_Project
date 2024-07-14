@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-.trainer-avail-popup,
+.trainer-activity-popup,
 .trainer-role-popup,
 .add-trainer-popup {
     width: 400px;
@@ -24,7 +24,7 @@
     transition: transform 0.4s, top 0.4s;
 }
 
-.open-trainer-avail-popup,
+.open-trainer-activity-popup,
 .open-trainer-role-popup,
 .open-add-trainer-popup {
     visibility: visible;
@@ -32,7 +32,7 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
-.trainer-avail-popup h2,
+.trainer-activity-popup h2,
 .trainer-role-popup h2,
 .add-trainer-popup h2{
     font-size: 38px;
@@ -40,7 +40,7 @@
     margin: 30px 0 10px;
 }
 
-.trainer-avail-popup button,
+.trainer-activity-popup button,
 .trainer-role-popup button,
 .add-trainer-popup button{
     width: 100%;
@@ -208,7 +208,8 @@
 .trainer-name-input,
 .trainer-id-input,
 .trainer-email-input,
-.trainer-pw-input {
+.trainer-pw-input,
+.new-trainer-pw-input {
     width: 80%;
     padding: 6px 10px;
     border-width: 3px;

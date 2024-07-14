@@ -1,47 +1,71 @@
-import './styles/App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' ;
-import AdminLoginPage from './AdminLoginPage';
-import ClientLoginPage from './ClientLoginPage';
-import TrainerLoginPage from './TrainerLoginPage';
-import AdminHomePage from './AdminHomePage';
-import ClientHomePage from './ClientHomePage';
-import TrainerHomePage from './TrainerHomePage';
-import AdminWorkshopRequestPage from './AdminWorkshopRequestPage';
-import AdminManageTrainerPage from './AdminManageTrainerPage';
-import LoginPage from './LoginPage';
-import SignUpPage from './SignUpPage';
-import {ToastContainer} from "react-toastify";
-import HomePage from './HomePage';
-import OurWorkshopPage from './components/OurWorkshopPage';
-import ClientWorkshopPage from "./ClientWorkshopPage"
-import ProfilePage from './ProfilePage';
-import ScrollToTop from './components/ScrollToTop';
-import TrainerWorkshopPage from "./TrainerWorkshopPage"
+import "./styles/App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AdminLoginPage from "./login_pages/AdminLoginPage";
+import ClientLoginPage from "./login_pages/ClientLoginPage";
+import TrainerLoginPage from "./login_pages/TrainerLoginPage";
+import AdminHomePage from "./pages_admin/AdminHomePage";
+import ClientHomePage from "./pages_client/ClientHomePage";
+import TrainerHomePage from "./pages_trainer/TrainerHomePage";
+import AdminWorkshopRequestPage from "./pages_admin/AdminWorkshopRequestPage";
+import AdminManageTrainerPage from "./pages_admin/AdminManageTrainerPage";
+import LoginPage from "./login_pages/LoginPage";
+import SignUpPage from "./pages_home/SignUpPage";
+import { ToastContainer } from "react-toastify";
+import HomePage from "./pages_home/HomePage";
+import OurWorkshopPage from "./components/OurWorkshopPage";
+import ClientWorkshopPage from "./pages_client/ClientWorkshopPage";
+import ProfilePage from "./components/ProfilePage";
+import ScrollToTop from "./components/ScrollToTop";
+import TrainerWorkshopPage from "./pages_trainer/TrainerWorkshopPage";
 
 function App() {
+
   return (
     <Router>
       <div className="App">
-      <ScrollToTop/>
-      <ToastContainer theme="colored">
-      </ToastContainer>
+        <ScrollToTop />
+        <ToastContainer theme="colored"></ToastContainer>
         <Routes>
-          <Route exact path ="/" element={<HomePage/>}/>
-          <Route exact path = "/LoginPage" element={<LoginPage/>}/>
-          <Route exact path = "/AdminLoginPage" element={<AdminLoginPage/>}/>
-          <Route exact path="/ClientLoginPage" element={<ClientLoginPage/>}/>
-          <Route exact path="/TrainerLoginPage" element={<TrainerLoginPage/>}/>
-          <Route exact path="/SignUpPage" element={<SignUpPage/>}/>
-          <Route exact path ="/AdminHomePage" element={<AdminHomePage/>}/>
-          <Route exact path ="/ClientHomePage" element={<ClientHomePage/>}/>
-          <Route exact path ="/TrainerHomePage" element={<TrainerHomePage/>}/>
-          <Route exact path ="/AdminWorkshopRequestPage" element={<AdminWorkshopRequestPage/>}/>
-          <Route exact path ="/AdminManageTrainerPage" element={<AdminManageTrainerPage/>}/>
-          <Route exact path ="/OurWorkshopPage" element={<OurWorkshopPage/>}/>
-          <Route exact path="/AdminManageTrainerPage" element={<AdminManageTrainerPage />} />
-          <Route exact path="/ClientWorkshopPage" element={<ClientWorkshopPage />} />
-          <Route exact path='/ProfilePage' element={<ProfilePage/>}/>
-          <Route exact path="/TrainerWorkshopPage" element={<TrainerWorkshopPage />} />
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/LoginPage" element={<LoginPage />} />
+          <Route exact path="/AdminLoginPage" element={<AdminLoginPage />} />
+          <Route exact path="/ClientLoginPage" element={<ClientLoginPage />} />
+          <Route
+            exact
+            path="/TrainerLoginPage"
+            element={<TrainerLoginPage />}
+          />
+          <Route exact path="/SignUpPage" element={<SignUpPage />} />
+          <Route exact path="/AdminHomePage" element={<AdminHomePage />} />
+          <Route exact path="/ClientHomePage" element={<ClientHomePage />} />
+          <Route exact path="/TrainerHomePage" element={<TrainerHomePage />} />
+          <Route
+            exact
+            path="/AdminWorkshopRequestPage"
+            element={<AdminWorkshopRequestPage />}
+          />
+          <Route
+            exact
+            path="/AdminManageTrainerPage"
+            element={<AdminManageTrainerPage />}
+          />
+          <Route exact path="/OurWorkshopPage" element={<OurWorkshopPage />} />
+          <Route
+            exact
+            path="/AdminManageTrainerPage"
+            element={<AdminManageTrainerPage />}
+          />
+          <Route
+            exact
+            path="/ClientWorkshopPage"
+            element={<ClientWorkshopPage />}
+          />
+          <Route exact path="/ProfilePage" element={<ProfilePage />} />
+          <Route
+            exact
+            path="/TrainerWorkshopPage"
+            element={<TrainerWorkshopPage />}
+          />
         </Routes>
       </div>
     </Router>
