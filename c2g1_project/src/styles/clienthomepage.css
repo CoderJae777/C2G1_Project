@@ -60,19 +60,17 @@
 .ws_req_form_group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 20px; /* Adds space between inputs */
 }
 
 .ws_req_form_heading {
   grid-column: 1 / span 2; /* Spans the heading across both columns */
   text-align: center;
   font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .ws_req_form_group input,
 .ws_req_form_group textarea {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   font-size: 16px;
   border: 2px solid #0083ca;
@@ -139,14 +137,29 @@
 }
 
 .ws_req_form_message {
-  grid-column: 1 / span 2;
+  grid-column: 1;
 }
 
 .ws_req_form_button {
-  grid-column: 1 / span 2;
+  grid-column: 2;
   display: flex;
   justify-content: center; /* Centralizes the submit button */
   margin-top: 20px; /* Adds some space before the button */
+}
+
+.clear-button-design {
+  background-color: gray;
+  color: white;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 3px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 1000ms;
+  border-color: black;
+  margin-left: 20px;
 }
 
 .ws_req_submit_button {
@@ -161,6 +174,21 @@
   font-weight: bold;
   transition: background-color 1000ms;
   border-color: black;
+}
+
+.popwsreqbut {
+  background-color: #5cdb5c;
+  color: white;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 3px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 1000ms;
+  border-color: black;
+  margin-top: 20px;
 } /* Summary Modal */
 .summary-modal {
   position: fixed;
@@ -225,4 +253,14 @@
 
 .summary-buttons button:last-child:hover {
   background-color: #d32f2f;
+}
+
+.view-avail-ws-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #0083ca;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 10px 0;
 }
