@@ -19,6 +19,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import TrainerWorkshopPage from "./pages_trainer/TrainerWorkshopPage";
 
 function App() {
+
   return (
     <Router>
       <div className="App">
