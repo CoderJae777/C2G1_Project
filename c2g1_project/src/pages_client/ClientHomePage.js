@@ -172,7 +172,21 @@ const ClientHomePage = () => {
           {/* Top Section */}
           <div className="client-home-page-left-top">
             <div className="view-avail-ws">
-              <h4 className="ws_req_form_heading">View Available Workshops</h4>
+              <h4 className="ws_req_form_heading">View Available Workshops</h4>{" "}
+              <div>
+                <select className="view-avail-ws-select">
+                  <option className="view-avail-ws-select" value="Option 1">
+                    WS01 Introduction to Python
+                  </option>
+                  <option className="view-avail-ws-select" value="Option 2">
+                    WS02 Introduction to C
+                  </option>
+                  <option className="view-avail-ws-select" value="Option 3">
+                    WS03 Introduction to Java
+                  </option>
+                </select>
+                <p>Workshop Details to be printed here</p>
+              </div>
             </div>
           </div>
           {/* Bottom Section */}
