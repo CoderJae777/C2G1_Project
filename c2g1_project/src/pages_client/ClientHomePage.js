@@ -22,12 +22,10 @@ const ClientHomePage = () => {
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Your EmailJS service ID, template ID, and Public Key
+    // EmailJS service ID, template ID, and Public Key
     const serviceId = "service_ks4czg2";
     const templateId = "template_s99g3id";
     const publicKey = "1T7xmpr5tqQhyh-GS";
@@ -50,10 +48,6 @@ const ClientHomePage = () => {
 
     // Show summary modal
     setShowSummary(true);
-
-    // You can optionally remove the actual sending code from handleSubmit
-    // and move it to a function that confirms the submission upon user confirmation.
-    // This is to simulate the behavior you requested where the user confirms before submitting.
   };
 
   const clearForm = () => {
@@ -108,6 +102,39 @@ const ClientHomePage = () => {
   const handleEditRequest = () => {
     // Close summary modal and allow user to continue editing
     setShowSummary(false);
+  };
+
+  const [selectedWorkshop, setSelectedWorkshop] = useState("");
+
+  ///////////////////////////////////////////
+  // Hardcoded Data for now
+  ///////////////////////////////////////////
+  const workshops = {
+    "Option 1": {
+      workshopId: "WS01",
+      workshopName: "Introduction to Python",
+    },
+    "Option 2": {
+      workshopId: "WS02",
+      workshopName: "Introduction to C",
+    },
+    "Option 3": {
+      workshopId: "WS03",
+      workshopName: "Introduction to Java",
+    },
+  };
+  // This function checks if a workshop is selected.
+  // If so, it retrieves the corresponding workshop details from the workshops object
+  // and updates the state variables workshopId and workshopName.
+  const populateForm = () => {
+    if (selectedWorkshop) {
+      const selected = workshops[selectedWorkshop];
+      setWorkshopId(selected.workshopId);
+      setWorkshopName(selected.workshopName);
+    }
+    alert(
+      "The available workshop selected will be populated in the request form"
+    );
   };
 
   return (
@@ -172,20 +199,25 @@ const ClientHomePage = () => {
           {/* Top Section */}
           <div className="client-home-page-left-top">
             <div className="view-avail-ws">
-              <h4 className="ws_req_form_heading">View Available Workshops</h4>{" "}
+              <h4 className="ws_req_form_heading">View Available Workshops</h4>
               <div>
-                <select className="view-avail-ws-select">
-                  <option className="view-avail-ws-select" value="Option 1">
-                    WS01 Introduction to Python
+                <select
+                  placeholder="Click to view workshops"
+                  value={selectedWorkshop}
+                  onChange={(e) => setSelectedWorkshop(e.target.value)}
+                  className="view-avail-ws-select"
+                >
+                  <option value="" disabled>
+                    Click to view workshops
                   </option>
-                  <option className="view-avail-ws-select" value="Option 2">
-                    WS02 Introduction to C
-                  </option>
-                  <option className="view-avail-ws-select" value="Option 3">
-                    WS03 Introduction to Java
-                  </option>
+                  <option value="Option 1">WS01 Introduction to Python</option>
+                  <option value="Option 2">WS02 Introduction to C</option>
+                  <option value="Option 3">WS03 Introduction to Java</option>
                 </select>
                 <p>Workshop Details to be printed here</p>
+                <button className="popwsreqbut" onClick={populateForm}>
+                  Populate
+                </button>
               </div>
             </div>
           </div>
@@ -303,9 +335,16 @@ const ClientHomePage = () => {
             <div className="ws_req_form_button">
               <button type="submit" className="ws_req_submit_button">
                 Submit Request
+              </button>{" "}
+              <button
+                type="button"
+                className="clear-button-design"
+                onClick={clearForm}
+              >
+                Clear
               </button>
-            </div>
-          </form>
+            </div>{" "}
+          </form>{" "}
         </div>
       </motion.div>
     </>
