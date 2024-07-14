@@ -1,6 +1,6 @@
 import "../styles/carousel.css";
 import React, { useState, useEffect } from "react";
-const Carousel = ({ images, interval = 3000 }) => {
+const Carousel = ({ images, interval = 2500 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   useEffect(() => {
     const autoPlayInterval = setInterval(nextSlide, interval);
