@@ -69,7 +69,7 @@ const AdminHomePage = () => {
     config.base_url + endpoints.verify
   );
 
-  return data !== null && data.status === true ? (
+  return data !== null && data.role === "admin" ? (
     <motion.div
       className="admin-home-page"
       initial={{ opacity: 0, scale: 0.5 }}
