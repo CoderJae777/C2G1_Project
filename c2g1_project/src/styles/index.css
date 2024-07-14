@@ -6,6 +6,7 @@
   grid-template-columns: 1fr;
   width: 100%;
   height: 900px;
+  margin-top: 50px;
   background-image: url("../images/dashboardbackground.jpg");
 }
 
@@ -62,7 +63,7 @@
 .admin_login_button:hover,
 .client_login_button:hover,
 .trainer_login_button:hover {
-  background-color: #28abf1;
+  background-color: #0083ca;
   color: white;
 }
 
@@ -99,7 +100,7 @@
 }
 
 .signin_button:hover {
-  background-color: #28abf1;
+  background-color: #0083ca;
 }
 
 .username,
@@ -129,52 +130,94 @@
 
 /* Navbar designs */
 .navbar {
-  background-color: #e3f2fd;
-  height: 100px;
-  background-image: url("../images/dashboardbackground.jpg");
-  background-size: "cover";
+  background-color: white; /* Initially transparent */
+  height: 80px;
+  background-size: cover;
   position: relative;
-}
-/* .sticky-nav {
+  transition: background-color 500ms, box-shadow 500ms;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-} */
-.navbar_contents {
-  display: flex;
-  justify-content: center;
-  width: 100%;
   padding: 10px;
-}
-
-.navbar button,
-.testibutton {
-  background-color: #eef8ff;
-  color: black;
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
-  border-width: 0px;
-  font-family: roboto;
-  font-size: 15px;
-  font-weight: bold;
-  margin-right: 30px;
-  margin-left: 50px;
-  margin-top: 10px;
-  padding: 10px;
-  transition: background-color 500ms;
-  transition: color 0ms;
-  border-color: #0083ca;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
-.navbar button:hover,
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar_contents {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Other styles remain unchanged */
+
+.navbarbutton {
+  background-color: transparent; /* Initially transparent */
+  color: #0083ca;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+  border-width: 0px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
+}
+.testibutton {
+  background-color: white;
+  color: black;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+  border-width: 0px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
+  margin-top: 20px;
+}
+
+.loginbutton {
+  background-color: white;
+  color: #008000;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+  border-width: 0px;
+  font-family: roboto;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
+}
+
+.loginbutton:hover {
+  background-color: #5cdb5c;
+  color: black;
+  transition: background-color 500ms;
+}
+
+.navbarbutton:hover,
 .testibutton:hover {
-  background-color: #28abf1;
+  background-color: #0083ca;
   color: white;
   transition: background-color 500ms;
+}
+
+.navbarlogo {
+  margin-right: 20px;
 }
 
 .card {
@@ -186,7 +229,8 @@
 .signuppage {
   background-image: url("../images/dashboardbackground.jpg");
   padding: 20px;
-  height: 100%;
+  height: 700px;
+  margin-top: 60px;
 }
 .errmsg {
   color: red;
@@ -240,8 +284,8 @@
 }
 
 .form_control {
-  margin: 20px;
-  padding: 20px;
+  margin: 10px;
+  padding: 10px;
   border-radius: 10px;
   border-width: 3px;
   text-align: center;
@@ -261,7 +305,7 @@
 .homepageinfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 700px;
+  column-gap: 600px;
   width: 100%;
   height: 300px;
   color: #0083ca;
@@ -271,54 +315,65 @@
   background-image: url("../images/homepageimg2.jpg");
   background-size: "cover";
   opacity: 0.5;
+  margin-top: 50px;
+  padding: 50px;
 }
 
 .homepage-div-2 {
   background-image: url("../images/homepageimg.jpg");
   background-size: "cover";
-  opacity: 0.5;
+  height: 450px;
 }
 
 .about {
   grid-column-start: 1;
-  padding: 25px;
+  padding: 5px;
   margin-top: 50px;
 }
 
 .about2 {
   grid-column-start: 2;
-  padding: 25px;
-  margin-top: 50px;
+  font-size: 20px;
+  margin-top: 80px;
 }
 
 .testimonials {
   grid-column-start: 2;
-  padding: 25px;
-  margin-top: 50px;
+  padding: 10px;
+  font-size: 20px;
+  width: 500px;
+  margin-right: 100px;
+  margin-top: 10px;
+}
+.slideshow {
+  max-width: 500px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .homepage-div-3 {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  background-image: url("../images/homepageimg3.jpg");
+  /* background-image: url("../images/homepageimg3.jpg"); */
+  background-image: url("../images/dashboardbackground.jpg");
+
   background-size: "cover";
-  height: 250px;
+  height: 550px;
   color: #e3f2fd;
   align-items: center;
   justify-items: center;
 }
 
 .homepage-div-3-title1 {
-  font-size: 22px;
+  font-size: 28px;
   grid-row-start: 1;
-  margin-top: 40px;
-  margin-bottom: 10px;
+  margin-top: 50px;
   color: #0083ca;
 }
 
 .homepage-div-3-title2 {
   grid-row-start: 2;
-  margin-bottom: 150px;
+  margin-bottom: 280px;
 }
 
 .homepage-div-5 {
@@ -462,7 +517,6 @@
   transition: background-color 1000ms;
   border-color: black;
 }
-
 
 .sendemailbutton:hover {
   background-color: darkgreen;

@@ -1,24 +1,25 @@
 import { useNavigate } from "react-router-dom";
-
 import dellacademylogo_small from "../images/NavBarLogo.png";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
   const nav = useNavigate();
-  const [stickyClass, setStickyClass] = useState("");
+  const navbarRef = useRef(null);
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", stickNavbar);
-    return () => window.removeEventListener("scroll", stickNavbar);
-  }, []);
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
 
-  const stickNavbar = () => {
-    if (window !== undefined) {
-      let windowHeight = window.scrollY;
-      windowHeight > 150 ? setStickyClass("sticky-nav") : setStickyClass("");
-    }
-  };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavBarSignIn = () => {
     nav("/LoginPage");
@@ -26,52 +27,87 @@ const Navbar = () => {
   const handleSignUp = () => {
     nav("/SignUpPage");
   };
-
   const handleHomePage = () => {
     nav("/");
-  
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 100);
   };
-  const handleworkshop = () => {
+  const handleWorkshop = () => {
     nav("/OurWorkshopPage");
   };
 
+  const handleContactUs = () => {
+    nav("/");
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
   return (
-    <motion.nav className={`navbar ${stickyClass}`}>
+    <motion.nav
+      className={`navbar ${isSticky ? "sticky-nav" : ""}`}
+      ref={navbarRef}
+    >
       <div className="navbar_contents">
-        <img
+        {/* <img
           onClick={handleHomePage}
           className="navbarlogo"
           src={dellacademylogo_small}
-        ></img>
-        {/* TBC --> links to an about us page */}
+          alt="Navbar Logo"
+        ></img> */}
         <motion.button
+          className="navbarbutton"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleHomePage}
         >
           Home
         </motion.button>
-        {/* TBC --> links to the workshops page */}
-        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={handleworkshop}>
+        <motion.button
+          className="navbarbutton"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleWorkshop}
+        >
           Our Workshops
         </motion.button>
-        {/* TBC --> links to a view all trainers page */}
-        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
+        <motion.button
+          className="navbarbutton"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+        >
           Our Trainers
         </motion.button>
         <motion.button
+          className="navbarbutton"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
-          onClick={handleNavBarSignIn}
+          onClick={handleContactUs}
         >
-          Log in
+          Contact Us
         </motion.button>
         <motion.button
+          className="navbarbutton"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleSignUp}
         >
           Sign Up!
+        </motion.button>
+        <motion.button
+          className="loginbutton"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleNavBarSignIn}
+        >
+          Log in!
         </motion.button>
       </div>
     </motion.nav>

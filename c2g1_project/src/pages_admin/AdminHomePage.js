@@ -80,8 +80,7 @@ const AdminHomePage = () => {
         <TopLeftSideBar />
       </div>
       <div className="left-column">
-        <div className="admin-home-page-title">
-        </div>
+        <div className="admin-home-page-title"></div>
 
         {/* Workshop summary starts here */}
         <div className="workshop-table">
@@ -92,20 +91,24 @@ const AdminHomePage = () => {
           {today_data && today_data[0] ? (
             <>
               <div className="workshopstoday">
-                <h2>{today_data[0].ongoingworkshopstoday}</h2>
+                <h2 className="today_data">
+                  {today_data[0].ongoingworkshopstoday}
+                </h2>
                 <h5>Ongoing workshops today</h5>
               </div>
               <div className="trainersworking">
-                <h2>{today_data[0].trainertoday}</h2>
+                <h2 className="today_data">{today_data[0].trainertoday}</h2>
                 <h5>Trainers conducting across all workshops</h5>
               </div>
               <div className="workshopattendees">
-                <h2>{today_data[0].participantstoday}</h2>
+                <h2 className="today_data">
+                  {today_data[0].participantstoday}
+                </h2>
                 <h5>Total Participants across all workshops</h5>
               </div>
               <div className="attendancepercentage">
-                <h2>{today_data[0].attendance}</h2>
-                <h5>Today's Attendance</h5>
+                <h2 className="today_data">{today_data[0].attendance}</h2>
+                <h5>Attended Today</h5>
               </div>
             </>
           ) : (
@@ -114,7 +117,9 @@ const AdminHomePage = () => {
         </div>
         {/* Workshop summary ends here */}
         <div className="breakdown-of-attendance-div">
-          <h5>Breakdown of Attendance in 2024</h5>
+          <div className="breakdown-of-attendance-title">
+            <h5>Breakdown of Attendance in 2024</h5>
+          </div>
           <AreaChart
             width={500}
             height={200}
@@ -158,7 +163,7 @@ const AdminHomePage = () => {
         <div className="admin-graphs">
           {/* Right column MAIN DIV NUMBER 1 */}
           <div className="workshop-stats">
-            <h5>{workshopgraphsTitle}</h5>
+            <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
             <LineChart
               width={920}
               height={250}
@@ -191,7 +196,7 @@ const AdminHomePage = () => {
           {/* Right column MAIN DIV NUMBER 2 */}
           <div className="trainer-stats">
             {" "}
-            <h5>{trainergraphsTitle}</h5>
+            <h5 className="trainer-stats-title">{trainergraphsTitle}</h5>
           </div>
           <>
             <div className="graph_buttons_div">
