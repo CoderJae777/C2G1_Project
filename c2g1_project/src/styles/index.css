@@ -355,8 +355,8 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   /* background-image: url("../images/homepageimg3.jpg"); */
-  background-image: url("../images/dashboardbackground.jpg");
-
+  /* background-image: url("../images/dashboardbackground.jpg"); */
+  background-color: #e3f2fd;
   background-size: "cover";
   height: 550px;
   color: #e3f2fd;
@@ -377,7 +377,8 @@
 }
 
 .homepage-div-5 {
-  background-image: url("../images/dashboardbackground.jpg");
+  /* background-image: url("../images/dashboardbackground.jpg"); */
+  background-color: #e3f2fd;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
@@ -460,7 +461,8 @@
 .bottom-of-homepage {
   display: grid;
   grid-template-rows: 80px 1fr;
-  background-image: url("../images/dashboardbackground.jpg");
+  /* background-image: url("../images/dashboardbackground.jpg"); */
+  background-color: #e3f2fd;
   width: 100%;
   color: #0083ca;
   font-size: 22px;
