@@ -10,7 +10,8 @@ const endpoints = {
   admin: {
     addTrainer: "/auth/trainers",
     getTrainers: "/auth/trainers/list",
-    updateTrainer: "/auth/trainers",
+    updateTrainer: "/auth/trainers/update/",
+    availabilityTrainer: "/auth/trainers/",
   },
 };
 

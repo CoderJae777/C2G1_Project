@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
-import useAxiosPost from '../api/useAxiosPost';
+import useAxiosPatch from '../api/useAxiosPatch';
 import { config } from '../config/config';
 import { endpoints } from '../config/endpoints';
 
-const EditTrainerDetailsPopup = ({ onClose }) => {
+const EditTrainerDetailsPopup = ({ onClose, trainerId }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [newTrainerPassword, setNewTrainerPassword] = useState("");
@@ -22,14 +22,23 @@ const EditTrainerDetailsPopup = ({ onClose }) => {
         setNewTrainerPassword(event.target.value);
     }
 
-    const handleSuccess = (data) => {
+    const handleSuccess = () => {
         onClose();
     };
+
     const handleError = (error) => {
     };
 
-    const { data, loading, error, setBody, refetch } = useAxiosPost(
-        config.base_url + endpoints.admin.addTrainer,
+    const handleSubmit = () => {
+        setBody({
+            trainer_role: selectedItem,
+            password: newTrainerPassword
+        });
+        refetch();
+    };
+
+    const { data, loading, error, setBody, refetch } = useAxiosPatch(
+        config.base_url + endpoints.admin.updateTrainer + trainerId,
         {},
         [],
         handleSuccess,
@@ -76,7 +85,7 @@ const EditTrainerDetailsPopup = ({ onClose }) => {
                 placeholder="Enter new password"
             />
             <div className="popup-buttons">
-                <button className="submit-button" type="button" onClick={handleSuccess}>Submit</button>
+                <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
                 <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>

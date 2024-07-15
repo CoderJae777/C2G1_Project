@@ -21,6 +21,8 @@ const AdminManageTrainerPage = () => {
   const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
     useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
+  const [availability, setAvailability] = useState(null);
 
   var trainer_data = [];
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
@@ -33,20 +35,25 @@ const AdminManageTrainerPage = () => {
     trainer_data = data.trainers;
   } catch (error) {}
 
-  const handleOpenTrainerDetailsPopup = () => {
+  const handleOpenTrainerDetailsPopup = (id) => {
+    setSelectedId(id);
     setIsTrainerDetailsPopupOpen(true);
   };
 
   const handleCloseTrainerDetailsPopup = () => {
+    refetch();
     setIsTrainerDetailsPopupOpen(false);
   };
 
-  const handleOpenTrainerActivityPopup = (index) => {
+  const handleOpenTrainerActivityPopup = (index, id, availability) => {
     setIsTrainerActivityPopupOpen(true);
     setPopupIndex(index);
+    setAvailability(availability);
+    setSelectedId(id);
   };
 
   const handleCloseTrainerActivityPopup = () => {
+    refetch();
     setIsTrainerActivityPopupOpen(false);
   };
 
@@ -78,7 +85,8 @@ const AdminManageTrainerPage = () => {
   return (trainer_data !== null) | (trainer_data.trainers !== null) ? (
     <>
       {isTrainerDetailsPopupOpen && (
-        <EditTrainerDetailsPopup
+        <EditTrainerDetailsPopup 
+        trainerId={selectedId}
         onClose={handleCloseTrainerDetailsPopup} />
       )}
       {isTrainerActivityPopupOpen && (
@@ -86,6 +94,8 @@ const AdminManageTrainerPage = () => {
           onClose={handleCloseTrainerActivityPopup}
           onActivityChange={handleActivityChange}
           index={popupIndex}
+          trainerId={selectedId}
+          availability={availability}
         />
       )}
       {isAddTrainerPopupOpen && (
@@ -140,15 +150,15 @@ const AdminManageTrainerPage = () => {
                         </button>
                         <button
                           className="trainer-info-table-button"
-                          onClick={handleOpenTrainerDetailsPopup}
+                          onClick={() => handleOpenTrainerDetailsPopup(trainer._id)}
                         >
                           Edit Details
                         </button>
                         <button
                           className="trainer-info-table-button"
-                          onClick={() => handleOpenTrainerActivityPopup(index)}
+                          onClick={() => handleOpenTrainerActivityPopup(index, trainer._id, trainer.availability.toString())}
                         >
-                          {trainer.activity}
+                          {trainer.availability.toString()}
                         </button>
                       </td>
                     </tr>
