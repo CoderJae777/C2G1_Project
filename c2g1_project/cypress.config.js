@@ -14,7 +14,10 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+
+    // all URL will start with this, so when you use cy.visit just type the route page
+    baseUrl: "http://localhost:3000",
     viewportWidth: 1500,
-    viewportHeight: 1080,
+    viewportHeight: 900,
   },
 });
