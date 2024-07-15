@@ -18,6 +18,15 @@ const TopLeftSideBar = () => {
     false
   );
 
+  const handleAdminHomePage = (e) => {
+    e.preventDefault();
+    nav("/AdminHomePage");
+  };
+
+  const handleProfilePage = () => {
+    nav("/ProfilePage")
+  }
+
   const handleAdminWorkshopRequestPage = (e) => {
     e.preventDefault();
     nav("/AdminWorkshopRequestPage");
@@ -28,14 +37,10 @@ const TopLeftSideBar = () => {
     nav("/AdminManageTrainerPage");
   };
 
-  const handleAdminHomePage = (e) => {
+  const handleAdminManageWorkshopPage = (e) => {
     e.preventDefault();
-    nav("/AdminHomePage");
+    nav("/AdminManageWorkshopPage");
   };
-
-  const handleProfilePage = () => {
-    nav("/ProfilePage")
-  }
 
   const handleNavBarSignOut = (e) => {
     e.preventDefault();
@@ -94,25 +99,21 @@ const TopLeftSideBar = () => {
                 </a>
               </li>
               <li className="list">
-                <a
-                  href="#"
-                  data-cy="nav-btn" 
-                  className="nav-link"
-                  onClick={handleAdminWorkshopRequestPage}
-                >
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminWorkshopRequestPage}>
                   <i className="bx bx-clipboard icon"></i>
                   <span className="link">Workshop Requests</span>
                 </a>
               </li>
               <li className="list">
-                <a
-                  href="#"
-                  data-cy="nav-btn" 
-                  className="nav-link"
-                  onClick={handleAdminManageTrainerPage}
-                >
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminManageTrainerPage}>
                   <i className="bx bx-group icon"></i>
                   <span className="link">Manage Trainers</span>
+                </a>
+              </li>
+              <li className="list">
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminManageWorkshopPage}>
+                  <i class='bx bx-spreadsheet icon'></i>
+                  <span className="link">Manage Workshops</span>
                 </a>
               </li>
             </ul>
