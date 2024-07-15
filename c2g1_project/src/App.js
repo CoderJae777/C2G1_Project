@@ -8,6 +8,7 @@ import ClientHomePage from "./pages_client/ClientHomePage";
 import TrainerHomePage from "./pages_trainer/TrainerHomePage";
 import AdminWorkshopRequestPage from "./pages_admin/AdminWorkshopRequestPage";
 import AdminManageTrainerPage from "./pages_admin/AdminManageTrainerPage";
+import AdminManageWorkshopPage from "./pages_admin/AdminManageWorkshopPage";
 import LoginPage from "./login_pages/LoginPage";
 import SignUpPage from "./pages_home/SignUpPage";
 import { ToastContainer } from "react-toastify";
@@ -48,6 +49,11 @@ function App() {
             exact
             path="/AdminManageTrainerPage"
             element={<AdminManageTrainerPage />}
+          />
+          <Route
+            exact
+            path="/AdminManageWorkshopPage"
+            element={<AdminManageWorkshopPage />}
           />
           <Route exact path="/OurWorkshopPage" element={<OurWorkshopPage />} />
           <Route

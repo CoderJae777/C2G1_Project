@@ -1,0 +1,70 @@
+/* Whole workshop page */
+.workshoppage {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    background-color: #e3f2fd;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 50px;
+  }
+  
+  /* Row 1 */
+  .workshoppage-1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Workshop Cards */
+  .workshop-card {
+    display: grid;
+    justify-content: center;
+    margin: 40px 30px 0 30px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    /* transition: box-shadow 0.3s; */
+  }
+  
+  .workshop-card:hover {
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+                rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  }
+
+  /* Row 2 */
+  .workshoppage-2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Rows 3 and 4 */
+  .workshoppage-3,
+  .workshoppage-4 {
+    display: grid;
+  }
+
+  .edit-workshop-details-button {
+    background-color: #80C7FB;
+    color: black;
+    width: 200px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 5px;
+  }
+
+.edit-workshop-details-button:hover {
+    background-color: #0672CB;
+    color: white;
+}
