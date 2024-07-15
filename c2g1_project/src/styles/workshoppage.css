@@ -2,7 +2,8 @@
 .workshoppage {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  background-image: url("../images/dashboardbackground.jpg");
+  /* background-image: url("../images/dashboardbackground.jpg"); */
+  background-color: #e3f2fd;
   background-size: "cover";
   width: 100%;
   height: 100%;
@@ -38,7 +39,7 @@
   padding: 25px;
   /* box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px; */
-  background-color: #e3f2fd;
+  background-color: white;
 }
 
 .workshoppage-1-ws1:hover,
