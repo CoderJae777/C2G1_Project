@@ -187,8 +187,10 @@ const ClientHomePage = () => {
               <strong>Message:</strong> {message}
             </p>
             <div className="summary-buttons">
-              <button onClick={handleConfirmRequest}>Confirm Request</button>
-              <button onClick={handleEditRequest}>Edit Request</button>
+              <motion.button whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }} onClick={handleConfirmRequest}>Confirm Request</motion.button>
+              <motion.button whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }} onClick={handleEditRequest}>Edit Request</motion.button>
             </div>
           </div>
         </div>
@@ -222,9 +224,10 @@ const ClientHomePage = () => {
                   <option value="Option 3">WS03 Introduction to Java</option>
                 </select>
                 <p>Workshop Details to be printed here</p>
-                <button className="popwsreqbut" onClick={populateForm}>
+                <motion.button whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }} className="popwsreqbut" onClick={populateForm}>
                   Populate
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
@@ -340,16 +343,18 @@ const ClientHomePage = () => {
               ></textarea>
             </div>
             <div className="ws_req_form_button">
-              <button type="submit" className="ws_req_submit_button">
+              <motion.button type="submit" whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }} className="ws_req_submit_button">
                 Submit Request
-              </button>{" "}
-              <button
+              </motion.button>{" "}
+              <motion.button
                 type="button"
                 className="clear-button-design"
-                onClick={clearForm}
+                onClick={clearForm} whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
               >
                 Clear
-              </button>
+              </motion.button>
             </div>{" "}
           </form>{" "}
         </div>
