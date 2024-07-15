@@ -64,9 +64,11 @@ const AddTrainerPopup = ({ onClose }) => {
     console.log("Trainer Email:", trainerEmail);
     console.log("Trainer Password:", trainerPassword);
     setBody({
-      username: trainerName,
+      username: trainerId,
       password: trainerPassword,
       email: trainerEmail,
+      fullname: trainerName,
+      trainer_role: trainerRole,
     });
     refetch();
   };

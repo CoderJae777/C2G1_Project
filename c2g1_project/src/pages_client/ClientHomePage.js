@@ -6,6 +6,9 @@ import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
 import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import useAxiosGet from "../api/useAxiosGet.jsx";
+import { config } from "../config/config.js";
+import { endpoints } from "../config/endpoints.js";
 
 const ClientHomePage = () => {
   const [name, setName] = useState("");
@@ -137,7 +140,11 @@ const ClientHomePage = () => {
     );
   };
 
-  return (
+  const { data, loading, error, setBody, refetch } = useAxiosGet(
+    config.base_url + endpoints.verify
+  );
+
+  return data !== null && data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
 
@@ -348,6 +355,8 @@ const ClientHomePage = () => {
         </div>
       </motion.div>
     </>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
+import useAxiosPatch from '../api/useAxiosPatch';
+import { config } from '../config/config';
+import { endpoints } from '../config/endpoints';
 
-const TrainerActivityPopup = ({ onClose, onActivityChange, index }) => {
+const TrainerActivityPopup = ({ onClose, onActivityChange, index, trainerId, availability }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItem, setSelectedItem] = useState(availability);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -18,6 +21,21 @@ const TrainerActivityPopup = ({ onClose, onActivityChange, index }) => {
         onActivityChange(selectedItem, index);
         onClose();
     };
+
+    const handleSuccess = () => {
+        onClose();
+    };
+
+    const handleError = (error) => {
+    };
+
+    const { data, loading, error, setBody, refetch } = useAxiosPatch(
+        config.base_url + endpoints.admin.availabilityTrainer + selectedItem,
+        {},
+        [],
+        handleSuccess,
+        handleError
+      );
 
     return (
         <div className="trainer-activity-popup open-trainer-activity-popup">
