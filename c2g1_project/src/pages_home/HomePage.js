@@ -35,6 +35,7 @@ const HomePage = () => {
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ delay: 0.25 }}
+        whileInView={{ opacity: 1 }}
         className="homepage"
       >      <motion.div className="progress-bar" style={{ scaleX: scrollYProgress }} />
 
@@ -44,6 +45,7 @@ const HomePage = () => {
             animate={{ scale: 1, opacity: 1 }}
             initial={{ opacity: 0, scale: 0 }}
             transition={{ delay: 1 }}
+            whileInView={{ scale: 1, opacity: 1 }}
           >
             <AnimatedHead />{" "}
             <div>
@@ -51,6 +53,7 @@ const HomePage = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 initial={{ opacity: 0, scale: 0 }}
                 transition={{ delay: 1 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 className="navbarlogo"
                 src={dellacademylogo_small}
                 alt="Navbar Logo"
@@ -62,8 +65,9 @@ const HomePage = () => {
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ delay: 1 }}
+            whileInView={{ opacity: 1 }}
           >
-            <h2>Grow your skills with Dell Academy!</h2>{" "}
+            <h2 data-cy="h2-test" >Grow your skills with Dell Academy!</h2>{" "}
             <div>
               <motion.button
                 transition={{ delay: 1.25 }}
@@ -71,6 +75,7 @@ const HomePage = () => {
                 initial={{ scale: 0 }}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.4 }}
+                whileInView={{ scale: 1 }}
                 className="testibutton"
                 onClick={handleSignUp}
               >
@@ -84,6 +89,7 @@ const HomePage = () => {
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ delay: 0.5 }}
+        whileInView={{ opacity: 1}}
         className="homepage-div-2"
       >
         <div className="homepageinfo">
@@ -92,6 +98,7 @@ const HomePage = () => {
             transition={{ delay: 1.25 }}
             animate={{ scale: 1 }}
             initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
           >
             <Testimonials />
             {/* <motion.button
