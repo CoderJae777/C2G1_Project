@@ -59,14 +59,14 @@ const TopLeftSideBar = () => {
 
   return (
     <>
-      <nav className={navOpen ? "open" : ""}>
+      <nav data-cy="nav" className={navOpen ? "open" : ""}>
         <div className="logo">
           <div className="hamburger">
-            <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <i data-cy="open-tlsb" className="bx bx-menu menu-icon" onClick={toggleNav}></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span className="logo-name">Hi Dil, Welcome Back!</span>
+            <span data-cy="welcome" className="logo-name">Hi Dil, Welcome Back!</span>
           </div>
           <div className="date">
             <span className="logo-name">
@@ -74,21 +74,21 @@ const TopLeftSideBar = () => {
             </span>
           </div>
         </div>
-        <div className="sidebar">
+        <div data-cy="sidebar" className="sidebar">
           <div className="logo">
-            <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <i data-cy="toggle-nav" className="bx bx-menu menu-icon" onClick={toggleNav}></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleAdminHomePage}>
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminHomePage}>
                   <i className="bx bx-home-alt icon"></i>
                   <span className="link">Home</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleProfilePage}>
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleProfilePage}>
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
                   <span className="link">Profile</span>
                 </a>
@@ -96,6 +96,7 @@ const TopLeftSideBar = () => {
               <li className="list">
                 <a
                   href="#"
+                  data-cy="nav-btn" 
                   className="nav-link"
                   onClick={handleAdminWorkshopRequestPage}
                 >
@@ -106,6 +107,7 @@ const TopLeftSideBar = () => {
               <li className="list">
                 <a
                   href="#"
+                  data-cy="nav-btn" 
                   className="nav-link"
                   onClick={handleAdminManageTrainerPage}
                 >
@@ -116,13 +118,13 @@ const TopLeftSideBar = () => {
             </ul>
             <div className="bottom-content">
               <li className="list">
-                <a href="#" className="nav-link">
+                <a href="#" data-cy="nav-btn" className="nav-link">
                   <i className="bx bx-cog icon"></i>
                   <span className="link">Settings</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleNavBarSignOut}>
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleNavBarSignOut}>
                   <i className="bx bx-log-out icon"></i>
                   <span className="link">Logout</span>
                 </a>
