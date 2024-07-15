@@ -78,6 +78,7 @@ const HomePage = () => {
                 whileInView={{ scale: 1 }}
                 className="testibutton"
                 onClick={handleSignUp}
+                data-cy="bookws-button-test"
               >
                 Book a workshop!
               </motion.button>
@@ -147,6 +148,7 @@ const HomePage = () => {
             whileTap={{ scale: 0.9 }}
             className="testibutton"
             onClick={handleworkshop}
+            data-cy="ws-button-test"
           >
             See Workshops
           </motion.button>
@@ -154,7 +156,6 @@ const HomePage = () => {
       </motion.div>
       <motion.div
         whileInView={{ scale: 1 }}
-        transition={{ delay: 0.25 }}
         initial={{ scale: 0 }}
         className="homepage-div-5"
       >
@@ -206,6 +207,7 @@ const HomePage = () => {
         whileInView={{ scale: 1 }}
         initial={{ scale: 0 }}
         className="bottom-of-homepage"
+        data-cy = "bottom-of-homepage"
       >
         <div className="contactustitle">
           <h3>Contact Us</h3>

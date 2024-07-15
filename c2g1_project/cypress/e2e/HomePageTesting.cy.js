@@ -29,9 +29,35 @@
 // for execution at a later time
 
 describe("Home Page Test", () => {
-  it("passes", () => {
-    cy.visit("http://localhost:3000");
-    cy.get('[data-cy="h2-test"]').contains('Grow your skills with Dell Academy!');
+  beforeEach(() => {
+    cy.visit("/");
+  });
+
+  it("Home Page Rendered Successfully", () => {
+    cy.url().should("include", "/");
+  });
+
+  it("Testing all headings", () => {
+    cy.get('[data-cy="h2-test"]').should(
+      "contain.text",
+      "Grow your skills with Dell Academy!"
+    );
+  });
+
+  it("Testing Buttons functionality", () => {
+    cy.get('[data-cy="bookws-button-test"]').click();
+    cy.location("pathname").should("eq", "/LoginPage");
+
+    cy.visit("/");
+    cy.get('[data-cy="ws-button-test"]').click();
+    cy.location("pathname").should("eq", "/OurWorkshopPage");
+  });
+
+  it("Testing all components", () => {
+    // Add your component tests here
+  });
+
+  it("Testing Scrolling Animations", () => {
+    cy.get('[data-cy="bottom-of-homepage"]').scrollIntoView({ duration: 5000 });
   });
 });
-
