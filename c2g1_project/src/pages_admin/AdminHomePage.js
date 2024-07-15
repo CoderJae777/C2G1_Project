@@ -21,6 +21,7 @@ import {
   Line,
   LineChart,
 } from "recharts";
+// import { set } from "mongoose";
 
 const AdminHomePage = () => {
   const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
@@ -64,6 +65,7 @@ const AdminHomePage = () => {
 
   // CALLING DATA FROM JSON
   const { trainer_data, workshop_data, today_data } = useFetch();
+  //"/workshopSummary/workshopGraph"
 
   const { data, loading, error, setBody, refetch } = useAxiosGet(
     config.base_url + endpoints.verify
