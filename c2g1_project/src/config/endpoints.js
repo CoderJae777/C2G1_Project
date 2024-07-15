@@ -9,6 +9,8 @@ const endpoints = {
   signup: "/auth/signup",
   admin: {
     addTrainer: "/auth/trainers",
+    getTrainers: "/auth/trainers/list",
+    updateTrainer: "/auth/trainers",
   },
 };
 

@@ -8,16 +8,30 @@ import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
 import useFetch from "../components/useFetch";
 import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar";
+import useAxiosGet from "../api/useAxiosGet";
+import { config } from "../config/config";
+import { endpoints } from "../config/endpoints";
 
 const AdminManageTrainerPage = () => {
   const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
     useState(false);
-  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] = useState(false);
+  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
+    useState(false);
   const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
-  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] = useState(false);
+  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
+    useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
 
-  const { trainer_data } = useFetch();
+  var trainer_data = [];
+  const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
+    config.base_url + endpoints.admin.getTrainers,
+    {},
+    [],
+    true
+  );
+  try {
+    trainer_data = data.trainers;
+  } catch (error) {}
 
   const handleOpenTrainerDetailsPopup = () => {
     setIsTrainerDetailsPopupOpen(true);
@@ -37,8 +51,8 @@ const AdminManageTrainerPage = () => {
   };
 
   const handleActivityChange = (selectedActivity, index) => {
-    const updatedTrainers = [...trainer_data];
-    updatedTrainers[index].activity = selectedActivity;
+    // const updatedTrainers = [...trainer_data.trainers];
+    // updatedTrainers[index].activity = selectedActivity;
     // Assuming you would update the state with the new trainers data.
     // You might need a separate state to manage the activity if you don't want to mutate fetched data directly.
     // setTrainers(updatedTrainers);
@@ -49,6 +63,7 @@ const AdminManageTrainerPage = () => {
   };
 
   const handleCloseAddTrainerPopup = () => {
+    refetch();
     setIsAddTrainerPopupOpen(false);
   };
 
@@ -60,10 +75,11 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return trainer_data !== null ? (
+  return (trainer_data !== null) | (trainer_data.trainers !== null) ? (
     <>
       {isTrainerDetailsPopupOpen && (
-        <EditTrainerDetailsPopup onClose={handleCloseTrainerDetailsPopup} />
+        <EditTrainerDetailsPopup
+        onClose={handleCloseTrainerDetailsPopup} />
       )}
       {isTrainerActivityPopupOpen && (
         <TrainerActivityPopup
@@ -106,15 +122,17 @@ const AdminManageTrainerPage = () => {
                 <tbody>
                   {trainer_data.map((trainer, index) => (
                     <tr key={index}>
-                      <td className="trainer-info-table-td">{trainer.name}</td>
+                      <td className="trainer-info-table-td">
+                        {trainer.fullname}
+                      </td>
                       <td className="trainer-info-table-td">
                         {trainer.trainer_role}
                       </td>
                       <td className="trainer-info-table-td">
-                        {trainer.trainer_ID}
+                        {trainer.username}
                       </td>
                       <td className="trainer-info-table-td">
-                        <button 
+                        <button
                           className="trainer-info-table-button"
                           onClick={handleOpenTrainerScheduleCalendar}
                         >

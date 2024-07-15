@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
+import useAxiosPost from '../api/useAxiosPost';
+import { config } from '../config/config';
+import { endpoints } from '../config/endpoints';
 
 const EditTrainerDetailsPopup = ({ onClose }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +21,20 @@ const EditTrainerDetailsPopup = ({ onClose }) => {
     const handlePasswordChange = (event) => {
         setNewTrainerPassword(event.target.value);
     }
+
+    const handleSuccess = (data) => {
+        onClose();
+    };
+    const handleError = (error) => {
+    };
+
+    const { data, loading, error, setBody, refetch } = useAxiosPost(
+        config.base_url + endpoints.admin.addTrainer,
+        {},
+        [],
+        handleSuccess,
+        handleError
+      );
 
     return (
         <div className="trainer-role-popup open-trainer-role-popup">
@@ -59,7 +76,7 @@ const EditTrainerDetailsPopup = ({ onClose }) => {
                 placeholder="Enter new password"
             />
             <div className="popup-buttons">
-                <button className="submit-button" type="button" onClick={onClose}>Submit</button>
+                <button className="submit-button" type="button" onClick={handleSuccess}>Submit</button>
                 <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
