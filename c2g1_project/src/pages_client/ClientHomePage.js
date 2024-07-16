@@ -88,13 +88,23 @@ const ClientHomePage = () => {
     createWorkshop.setBody({
       workshop_ID: workshopId,
       workshop_name: workshopName,
-      start_date: "02/07/2024",
-      end_date: "03/07/2024",
+      start_date: startDate.toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      }),
+      end_date: endDate.toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      }),
       availability: true,
       description: message,
       deal_potential: dealSize,
       pax: pax,
-      location: location,
+      venue: venue,
+      country: country,
+      workshop_type: workshopType,
       client_ID: data.id,
     });
     createWorkshop.refetch();
