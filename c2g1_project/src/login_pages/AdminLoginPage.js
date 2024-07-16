@@ -2,20 +2,15 @@ import { useNavigate } from "react-router-dom";
 import adminimg from "../images/adminimg.png";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 import useAxiosPost from "../api/useAxiosPost.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import Navbar from "../components/NavBar.js";
 
-// Running Json Server
-// npx json-server --watch db.json --port 8000
-
 const AdminLoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
-  const [move, setMove] = useState(false);
 
   const handleSuccess = (data) => {
     nav("/AdminHomePage");
@@ -23,7 +18,6 @@ const AdminLoginPage = () => {
 
   const handleError = (error) => {
     alert(error.response.data.message);
-    // alert('Login failed : User Account does not exist and/or Incorrect.');
   };
 
   const { data, loading, error, setBody, refetch } = useAxiosPost(
@@ -71,10 +65,8 @@ const AdminLoginPage = () => {
   return (
     <>
       <Navbar />
-      <div></div>
       <motion.div className="login_page">
-        <motion.div className="login_buttons">
-          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
+        <motion.div className="login_card">
           <img src={adminimg} className="admin-img" alt="adminimg"></img>
           <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
@@ -104,9 +96,6 @@ const AdminLoginPage = () => {
           <form onSubmit={ProceedLogin} className="login_form">
             <div className="card-body">
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Username"
                   value={username}
@@ -116,16 +105,12 @@ const AdminLoginPage = () => {
                 />
               </div>
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Password"
                   value={password}
                   onChange={(e) => passwordupdate(e.target.value)}
                   className="password"
                   type="password"
-                  // this will print out ..... when typing
                 />
               </div>
             </div>

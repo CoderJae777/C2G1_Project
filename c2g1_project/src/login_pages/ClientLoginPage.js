@@ -2,20 +2,15 @@ import { useNavigate } from "react-router-dom";
 import clientimg from "../images/clientimg.png";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 import useAxiosPost from "../api/useAxiosPost.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import Navbar from "../components/NavBar.js";
 
-// Running Json Server
-// npx json-server --watch db.json --port 8000
-
 const ClientLoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
-  const [move, setMove] = useState(false);
 
   const handleSuccess = (data) => {
     nav("/ClientHomePage");
@@ -70,9 +65,8 @@ const ClientLoginPage = () => {
   return (
     <>
       <Navbar />
-      <div className="login_page">
-        <motion.div className="login_buttons">
-          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
+      <motion.div className="login_page">
+        <motion.div className="login_card">
           <img src={clientimg} className="client-img" alt="clientimg"></img>
           <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
@@ -101,9 +95,6 @@ const ClientLoginPage = () => {
           <form onSubmit={ProceedLogin} className="login_form">
             <div className="card-body">
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Username"
                   value={username}
@@ -113,16 +104,12 @@ const ClientLoginPage = () => {
                 />
               </div>
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Password"
                   value={password}
                   onChange={(e) => passwordupdate(e.target.value)}
                   className="password"
                   type="password"
-                  // this will print out ..... when typing
                 />
               </div>
             </div>
@@ -142,7 +129,7 @@ const ClientLoginPage = () => {
             </div>
           </form>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 };
