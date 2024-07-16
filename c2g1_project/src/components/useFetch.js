@@ -37,7 +37,7 @@ const useFetch = () => {
   }, []); // Empty dependency array ensures useEffect runs only once
 
   useEffect(() => {
-    fetch("http://localhost:5001/products/todayGraph", {
+    fetch("http://localhost:5001/graph/getTodayGraph", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
