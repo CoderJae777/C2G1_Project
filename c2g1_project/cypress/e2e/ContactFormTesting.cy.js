@@ -27,7 +27,8 @@ describe("Contact Form Test", () => {
       .should("have.value", "Tech Co");
     cy.get("textarea")
       .type("This is a test message")
-      .should("have.value", "This is a test message");
+      .should("have.value", "This is a test message")
+      .wait(3000);
   });
 
   // Intercepts the POST request to the EmailJS API and mocks
@@ -44,13 +45,15 @@ describe("Contact Form Test", () => {
     cy.get('input[placeholder="Your Email"]').type("john.doe@example.com");
     cy.get('input[placeholder="Phone Number"]').type("1234567890");
     cy.get('input[placeholder="Your Company"]').type("Tech Co");
-    cy.get("textarea").type("This is a test message");
+    cy.get("textarea").type("This is a test message").wait(3000);
 
     cy.get("button.sendemailbutton").click();
 
     cy.wait("@sendEmail").its("response.statusCode").should("eq", 200);
     cy.on("window:alert", (str) => {
-      expect(str).to.equal("Mock Email Sent Successfully");
+      expect(str).to.equal(
+        "Your Message Has Been Sent! An Admin will contact you within 3 working days"
+      );
     });
   });
 

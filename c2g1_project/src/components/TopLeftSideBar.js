@@ -18,6 +18,15 @@ const TopLeftSideBar = () => {
     false
   );
 
+  const handleAdminHomePage = (e) => {
+    e.preventDefault();
+    nav("/AdminHomePage");
+  };
+
+  const handleProfilePage = () => {
+    nav("/ProfilePage")
+  }
+
   const handleAdminWorkshopRequestPage = (e) => {
     e.preventDefault();
     nav("/AdminWorkshopRequestPage");
@@ -28,14 +37,10 @@ const TopLeftSideBar = () => {
     nav("/AdminManageTrainerPage");
   };
 
-  const handleAdminHomePage = (e) => {
+  const handleAdminManageWorkshopPage = (e) => {
     e.preventDefault();
-    nav("/AdminHomePage");
+    nav("/AdminManageWorkshopPage");
   };
-
-  const handleProfilePage = () => {
-    nav("/ProfilePage")
-  }
 
   const handleNavBarSignOut = (e) => {
     e.preventDefault();
@@ -59,14 +64,14 @@ const TopLeftSideBar = () => {
 
   return (
     <>
-      <nav className={navOpen ? "open" : ""}>
+      <nav data-cy="nav" className={navOpen ? "open" : ""}>
         <div className="logo">
           <div className="hamburger">
-            <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <i data-cy="open-tlsb" className="bx bx-menu menu-icon" onClick={toggleNav}></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span className="logo-name">Hi Dil, Welcome Back!</span>
+            <span data-cy="welcome" className="logo-name">Hi Dil, Welcome Back!</span>
           </div>
           <div className="date">
             <span className="logo-name">
@@ -74,55 +79,53 @@ const TopLeftSideBar = () => {
             </span>
           </div>
         </div>
-        <div className="sidebar">
+        <div data-cy="sidebar" className="sidebar">
           <div className="logo">
-            <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <i data-cy="toggle-nav" className="bx bx-menu menu-icon" onClick={toggleNav}></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleAdminHomePage}>
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminHomePage}>
                   <i className="bx bx-home-alt icon"></i>
                   <span className="link">Home</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleProfilePage}>
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleProfilePage}>
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
                   <span className="link">Profile</span>
                 </a>
               </li>
               <li className="list">
-                <a
-                  href="#"
-                  className="nav-link"
-                  onClick={handleAdminWorkshopRequestPage}
-                >
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminWorkshopRequestPage}>
                   <i className="bx bx-clipboard icon"></i>
                   <span className="link">Workshop Requests</span>
                 </a>
               </li>
               <li className="list">
-                <a
-                  href="#"
-                  className="nav-link"
-                  onClick={handleAdminManageTrainerPage}
-                >
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminManageTrainerPage}>
                   <i className="bx bx-group icon"></i>
                   <span className="link">Manage Trainers</span>
+                </a>
+              </li>
+              <li className="list">
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminManageWorkshopPage}>
+                  <i class='bx bx-spreadsheet icon'></i>
+                  <span className="link">Manage Workshops</span>
                 </a>
               </li>
             </ul>
             <div className="bottom-content">
               <li className="list">
-                <a href="#" className="nav-link">
+                <a href="#" data-cy="nav-btn" className="nav-link">
                   <i className="bx bx-cog icon"></i>
                   <span className="link">Settings</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleNavBarSignOut}>
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleNavBarSignOut}>
                   <i className="bx bx-log-out icon"></i>
                   <span className="link">Logout</span>
                 </a>
