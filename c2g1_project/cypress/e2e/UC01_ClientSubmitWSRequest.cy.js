@@ -20,7 +20,7 @@ Cypress.Commands.add("login", (username, password) => {
 });
 
 describe("Client Home Page Test", () => {
-  // Log in once before all tests and SAVE THE MFKING SESSION (V IMPORTANT)
+  // Log in once before all tests and SAVE THE SESSION (V IMPORTANT)
   before(() => {
     // Clear all sessions before making a new one
     Cypress.session.clearAllSavedSessions();

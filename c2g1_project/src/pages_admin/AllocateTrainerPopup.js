@@ -19,7 +19,7 @@ const AllocateTrainerPopup = ({ onClose }) => {
     };
 
     return (
-        <div className="allocate-trainer-popup open-allocate-trainer-popup">
+        <div data-cy="allocate-trainer-popup" className="allocate-trainer-popup open-allocate-trainer-popup">
             <h2>Assign Trainer</h2>
             <div className="select-menu-container">
                 <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
@@ -51,7 +51,7 @@ const AllocateTrainerPopup = ({ onClose }) => {
             </div>
             <div className="popup-buttons">
                 <button className="submit-button" type="button" onClick={onClose}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
+                <button data-cy="allocate-trainer-cancel-button" className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
     );
