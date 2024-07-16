@@ -25,14 +25,14 @@ Cypress.Commands.add("login", (username, password) => {
       // Clear all sessions before making a new one
       Cypress.session.clearAllSavedSessions();
   
-      cy.login("client", "client"); // Replace this if client credentials change
+      cy.login("johndoefromjohnbrosinc", "johndoefromjohnbrosinc"); // Replace this if client credentials change
     });
   
     // Every test should start retrieving the session that is created by BEFORE()
     // then visit ClientHomePage
     beforeEach(() => {
       cy.session("clientSession", () => {
-        cy.login("client", "client");
+        cy.login("johndoefromjohnbrosinc", "johndoefromjohnbrosinc");
       });
   
       cy.visit("/ClientHomePage");
@@ -76,7 +76,10 @@ Cypress.Commands.add("login", (username, password) => {
         cy.get('input[placeholder="Your Company"]').type("Doe Enterprises");
         cy.get('input[placeholder="Number of Pax"]').type("10");
         cy.get('input[placeholder="Deal Size Potential"]').type("Large");
-        cy.get('input[placeholder="Location"]').type("New York");
+        cy.get('input[placeholder="Country"]').type("USA");
+        cy.get('input[placeholder="Venue"]').type("Central Hall");
+        cy.get('select.ws_req_form_control').select("AI Platform");
+  
         // Date Picker Inputs
         cy.get('input[placeholder="Workshop Start Date"]').click().wait(1000);
         cy.get('.react-datepicker__day--today + .react-datepicker__day').click(); // select tomorrow
@@ -102,7 +105,9 @@ Cypress.Commands.add("login", (username, password) => {
         cy.get('input[placeholder="Your Company"]').type("Doe Enterprises");
         cy.get('input[placeholder="Number of Pax"]').type("10");
         cy.get('input[placeholder="Deal Size Potential"]').type("Large");
-        cy.get('input[placeholder="Location"]').type("New York");
+        cy.get('input[placeholder="Country"]').type("USA");
+        cy.get('input[placeholder="Venue"]').type("Central Hall");
+        cy.get('select.ws_req_form_control').select("AI Platform");
   
         // Date Picker Inputs
         cy.get('input[placeholder="Workshop Start Date"]').click().wait(1000);
@@ -168,7 +173,10 @@ Cypress.Commands.add("login", (username, password) => {
         cy.get('input[placeholder="Your Company"]').type("Doe Enterprises");
         cy.get('input[placeholder="Number of Pax"]').type("10");
         cy.get('input[placeholder="Deal Size Potential"]').type("Large");
-        cy.get('input[placeholder="Location"]').type("New York");
+        cy.get('input[placeholder="Country"]').type("USA");
+        cy.get('input[placeholder="Venue"]').type("Central Hall");
+        cy.get('select.ws_req_form_control').select("AI Platform");
+  
         // Date Picker Inputs
         cy.get('input[placeholder="Workshop Start Date"]').click().wait(1000);
         cy.get('.react-datepicker__day--today + .react-datepicker__day').click(); // select tomorrow
@@ -193,7 +201,9 @@ Cypress.Commands.add("login", (username, password) => {
       cy.get('input[placeholder="Your Company"]').should("have.value", "");
       cy.get('input[placeholder="Number of Pax"]').should("have.value", "");
       cy.get('input[placeholder="Deal Size Potential"]').should("have.value", "");
-      cy.get('input[placeholder="Location"]').should("have.value", "");
+      cy.get('input[placeholder="Country"]').should("have.value", "");
+      cy.get('input[placeholder="Venue"]').should("have.value", "");
+      cy.get('select.ws_req_form_control').should("have.value", null);
       cy.get('textarea[placeholder="Your Message"]').should("have.value", "");
       cy.get('input[placeholder="Workshop Start Date"]').should("have.value", "");
       cy.get('input[placeholder="Workshop End Date"]').should("have.value", "");

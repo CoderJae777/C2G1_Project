@@ -18,12 +18,14 @@ const ClientHomePage = () => {
   const [company_name, setCompanyName] = useState("");
   const [pax, setPax] = useState("");
   const [dealSize, setDealSize] = useState("");
-  const [location, setLocation] = useState("");
+  const [country, setCountry] = useState("");
   const [workshopId, setWorkshopId] = useState("");
   const [workshopName, setWorkshopName] = useState("");
   const [role, setRole] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [venue, setVenue] = useState("");
+  const [workshopType, setWorkshopType] = useState("");
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
@@ -45,12 +47,14 @@ const ClientHomePage = () => {
       company_name: company_name,
       pax: pax,
       dealSize: dealSize,
-      location: location,
+      country: country,
       workshopId: workshopId,
       workshopName: workshopName,
       role: role,
       startDate: startDate.toLocaleDateString(),
       endDate: endDate.toLocaleDateString(),
+      venue: venue,
+      workshopType: workshopType,
     };
 
     // Show summary modal
@@ -65,12 +69,14 @@ const ClientHomePage = () => {
     setCompanyName("");
     setDealSize("");
     setPax("");
-    setLocation("");
+    setCountry("");
     setWorkshopId("");
     setWorkshopName("");
     setRole("");
     setStartDate(null);
     setEndDate(null);
+    setVenue("");
+    setWorkshopType("");
   };
 
   const handleConfirmRequest = () => {
@@ -87,12 +93,14 @@ const ClientHomePage = () => {
       company_name: company_name,
       pax: pax,
       dealSize: dealSize,
-      location: location,
+      country: country,
       workshopId: workshopId,
       workshopName: workshopName,
       role: role,
       startDate: startDate.toLocaleDateString(),
       endDate: endDate.toLocaleDateString(),
+      venue: venue,
+      workshopType: workshopType,
     };
 
     emailjs
@@ -191,13 +199,19 @@ const ClientHomePage = () => {
               <strong>Deal Size Potential:</strong> {dealSize}
             </p>
             <p>
-              <strong>Location:</strong> {location}
+              <strong>Country:</strong> {country}
             </p>
             <p>
               <strong>Start Date:</strong> {startDate.toLocaleDateString()}
             </p>
             <p>
               <strong>End Date:</strong> {endDate.toLocaleDateString()}
+            </p>
+            <p>
+              <strong>Venue:</strong> {venue}
+            </p>
+            <p>
+              <strong>Workshop Type:</strong> {workshopType}
             </p>
             <p>
               <strong>Message:</strong> {message}
@@ -362,15 +376,44 @@ const ClientHomePage = () => {
                 className="ws_req_form_control"
               />
             </div>
-            <div className="ws_req_form_location">
+            <div className="ws_req_form_country">
               <input
                 required
                 type="text"
-                placeholder="Location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
                 className="ws_req_form_control"
               />
+            </div>
+            <div className="ws_req_form_venue">
+              <input
+                required
+                type="text"
+                placeholder="Venue"
+                value={venue}
+                onChange={(e) => setVenue(e.target.value)}
+                className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_workshop_type">
+              <select
+                required
+                value={workshopType}
+                onChange={(e) => setWorkshopType(e.target.value)}
+                className="ws_req_form_control"
+              >
+                <option value="" disabled placeholder="Select Workshop Type">
+                  Select Workshop Type
+                </option>
+                <option value="Business Value Discovery">
+                  Business Value Discovery
+                </option>
+                <option value="AI Platform">AI Platform</option>
+                <option value="Infrastructure and Demo">
+                  Infrastructure and Demo
+                </option>
+              </select>
             </div>
             <div className="ws_req_form_start_date">
               <DatePicker

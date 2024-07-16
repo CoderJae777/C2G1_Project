@@ -1,6 +1,7 @@
 /* LAYER 1 */
 .client-home-page {
-  background-image: url("../images/dashboardbackground.jpg");
+  /* background-image: url("../images/dashboardbackground.jpg"); */
+  background-color: #e3f2fd;
   display: grid;
   grid-template-columns: 500px 1fr;
   width: 100%;
@@ -25,7 +26,7 @@
   width: 90%;
   height: 20%;
   margin: 30px;
-  background: #e3f2fd;
+  background: white;
   color: black;
   border-radius: 20px;
   padding: 20px;
@@ -69,7 +70,8 @@
 }
 
 .ws_req_form_group input,
-.ws_req_form_group textarea {
+.ws_req_form_group textarea,
+.ws_req_form_group select {
   width: 90%;
   padding: 10px;
   font-size: 16px;
@@ -81,6 +83,7 @@
 
 .ws_req_form_group input:focus,
 .ws_req_form_group textarea:focus,
+.ws_req_form_group select:focus,
 .dropdown:focus {
   border-color: #28abf1;
   outline: none;
@@ -131,28 +134,40 @@
   grid-column-start: 1;
 }
 
-.ws_req_form_location {
+.ws_req_form_country {
   grid-row-start: 6;
   grid-column-start: 2;
 }
 
-.ws_req_form_start_date {
+.ws_req_form_venue {
   grid-row-start: 7;
+  grid-column-start: 1;
+}
+
+.ws_req_form_workshop_type {
+  grid-row-start: 7;
+  grid-column-start: 2;
+}
+
+.ws_req_form_start_date {
+  grid-row-start: 8;
   grid-column-start: 1;
   z-index: 1;
 }
 
 .ws_req_form_end_date {
-  grid-row-start: 7;
+  grid-row-start: 8;
   grid-column-start: 2;
   z-index: 1;
 }
 
 .ws_req_form_message {
+  grid-row-start: 9;
   grid-column: 1 / span 2; /* Adjust to span across both columns */
 }
 
 .ws_req_form_button {
+  grid-row-start: 10;
   grid-column: 1 / span 2; /* Adjust to span across both columns */
   display: flex;
   justify-content: center; /* Centralizes the submit button */
@@ -279,4 +294,3 @@
   box-sizing: border-box;
   margin: 10px 0;
 }
-
