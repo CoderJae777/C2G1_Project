@@ -70,7 +70,7 @@ const TrainerWorkshopPage = () => {
             venue: "East Coast Park",
             attendees: "4",
             comments: "Inside my mind, there is a digital mind.",
-            trainer: "Joe"
+            trainer: "James"
         },
         {
             id: "006085",
@@ -85,7 +85,7 @@ const TrainerWorkshopPage = () => {
             venue: "SUTD",
             attendees: "60",
             comments: "This table is not very good for glamping. HI HIH HI HIH HI HIH I HI HI HI HI HI HI HI H IHI HI H IH IH IH IH IH IH IH IH IH IH IH IH IH IH I HI HI HI H HI H.",
-            trainer: "Joe"
+            trainer: "James"
         }
     ];
 
@@ -114,7 +114,7 @@ const TrainerWorkshopPage = () => {
         "View Trainer statistics"
     );
     const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
-        "Workshop Completed Over the Years"
+        "Workshops"
     );
 
     const [selectedWorkshop, setSelectedWorkshop] = useState(null);
@@ -265,25 +265,27 @@ const TrainerWorkshopPage = () => {
             {/* Graphs nonsense starts here */}
             <div className="right-column">
                 <div className="admin-graphs">
-                    <div>
-                        Filter: 
-                        <input
-                            type="text"
-                            placeholder="Type to filter"
-                            value={filterText}
-                            onChange={handleFilterChange}
-                        />
-                        Sort: 
-                        <select value={sortKey} onChange={handleSortChange}>
-                            <option value="workshop_name">Workshop Name</option>
-                            <option value="client_company">Client Company</option>
-                            <option value="start_date">Start Date</option>
-                            <option value="trainer">Assigned Trainer</option>
-                        </select>
-                    </div>
+                    
                     {/* Right column MAIN DIV NUMBER 1 */}
                     <div className="workshop-stats">
                         <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
+                        <div>
+                            Filter:
+                            <input
+                                type="text"
+                                placeholder="Type to filter"
+                                value={filterText}
+                                onChange={handleFilterChange}
+                            />
+                            Sort:
+                            <select value={sortKey} onChange={handleSortChange}>
+                                <option value="workshop_name">Workshop Name</option>
+                                <option value="client_company">Client Company</option>
+                                <option value="start_date">Start Date</option>
+                                <option value="trainer">Assigned Trainer</option>
+                            </select>
+                        </div>
+                        
                         <div className ="scrollable_list">
                             <ul>
                                 {filteredAndSortedWorkshops.map((workshop, index) => (   
@@ -299,60 +301,6 @@ const TrainerWorkshopPage = () => {
                             </ul>
                         </div>
                     </div>
-
-                    {/* Right column MAIN DIV NUMBER 2 */}
-                    <div className="trainer-stats">
-                        {" "}
-                        <h5 className="trainer-stats-title">{trainergraphsTitle}</h5>
-                    </div>
-                    <>
-                        <div className="graph_buttons_div">
-                            <button className="graph_buttons" onClick={viewtotal}>
-                                Total Workshops Completed
-                            </button>
-                            <button className="graph_buttons" onClick={viewworkshop}>
-                                Workshops Completed
-                            </button>
-                            <button className="graph_buttons" onClick={viewongoing}>
-                                Ongoing Workshops
-                            </button>
-                            <button className="graph_buttons" onClick={viewexperience}>
-                                Years of Experience
-                            </button>
-                            <button className="graph_buttons" onClick={resetview}>
-                                Reset
-                            </button>
-                        </div>
-
-                        <BarChart
-                            width={920}
-                            height={240}
-                            data={trainer_data}
-                            margin={{
-                                top: 30,
-                                right: 50,
-                                left: 0,
-                                bottom: 50,
-                            }}
-                            barSize={20}
-                        >
-                            <XAxis
-                                dataKey="name"
-                                padding={{ left: 10, right: 10 }}
-                                angle={-60}
-                                textAnchor="end"
-                                dy={0}
-                            />
-                            <YAxis interval="preserveStartEnd" domain={[0, domainMax]} />
-                            <Tooltip />
-                            <Bar
-                                dataKey={key}
-                                fill="#0083CA"
-                                background={{ fill: "#ffffff" }}
-                                label={{ position: "top" }}
-                            />
-                        </BarChart>
-                    </>
                 </div>
             </div>
         </motion.div>

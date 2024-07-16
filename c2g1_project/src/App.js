@@ -18,6 +18,7 @@ import ClientWorkshopPage from "./pages_client/ClientWorkshopPage";
 import ProfilePage from "./components/ProfilePage";
 import ScrollToTop from "./components/ScrollToTop";
 import TrainerWorkshopPage from "./pages_trainer/TrainerWorkshopPage";
+import TrainerViewTrainerPage from "./pages_trainer/TrainerViewTrainerPage";
 
 function App() {
 
@@ -71,6 +72,11 @@ function App() {
             exact
             path="/TrainerWorkshopPage"
             element={<TrainerWorkshopPage />}
+          />
+          <Route
+            exact
+            path="/TrainerViewTrainerPage"
+            element={<TrainerViewTrainerPage />}
           />
         </Routes>
       </div>
