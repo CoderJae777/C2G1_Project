@@ -9,7 +9,7 @@
   height: 900px;
   /* background-image: url("../images/dashboardbackground.jpg"); */
   background-color: #e3f2fd;
-  margin-top: -50px;
+  margin-top: -40px;
 }
 
 .login_card {
@@ -249,8 +249,8 @@
 .signuppage {
   background-color: #e3f2fd;
   padding: 20px;
-  height: auto;
-  margin-top: 60px;
+  height: 800px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
 }
