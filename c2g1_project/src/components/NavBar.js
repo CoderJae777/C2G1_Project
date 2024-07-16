@@ -52,7 +52,7 @@ const Navbar = () => {
 
   const handleTrainerPage = () => {
     nav("/OurTrainerPage");
-  }
+  };
 
   return (
     <motion.nav
@@ -79,6 +79,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleWorkshop}
+          data-cy="ourwspage-button"
         >
           Our Workshops
         </motion.button>
@@ -87,6 +88,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleTrainerPage}
+          data-cy="ourtrpage-button"
         >
           Our Trainers
         </motion.button>
@@ -103,6 +105,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleSignUp}
+          data-cy="signuppg-button"
         >
           Sign Up!
         </motion.button>
@@ -111,6 +114,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleNavBarSignIn}
+          data-cy="loginpg-button"
         >
           Log in!
         </motion.button>
