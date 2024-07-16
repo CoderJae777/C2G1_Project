@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
+import useAxiosPost from "../api/useAxiosPost.jsx";
 
 const ClientHomePage = () => {
   const [name, setName] = useState("");
@@ -24,6 +25,10 @@ const ClientHomePage = () => {
   const [role, setRole] = useState("");
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
+
+  const { data, loading, error, setBody, refetch } = useAxiosGet(
+    config.base_url + endpoints.verify
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +73,19 @@ const ClientHomePage = () => {
   };
 
   const handleConfirmRequest = () => {
+    createWorkshop.setBody({
+      workshop_ID: workshopId,
+      workshop_name: workshopName,
+      start_date: "02/07/2024",
+      end_date: "03/07/2024",
+      availability: true,
+      description: message,
+      deal_potential: dealSize,
+      pax: pax,
+      location: location,
+      client_ID: data.id,
+    });
+    createWorkshop.refetch();
     // Send the email using EmailJS or any other necessary final actions
     const serviceId = "service_ks4czg2";
     const templateId = "template_s99g3id";
@@ -140,8 +158,10 @@ const ClientHomePage = () => {
     );
   };
 
-  const { data, loading, error, setBody, refetch } = useAxiosGet(
-    config.base_url + endpoints.verify
+  const createWorkshop = useAxiosPost(
+    config.base_url + endpoints.client.createWorkshop,
+    {},
+    []
   );
 
   return data !== null && data.role === "client" ? (
