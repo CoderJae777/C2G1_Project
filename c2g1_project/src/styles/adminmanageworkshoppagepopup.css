@@ -49,7 +49,7 @@
     color: #a9a9a9;
 }
 
-/* CSS FOR BUTTONS */
+/* CSS FOR BUTTONS -------------------------------------------------------------------------------------------- */
 
 .ws-details-popup button{
     width: 100%;
@@ -98,6 +98,21 @@
     height: 100px;
     margin-top: 10px;
     box-sizing: border-box;
+}
+
+.close-ws-request-button {
+    background-color: #80C7FB;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: auto;
+}
+
+.close-ws-request-button:hover {
+    background-color: #0672CB;
+    color: white;
 }
 
 /* CSS FOR MULTIPLE OPTION SELECT MENU ------------------------------------------------------------------------- */
