@@ -35,7 +35,7 @@ describe("Admin Home Page Test", () => {
       cy.login("admin", "admin");
     });
 
-    cy.visit("/AdminHomePage");
+    cy.visit("/ClientHomePage");
 
     // Stupid page keep flying up and down when auto filling the form so i added this
     cy.window().then((win) => {
@@ -47,7 +47,7 @@ describe("Admin Home Page Test", () => {
     });
   });
 
-  it("Testing Login To Admin Home Page", () => {
-    cy.url().should("include", "/AdminHomePage");
+  it("Testing Login To Client Home Page", () => {
+    cy.url().should("include", "/ClientHomePage");
   });
 });
