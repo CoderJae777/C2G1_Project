@@ -12,7 +12,6 @@
     align-items: start;
     justify-content: flex-start;
     height: 100vh;
-    background-image: url("../images/dashboardbackground.jpg");
 }
 
 .admin-workshop-request-page-right-panel {
