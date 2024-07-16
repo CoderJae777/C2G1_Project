@@ -26,6 +26,11 @@ const TrainerTopLeftSideBar = () => {
   const handleTrainerHomePage = (e) => {
     e.preventDefault();
     nav("/TrainerHomePage");
+    };
+
+  const handleTrainerViewTrainerPage = (e) => {
+    e.preventDefault();
+    nav("/TrainerViewTrainerPage");
   };
 
   const handleprofile = () => {
@@ -96,6 +101,12 @@ const TrainerTopLeftSideBar = () => {
                 >
                   <i className="bx bx-clipboard icon"></i>
                   <span className="link">Workshop</span>
+                </a>
+              </li>
+               <li className="list">
+                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleTrainerViewTrainerPage}>
+                  <i className="bx bx-group icon"></i>
+                  <span className="link">View Trainers</span>
                 </a>
               </li>
             </ul>

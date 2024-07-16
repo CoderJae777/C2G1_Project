@@ -126,6 +126,7 @@ body {
   font-size: 25px;
   color: black;
   border-bottom: 2px solid #0672cb;
+  z-index: 1;
 }
 
 .admin-home-datetime {
@@ -229,4 +230,18 @@ body {
   text-align: center;
   margin: 5px;
   align-self: center;
+}
+
+.scrollable_list {
+    max-height: 150px; /* Limit height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional styling */
+}
+
+.workshop_detail_panel {
+    border-radius: 5px;
+    border-width: 0px;
+    background-color: #80c7fb;
+    height: 50px;
+    margin-top: 5px;
 }
