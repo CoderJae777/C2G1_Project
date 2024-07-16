@@ -2,12 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\c2g1_project",
-    "\\c2g1_project\\public",
     "\\c2g1_project\\src",
     "\\c2g1_project\\src\\components",
-    "\\c2g1_project\\src\\config",
+    "\\c2g1_project\\src\\login_pages",
+    "\\c2g1_project\\src\\pages_admin",
+    "\\c2g1_project\\src\\pages_client",
+    "\\c2g1_project\\src\\pages_home",
+    "\\c2g1_project\\src\\pages_trainer",
     "\\c2g1_project\\src\\styles"
   ],
-  "SelectedNode": "\\c2g1_project\\src\\ClientHomePage.js",
+  "SelectedNode": "\\c2g1_project\\src\\styles\\trainerhomepage.css",
   "PreviewInSolutionExplorer": false
 }

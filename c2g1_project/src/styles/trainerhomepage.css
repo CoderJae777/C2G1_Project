@@ -172,7 +172,7 @@ body {
 }
 
 .workshop-stats {
-  grid-row-start: 1;
+  grid-row-start: 0;
   color: #0672cb;
 }
 
@@ -182,18 +182,18 @@ body {
   margin-bottom: 10px;
 }
 .admin-graphs {
-  max-width: 1000px;
-  width: 900px;
-  height: 700px;
-  background-color: #e3f2fd;
-  color: #0672cb;
-  border-radius: 20px;
-  /* padding: 10px; */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 50px;
+    max-width: 1000px;
+    width: 900px;
+    height: 700px;
+    background-color: #e3f2fd;
+    color: #0672cb;
+    border-radius: 20px;
+    /* padding: 10px; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
 }
 
 /* admin home page graphs and buttons design*/
@@ -249,3 +249,32 @@ body {
     height: 70px;
     resize: none;
 }
+
+.scrollable_list {
+    max-height: 150px; /* Limit height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional styling */
+}
+
+.workshop_detail_panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Four equal columns */
+    gap: 10px; /* Space between columns */
+    justify-content: space-between;
+    border-radius: 5px;
+    border-width: 0px;
+    background-color: #80c7fb;
+    height: 50px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 0px;
+    align-items: center;
+}
+
+.workshop_detail_panel span {
+  margin-right: 10px; /* Add spacing between spans */
+}
+
+    .workshop_detail_panel:hover {
+        background-color: #669fc9; /* Darker color on hover */
+    }
