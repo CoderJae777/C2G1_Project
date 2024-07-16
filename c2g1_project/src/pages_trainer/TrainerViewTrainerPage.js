@@ -12,7 +12,7 @@ import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
-const AdminManageTrainerPage = () => {
+const TrainerViewTrainerPage = () => {
   const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
     useState(false);
   const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
@@ -163,4 +163,4 @@ const AdminManageTrainerPage = () => {
   );
 };
 
-export default AdminManageTrainerPage;
+export default TrainerViewTrainerPage;
