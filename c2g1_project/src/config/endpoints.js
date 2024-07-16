@@ -13,6 +13,9 @@ const endpoints = {
     updateTrainer: "/auth/trainers/update/",
     availabilityTrainer: "/auth/trainers/",
   },
+  client: {
+    createWorkshop: "/workshop",
+  },
 };
 
 export { endpoints };
