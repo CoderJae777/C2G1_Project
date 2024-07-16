@@ -6,7 +6,7 @@ const useFetch = () => {
   const [today_data, setTodayData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5001/products/trainerGraph", {
+    fetch("http://localhost:5001/graph/getTrainerGraph", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -17,7 +17,7 @@ const useFetch = () => {
   }, []); // Empty dependency array ensures useEffect runs only once
 
   useEffect(() => {
-    fetch("http://localhost:5001/workshopSummary/workshopGraph", {
+    fetch("http://localhost:5001/graph/getGraphWorkshopSummary", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
