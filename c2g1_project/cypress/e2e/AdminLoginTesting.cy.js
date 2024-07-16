@@ -30,12 +30,12 @@ describe("Admin Home Page Test", () => {
 
   // Every test should start retrieving the session that is created by BEFORE()
   // then visit ClientHomePage
-  beforeEach(() => {
+  before(() => {
     cy.session("adminsession", () => {
       cy.login("admin", "admin");
     });
 
-    cy.visit("/ClientHomePage");
+    cy.visit("/AdminHomePage");
 
     // Stupid page keep flying up and down when auto filling the form so i added this
     cy.window().then((win) => {
@@ -47,7 +47,8 @@ describe("Admin Home Page Test", () => {
     });
   });
 
-  it("Testing Login To Client Home Page", () => {
-    cy.url().should("include", "/ClientHomePage");
+  it("Testing Login To Admin Home Page", () => {
+    cy.url().should("include", "/AdminHomePage");
   });
+  
 });

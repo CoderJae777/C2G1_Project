@@ -50,6 +50,10 @@ const Navbar = () => {
     }, 100);
   };
 
+  const handleTrainerPage = () => {
+    nav("/OurTrainerPage");
+  }
+
   return (
     <motion.nav
       className={`navbar ${isSticky ? "sticky-nav" : ""}`}
@@ -82,6 +86,7 @@ const Navbar = () => {
           className="navbarbutton"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleTrainerPage}
         >
           Our Trainers
         </motion.button>
