@@ -45,6 +45,7 @@ const LoginPage = () => {
             whileTap={{ scale: 0.9 }}
             className="client_login_button"
             onClick={handleClientLoginPage}
+            data-cy="clientlogin-button"
           >
             Client
           </motion.button>
@@ -53,6 +54,7 @@ const LoginPage = () => {
             whileTap={{ scale: 0.9 }}
             className="admin_login_button"
             onClick={handleAdminLoginPage}
+            data-cy="adminlogin-button"
           >
             Admin
           </motion.button>
@@ -61,6 +63,7 @@ const LoginPage = () => {
             whileTap={{ scale: 0.9 }}
             className="trainer_login_button"
             onClick={handleTrainerLoginPage}
+            data-cy="trainerlogin-button"
           >
             Trainer
           </motion.button>
