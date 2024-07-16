@@ -1,13 +1,13 @@
 import React from "react";
 import useFetch from "../components/useFetch.js";
 import useAxiosGet from "../api/useAxiosGet.jsx";
-import "../styles/adminhomepage.css";
 import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import TopLeftSideBar from "../components/TrainerTopLeftSideBar.js";
+import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar.js";
 import "../styles/trainerhomepage.css";
 import {
     Area,
@@ -101,20 +101,24 @@ const TrainerHomePage = () => {
                     {today_data && today_data[0] ? (
                         <>
                             <div className="workshopstoday">
-                                <h2>{today_data[0].ongoingworkshopstoday}</h2>
+                                <h2 className="today_data">
+                                    {today_data[0].ongoingworkshopstoday}
+                                </h2>
                                 <h5>Ongoing workshops today</h5>
                             </div>
                             <div className="trainersworking">
-                                <h2>{today_data[0].trainertoday}</h2>
+                                <h2 className="today_data">{today_data[0].trainertoday}</h2>
                                 <h5>Trainers conducting across all workshops</h5>
                             </div>
                             <div className="workshopattendees">
-                                <h2>{today_data[0].participantstoday}</h2>
+                                <h2 className="today_data">
+                                    {today_data[0].participantstoday}
+                                </h2>
                                 <h5>Total Participants across all workshops</h5>
                             </div>
                             <div className="attendancepercentage">
-                                <h2>{today_data[0].attendance}</h2>
-                                <h5>Today's Attendance</h5>
+                                <h2 className="today_data">{today_data[0].attendance}</h2>
+                                <h5>Attended Today</h5>
                             </div>
                         </>
                     ) : (
