@@ -14,7 +14,7 @@ const RejectWorkshopRequestPopup = ({ onClose }) => {
     };
 
     return (
-        <div className="reject-workshop-request-popup open-reject-workshop-request-popup">
+        <div data-cy="reject-wsrq-popup" className="reject-workshop-request-popup open-reject-workshop-request-popup">
             <h2>Reject Workshop</h2>
             <p>Please provide a reason for rejecting the workshop request.</p>
             <textarea 
@@ -25,7 +25,7 @@ const RejectWorkshopRequestPopup = ({ onClose }) => {
             />
             <div className="popup-buttons">
                 <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
+                <button data-cy="reject-wsrq-cancel-button" className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
     );

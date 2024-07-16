@@ -9,57 +9,38 @@
 
 .admin-workshop-request-page {
     display: flex;
-    align-items: start;
+    align-items: end;
     justify-content: flex-start;
     height: 100vh;
     background-image: url("../images/dashboardbackground.jpg");
 }
 
-.admin-workshop-request-page-right-panel {
+.admin-workshop-request-page-bottom-panel {
     flex: 1;
     padding: 15px;
 }
 
-.header-container {
+.admin-workshop-request-page-title{
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
     align-items: center;
-    padding: 20px;
-}
-
-.admin-workshop-request-page-title {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 0 20px;
+    margin-bottom: -80px;
 }
 
 .admin-workshop-request-page-title h2 {
-    margin-right: auto;
-}
-
-.manage-workshop-request-panel-outer {
-    height: 540px;
-    width: 80%;
-    background: #d7d7d7;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    margin-top: 5px;
-    align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
 
 .manage-workshop-request-panel {
-    height: 500px;
+    height: 550px;
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 100px;
     align-items: center;
     overflow-y: auto;
 }
@@ -81,27 +62,8 @@
     background-color: #f2f2f2;
 }
 
-.workshop-request-panel-outer {
-    height: auto;
-    width: 80%;
-    background: white;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 20px auto;
-}
-
-.workshop-request-panel {
-    background: white;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    overflow-y: auto;
-}
-
 .view-workshop-details-button,
-.accept-workshop-request-button,
+.approve-workshop-request-button,
 .allocate-trainer-to-workshop-button,
 .reject-workshop-request-button {
     background-color: #80C7FB;
@@ -121,11 +83,11 @@
     margin: 5px;
 }
 
-.accept-workshop-request-button {
+.approve-workshop-request-button {
     background-color: #37CC5C;
 }
 
-.accept-workshop-request-button:hover {
+.approve-workshop-request-button:hover {
     background-color: #247554;
 }
 
