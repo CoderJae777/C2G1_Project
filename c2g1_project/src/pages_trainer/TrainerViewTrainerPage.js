@@ -24,16 +24,15 @@ const AdminManageTrainerPage = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [availability, setAvailability] = useState(null);
 
-  var trainer_data = [];
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
     {},
     [],
     true
   );
-  try {
-    trainer_data = data.trainers;
-  } catch (error) {}
+
+  // Ensure trainer_data is defined and fallback to an empty array if necessary
+  const trainer_data = data?.trainers || [];
 
   const handleOpenTrainerDetailsPopup = (id) => {
     setSelectedId(id);
@@ -58,11 +57,7 @@ const AdminManageTrainerPage = () => {
   };
 
   const handleActivityChange = (selectedActivity, index) => {
-    // const updatedTrainers = [...trainer_data.trainers];
-    // updatedTrainers[index].activity = selectedActivity;
-    // Assuming you would update the state with the new trainers data.
-    // You might need a separate state to manage the activity if you don't want to mutate fetched data directly.
-    // setTrainers(updatedTrainers);
+    // Handle activity change
   };
 
   const handleOpenAddTrainerPopup = () => {
@@ -82,7 +77,7 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return (trainer_data !== null) | (trainer_data.trainers !== null) ? (
+  return trainer_data.length > 0 ? (
     <>
       {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
@@ -143,9 +138,7 @@ const AdminManageTrainerPage = () => {
                         >
                           View Schedule
                         </button>
-                        <button
-                          className="trainer-info-table-button"
-                        >
+                        <button className="trainer-info-table-button">
                           {trainer.availability}
                         </button>
                       </td>
