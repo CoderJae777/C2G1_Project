@@ -37,8 +37,12 @@ const HomePage = () => {
         transition={{ delay: 0.25 }}
         whileInView={{ opacity: 1 }}
         className="homepage"
-      >      <motion.div className="progress-bar" style={{ scaleX: scrollYProgress }} />
-
+      >
+        {" "}
+        <motion.div
+          className="progress-bar"
+          style={{ scaleX: scrollYProgress }}
+        />
         <div className="homepageinfo">
           <motion.div
             className="about"
@@ -67,7 +71,7 @@ const HomePage = () => {
             transition={{ delay: 1 }}
             whileInView={{ opacity: 1 }}
           >
-            <h2 data-cy="h2-test" >Grow your skills with Dell Academy!</h2>{" "}
+            <h2 data-cy="h2-test">Grow your skills with Dell Academy!</h2>{" "}
             <div>
               <motion.button
                 transition={{ delay: 1.25 }}
@@ -89,14 +93,14 @@ const HomePage = () => {
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        transition={{ delay: 0.5 }}
-        whileInView={{ opacity: 1}}
+        transition={{ delay: 0.25 }}
+        whileInView={{ opacity: 1 }}
         className="homepage-div-2"
       >
         <div className="homepageinfo">
           <motion.div
             className="testimonials"
-            transition={{ delay: 1.25 }}
+            transition={{ delay: 0.25 }}
             animate={{ scale: 1 }}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
@@ -207,7 +211,7 @@ const HomePage = () => {
         whileInView={{ scale: 1 }}
         initial={{ scale: 0 }}
         className="bottom-of-homepage"
-        data-cy = "bottom-of-homepage"
+        data-cy="bottom-of-homepage"
       >
         <div className="contactustitle">
           <h3>Contact Us</h3>

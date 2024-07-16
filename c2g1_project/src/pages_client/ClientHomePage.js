@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../styles/clienthomepage.css";
-import { useNavigate } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
 import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
+import DatePicker from "react-datepicker"; // Import the DatePicker component
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import useAxiosGet from "../api/useAxiosGet.jsx";
@@ -22,6 +22,8 @@ const ClientHomePage = () => {
   const [workshopId, setWorkshopId] = useState("");
   const [workshopName, setWorkshopName] = useState("");
   const [role, setRole] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
@@ -47,6 +49,8 @@ const ClientHomePage = () => {
       workshopId: workshopId,
       workshopName: workshopName,
       role: role,
+      startDate: startDate.toLocaleDateString(),
+      endDate: endDate.toLocaleDateString(),
     };
 
     // Show summary modal
@@ -65,6 +69,8 @@ const ClientHomePage = () => {
     setWorkshopId("");
     setWorkshopName("");
     setRole("");
+    setStartDate(null);
+    setEndDate(null);
   };
 
   const handleConfirmRequest = () => {
@@ -85,6 +91,8 @@ const ClientHomePage = () => {
       workshopId: workshopId,
       workshopName: workshopName,
       role: role,
+      startDate: startDate.toLocaleDateString(),
+      endDate: endDate.toLocaleDateString(),
     };
 
     emailjs
@@ -144,6 +152,8 @@ const ClientHomePage = () => {
     config.base_url + endpoints.verify
   );
 
+  const maxDate = new Date(2025, 11, 31); // December 31, 2025
+
   return data !== null && data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
@@ -184,13 +194,29 @@ const ClientHomePage = () => {
               <strong>Location:</strong> {location}
             </p>
             <p>
+              <strong>Start Date:</strong> {startDate.toLocaleDateString()}
+            </p>
+            <p>
+              <strong>End Date:</strong> {endDate.toLocaleDateString()}
+            </p>
+            <p>
               <strong>Message:</strong> {message}
             </p>
             <div className="summary-buttons">
-              <motion.button whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }} onClick={handleConfirmRequest}>Confirm Request</motion.button>
-              <motion.button whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }} onClick={handleEditRequest}>Edit Request</motion.button>
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleConfirmRequest}
+              >
+                Confirm Request
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleEditRequest}
+              >
+                Edit Request
+              </motion.button>
             </div>
           </div>
         </div>
@@ -224,8 +250,12 @@ const ClientHomePage = () => {
                   <option value="Option 3">WS03 Introduction to Java</option>
                 </select>
                 <p>Workshop Details to be printed here</p>
-                <motion.button whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }} className="popwsreqbut" onClick={populateForm}>
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="popwsreqbut"
+                  onClick={populateForm}
+                >
                   Populate
                 </motion.button>
               </div>
@@ -244,6 +274,7 @@ const ClientHomePage = () => {
             <h2 className="ws_req_form_heading">Submit Workshop Request</h2>
             <div className="ws_req_form_workshop_id">
               <input
+                required
                 type="text"
                 placeholder="Workshop ID"
                 value={workshopId}
@@ -253,6 +284,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_workshop_name">
               <input
+                required
                 type="text"
                 placeholder="Workshop Name"
                 value={workshopName}
@@ -262,6 +294,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_role">
               <input
+                required
                 type="text"
                 placeholder="Role at Company"
                 value={role}
@@ -271,6 +304,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_name">
               <input
+                required
                 type="text"
                 placeholder="Your Name"
                 value={name}
@@ -280,6 +314,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_email">
               <input
+                required
                 type="email"
                 placeholder="Your Email"
                 value={email}
@@ -289,6 +324,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_phone">
               <input
+                required
                 type="phone"
                 placeholder="Phone Number"
                 value={phone}
@@ -298,6 +334,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_company">
               <input
+                required
                 type="text"
                 placeholder="Your Company"
                 value={company_name}
@@ -307,6 +344,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_pax">
               <input
+                required
                 type="number"
                 placeholder="Number of Pax"
                 value={pax}
@@ -316,6 +354,7 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_deal_size">
               <input
+                required
                 type="text"
                 placeholder="Deal Size Potential"
                 value={dealSize}
@@ -325,11 +364,36 @@ const ClientHomePage = () => {
             </div>
             <div className="ws_req_form_location">
               <input
+                required
                 type="text"
                 placeholder="Location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 className="ws_req_form_control"
+              />
+            </div>
+            <div className="ws_req_form_start_date">
+              <DatePicker
+                required
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Workshop Start Date"
+                className="ws_req_form_control"
+                minDate={new Date()}
+                maxDate={maxDate}
+              />
+            </div>
+            <div className="ws_req_form_end_date">
+              <DatePicker
+                required
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Workshop End Date"
+                className="ws_req_form_control"
+                minDate={new Date()}
+                maxDate={maxDate}
               />
             </div>
             <div className="ws_req_form_message">
@@ -343,20 +407,25 @@ const ClientHomePage = () => {
               ></textarea>
             </div>
             <div className="ws_req_form_button">
-              <motion.button type="submit" whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }} className="ws_req_submit_button">
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="ws_req_submit_button"
+              >
                 Submit Request
-              </motion.button>{" "}
+              </motion.button>
               <motion.button
                 type="button"
                 className="clear-button-design"
-                onClick={clearForm} whileHover={{ scale: 1.2 }}
+                onClick={clearForm}
+                whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               >
                 Clear
               </motion.button>
-            </div>{" "}
-          </form>{" "}
+            </div>
+          </form>
         </div>
       </motion.div>
     </>
