@@ -85,9 +85,10 @@ const AdminManageTrainerPage = () => {
   return (trainer_data !== null) | (trainer_data.trainers !== null) ? (
     <>
       {isTrainerDetailsPopupOpen && (
-        <EditTrainerDetailsPopup 
-        trainerId={selectedId}
-        onClose={handleCloseTrainerDetailsPopup} />
+        <EditTrainerDetailsPopup
+          trainerId={selectedId}
+          onClose={handleCloseTrainerDetailsPopup}
+        />
       )}
       {isTrainerActivityPopupOpen && (
         <TrainerActivityPopup
@@ -150,15 +151,23 @@ const AdminManageTrainerPage = () => {
                         </button>
                         <button
                           className="trainer-info-table-button"
-                          onClick={() => handleOpenTrainerDetailsPopup(trainer._id)}
+                          onClick={() =>
+                            handleOpenTrainerDetailsPopup(trainer._id)
+                          }
                         >
                           Edit Details
                         </button>
                         <button
                           className="trainer-info-table-button"
-                          onClick={() => handleOpenTrainerActivityPopup(index, trainer._id, trainer.availability.toString())}
+                          onClick={() =>
+                            handleOpenTrainerActivityPopup(
+                              index,
+                              trainer._id,
+                              trainer.availability
+                            )
+                          }
                         >
-                          {trainer.availability.toString()}
+                          {trainer.availability}
                         </button>
                       </td>
                     </tr>
