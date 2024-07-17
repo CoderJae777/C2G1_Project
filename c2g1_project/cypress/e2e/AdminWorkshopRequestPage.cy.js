@@ -74,10 +74,10 @@ describe("Admin Workshop Request Page Tests", () => {
     cy.get('[data-cy="approve-wsrq-popup"]').should('exist');
   });
 
-  it('opens allocate trainer popup when "Allocate Trainer" is clicked', () => {
-    cy.get('[data-cy="allocate-trainer-button"]').first().click();
-    cy.get('[data-cy="allocate-trainer-popup"]').should('exist');
-  });
+  // it('opens allocate trainer popup when "Allocate Trainer" is clicked', () => {
+  //   cy.get('[data-cy="allocate-trainer-button"]').first().click();
+  //   cy.get('[data-cy="allocate-trainer-popup"]').should('exist');
+  // });
 
   it('opens reject popup when "Reject" is clicked', () => {
     cy.get('[data-cy="reject-wsrq-button"]').first().click();
@@ -98,17 +98,39 @@ describe("Admin Workshop Request Page Tests", () => {
     cy.get('[data-cy="approve-wsrq-popup"]').should('not.exist');
   });
 
-  it('closes Allocate Trainer popup when "Cancel" is clicked', () => {
-    cy.get('[data-cy="allocate-trainer-button"]').first().click();
-    cy.get('[data-cy="allocate-trainer-popup"]').should('exist');
-    cy.get('[data-cy="allocate-trainer-cancel-button"]').click();
-    cy.get('[data-cy="allocate-trainer-popup"]').should('not.exist');
-  });
+  // it('closes Allocate Trainer popup when "Cancel" is clicked', () => {
+  //   cy.get('[data-cy="allocate-trainer-button"]').first().click();
+  //   cy.get('[data-cy="allocate-trainer-popup"]').should('exist');
+  //   cy.get('[data-cy="allocate-trainer-cancel-button"]').click();
+  //   cy.get('[data-cy="allocate-trainer-popup"]').should('not.exist');
+  // });
 
   it('closes Reject Workshop Request popup when "Cancel" is clicked', () => {
     cy.get('[data-cy="reject-wsrq-button"]').first().click();
     cy.get('[data-cy="reject-wsrq-popup"]').should('exist');
     cy.get('[data-cy="reject-wsrq-cancel-button"]').click();
     cy.get('[data-cy="reject-wsrq-popup"]').should('not.exist');
+  });
+
+  it('checks dropdown functionality in Approve Workshop Request popup', () => {
+    // Open the approve popup
+    cy.get('[data-cy="approve-wsrq-button"]').first().click();
+    cy.get('[data-cy="approve-wsrq-popup"]').should('exist');
+
+    // Open the dropdown
+    cy.get('[data-cy="select-trainer"]').click();
+    cy.get('[data-cy="trainer-list"]').should('be.visible');
+
+    // Select a trainer
+    cy.get('[data-cy="trainer-list"]').children().eq(0).click();
+    cy.get('[data-cy="select-trainer-text"]').should('contain', '1 Selected');
+
+    // Select another trainer
+    cy.get('[data-cy="trainer-list"]').children().eq(1).click();
+    cy.get('[data-cy="select-trainer-text"]').should('contain', '2 Selected');
+
+    // Deselect the first trainer
+    cy.get('[data-cy="trainer-list"]').children().eq(1).click();
+    cy.get('[data-cy="select-trainer-text"]').should('contain', '1 Selected');
   });
 });
