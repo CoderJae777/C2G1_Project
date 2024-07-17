@@ -31,9 +31,6 @@ const AdminManageTrainerPage = () => {
     [],
     true
   );
-  try {
-    trainer_data = data.trainers;
-  } catch (error) {}
 
   const handleOpenTrainerDetailsPopup = (id) => {
     setSelectedId(id);
@@ -82,7 +79,7 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return (trainer_data !== null) | (trainer_data.trainers !== null) ? (
+  return (
     <>
       {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
@@ -131,7 +128,7 @@ const AdminManageTrainerPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {trainer_data.map((trainer, index) => (
+                  {data.map((trainer, index) => (
                     <tr key={index}>
                       <td className="trainer-info-table-td">
                         {trainer.fullname}
@@ -179,8 +176,6 @@ const AdminManageTrainerPage = () => {
         </div>
       </div>
     </>
-  ) : (
-    <div>Calculating all data... This may take awhile...</div>
   );
 };
 

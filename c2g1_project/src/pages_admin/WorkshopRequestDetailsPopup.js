@@ -20,7 +20,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                         </tr> */}
                         <tr>
                             <td><strong>Client Company:</strong></td>
-                            <td>{workshopDetails.company_name}</td>
+                            <td>{workshopDetails.company}</td>
                         </tr>
                         {/* <tr>
                             <td><strong>Client Type:</strong></td>
@@ -32,15 +32,15 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                         </tr> */}
                         <tr>
                             <td><strong>Start Date:</strong></td>
-                            <td>{workshopDetails.startDate}</td>
+                            <td>{workshopDetails.start_date}</td>
                         </tr>
                         <tr>
                             <td><strong>End Date:</strong></td>
-                            <td>{workshopDetails.endDate}</td>
+                            <td>{workshopDetails.end_date}</td>
                         </tr>
                         <tr>
                             <td><strong>Deal Size:</strong></td>
-                            <td>{workshopDetails.dealSize}</td>
+                            <td>{workshopDetails.deal_potential}</td>
                         </tr>
                         <tr>
                             <td><strong>Country:</strong></td>
@@ -56,7 +56,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                         </tr>
                         <tr>
                             <td><strong>Comment:</strong></td>
-                            <td>{workshopDetails.message}</td>
+                            <td>{workshopDetails.description}</td>
                         </tr>
                     </tbody>
                 </table>
