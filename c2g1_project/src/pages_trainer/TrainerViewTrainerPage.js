@@ -12,62 +12,122 @@ import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
+const ListOfTrainers = [
+  {
+      "blank": "",
+      "trainer_ID": "T01",
+      "name": "Jack",
+      "gender": "male",
+      "experience": 5,
+      "trainer_role": "Training Lead",
+      "availability": "Available",
+      "activity": "Active",
+      "workshops_completed_this_month": 3,
+      "ongoing_workshops": 3,
+      "workshops_completed_total": 50
+  },
+  {
+      "blank": "",
+      "trainer_ID": "T02",
+      "name": "Emily",
+      "gender": "female",
+      "experience": 8,
+      "trainer_role": "Training Assistant",
+      "availability": "Available",
+      "activity": "Inactive",
+      "workshops_completed_this_month": 1,
+      "ongoing_workshops": 2,
+      "workshops_completed_total": 49
+  },
+  {
+      "blank": "",
+      "trainer_ID": "T04",
+      "name": "Sophia",
+      "gender": "female",
+      "experience": 3,
+      "trainer_role": "Training Lead",
+      "availability": "Unavailable",
+      "activity": "Inactive",
+      "workshops_completed_this_month": 0,
+      "ongoing_workshops": 5,
+      "workshops_completed_total": 72
+  },
+  {
+      "blank": "",
+      "trainer_ID": "T05",
+      "name": "Michael",
+      "gender": "male",
+      "experience": 6,
+      "trainer_role": "Training Assistant",
+      "availability": "Available",
+      "activity": "Active",
+      "workshops_completed_this_month": 2,
+      "ongoing_workshops": 2,
+      "workshops_completed_total": 36
+  }
+]
+
 const AdminManageTrainerPage = () => {
-  const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
-    useState(false);
-  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
-    useState(false);
-  const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
+  // const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
+  //   useState(false);
+  // const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
+  //   useState(false);
+  // const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
   const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
     useState(false);
-  const [popupIndex, setPopupIndex] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
-  const [availability, setAvailability] = useState(null);
+  // const [popupIndex, setPopupIndex] = useState(null);
+  // const [selectedId, setSelectedId] = useState(null);
+  // const [availability, setAvailability] = useState(null);
 
-  const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
-    config.base_url + endpoints.admin.getTrainers,
-    {},
-    [],
-    true
-  );
+  // var trainer_data = [];
+  // const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
+  //   config.base_url + endpoints.admin.getTrainers,
+  //   {},
+  //   [],
+  //   true
+  // );
+  // try {
+  //   trainer_data = data.trainers;
+  // } catch (error) {}
 
-  // Ensure trainer_data is defined and fallback to an empty array if necessary
-  const trainer_data = data?.trainers || [];
+  // const handleOpenTrainerDetailsPopup = (id) => {
+  //   setSelectedId(id);
+  //   setIsTrainerDetailsPopupOpen(true);
+  // };
 
-  const handleOpenTrainerDetailsPopup = (id) => {
-    setSelectedId(id);
-    setIsTrainerDetailsPopupOpen(true);
-  };
+  // const handleCloseTrainerDetailsPopup = () => {
+  //   refetch();
+  //   setIsTrainerDetailsPopupOpen(false);
+  // };
 
-  const handleCloseTrainerDetailsPopup = () => {
-    refetch();
-    setIsTrainerDetailsPopupOpen(false);
-  };
+  // const handleOpenTrainerActivityPopup = (index, id, availability) => {
+  //   setIsTrainerActivityPopupOpen(true);
+  //   setPopupIndex(index);
+  //   setAvailability(availability);
+  //   setSelectedId(id);
+  // };
 
-  const handleOpenTrainerActivityPopup = (index, id, availability) => {
-    setIsTrainerActivityPopupOpen(true);
-    setPopupIndex(index);
-    setAvailability(availability);
-    setSelectedId(id);
-  };
+  // const handleCloseTrainerActivityPopup = () => {
+  //   refetch();
+  //   setIsTrainerActivityPopupOpen(false);
+  // };
 
-  const handleCloseTrainerActivityPopup = () => {
-    refetch();
-    setIsTrainerActivityPopupOpen(false);
-  };
+  // const handleActivityChange = (selectedActivity, index) => {
+  //   const updatedTrainers = [...trainer_data.trainers];
+  //   updatedTrainers[index].activity = selectedActivity;
+  //   Assuming you would update the state with the new trainers data.
+  //   You might need a separate state to manage the activity if you don't want to mutate fetched data directly.
+  //   setTrainers(updatedTrainers);
+  // };
 
-  const handleActivityChange = (selectedActivity, index) => {
-    // Handle activity change
-  };
+  // const handleOpenAddTrainerPopup = () => {
+  //   setIsAddTrainerPopupOpen(true);
+  // };
 
-  const handleOpenAddTrainerPopup = () => {
-    setIsAddTrainerPopupOpen(true);
-  };
-
-  const handleCloseAddTrainerPopup = () => {
-    refetch();
-    setIsAddTrainerPopupOpen(false);
-  };
+  // const handleCloseAddTrainerPopup = () => {
+  //   refetch();
+  //   setIsAddTrainerPopupOpen(false);
+  // };
 
   const handleOpenTrainerScheduleCalendar = () => {
     setIsTrainerScheduleCalendarOpen(true);
@@ -77,9 +137,9 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return trainer_data.length > 0 ? (
+  return  (
     <>
-      {isTrainerDetailsPopupOpen && (
+      {/* {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
           trainerId={selectedId}
           onClose={handleCloseTrainerDetailsPopup}
@@ -93,14 +153,14 @@ const AdminManageTrainerPage = () => {
           trainerId={selectedId}
           availability={availability}
         />
-      )}
-      {isAddTrainerPopupOpen && (
+      )} */}
+      {/* {isAddTrainerPopupOpen && (
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
-      )}
-      {isTrainerScheduleCalendarOpen && (
-        <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
-      )}
+      )} */}
       <div className="admin-manage-trainer-page">
+        {isTrainerScheduleCalendarOpen && (
+          <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
+        )}
         <div className="top-panel">
           <TopLeftSidebar />
         </div>
@@ -116,20 +176,24 @@ const AdminManageTrainerPage = () => {
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
+                    <th className="trainer-info-table-th">Availability</th>
                     <th className="trainer-info-table-th">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {trainer_data.map((trainer, index) => (
+                  {ListOfTrainers.map((trainer, index) => (
                     <tr key={index}>
                       <td className="trainer-info-table-td">
-                        {trainer.fullname}
+                        {trainer.name}
+                      </td>
+                      <td className="trainer-info-table-td">
+                        {trainer.trainer_ID}
                       </td>
                       <td className="trainer-info-table-td">
                         {trainer.trainer_role}
                       </td>
                       <td className="trainer-info-table-td">
-                        {trainer.username}
+                        {trainer.availability}
                       </td>
                       <td className="trainer-info-table-td">
                         <button
@@ -138,9 +202,11 @@ const AdminManageTrainerPage = () => {
                         >
                           View Schedule
                         </button>
-                        <button className="trainer-info-table-button">
+                        {/* <button
+                          className="trainer-info-table-button"
+                        >
                           {trainer.availability}
-                        </button>
+                        </button> */}
                       </td>
                     </tr>
                   ))}
@@ -151,9 +217,10 @@ const AdminManageTrainerPage = () => {
         </div>
       </div>
     </>
-  ) : (
-    <div>Calculating all data... This may take awhile...</div>
-  );
+  ) ; 
+  // (
+  //   <div>Calculating all data... This may take awhile...</div>
+  // );
 };
 
 export default AdminManageTrainerPage;
