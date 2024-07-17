@@ -7,6 +7,9 @@ import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
 import AllocateTrainerPopup from "./AllocateTrainerPopup";
 import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
 import TopLeftSideBar from "../components/TopLeftSideBar";
+import useAxiosGet from "../api/useAxiosGet";
+import { config } from "../config/config";
+import { endpoints } from "../config/endpoints";
 
 const initialWorkshopRequestData = [
   {
@@ -74,6 +77,15 @@ const AdminWorkshopRequestPage = () => {
   const [isRejectPopupOpen, setIsRejectPopupOpen] = useState(false);
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+
+  const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
+    config.base_url + endpoints.admin.getWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
+  console.log(data)
 
   const handleOpenApprovePopup = () => {
     setIsApprovePopupOpen(true);
@@ -145,11 +157,11 @@ const AdminWorkshopRequestPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {workshopRequestData.map((request, index) => (
+                {data.map((request, index) => (
                   <tr key={index} className="workshop-request-box">
-                    <td>{request.workshopName}</td>
-                    <td>{request.workshopId}</td>
-                    <td>{request.workshopType}</td>
+                    <td>{request.workshop_name}</td>
+                    <td>{request.workshop_ID}</td>
+                    <td>{request.workshop_type}</td>
                     <td>
                       <div className="workshop-request-buttons">
                         <button

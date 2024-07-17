@@ -12,6 +12,7 @@ const endpoints = {
     getTrainers: "/auth/trainers/list",
     updateTrainer: "/auth/trainers/update/",
     availabilityTrainer: "/auth/trainers/",
+    getWorkshopRequests: "/workshop/getRequest",
   },
   client: {
     createWorkshop: "/workshop",
