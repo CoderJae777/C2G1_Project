@@ -31,7 +31,6 @@ const AdminManageTrainerPage = () => {
     [],
     true
   );
-  console.log(data);
 
   const handleOpenTrainerDetailsPopup = (id) => {
     setSelectedId(id);

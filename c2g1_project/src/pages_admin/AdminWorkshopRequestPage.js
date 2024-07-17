@@ -4,79 +4,20 @@ import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
-// import AllocateTrainerPopup from "./AllocateTrainerPopup";
 import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
 import TopLeftSideBar from "../components/TopLeftSideBar";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
-const initialWorkshopRequestData = [
-  {
-    workshopId: "005379",
-    workshopName: "Intro to Excel",
-    workshopType: "Infrastructure and demo",
-    company_name: "DancingLion",
-    client_type: "Executive",
-    startDate: "31/02/2025",
-    endDate: "31/02/2025",
-    dealSize: "$3500",
-    country: "Singapore",
-    venue: "Istana",
-    pax: "17",
-    message: "Count to fifty in the blink of an eye."
-  },
-  {
-    workshopId: "002513",
-    workshopName: "Biased Cognition",
-    workshopType: "Business value discovery",
-    company_name: "WindsOfUranus",
-    client_type: "Technical",
-    startDate: "18/05/2025",
-    endDate: "22/05/2025",
-    dealSize: "$47000",
-    country: "Singapore",
-    venue: "East Coast Park",
-    pax: "13",
-    message: "Don't use the saw, he got the wrong thing."
-  },
-  {
-    workshopId: "001478",
-    workshopName: "Intro to Computers",
-    workshopType: "Business value discovery",
-    company_name: "UngaBunga",
-    client_type: "Technical",
-    startDate: "18/05/2025",
-    endDate: "23/05/2025",
-    dealSize: "$47000",
-    country: "Singapore",
-    venue: "East Coast Park",
-    pax: "4",
-    message: "Inside my mind, there is a digital mind."
-  },
-  {
-    workshopId: "006085",
-    workshopName: "Creative AI",
-    workshopType: "AI platform",
-    company_name: "DramaticExit",
-    client_type: "Technical",
-    startDate: "22/11/2025",
-    endDate: "24/11/2025",
-    dealSize: "$678000",
-    country: "Singapore",
-    venue: "SUTD",
-    pax: "60",
-    message: "This table is not very good for glamping. HI HIH HI HIH HI HIH I HI HI HI HI HI HI HI H IHI HI H IH IH IH IH IH IH IH IH IH IH IH IH IH I HI HI HI H HI H."
-  }
-];
-
 const AdminWorkshopRequestPage = () => {
-  const [workshopRequestData, setWorkshopRequestData] = useState(initialWorkshopRequestData);
   const [isApprovePopupOpen, setIsApprovePopupOpen] = useState(false);
-  // const [isAllocatePopupOpen, setIsAllocatePopupOpen] = useState(false);
   const [isRejectPopupOpen, setIsRejectPopupOpen] = useState(false);
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getWorkshopRequests,
@@ -85,30 +26,26 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
-  console.log(data)
-
-  const handleOpenApprovePopup = () => {
+  const handleOpenApprovePopup = (selectedWorkshop) => {
+    setSelectedId(selectedWorkshop._id);
+    setSelectedStartDate(selectedWorkshop.start_date);
+    setSelectedEndDate(selectedWorkshop.end_date);
     setIsApprovePopupOpen(true);
   };
 
   const handleCloseApprovePopup = () => {
     setIsApprovePopupOpen(false);
+    refetch();
   };
 
-  // const handleOpenAllocatePopup = () => {
-  //   setIsAllocatePopupOpen(true);
-  // };
-
-  // const handleCloseAllocatePopup = () => {
-  //   setIsAllocatePopupOpen(false);
-  // };
-
-  const handleOpenRejectPopup = () => {
+  const handleOpenRejectPopup = (selectedWorkshop) => {
+    setSelectedId(selectedWorkshop._id);
     setIsRejectPopupOpen(true);
   };
 
   const handleCloseRejectPopup = () => {
     setIsRejectPopupOpen(false);
+    refetch();
   };
 
   const handleOpenDetailsPopup = (workshop) => {
@@ -125,13 +62,21 @@ const AdminWorkshopRequestPage = () => {
     <>
       <div className="admin-workshop-request-page">
         {isApprovePopupOpen && (
-          <ApproveWorkshopRequestPopup onClose={handleCloseApprovePopup} />
+          <ApproveWorkshopRequestPopup
+            selectedId={selectedId}
+            selectedStartDate={selectedStartDate}
+            selectedEndDate={selectedEndDate}
+            onClose={handleCloseApprovePopup}
+          />
         )}
         {/* {isAllocatePopupOpen && (
           <AllocateTrainerPopup onClose={handleCloseAllocatePopup} />
         )} */}
         {isRejectPopupOpen && (
-          <RejectWorkshopRequestPopup onClose={handleCloseRejectPopup} />
+          <RejectWorkshopRequestPopup
+            selectedId={selectedId}
+            onClose={handleCloseRejectPopup}
+          />
         )}
         {isDetailsPopupOpen && selectedWorkshop && (
           <WorkshopRequestDetailsPopup
@@ -147,7 +92,10 @@ const AdminWorkshopRequestPage = () => {
             <h2>Workshop Requests</h2>
           </div>
           <div className="manage-workshop-request-panel">
-            <table data-cy="workshop-request-table" className="workshop-request-table">
+            <table
+              data-cy="workshop-request-table"
+              className="workshop-request-table"
+            >
               <thead>
                 <tr>
                   <th>Name</th>
@@ -174,7 +122,7 @@ const AdminWorkshopRequestPage = () => {
                         <button
                           data-cy="approve-wsrq-button"
                           className="approve-workshop-request-button"
-                          onClick={handleOpenApprovePopup}
+                          onClick={() => handleOpenApprovePopup(request)}
                         >
                           Approve
                         </button>
@@ -188,7 +136,7 @@ const AdminWorkshopRequestPage = () => {
                         <button
                           data-cy="reject-wsrq-button"
                           className="reject-workshop-request-button"
-                          onClick={handleOpenRejectPopup}
+                          onClick={() => handleOpenRejectPopup(request)}
                         >
                           Reject
                         </button>
