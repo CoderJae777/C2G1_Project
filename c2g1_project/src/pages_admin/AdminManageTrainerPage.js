@@ -121,7 +121,7 @@ const AdminManageTrainerPage = () => {
           </div>
           <div className="manage-trainer-panel-outer">
             <div className="manage-trainer-panel">
-              <table className="trainer-info-table">
+              <table data-cy="trainer-info-table" className="trainer-info-table">
                 <thead>
                   <tr>
                     <th className="trainer-info-table-th">Name</th>
@@ -158,6 +158,7 @@ const AdminManageTrainerPage = () => {
                           Edit Details
                         </button>
                         <button
+                        data-cy="trainer-activity-button"
                           className="trainer-info-table-button"
                           onClick={() =>
                             handleOpenTrainerActivityPopup(
