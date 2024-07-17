@@ -1,3 +1,5 @@
+import RejectWorkshopRequestPopup from "../pages_admin/RejectWorkshopRequestPopup";
+
 const endpoints = {
   login: {
     admin: "/auth/login/admin",
@@ -10,8 +12,12 @@ const endpoints = {
   admin: {
     addTrainer: "/auth/trainers",
     getTrainers: "/auth/trainers/list",
+    getAvailableTrainers: "/auth/trainers/available",
     updateTrainer: "/auth/trainers/update/",
     availabilityTrainer: "/auth/trainers/",
+    getWorkshopRequests: "/workshop/getRequest",
+    approveWorkshopRequest: "/workshop/approve/",
+    rejectWorkshopRequest: "/workshop/reject/",
   },
   client: {
     createWorkshop: "/workshop",

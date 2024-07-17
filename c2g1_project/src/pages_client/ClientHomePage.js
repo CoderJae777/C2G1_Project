@@ -63,6 +63,11 @@ const ClientHomePage = () => {
     createWorkshop.setBody({
       workshop_ID: workshopId,
       workshop_name: workshopName,
+      company_role: role,
+      name: name,
+      email: email,
+      phone_number: phone,
+      company: company_name,
       start_date: startDate.toLocaleDateString("en-US", {
         month: "2-digit",
         day: "2-digit",
