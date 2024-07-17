@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../styles/clienthomepage.css";
 import "boxicons/css/boxicons.min.css";
 import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
-import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
-import DatePicker from "react-datepicker"; // Import the DatePicker component
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import useAxiosGet from "../api/useAxiosGet.jsx";

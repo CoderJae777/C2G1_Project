@@ -4,7 +4,7 @@ import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
-import AllocateTrainerPopup from "./AllocateTrainerPopup";
+// import AllocateTrainerPopup from "./AllocateTrainerPopup";
 import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
 import TopLeftSideBar from "../components/TopLeftSideBar";
 import useAxiosGet from "../api/useAxiosGet";
@@ -21,7 +21,7 @@ const initialWorkshopRequestData = [
     startDate: "31/02/2025",
     endDate: "31/02/2025",
     dealSize: "$3500",
-    location: "Singapore",
+    country: "Singapore",
     venue: "Istana",
     pax: "17",
     message: "Count to fifty in the blink of an eye."
@@ -35,7 +35,7 @@ const initialWorkshopRequestData = [
     startDate: "18/05/2025",
     endDate: "22/05/2025",
     dealSize: "$47000",
-    location: "Singapore",
+    country: "Singapore",
     venue: "East Coast Park",
     pax: "13",
     message: "Don't use the saw, he got the wrong thing."
@@ -49,7 +49,7 @@ const initialWorkshopRequestData = [
     startDate: "18/05/2025",
     endDate: "23/05/2025",
     dealSize: "$47000",
-    location: "Singapore",
+    country: "Singapore",
     venue: "East Coast Park",
     pax: "4",
     message: "Inside my mind, there is a digital mind."
@@ -63,7 +63,7 @@ const initialWorkshopRequestData = [
     startDate: "22/11/2025",
     endDate: "24/11/2025",
     dealSize: "$678000",
-    location: "Singapore",
+    country: "Singapore",
     venue: "SUTD",
     pax: "60",
     message: "This table is not very good for glamping. HI HIH HI HIH HI HIH I HI HI HI HI HI HI HI H IHI HI H IH IH IH IH IH IH IH IH IH IH IH IH IH I HI HI HI H HI H."
@@ -73,7 +73,7 @@ const initialWorkshopRequestData = [
 const AdminWorkshopRequestPage = () => {
   const [workshopRequestData, setWorkshopRequestData] = useState(initialWorkshopRequestData);
   const [isApprovePopupOpen, setIsApprovePopupOpen] = useState(false);
-  const [isAllocatePopupOpen, setIsAllocatePopupOpen] = useState(false);
+  // const [isAllocatePopupOpen, setIsAllocatePopupOpen] = useState(false);
   const [isRejectPopupOpen, setIsRejectPopupOpen] = useState(false);
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
@@ -95,13 +95,13 @@ const AdminWorkshopRequestPage = () => {
     setIsApprovePopupOpen(false);
   };
 
-  const handleOpenAllocatePopup = () => {
-    setIsAllocatePopupOpen(true);
-  };
+  // const handleOpenAllocatePopup = () => {
+  //   setIsAllocatePopupOpen(true);
+  // };
 
-  const handleCloseAllocatePopup = () => {
-    setIsAllocatePopupOpen(false);
-  };
+  // const handleCloseAllocatePopup = () => {
+  //   setIsAllocatePopupOpen(false);
+  // };
 
   const handleOpenRejectPopup = () => {
     setIsRejectPopupOpen(true);
@@ -127,9 +127,9 @@ const AdminWorkshopRequestPage = () => {
         {isApprovePopupOpen && (
           <ApproveWorkshopRequestPopup onClose={handleCloseApprovePopup} />
         )}
-        {isAllocatePopupOpen && (
+        {/* {isAllocatePopupOpen && (
           <AllocateTrainerPopup onClose={handleCloseAllocatePopup} />
-        )}
+        )} */}
         {isRejectPopupOpen && (
           <RejectWorkshopRequestPopup onClose={handleCloseRejectPopup} />
         )}
@@ -178,13 +178,13 @@ const AdminWorkshopRequestPage = () => {
                         >
                           Approve
                         </button>
-                        <button
+                        {/* <button
                           data-cy="allocate-trainer-button"
                           className="allocate-trainer-to-workshop-button"
                           onClick={handleOpenAllocatePopup}
                         >
                           Allocate Trainer
-                        </button>
+                        </button> */}
                         <button
                           data-cy="reject-wsrq-button"
                           className="reject-workshop-request-button"

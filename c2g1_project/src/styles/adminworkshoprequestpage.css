@@ -64,11 +64,11 @@
 
 .view-workshop-details-button,
 .approve-workshop-request-button,
-.allocate-trainer-to-workshop-button,
+/* .allocate-trainer-to-workshop-button, */
 .reject-workshop-request-button {
     background-color: #80C7FB;
     color: black;
-    width: 150px;
+    width: 200px;
     height: 30x;
     border-radius: 25px;
     border-width: 0px;

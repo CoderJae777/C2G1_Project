@@ -43,8 +43,8 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                             <td>{workshopDetails.deal_potential}</td>
                         </tr>
                         <tr>
-                            <td><strong>Location:</strong></td>
-                            <td>{workshopDetails.location}</td>
+                            <td><strong>Country:</strong></td>
+                            <td>{workshopDetails.country}</td>
                         </tr>
                         <tr>
                             <td><strong>Venue:</strong></td>
