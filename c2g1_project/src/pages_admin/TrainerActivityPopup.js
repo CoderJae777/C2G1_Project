@@ -67,7 +67,7 @@ const TrainerActivityPopup = ({
   };
 
   return (
-    <div className="trainer-activity-popup open-trainer-activity-popup">
+    <div data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
       <h2>Select Activity</h2>
       <div className="select-menu-container">
         <div
@@ -106,7 +106,7 @@ const TrainerActivityPopup = ({
         <button className="submit-button" type="button" onClick={handleSubmit}>
           Submit
         </button>
-        <button className="cancel-button" type="button" onClick={onClose}>
+        <button data-cy="trainer-activity-cancel-button" className="cancel-button" type="button" onClick={onClose}>
           Cancel
         </button>
       </div>

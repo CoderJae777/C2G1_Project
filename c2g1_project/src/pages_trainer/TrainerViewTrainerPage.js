@@ -137,7 +137,8 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return  (
+  return ListOfTrainers.length > 0 ? (
+
     <>
       {/* {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
@@ -217,10 +218,10 @@ const AdminManageTrainerPage = () => {
         </div>
       </div>
     </>
-  ) ; 
-  // (
-  //   <div>Calculating all data... This may take awhile...</div>
-  // );
+  ) :
+  (
+    <div>Calculating all data... This may take awhile...</div>
+  );
 };
 
 export default AdminManageTrainerPage;

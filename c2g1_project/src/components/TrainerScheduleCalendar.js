@@ -53,7 +53,7 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     };
 
     return (
-    <div className="trainer-schedule-calendar-popup">
+    <div data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
     <header>
         <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
         <div className="icons">
@@ -69,7 +69,7 @@ const TrainerScheduleCalendar = ({ onClose }) => {
                     <box-icon name='chevron-right'></box-icon>
                 </div>
             </span>
-            <span className="close-button" onClick={onClose}>
+            <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
                 <div className="fa-solid fa-check check-icon">
                     <box-icon name='x'></box-icon>
                 </div>
