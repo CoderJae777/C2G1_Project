@@ -100,13 +100,13 @@ const TrainerTopLeftSideBar = () => {
                   onClick={handleTrainerWorkshopPage}
                 >
                   <i className="bx bx-clipboard icon"></i>
-                  <span className="link">Workshop</span>
+                  <span className="link">Workshops</span>
                 </a>
               </li>
                <li className="list">
                 <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleTrainerViewTrainerPage}>
                   <i className="bx bx-group icon"></i>
-                  <span className="link">View Trainers</span>
+                  <span className="link">My Team</span>
                 </a>
               </li>
             </ul>

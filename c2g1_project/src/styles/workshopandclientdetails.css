@@ -8,7 +8,7 @@
 }
 
 .details-popup {
-    width: 400px;
+    width: 500px;
     background: #fff;
     border-radius: 6px;
     position: absolute;
@@ -31,7 +31,7 @@
 
 .details-popup header{
   display: flex;
-  align-items: center;
+  align-items:flex-end;
   padding: 25px 30px 10px;
   justify-content: space-between;
 }
@@ -67,11 +67,11 @@ header .icons span:hover{
     display: flex;
     height: 20px;
     width: 20px;
-    color: black;
+    color:darkgray;
     font-size: 14px;
     border-radius: 50%;
     background: #fff;
-    align-items: center;
+    align-items: right;
     justify-content: center;
 }
 
@@ -79,6 +79,10 @@ header .icons span:hover{
     margin-left: 20px;
 }
 
-.workshop-details {
+.details-popup .close-button :hover {
+  color:black;
+}
 
+.workshop-detail {
+  margin-bottom: 5px;
 }
