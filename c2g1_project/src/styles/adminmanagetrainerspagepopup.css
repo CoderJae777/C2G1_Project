@@ -84,6 +84,16 @@
     color: black;
 }
 
+.popup-buttons .delete-button{
+    background-color: #ed2157;
+    color: black;
+}
+
+.popup-buttons .delete-button:hover{
+    background-color: #B30B37;
+    color: black;
+}
+
 .reject-reason-input {
     width: 100%;
     height: 100px;
