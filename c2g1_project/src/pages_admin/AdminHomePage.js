@@ -165,7 +165,7 @@ const AdminHomePage = () => {
           <div className="workshop-stats">
             <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
             <LineChart
-              width={920}
+              width={800}
               height={250}
               data={workshop_data}
               margin={{
@@ -218,8 +218,8 @@ const AdminHomePage = () => {
             </div>
 
             <BarChart
-              width={920}
-              height={240}
+              width={800}
+              height={250}
               data={trainer_data}
               margin={{
                 top: 30,
