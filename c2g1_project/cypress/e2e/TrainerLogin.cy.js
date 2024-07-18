@@ -1,35 +1,6 @@
 Cypress.Commands.add("login", (username, password) => {
   // SAVE THIS ENTIRE LOG INFORMATION UNDER A SESSION
 
-
-
-
-
-
-
-
-
-
-
-  //////////////////////////////////////////////////////////
-  // TRAINER CREDENTIALS HAVE ISSUES 
-  //////////////////////////////////////////////////////////
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   cy.session([username, password], () => {
     cy.window().then((win) => {
       win.document.body.style.cssText += `
@@ -55,14 +26,14 @@ describe("Trainer Home Page Test", () => {
     // Clear all sessions before making a new one
     Cypress.session.clearAllSavedSessions();
 
-    cy.login("trainer", "trainer"); 
+    cy.login("Trainer_3_JohnDoe", "Trainer_3_JohnDoe"); 
   });
 
   // Every test should start retrieving the session that is created by BEFORE()
   // then visit ClientHomePage
   before(() => {
     cy.session("adminsession", () => {
-      cy.login("trainer", "trainer");
+      cy.login("Trainer_3_JohnDoe", "Trainer_3_JohnDoe");
     });
 
     cy.visit("/TrainerHomePage");
