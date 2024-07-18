@@ -27,6 +27,7 @@
         {
           "DockedWidth": 200,
           "SelectedChildIndex": 0,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
@@ -75,6 +76,7 @@
               "RelativeDocumentMoniker": "c2g1_project\\src\\App.js",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\App.js",
               "RelativeToolTip": "c2g1_project\\src\\App.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAwAAAA",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-16T08:04:35.342Z",
