@@ -100,6 +100,7 @@ const TrainerTopLeftSideBar = () => {
                   onClick={handleTrainerWorkshopPage}
                 >
                   <i className="bx bx-clipboard icon"></i>
+                  <span className="link">Workshops</span>
                   <span className="link">View My Workshops</span>
                 </a>
               </li>
