@@ -300,7 +300,7 @@ const ClientHomePage = () => {
               <input
                 required
                 type="text"
-                placeholder="Workshop ID"
+                placeholder="Workshop ID: e.g. WS01"
                 value={workshopId}
                 onChange={(e) => setWorkshopId(e.target.value)}
                 className="ws_req_form_control"
@@ -379,8 +379,8 @@ const ClientHomePage = () => {
             <div className="ws_req_form_deal_size">
               <input
                 required
-                type="text"
-                placeholder="Deal Size Potential"
+                type="number"
+                placeholder="Deal Size Potential in USD"
                 value={dealSize}
                 onChange={(e) => setDealSize(e.target.value)}
                 className="ws_req_form_control"
