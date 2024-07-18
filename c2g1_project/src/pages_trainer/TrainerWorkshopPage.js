@@ -9,6 +9,7 @@ import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import TopLeftSideBar from "../components/TrainerTopLeftSideBar.js";
 import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails.js";
+import ColourCalendar from "../components/ColourCalendar.js";
 import {
     Area,
     AreaChart,
@@ -88,6 +89,8 @@ const TrainerWorkshopPage = () => {
             trainer: "James"
         }
     ];
+
+    const workshopDates = ["2024-07-23", "2024-07-27", "2024-08-01", "2024-07-10"];
 
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
@@ -169,7 +172,7 @@ const TrainerWorkshopPage = () => {
         config.base_url + endpoints.verify
     );
 
-    return  (
+    return data !== null && data.role === "trainer" ?  (
         <motion.div
             className="admin-home-page"
             initial={{ opacity: 0, scale: 0.5 }}
@@ -187,33 +190,14 @@ const TrainerWorkshopPage = () => {
                 <div className="admin-home-page-title"></div>
 
                 {/* Workshop summary starts here */}
-                <div className="workshop-table">
+                <div className="workshop-calendar">
                     {" "}
                     <div className="workshop-table-title">
-                        <h4>This is today's workshops' statistics: </h4>
+                        <h4>Workshop Dates</h4>
                     </div>
                     {today_data && today_data[0] ? (
                         <>
-                            <div className="workshopstoday">
-                                <h2 className="today_data">
-                                    {today_data[0].ongoingworkshopstoday}
-                                </h2>
-                                <h5>Ongoing workshops today</h5>
-                            </div>
-                            <div className="trainersworking">
-                                <h2 className="today_data">{today_data[0].trainertoday}</h2>
-                                <h5>Trainers conducting across all workshops</h5>
-                            </div>
-                            <div className="workshopattendees">
-                                <h2 className="today_data">
-                                    {today_data[0].participantstoday}
-                                </h2>
-                                <h5>Total Participants across all workshops</h5>
-                            </div>
-                            <div className="attendancepercentage">
-                                <h2 className="today_data">{today_data[0].attendance}</h2>
-                                <h5>Attended Today</h5>
-                            </div>
+                            <ColourCalendar workshopDates = {workshopDates}/>
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>
@@ -304,7 +288,9 @@ const TrainerWorkshopPage = () => {
                 </div>
             </div>
         </motion.div>
-    )
+    ): (
+        <div>Not logged in</div>
+      );
 };
 
 export default TrainerWorkshopPage;

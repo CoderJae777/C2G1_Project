@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -11,8 +15,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\pages_trainer\\TrainerWorkshopPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerHomePage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:c2g1_project\\src\\pages_trainer\\TrainerHomePage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +26,61 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "TrainerViewTrainerPage.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
+              "RelativeToolTip": "c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEYAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-16T14:43:30.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TrainerHomePage.js",
+              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerHomePage.js",
+              "RelativeDocumentMoniker": "c2g1_project\\src\\pages_trainer\\TrainerHomePage.js",
+              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerHomePage.js",
+              "RelativeToolTip": "c2g1_project\\src\\pages_trainer\\TrainerHomePage.js",
+              "ViewState": "AQIAAKUAAAAAAAAAAAAAAPUAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-16T14:24:34.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TrainerWorkshopPage.js",
               "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerWorkshopPage.js",
               "RelativeDocumentMoniker": "c2g1_project\\src\\pages_trainer\\TrainerWorkshopPage.js",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerWorkshopPage.js",
               "RelativeToolTip": "c2g1_project\\src\\pages_trainer\\TrainerWorkshopPage.js",
-              "ViewState": "AQIAABMBAAAAAAAAAAD4vw4BAABXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-16T08:31:07.786Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "App.js",
               "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\App.js",
               "RelativeDocumentMoniker": "c2g1_project\\src\\App.js",
               "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\App.js",
               "RelativeToolTip": "c2g1_project\\src\\App.js",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAAC0AAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAwAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-16T08:04:35.342Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TrainerViewTrainerPage.js",
-              "DocumentMoniker": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
-              "RelativeDocumentMoniker": "c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
-              "ToolTip": "C:\\Users\\ryanc\\Documents\\C2G1_Project\\c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
-              "RelativeToolTip": "c2g1_project\\src\\pages_trainer\\TrainerViewTrainerPage.js",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAAAAQAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-16T08:01:39.882Z"
             }
           ]
         }

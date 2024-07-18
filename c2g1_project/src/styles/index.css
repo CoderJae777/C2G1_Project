@@ -6,10 +6,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 900px;
-  /* background-image: url("../images/dashboardbackground.jpg"); */
+  height: 100%;
   background-color: #e3f2fd;
-  margin-top: -50px;
+  padding: 20px; /* Added padding for better responsiveness */
 }
 
 .login_card {
@@ -17,10 +16,12 @@
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   border-radius: 10px;
-  padding: 5px;
+  padding: 20px;
   max-width: 500px;
   width: 100%;
   text-align: center;
+  margin-bottom: 24px;
+  margin-top: 100px;
 }
 
 .trainer-img,
@@ -249,15 +250,15 @@
 .signuppage {
   background-color: #e3f2fd;
   padding: 20px;
-  height: auto;
-  margin-top: 60px;
+  height: 650px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
 }
 
 .card {
   width: 100%;
-  max-width: 400px;
+  max-width: 5000px;
   border: none;
   background-color: white;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
@@ -265,6 +266,7 @@
   border-radius: 10px;
   padding: 20px;
   margin-top: 30px;
+  margin-bottom: 25px;
 }
 
 .card-header {
@@ -371,7 +373,7 @@
 
 .homepage {
   background-image: url("../images/homepageimg2.jpg");
-  background-size: "cover";
+  background-size: cover;
   opacity: 0.5;
   margin-top: 50px;
   padding: 50px;
@@ -379,7 +381,7 @@
 
 .homepage-div-2 {
   background-image: url("../images/homepageimg.jpg");
-  background-size: "cover";
+  background-size: cover;
   height: 450px;
 }
 
@@ -413,10 +415,8 @@
 .homepage-div-3 {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  /* background-image: url("../images/homepageimg3.jpg"); */
-  /* background-image: url("../images/dashboardbackground.jpg"); */
   background-color: #e3f2fd;
-  background-size: "cover";
+  background-size: cover;
   height: 550px;
   color: #e3f2fd;
   align-items: center;
@@ -436,7 +436,6 @@
 }
 
 .homepage-div-5 {
-  /* background-image: url("../images/dashboardbackground.jpg"); */
   background-color: #e3f2fd;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -520,7 +519,6 @@
 .bottom-of-homepage {
   display: grid;
   grid-template-rows: 80px 1fr;
-  /* background-image: url("../images/dashboardbackground.jpg"); */
   background-color: #e3f2fd;
   width: 100%;
   color: #0083ca;
@@ -586,4 +584,44 @@
 .sendemailbutton:hover {
   background-color: darkgreen;
   color: white;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .login_card {
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .client_login_button,
+  .admin_login_button,
+  .trainer_login_button,
+  .client_login_button_blue,
+  .admin_login_button_blue,
+  .trainer_login_button_blue {
+    width: 70px;
+    height: 70px;
+    font-size: 13px;
+  }
+
+  .signin_button {
+    width: 100px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .username,
+  .password {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .form_control {
+    width: 90%;
+  }
+
+  .contactform {
+    max-width: 100%;
+    padding: 10px;
+  }
 }

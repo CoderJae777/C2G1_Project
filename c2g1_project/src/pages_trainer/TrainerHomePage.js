@@ -77,7 +77,7 @@ const TrainerHomePage = () => {
         config.base_url + endpoints.verify
     );
 
-    return (
+    return data !== null && data.role === "trainer" ? (
 
         <motion.div
             className="admin-home-page"
@@ -238,7 +238,9 @@ const TrainerHomePage = () => {
                 </div>
             </div>
         </motion.div>
-    )
+    ) : (
+        <div>Not logged in</div>
+      );
 };
 
 export default TrainerHomePage;

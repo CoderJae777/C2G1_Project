@@ -67,7 +67,9 @@ const ListOfTrainers = [
   }
 ]
 
-const AdminManageTrainerPage = () => {
+const workshopDates = ["2024-07-23", "2024-07-27", "2024-08-1", "2024-07-10"];
+
+const TrainerViewTrainerPage = () => {
   // const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
   //   useState(false);
   // const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
@@ -137,7 +139,12 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return  (
+  const { data, loading, error, setBody, refetch } = useAxiosGet(
+    config.base_url + endpoints.verify
+  );
+
+  return (ListOfTrainers.length > 0) && data !== null && data.role === "trainer" ? (
+
     <>
       {/* {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
@@ -217,10 +224,12 @@ const AdminManageTrainerPage = () => {
         </div>
       </div>
     </>
-  ) ; 
-  // (
-  //   <div>Calculating all data... This may take awhile...</div>
-  // );
+  ) : data !== null && data.role === "trainer" ?
+  (
+    <div>Calculating all data... This may take awhile...</div>
+  ) : (
+    <div>Not logged in</div>
+  )
 };
 
-export default AdminManageTrainerPage;
+export default TrainerViewTrainerPage;

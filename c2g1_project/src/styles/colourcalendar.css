@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: roboto;
+}
+.colour-calendar-popup {
+  width: 100%; /* Make the calendar responsive to the parent width */
+  max-width: 400px; /* Optional: set a maximum width */
+  background: #fff;
+  border-radius: 6px;
+  text-align: center;
+  padding: 15px 10px;
+  color: #333;
+  visibility: visible; /* Ensure it is visible */
+  transition: none; /* Remove transitions if not needed */
+  position: relative; /* Ensure it is part of the normal flow */
+  box-sizing: border-box; /* Include padding in the element's width */
+  height:  80%;
+}
+
+
+.colour-popup header{
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+header .icons{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+header .icons span{
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+
+
+header .icons span:hover{
+  background: #f2f2f2;
+}
+  
+.colour-calendar-popup .arrow-left,
+.colour-calendar-popup .arrow-right{
+    display: flex;
+    height: 20px;
+    width: 20px;
+    color: black;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+}
+
+.colour-popup .close-button {
+    margin-left: 20px;
+}
+
+header .current-date{
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.calendar{
+  padding: 20px;
+  
+}
+
+.calendar ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+
+.calendar .days {
+  margin-bottom: 20px;
+}
+
+.calendar li {
+  color: #333;
+  width: 14.2857%; /* Equal width for 7 columns */
+  font-size: 1.07rem;
+  position: relative;
+}
+
+.calendar .weeks li {
+  font-weight: 500;
+  cursor: default;
+}
+
+.calendar .days li {
+  cursor: pointer;
+  margin-top: 5%;
+}
+
+.days li.inactive {
+  color: #aaa;
+}
+
+.days li.active {
+  color: #fff;
+}
+
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.days li.active::before {
+  background: #6e93f7;
+}
+
+.days li.workshop-day::before {
+  background: #ff8800;
+}
+
+.days li:not(.active):hover::before {
+  background: #f2f2f2;
+}

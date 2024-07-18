@@ -46,7 +46,7 @@ const EditTrainerDetailsPopup = ({ onClose, trainerId }) => {
       );
 
     return (
-        <div className="trainer-role-popup open-trainer-role-popup">
+        <div data-cy="edit-trainer-details-popup" className="trainer-role-popup open-trainer-role-popup">
             <h2>Edit Details</h2>
             {/* add trainer name and ID so admin knows whose details are being edited, just a QoL thing */}
             <div className="select-menu-container">
@@ -86,7 +86,7 @@ const EditTrainerDetailsPopup = ({ onClose, trainerId }) => {
             />
             <div className="popup-buttons">
                 <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
+                <button data-cy="edit-trainer-details-cancel-button" className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
     );

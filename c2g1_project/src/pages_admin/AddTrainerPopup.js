@@ -74,7 +74,7 @@ const AddTrainerPopup = ({ onClose }) => {
   };
 
   return (
-    <div className="add-trainer-popup open-add-trainer-popup">
+    <div data-cy="add-trainer-popup" className="add-trainer-popup open-add-trainer-popup">
       <h2>Add Trainer</h2>
       <p>Please fill in the details for adding a new trainer.</p>
       <input
@@ -142,7 +142,7 @@ const AddTrainerPopup = ({ onClose }) => {
         <button className="submit-button" type="button" onClick={handleSubmit}>
           Submit
         </button>
-        <button className="cancel-button" type="button" onClick={onClose}>
+        <button data-cy="add-trainer-cancel-button" className="cancel-button" type="button" onClick={onClose}>
           Cancel
         </button>
       </div>
