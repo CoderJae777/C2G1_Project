@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-const useAxiosDelete = (initialUrl, onSuccess, onError) => {
+const useAxiosDelete = (initialUrl, reloadOn = [], onSuccess, onError) => {
   axios.defaults.withCredentials = true;
-  const [url, setUrl] = useState(initialUrl);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [url, setUrl] = useState(initialUrl);
   const [shouldFetch, setShouldFetch] = useState(false);
 
   const fetchData = useCallback(async () => {
@@ -13,6 +14,7 @@ const useAxiosDelete = (initialUrl, onSuccess, onError) => {
     setError(null);
     try {
       const response = await axios.delete(url);
+      setData(response.data);
       if (onSuccess) onSuccess(response);
     } catch (err) {
       setError(err);
@@ -27,9 +29,10 @@ const useAxiosDelete = (initialUrl, onSuccess, onError) => {
       fetchData();
       setShouldFetch(false);
     }
-  }, [fetchData, shouldFetch]);
+  }, [fetchData, shouldFetch, ...reloadOn]);
 
   return {
+    data,
     loading,
     error,
     setUrl,

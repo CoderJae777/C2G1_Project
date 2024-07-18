@@ -16,16 +16,23 @@ const DeleteTrainerPopup = ({ onClose, trainerId }) => {
     alert("Error deleting trainer, please contact the administrator.");
   };
 
-  const { setUrl, refetch } = useAxiosDelete(handleSuccess, handleError);
+  const { data, loading, error, setUrl, refetch } = useAxiosDelete(
+    "",
+    [],
+    handleSuccess,
+    handleError
+  );
 
   const handleDelete = () => {
-    console.log("Deleting Trainer:", trainerId);
-    setUrl(`${config.base_url}${endpoints.admin.deleteTrainer}/${trainerId}`);
+    setUrl(`${config.base_url}${endpoints.admin.deleteTrainer}${trainerId}`);
     refetch();
   };
 
   return (
-    <div data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
+    <div
+      data-cy="trainer-activity-popup"
+      className="trainer-activity-popup open-trainer-activity-popup"
+    >
       <h2>Delete Trainer</h2>
       <p>Are you sure you want to delete this trainer?</p>
       <div className="popup-buttons">
