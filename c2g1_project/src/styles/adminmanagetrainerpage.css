@@ -96,6 +96,13 @@
     text-align: center;
 }
 
+.trainer-info-table-th.action-column,
+.trainer-info-table-td.action-column {
+  width: 670px;
+  max-width: 670px;
+}
+
+
 .trainer-info-table-th {
     background-color: #f2f2f2;
 }
@@ -103,7 +110,7 @@
 .trainer-info-table-button {
     background-color: #80C7FB;
     color: black;
-    width: 200px;
+    width: 150px;
     height: 30x;
     border-radius: 25px;
     border-width: 0px;
@@ -121,4 +128,26 @@
 .trainer-info-table-button:hover {
     background-color: #0672CB;
     color: white;
+}
+
+.delete-trainer-button {
+    background-color: #ed2157;
+    color: black;
+    width: 150px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 5px;
+}
+
+.delete-trainer-button:hover {
+    background-color: #B30B37;
 }

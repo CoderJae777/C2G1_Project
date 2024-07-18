@@ -70,8 +70,8 @@ const TrainerScheduleCalendar = ({ onClose }) => {
                 </div>
             </span>
             <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
-                <div className="fa-solid fa-check check-icon">
-                    <box-icon name='x'></box-icon>
+                <div className="fa-solid fa-x x-icon">
+                    <box-icon name='x' ></box-icon>
                 </div>
             </span>
         </div>
