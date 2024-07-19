@@ -109,7 +109,7 @@ const ClientHomePage = () => {
       startDate: startDate.toLocaleDateString(),
       endDate: endDate.toLocaleDateString(),
       venue: venue,
-      workshopType: workshopType,
+      workshop_Type: workshopType,
     };
 
     emailjs
