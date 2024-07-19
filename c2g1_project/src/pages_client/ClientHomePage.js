@@ -104,18 +104,25 @@ const ClientHomePage = () => {
       workshopType: workshopType,
     };
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log("Email sent successfully!", response);
-        alert("Your Request has been sent.");
-        clearForm();
-        setShowSummary(false);
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-        alert("You have keyed in an invalid email");
-      });
+    ///////////////////////////////////////////////////////////////////
+    // Commented out to not spam the email
+    ///////////////////////////////////////////////////////////////////
+
+    // emailjs
+    //   .send(serviceId, templateId, templateParams, publicKey)
+    //   .then((response) => {
+    //     console.log("Email sent successfully!", response);
+    //     alert("Your Request has been sent.");
+    //     clearForm();
+    //     setShowSummary(false);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error sending email:", error);
+    //     alert("You have keyed in an invalid email");
+    //   });
+
+
+    setShowSummary(false);
   };
 
   const handleEditRequest = () => {
