@@ -16,22 +16,22 @@ const WorkshopAndClientDetails = ({ onClose, workshop }) => {
                     <box-icon name='x'></box-icon>
                 </div>
             </span>
-            <div className="workshop-details">
-                <p>ID: {workshop.id}</p>
-                <p>Workshop Name: {workshop.workshop_name}</p>
-                <p>Workshop Type: {workshop.workshop_type}</p>
-                <p>Client Company: {workshop.client_company}</p>
-                <p>Client Type: {workshop.client_type}</p>
-                <p>Duration: {workshop.duration}</p>
-                <p>Start Date: {workshop.start_date}</p>
-                <p>Deal Size: {workshop.deal_size}</p>
-                <p>Location: {workshop.location}</p>
-                <p>Venue: {workshop.venue}</p>
-                <p>Attendees: {workshop.attendees}</p>
-                <p>Comments: {workshop.comments}</p>
-            </div>
         </div>
     </header>
+        <div>
+            <div className="workshop-detail">ID: {workshop.id}</div>
+            <div className="workshop-detail">Workshop Name: {workshop.workshop_name}</div>
+            <div className="workshop-detail">Workshop Type: {workshop.workshop_type}</div>
+            <div className="workshop-detail">Client Company: {workshop.client_company}</div>
+            <div className="workshop-detail">Client Type: {workshop.client_type}</div>
+            <div className="workshop-detail">Duration: {workshop.duration}</div>
+            <div className="workshop-detail">Start Date: {workshop.start_date}</div>
+            <div className="workshop-detail">Deal Size: {workshop.deal_size}</div>
+            <div className="workshop-detail">Location: {workshop.location}</div>
+            <div className="workshop-detail">Venue: {workshop.venue}</div>
+            <div className="workshop-detail">Attendees: {workshop.attendees}</div>
+            <div className="workshop-detail">Comments: {workshop.comments}</div>
+        </div>
     </div>
     );
 };

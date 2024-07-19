@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/trainerschedulecalendar.css';
+import '../styles/colourcalendar.css';
 import 'boxicons/css/boxicons.min.css';
 
-const TrainerScheduleCalendar = ({ onClose }) => {
+const ColourCalendar = ({ workshopDates }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [date, setDate] = useState(new Date());
     const [currYear, setCurrYear] = useState(date.getFullYear());
@@ -23,14 +23,24 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
     let liTag = [];
 
+    const getclassNames = (i) => {
+        let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+                        && currYear === new Date().getFullYear() ? "active" : "";
+        const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`;
+        // Check if the formatted day exists in workshopDates array
+        let isWorkshopDay = workshopDates.includes(formattedDay) ? "workshop-day" : "";
+        // Add more for diff categories
+        let classNames = `${isToday} ${isWorkshopDay}`.trim();
+        return classNames
+    }
+
     for (let i = firstDayofMonth; i > 0; i--) {
         liTag.push(<li className="inactive" key={`prev${i}`}>{lastDateofLastMonth - i + 1}</li>);
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-                        && currYear === new Date().getFullYear() ? "active" : "";
-        liTag.push(<li className={isToday} key={`curr${i}`}>{i}</li>);
+        let classNames = getclassNames(i);
+        liTag.push(<li className={classNames} key={`curr${i}`}>{i}</li>);
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
@@ -41,21 +51,30 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     };
 
     const handlePrevNext = (direction) => {
-        setCurrMonth(prev => direction === "prev" ? prev - 1 : prev + 1);
-        if (currMonth < 0 || currMonth > 11) {
-            const newDate = new Date(currYear, currMonth, new Date().getDate());
-            setDate(newDate);
-            setCurrYear(newDate.getFullYear());
-            setCurrMonth(newDate.getMonth());
-        } else {
-            setDate(new Date());
+        if (direction === "prev") {
+            let newMonth = currMonth - 1;
+            let newYear = currYear;
+            if (newMonth < 0) {
+                newMonth = 11;
+                newYear = currYear - 1;
+            }
+            setCurrMonth(newMonth);
+            setCurrYear(newYear);
+        } else if (direction === "next") {
+            let newMonth = currMonth + 1;
+            let newYear = currYear;
+            if (newMonth > 11) {
+                newMonth = 0;
+                newYear = currYear + 1;
+            }
+            setCurrMonth(newMonth);
+            setCurrYear(newYear);
         }
     };
 
     return (
-    <div data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
+    <div data-cy="colour-calendar-popup" className="colour-calendar-popup">
     <header>
-        <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
         <div className="icons">
             {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
             <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
@@ -64,32 +83,30 @@ const TrainerScheduleCalendar = ({ onClose }) => {
                     <box-icon name='chevron-left'></box-icon>
                 </div>
             </span>
+            <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
             <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
                 <div className="fa-solid fa-chevron-right">
                     <box-icon name='chevron-right'></box-icon>
                 </div>
             </span>
-            <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
-                <div className="fa-solid fa-x x-icon">
-                    <box-icon name='x' ></box-icon>
-                </div>
-            </span>
         </div>
     </header>
-    <div className="calendar">
-        <ul className="weeks">
-        <li>Sun</li>
-        <li>Mon</li>
-        <li>Tue</li>
-        <li>Wed</li>
-        <li>Thu</li>
-        <li>Fri</li>
-        <li>Sat</li>
-        </ul>
-        <ul className="days">{days}</ul>
+    <div className="calendar-container">       
+        <div className="calendar">
+            <ul className="weeks">
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+            </ul>
+            <ul className="days">{days}</ul>
+        </div>
     </div>
     </div>
     );
 };
 
-export default TrainerScheduleCalendar;
+export default ColourCalendar;

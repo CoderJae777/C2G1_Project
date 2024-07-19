@@ -37,31 +37,6 @@ const ClientHomePage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // EmailJS service ID, template ID, and Public Key
-    const serviceId = "service_ks4czg2";
-    const templateId = "template_s99g3id";
-    const publicKey = "1T7xmpr5tqQhyh-GS";
-
-    // Create a new object that contains dynamic template params
-    const templateParams = {
-      from_name: name,
-      from_email: email,
-      to_name: "DellAcademy",
-      message: message,
-      phone: phone,
-      company_name: company_name,
-      pax: pax,
-      dealSize: dealSize,
-      country: country,
-      workshopId: workshopId,
-      workshopName: workshopName,
-      role: role,
-      startDate: startDate.toLocaleDateString(),
-      endDate: endDate.toLocaleDateString(),
-      venue: venue,
-      workshopType: workshopType,
-    };
-
     // Show summary modal
     setShowSummary(true);
   };
@@ -113,13 +88,15 @@ const ClientHomePage = () => {
       client_ID: data.id,
     });
     createWorkshop.refetch();
-    // Send the email using EmailJS or any other necessary final actions
+
     const serviceId = "service_ks4czg2";
     const templateId = "template_s99g3id";
     const publicKey = "1T7xmpr5tqQhyh-GS";
+    const serviceId2 = "service_vvarvjs";
     const templateParams = {
       from_name: name,
       from_email: email,
+      to_email: email, // Add both email addresses here
       to_name: "DellAcademy",
       message: message,
       phone: phone,
@@ -134,16 +111,14 @@ const ClientHomePage = () => {
       endDate: endDate.toLocaleDateString(),
       venue: venue,
       workshopType: workshopType,
-    };
+    }
 
     emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
+      .send(serviceId2, templateId, templateParams, publicKey)
       .then((response) => {
         console.log("Email sent successfully!", response);
         alert("Your Request has been sent.");
-        // Clear form fields
         clearForm();
-        // Close summary modal
         setShowSummary(false);
       })
       .catch((error) => {
@@ -325,7 +300,7 @@ const ClientHomePage = () => {
               <input
                 required
                 type="text"
-                placeholder="Workshop ID"
+                placeholder="Workshop ID: e.g. WS01"
                 value={workshopId}
                 onChange={(e) => setWorkshopId(e.target.value)}
                 className="ws_req_form_control"
@@ -404,8 +379,8 @@ const ClientHomePage = () => {
             <div className="ws_req_form_deal_size">
               <input
                 required
-                type="text"
-                placeholder="Deal Size Potential"
+                type="number"
+                placeholder="Deal Size Potential in USD"
                 value={dealSize}
                 onChange={(e) => setDealSize(e.target.value)}
                 className="ws_req_form_control"
