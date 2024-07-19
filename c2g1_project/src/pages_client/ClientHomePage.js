@@ -468,9 +468,10 @@ const ClientHomePage = () => {
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Workshop End Date"
                 className="ws_req_form_control"
-                minDate={new Date()}
+                minDate={startDate || new Date()} // Ensure end date cannot be before start date
                 maxDate={maxDate}
                 title="Select the workshop end date"
+                disabled={!startDate} // Disable end date picker until start date is selected
               />
             </div>
             <div className="ws_req_form_message">
