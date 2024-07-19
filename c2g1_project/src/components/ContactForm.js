@@ -79,6 +79,7 @@ const ContactForm = () => {
         cols="30"
         rows="10"
         value={message}
+        placeholder="Your Message"
         onChange={(e) => setMessage(e.target.value)}
         className="form_control"
       ></textarea>

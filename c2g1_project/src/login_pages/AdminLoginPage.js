@@ -68,7 +68,7 @@ const AdminLoginPage = () => {
       <motion.div className="login_page">
         <motion.div className="login_card">
           <img src={adminimg} className="admin-img" alt="adminimg"></img>
-          <h5 className="role">Pick your role: </h5>{" "}
+          <h5 className="role">Pick your role: </h5>
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
