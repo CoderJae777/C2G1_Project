@@ -8,6 +8,8 @@ import TopLeftSideBar from "../components/TopLeftSideBar";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminWorkshopRequestPage = () => {
   const [isApprovePopupOpen, setIsApprovePopupOpen] = useState(false);
@@ -31,10 +33,11 @@ const AdminWorkshopRequestPage = () => {
     const currentTime = new Date().getTime();
 
     if (data.length > 0) {
-      const latestRequestTime = new Date(data[0].created_at).getTime();
+      const latestRequestTime = new Date(data[0].createdAt).getTime();
 
       if (!lastFetchTime || latestRequestTime > lastFetchTime) {
         setHasNewRequests(true);
+        toast.info("You have new workshop requests!");
       }
 
       localStorage.setItem("lastFetchTime", currentTime);
@@ -78,6 +81,7 @@ const AdminWorkshopRequestPage = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="admin-workshop-request-page">
         {isApprovePopupOpen && (
           <ApproveWorkshopRequestPopup

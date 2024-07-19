@@ -16,13 +16,13 @@ const ClientHomePage = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [phone, setPhone] = useState("");
-  const [company_name, setCompanyName] = useState("");
+  const [company, setCompany] = useState("");
   const [pax, setPax] = useState("");
-  const [dealSize, setDealSize] = useState("");
+  const [dealPotential, setDealPotential] = useState("");
   const [country, setCountry] = useState("");
   const [workshopId, setWorkshopId] = useState("");
   const [workshopName, setWorkshopName] = useState("");
-  const [role, setRole] = useState("");
+  const [companyRole, setCompanyRole] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [venue, setVenue] = useState("");
@@ -46,13 +46,13 @@ const ClientHomePage = () => {
     setEmail("");
     setMessage("");
     setPhone("");
-    setCompanyName("");
-    setDealSize("");
+    setCompany("");
+    setDealPotential("");
     setPax("");
     setCountry("");
     setWorkshopId("");
     setWorkshopName("");
-    setRole("");
+    setCompanyRole("");
     setStartDate(null);
     setEndDate(null);
     setVenue("");
@@ -63,25 +63,17 @@ const ClientHomePage = () => {
     createWorkshop.setBody({
       workshop_ID: workshopId,
       workshop_name: workshopName,
-      company_role: role,
+      company_role: companyRole,
       name: name,
       email: email,
-      phone_number: phone,
-      company: company_name,
-      start_date: startDate.toLocaleDateString("en-US", {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-      }),
-      end_date: endDate.toLocaleDateString("en-US", {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-      }),
+      phone_number: parseInt(phone, 10),
+      company: company,
+      start_date: startDate.toISOString(),
+      end_date: endDate.toISOString(),
       availability: true,
       description: message,
-      deal_potential: dealSize,
-      pax: pax,
+      deal_potential: parseInt(dealPotential, 10),
+      pax: parseInt(pax, 10),
       venue: venue,
       country: country,
       workshop_type: workshopType,
@@ -95,21 +87,21 @@ const ClientHomePage = () => {
     const templateParams = {
       from_name: name,
       from_email: email,
-      to_email: email, // Add both email addresses here
+      to_email: email,
       to_name: "DellAcademy",
       message: message,
       phone: phone,
-      company_name: company_name,
+      company_name: company,
       pax: pax,
-      dealSize: dealSize,
+      dealSize: dealPotential,
       country: country,
       workshopId: workshopId,
       workshopName: workshopName,
-      role: role,
+      role: companyRole,
       startDate: startDate.toLocaleDateString(),
       endDate: endDate.toLocaleDateString(),
       venue: venue,
-      workshop_Type: workshopType,
+      workshopType: workshopType,
     };
 
     emailjs
@@ -163,9 +155,7 @@ const ClientHomePage = () => {
       setWorkshopName(selected.workshopName);
       setWorkshopType(selected.workshopType);
     }
-    alert(
-      "Your selected workshops will be populated"
-    );
+    alert("Your selected workshops will be populated");
   };
 
   const createWorkshop = useAxiosPost(
@@ -200,7 +190,7 @@ const ClientHomePage = () => {
               <strong>Workshop Name:</strong> {workshopName}
             </p>
             <p>
-              <strong>Role at Company:</strong> {role}
+              <strong>Role at Company:</strong> {companyRole}
             </p>
             <p>
               <strong>Name:</strong> {name}
@@ -212,13 +202,13 @@ const ClientHomePage = () => {
               <strong>Phone Number:</strong> {phone}
             </p>
             <p>
-              <strong>Company Name:</strong> {company_name}
+              <strong>Company Name:</strong> {company}
             </p>
             <p>
               <strong>Number of Pax:</strong> {pax}
             </p>
             <p>
-              <strong>Deal Size Potential:</strong> {dealSize}
+              <strong>Deal Size Potential:</strong> {dealPotential}
             </p>
             <p>
               <strong>Country:</strong> {country}
@@ -352,8 +342,8 @@ const ClientHomePage = () => {
                 required
                 type="text"
                 placeholder="Role at Company"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+                value={companyRole}
+                onChange={(e) => setCompanyRole(e.target.value)}
                 className="ws_req_form_control"
                 title="Enter your role at the company"
               />
@@ -396,8 +386,8 @@ const ClientHomePage = () => {
                 required
                 type="text"
                 placeholder="Your Company"
-                value={company_name}
-                onChange={(e) => setCompanyName(e.target.value)}
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
                 className="ws_req_form_control"
                 title="Enter your company name"
               />
@@ -418,8 +408,8 @@ const ClientHomePage = () => {
                 required
                 type="text"
                 placeholder="Deal Size Potential in USD"
-                value={dealSize}
-                onChange={handleIntegerChange(setDealSize)}
+                value={dealPotential}
+                onChange={handleIntegerChange(setDealPotential)}
                 className="ws_req_form_control"
                 title="Enter the potential deal size in USD"
               />
