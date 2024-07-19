@@ -140,24 +140,28 @@ const ClientHomePage = () => {
     "Option 1": {
       workshopId: "WS01",
       workshopName: "Introduction to Python",
+      workshopType: "AI Platform",
     },
     "Option 2": {
       workshopId: "WS02",
       workshopName: "Introduction to C",
+      workshopType: "Infrastructure and Demo",
     },
     "Option 3": {
       workshopId: "WS03",
       workshopName: "Introduction to Java",
+      workshopType: "Business Value Discovery",
     },
   };
   // This function checks if a workshop is selected.
   // If so, it retrieves the corresponding workshop details from the workshops object
-  // and updates the state variables workshopId and workshopName.
+  // and updates the state variables workshopId, workshopName, and workshopType.
   const populateForm = () => {
     if (selectedWorkshop) {
       const selected = workshops[selectedWorkshop];
       setWorkshopId(selected.workshopId);
       setWorkshopName(selected.workshopName);
+      setWorkshopType(selected.workshopType);
     }
     alert(
       "The available workshop selected will be populated in the request form"
@@ -273,7 +277,19 @@ const ClientHomePage = () => {
                   <option value="Option 2">WS02 Introduction to C</option>
                   <option value="Option 3">WS03 Introduction to Java</option>
                 </select>
-                <p>Workshop Details to be printed here</p>
+                {selectedWorkshop && (
+                  <div>
+                    <p>
+                      <strong>Workshop ID:</strong> {workshops[selectedWorkshop].workshopId}
+                    </p>
+                    <p>
+                      <strong>Workshop Name:</strong> {workshops[selectedWorkshop].workshopName}
+                    </p>
+                    <p>
+                      <strong>Workshop Type:</strong> {workshops[selectedWorkshop].workshopType}
+                    </p>
+                  </div>
+                )}
                 <motion.button
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -305,7 +321,7 @@ const ClientHomePage = () => {
                 onChange={(e) => setWorkshopId(e.target.value)}
                 className="ws_req_form_control"
                 readOnly
-                title="Select from the dropdown to auto-populate this field"
+                title="Select from the dropdown to auto-populate this field Workshop ID"
               />
             </div>
             <div className="ws_req_form_workshop_name">
@@ -317,7 +333,7 @@ const ClientHomePage = () => {
                 onChange={(e) => setWorkshopName(e.target.value)}
                 className="ws_req_form_control"
                 readOnly
-                title="Select from the dropdown to auto-populate this field"
+                title="Select from the dropdown to auto-populate this field Workshop Name"
               />
             </div>
             <div className="ws_req_form_role">
@@ -420,24 +436,16 @@ const ClientHomePage = () => {
               />
             </div>
             <div className="ws_req_form_workshop_type">
-              <select
+              <input
                 required
+                type="text"
+                placeholder="Select from dropdown to auto-populate"
                 value={workshopType}
                 onChange={(e) => setWorkshopType(e.target.value)}
                 className="ws_req_form_control"
-                title="Select the type of workshop"
-              >
-                <option value="" disabled placeholder="Select Workshop Type">
-                  Select Workshop Type
-                </option>
-                <option value="Business Value Discovery">
-                  Business Value Discovery
-                </option>
-                <option value="AI Platform">AI Platform</option>
-                <option value="Infrastructure and Demo">
-                  Infrastructure and Demo
-                </option>
-              </select>
+                readOnly
+                title="Select from the dropdown to auto-populate this field Workshop Type"
+              />
             </div>
             <div className="ws_req_form_start_date">
               <DatePicker
