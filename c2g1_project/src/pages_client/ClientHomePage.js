@@ -92,7 +92,6 @@ const ClientHomePage = () => {
     const serviceId = "service_ks4czg2";
     const templateId = "template_s99g3id";
     const publicKey = "1T7xmpr5tqQhyh-GS";
-    const serviceId2 = "service_vvarvjs";
     const templateParams = {
       from_name: name,
       from_email: email,
@@ -111,10 +110,10 @@ const ClientHomePage = () => {
       endDate: endDate.toLocaleDateString(),
       venue: venue,
       workshopType: workshopType,
-    }
+    };
 
     emailjs
-      .send(serviceId2, templateId, templateParams, publicKey)
+      .send(serviceId, templateId, templateParams, publicKey)
       .then((response) => {
         console.log("Email sent successfully!", response);
         alert("Your Request has been sent.");
@@ -123,6 +122,7 @@ const ClientHomePage = () => {
       })
       .catch((error) => {
         console.error("Error sending email:", error);
+        alert("You have keyed in an invalid email");
       });
   };
 
@@ -300,20 +300,24 @@ const ClientHomePage = () => {
               <input
                 required
                 type="text"
-                placeholder="Workshop ID: e.g. WS01"
+                placeholder="Select from dropdown to auto-populate"
                 value={workshopId}
                 onChange={(e) => setWorkshopId(e.target.value)}
                 className="ws_req_form_control"
+                readOnly
+                title="Select from the dropdown to auto-populate this field"
               />
             </div>
             <div className="ws_req_form_workshop_name">
               <input
                 required
                 type="text"
-                placeholder="Workshop Name"
+                placeholder="Select from dropdown to auto-populate"
                 value={workshopName}
                 onChange={(e) => setWorkshopName(e.target.value)}
                 className="ws_req_form_control"
+                readOnly
+                title="Select from the dropdown to auto-populate this field"
               />
             </div>
             <div className="ws_req_form_role">
@@ -324,6 +328,7 @@ const ClientHomePage = () => {
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter your role at the company"
               />
             </div>
             <div className="ws_req_form_name">
@@ -334,6 +339,7 @@ const ClientHomePage = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter your name"
               />
             </div>
             <div className="ws_req_form_email">
@@ -344,6 +350,7 @@ const ClientHomePage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter your email address"
               />
             </div>
             <div className="ws_req_form_phone">
@@ -354,6 +361,7 @@ const ClientHomePage = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter your phone number"
               />
             </div>
             <div className="ws_req_form_company">
@@ -364,6 +372,7 @@ const ClientHomePage = () => {
                 value={company_name}
                 onChange={(e) => setCompanyName(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter your company name"
               />
             </div>
             <div className="ws_req_form_pax">
@@ -374,6 +383,7 @@ const ClientHomePage = () => {
                 value={pax}
                 onChange={(e) => setPax(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter the number of participants"
               />
             </div>
             <div className="ws_req_form_deal_size">
@@ -384,6 +394,7 @@ const ClientHomePage = () => {
                 value={dealSize}
                 onChange={(e) => setDealSize(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter the potential deal size in USD"
               />
             </div>
             <div className="ws_req_form_country">
@@ -394,6 +405,7 @@ const ClientHomePage = () => {
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter your country"
               />
             </div>
             <div className="ws_req_form_venue">
@@ -404,6 +416,7 @@ const ClientHomePage = () => {
                 value={venue}
                 onChange={(e) => setVenue(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter the venue for the workshop"
               />
             </div>
             <div className="ws_req_form_workshop_type">
@@ -412,6 +425,7 @@ const ClientHomePage = () => {
                 value={workshopType}
                 onChange={(e) => setWorkshopType(e.target.value)}
                 className="ws_req_form_control"
+                title="Select the type of workshop"
               >
                 <option value="" disabled placeholder="Select Workshop Type">
                   Select Workshop Type
@@ -435,6 +449,7 @@ const ClientHomePage = () => {
                 className="ws_req_form_control"
                 minDate={new Date()}
                 maxDate={maxDate}
+                title="Select the workshop start date"
               />
             </div>
             <div className="ws_req_form_end_date">
@@ -447,6 +462,7 @@ const ClientHomePage = () => {
                 className="ws_req_form_control"
                 minDate={new Date()}
                 maxDate={maxDate}
+                title="Select the workshop end date"
               />
             </div>
             <div className="ws_req_form_message">
@@ -457,6 +473,7 @@ const ClientHomePage = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="ws_req_form_control"
+                title="Enter any additional information"
               ></textarea>
             </div>
             <div className="ws_req_form_button">
