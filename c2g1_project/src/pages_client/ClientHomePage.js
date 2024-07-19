@@ -30,9 +30,7 @@ const ClientHomePage = () => {
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
-  const { data, loading, error, setBody, refetch } = useAxiosGet(
-    config.base_url + endpoints.verify
-  );
+  const verify = useAxiosGet(config.base_url + endpoints.verify);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,23 +59,20 @@ const ClientHomePage = () => {
 
   const handleConfirmRequest = () => {
     createWorkshop.setBody({
-      workshop_ID: workshopId,
-      workshop_name: workshopName,
       company_role: companyRole,
+      company: company,
       name: name,
       email: email,
-      phone_number: parseInt(phone, 10),
-      company: company,
+      phone_number: phone,
+      pax: pax,
+      deal_potential: dealPotential,
+      country: country,
+      venue: venue,
       start_date: startDate.toISOString(),
       end_date: endDate.toISOString(),
-      availability: true,
-      description: message,
-      deal_potential: parseInt(dealPotential, 10),
-      pax: parseInt(pax, 10),
-      venue: venue,
-      country: country,
-      workshop_type: workshopType,
-      client_ID: data.id,
+      request_message: message,
+      workshop_data_id: workshopId,
+      client_id: verify.data.id,
     });
     createWorkshop.refetch();
 
@@ -121,7 +116,6 @@ const ClientHomePage = () => {
     //     alert("You have keyed in an invalid email");
     //   });
 
-
     setShowSummary(false);
   };
 
@@ -132,48 +126,45 @@ const ClientHomePage = () => {
 
   const [selectedWorkshop, setSelectedWorkshop] = useState("");
 
-  ///////////////////////////////////////////
-  // Hardcoded Data for now
-  ///////////////////////////////////////////
-  const workshops = {
-    "Option 1": {
-      workshopId: "WS01",
-      workshopName: "Introduction to Python",
-      workshopType: "AI Platform",
-    },
-    "Option 2": {
-      workshopId: "WS02",
-      workshopName: "Introduction to C",
-      workshopType: "Infrastructure and Demo",
-    },
-    "Option 3": {
-      workshopId: "WS03",
-      workshopName: "Introduction to Java",
-      workshopType: "Business Value Discovery",
-    },
-  };
+  const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
+    config.base_url + endpoints.client.getWorkshopData,
+    {},
+    [],
+    true
+  );
+
   // This function checks if a workshop is selected.
   // If so, it retrieves the corresponding workshop details from the workshops object
   // and updates the state variables workshopId, workshopName, and workshopType.
   const populateForm = () => {
     if (selectedWorkshop) {
-      const selected = workshops[selectedWorkshop];
-      setWorkshopId(selected.workshopId);
-      setWorkshopName(selected.workshopName);
-      setWorkshopType(selected.workshopType);
+      const selected = data[selectedWorkshop];
+      setWorkshopId(selected.workshop_ID);
+      setWorkshopName(selected.workshop_name);
+      setWorkshopType(selected.workshop_type);
     }
     alert("Your selected workshops will be populated");
+  };
+
+  const onSuccess = (response) => {
+    window.location.reload();
+  };
+
+  const onError = (error) => {
+    alert("Error creating workshop request. Please try again.");
   };
 
   const createWorkshop = useAxiosPost(
     config.base_url + endpoints.client.createWorkshop,
     {},
-    []
+    [],
+    onSuccess,
+    onError
   );
 
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
 
-  return data !== null && data.role === "client" ? (
+  return verify.data !== null && verify.data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
 
@@ -270,23 +261,25 @@ const ClientHomePage = () => {
                   <option value="" disabled>
                     Click to view workshops
                   </option>
-                  <option value="Option 1">WS01 Introduction to Python</option>
-                  <option value="Option 2">WS02 Introduction to C</option>
-                  <option value="Option 3">WS03 Introduction to Java</option>
+                  {data.map((workshop, index) => (
+                    <option key={index} value={index}>
+                      {`${workshop.workshop_ID} ${workshop.workshop_name}`}
+                    </option>
+                  ))}
                 </select>
                 {selectedWorkshop && (
                   <div>
                     <p>
                       <strong>Workshop ID:</strong>{" "}
-                      {workshops[selectedWorkshop].workshopId}
+                      {data[selectedWorkshop].workshop_ID}
                     </p>
                     <p>
                       <strong>Workshop Name:</strong>{" "}
-                      {workshops[selectedWorkshop].workshopName}
+                      {data[selectedWorkshop].workshop_name}
                     </p>
                     <p>
                       <strong>Workshop Type:</strong>{" "}
-                      {workshops[selectedWorkshop].workshopType}
+                      {data[selectedWorkshop].workshop_type}
                     </p>
                   </div>
                 )}
