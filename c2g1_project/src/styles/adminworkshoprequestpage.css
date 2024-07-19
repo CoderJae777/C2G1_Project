@@ -20,29 +20,46 @@
 }
 
 .admin-workshop-request-page-title{
+    width: 80%;
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    margin-bottom: -80px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .admin-workshop-request-page-title h2 {
+    margin-right: 480px;
+}
+
+.manage-workshop-request-panel-outer {
+    height: 540px;
+    width: 80%;
+    background: #d7d7d7;
+    color: #707070;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5px;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
 
 .manage-workshop-request-panel {
-    height: 550px;
+    height: 500px;
     background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 5px;
     align-items: center;
     overflow-y: auto;
 }
+
+/* CSS FOR WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
 
 .workshop-request-table {
     width: 100%;
@@ -56,6 +73,11 @@
     padding: 10px;
     text-align: center;
 }
+
+.workshop-request-table th.action-column {
+    width: 670px;
+    max-width: 670px;
+  }
 
 .workshop-request-table th {
     background-color: #f2f2f2;

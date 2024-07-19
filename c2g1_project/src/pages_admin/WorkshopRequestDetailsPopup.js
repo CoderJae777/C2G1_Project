@@ -22,6 +22,22 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                             <td><strong>Client Company:</strong></td>
                             <td>{workshopDetails.company}</td>
                         </tr>
+                        <tr>
+                            <td><strong>Client Name:</strong></td>
+                            <td>{workshopDetails.name}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client Role:</strong></td>
+                            <td>{workshopDetails.company_role}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client Email:</strong></td>
+                            <td>{workshopDetails.email}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client Phone Number:</strong></td>
+                            <td>{workshopDetails.phone_number}</td>
+                        </tr>
                         {/* <tr>
                             <td><strong>Client Type:</strong></td>
                             <td>{workshopDetails.client_type}</td>
@@ -55,7 +71,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                             <td>{workshopDetails.pax}</td>
                         </tr>
                         <tr>
-                            <td><strong>Comment:</strong></td>
+                            <td><strong>Message:</strong></td>
                             <td>{workshopDetails.description}</td>
                         </tr>
                     </tbody>

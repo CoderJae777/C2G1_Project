@@ -91,61 +91,63 @@ const AdminWorkshopRequestPage = () => {
           <div className="admin-workshop-request-page-title">
             <h2>Workshop Requests</h2>
           </div>
-          <div className="manage-workshop-request-panel">
-            <table
-              data-cy="workshop-request-table"
-              className="workshop-request-table"
-            >
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Workshop ID</th>
-                  <th>Type</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((request, index) => (
-                  <tr key={index} className="workshop-request-box">
-                    <td>{request.workshop_name}</td>
-                    <td>{request.workshop_ID}</td>
-                    <td>{request.workshop_type}</td>
-                    <td>
-                      <div className="workshop-request-buttons">
-                        <button
-                          data-cy="view-wsd-button"
-                          className="view-workshop-details-button"
-                          onClick={() => handleOpenDetailsPopup(request)}
-                        >
-                          View Details
-                        </button>
-                        <button
-                          data-cy="approve-wsrq-button"
-                          className="approve-workshop-request-button"
-                          onClick={() => handleOpenApprovePopup(request)}
-                        >
-                          Approve
-                        </button>
-                        {/* <button
-                          data-cy="allocate-trainer-button"
-                          className="allocate-trainer-to-workshop-button"
-                          onClick={handleOpenAllocatePopup}
-                        >
-                          Allocate Trainer
-                        </button> */}
-                        <button
-                          data-cy="reject-wsrq-button"
-                          className="reject-workshop-request-button"
-                          onClick={() => handleOpenRejectPopup(request)}
-                        >
-                          Reject
-                        </button>
-                      </div>
-                    </td>
+          <div className="manage-workshop-request-panel-outer">
+            <div className="manage-workshop-request-panel">
+              <table
+                data-cy="workshop-request-table"
+                className="workshop-request-table"
+              >
+                <thead>
+                  <tr>
+                    <th>Workshop Name</th>
+                    <th>Workshop ID</th>
+                    <th>Type</th>
+                    <th className="action-column">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {data.map((request, index) => (
+                    <tr key={index} className="workshop-request-box">
+                      <td>{request.workshop_name}</td>
+                      <td>{request.workshop_ID}</td>
+                      <td>{request.workshop_type}</td>
+                      <td>
+                        <div className="workshop-request-buttons">
+                          <button
+                            data-cy="view-wsd-button"
+                            className="view-workshop-details-button"
+                            onClick={() => handleOpenDetailsPopup(request)}
+                          >
+                            View Details
+                          </button>
+                          <button
+                            data-cy="approve-wsrq-button"
+                            className="approve-workshop-request-button"
+                            onClick={() => handleOpenApprovePopup(request)}
+                          >
+                            Approve
+                          </button>
+                          {/* <button
+                            data-cy="allocate-trainer-button"
+                            className="allocate-trainer-to-workshop-button"
+                            onClick={handleOpenAllocatePopup}
+                          >
+                            Allocate Trainer
+                          </button> */}
+                          <button
+                            data-cy="reject-wsrq-button"
+                            className="reject-workshop-request-button"
+                            onClick={() => handleOpenRejectPopup(request)}
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
