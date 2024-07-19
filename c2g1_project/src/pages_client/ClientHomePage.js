@@ -164,7 +164,7 @@ const ClientHomePage = () => {
       setWorkshopType(selected.workshopType);
     }
     alert(
-      "The available workshop selected will be populated in the request form"
+      "Your selected workshops will be populated"
     );
   };
 
@@ -175,6 +175,14 @@ const ClientHomePage = () => {
   );
 
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
+
+  // Validation functions for integer fields
+  const handleIntegerChange = (setter) => (e) => {
+    const value = e.target.value;
+    if (value === "" || /^\d+$/.test(value)) {
+      setter(value);
+    }
+  };
 
   return data !== null && data.role === "client" ? (
     <>
@@ -216,10 +224,10 @@ const ClientHomePage = () => {
               <strong>Country:</strong> {country}
             </p>
             <p>
-              <strong>Start Date:</strong> {startDate.toLocaleDateString()}
+              <strong>Start Date:</strong> {startDate?.toLocaleDateString()}
             </p>
             <p>
-              <strong>End Date:</strong> {endDate.toLocaleDateString()}
+              <strong>End Date:</strong> {endDate?.toLocaleDateString()}
             </p>
             <p>
               <strong>Venue:</strong> {venue}
@@ -280,13 +288,16 @@ const ClientHomePage = () => {
                 {selectedWorkshop && (
                   <div>
                     <p>
-                      <strong>Workshop ID:</strong> {workshops[selectedWorkshop].workshopId}
+                      <strong>Workshop ID:</strong>{" "}
+                      {workshops[selectedWorkshop].workshopId}
                     </p>
                     <p>
-                      <strong>Workshop Name:</strong> {workshops[selectedWorkshop].workshopName}
+                      <strong>Workshop Name:</strong>{" "}
+                      {workshops[selectedWorkshop].workshopName}
                     </p>
                     <p>
-                      <strong>Workshop Type:</strong> {workshops[selectedWorkshop].workshopType}
+                      <strong>Workshop Type:</strong>{" "}
+                      {workshops[selectedWorkshop].workshopType}
                     </p>
                   </div>
                 )}
@@ -316,7 +327,7 @@ const ClientHomePage = () => {
               <input
                 required
                 type="text"
-                placeholder="Select from dropdown to auto-populate"
+                placeholder="Select from dropdown to auto-populate Workshop ID"
                 value={workshopId}
                 onChange={(e) => setWorkshopId(e.target.value)}
                 className="ws_req_form_control"
@@ -328,7 +339,7 @@ const ClientHomePage = () => {
               <input
                 required
                 type="text"
-                placeholder="Select from dropdown to auto-populate"
+                placeholder="Select from dropdown to auto-populate Workshop Name"
                 value={workshopName}
                 onChange={(e) => setWorkshopName(e.target.value)}
                 className="ws_req_form_control"
@@ -372,10 +383,10 @@ const ClientHomePage = () => {
             <div className="ws_req_form_phone">
               <input
                 required
-                type="phone"
+                type="text"
                 placeholder="Phone Number"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={handleIntegerChange(setPhone)}
                 className="ws_req_form_control"
                 title="Enter your phone number"
               />
@@ -394,10 +405,10 @@ const ClientHomePage = () => {
             <div className="ws_req_form_pax">
               <input
                 required
-                type="number"
+                type="text"
                 placeholder="Number of Pax"
                 value={pax}
-                onChange={(e) => setPax(e.target.value)}
+                onChange={handleIntegerChange(setPax)}
                 className="ws_req_form_control"
                 title="Enter the number of participants"
               />
@@ -405,10 +416,10 @@ const ClientHomePage = () => {
             <div className="ws_req_form_deal_size">
               <input
                 required
-                type="number"
+                type="text"
                 placeholder="Deal Size Potential in USD"
                 value={dealSize}
-                onChange={(e) => setDealSize(e.target.value)}
+                onChange={handleIntegerChange(setDealSize)}
                 className="ws_req_form_control"
                 title="Enter the potential deal size in USD"
               />
@@ -439,7 +450,7 @@ const ClientHomePage = () => {
               <input
                 required
                 type="text"
-                placeholder="Select from dropdown to auto-populate"
+                placeholder="Select from dropdown to auto-populate Workshop Type"
                 value={workshopType}
                 onChange={(e) => setWorkshopType(e.target.value)}
                 className="ws_req_form_control"

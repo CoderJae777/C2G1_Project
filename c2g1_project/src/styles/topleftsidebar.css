@@ -132,3 +132,12 @@ nav.open ~ .overlay {
   pointer-events: auto;
   z-index: 1000;
 }
+
+.notification-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  margin-left: 5px;
+}

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-// import "../styles/adminhomepage.css";
+import React, { useEffect, useState } from "react";
 import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
@@ -18,6 +17,7 @@ const AdminWorkshopRequestPage = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [hasNewRequests, setHasNewRequests] = useState(false);
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getWorkshopRequests,
@@ -26,11 +26,27 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
+  useEffect(() => {
+    const lastFetchTime = localStorage.getItem("lastFetchTime");
+    const currentTime = new Date().getTime();
+
+    if (data.length > 0) {
+      const latestRequestTime = new Date(data[0].created_at).getTime();
+
+      if (!lastFetchTime || latestRequestTime > lastFetchTime) {
+        setHasNewRequests(true);
+      }
+
+      localStorage.setItem("lastFetchTime", currentTime);
+    }
+  }, [data]);
+
   const handleOpenApprovePopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
     setSelectedStartDate(selectedWorkshop.start_date);
     setSelectedEndDate(selectedWorkshop.end_date);
     setIsApprovePopupOpen(true);
+    setHasNewRequests(false); // Reset notification when popup is opened
   };
 
   const handleCloseApprovePopup = () => {
@@ -41,6 +57,7 @@ const AdminWorkshopRequestPage = () => {
   const handleOpenRejectPopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
     setIsRejectPopupOpen(true);
+    setHasNewRequests(false); // Reset notification when popup is opened
   };
 
   const handleCloseRejectPopup = () => {
@@ -51,6 +68,7 @@ const AdminWorkshopRequestPage = () => {
   const handleOpenDetailsPopup = (workshop) => {
     setSelectedWorkshop(workshop);
     setIsDetailsPopupOpen(true);
+    setHasNewRequests(false); // Reset notification when popup is opened
   };
 
   const handleCloseDetailsPopup = () => {
@@ -69,9 +87,6 @@ const AdminWorkshopRequestPage = () => {
             onClose={handleCloseApprovePopup}
           />
         )}
-        {/* {isAllocatePopupOpen && (
-          <AllocateTrainerPopup onClose={handleCloseAllocatePopup} />
-        )} */}
         {isRejectPopupOpen && (
           <RejectWorkshopRequestPopup
             selectedId={selectedId}
@@ -85,7 +100,7 @@ const AdminWorkshopRequestPage = () => {
           />
         )}
         <div className="top-panel">
-          <TopLeftSideBar />
+          <TopLeftSideBar hasNewRequests={hasNewRequests} />
         </div>
         <div className="admin-workshop-request-page-bottom-panel">
           <div className="admin-workshop-request-page-title">
@@ -127,13 +142,6 @@ const AdminWorkshopRequestPage = () => {
                           >
                             Approve
                           </button>
-                          {/* <button
-                            data-cy="allocate-trainer-button"
-                            className="allocate-trainer-to-workshop-button"
-                            onClick={handleOpenAllocatePopup}
-                          >
-                            Allocate Trainer
-                          </button> */}
                           <button
                             data-cy="reject-wsrq-button"
                             className="reject-workshop-request-button"
