@@ -126,12 +126,7 @@ const TopLeftSideBar = ({ hasNewRequests }) => {
                   onClick={handleAdminWorkshopRequestPage}
                 >
                   <i className="bx bx-clipboard icon"></i>
-                  <span className="link">
-                    Workshop Requests
-                    {hasNewRequests && (
-                      <span className="notification-dot"></span>
-                    )}
-                  </span>
+                  <span className="link">Workshop Requests</span>
                 </a>
               </li>
               <li className="list">

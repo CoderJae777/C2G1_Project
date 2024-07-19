@@ -18,6 +18,6 @@ module.exports = defineConfig({
     // all URL will start with this, so when you use cy.visit just type the route page
     baseUrl: "http://localhost:3000",
     viewportWidth: 1500,
-    viewportHeight: 800,
+    viewportHeight: 1200,
   },
 });

@@ -104,18 +104,25 @@ const ClientHomePage = () => {
       workshopType: workshopType,
     };
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log("Email sent successfully!", response);
-        alert("Your Request has been sent.");
-        clearForm();
-        setShowSummary(false);
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-        alert("You have keyed in an invalid email");
-      });
+    ///////////////////////////////////////////////////////////////////
+    // Commented out to not spam the email
+    ///////////////////////////////////////////////////////////////////
+
+    // emailjs
+    //   .send(serviceId, templateId, templateParams, publicKey)
+    //   .then((response) => {
+    //     console.log("Email sent successfully!", response);
+    //     alert("Your Request has been sent.");
+    //     clearForm();
+    //     setShowSummary(false);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error sending email:", error);
+    //     alert("You have keyed in an invalid email");
+    //   });
+
+
+    setShowSummary(false);
   };
 
   const handleEditRequest = () => {
@@ -165,14 +172,6 @@ const ClientHomePage = () => {
   );
 
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
-
-  // Validation functions for integer fields
-  const handleIntegerChange = (setter) => (e) => {
-    const value = e.target.value;
-    if (value === "" || /^\d+$/.test(value)) {
-      setter(value);
-    }
-  };
 
   return data !== null && data.role === "client" ? (
     <>
@@ -373,12 +372,13 @@ const ClientHomePage = () => {
             <div className="ws_req_form_phone">
               <input
                 required
-                type="text"
+                type="number"
                 placeholder="Phone Number"
                 value={phone}
-                onChange={handleIntegerChange(setPhone)}
+                onChange={(e) => setPhone(e.target.value)}
                 className="ws_req_form_control"
                 title="Enter your phone number"
+                min="0"
               />
             </div>
             <div className="ws_req_form_company">
@@ -395,23 +395,25 @@ const ClientHomePage = () => {
             <div className="ws_req_form_pax">
               <input
                 required
-                type="text"
+                type="number"
                 placeholder="Number of Pax"
                 value={pax}
-                onChange={handleIntegerChange(setPax)}
+                onChange={(e) => setPax(e.target.value)}
                 className="ws_req_form_control"
                 title="Enter the number of participants"
+                min="0"
               />
             </div>
             <div className="ws_req_form_deal_size">
               <input
                 required
-                type="text"
+                type="number"
                 placeholder="Deal Size Potential in USD"
                 value={dealPotential}
-                onChange={handleIntegerChange(setDealPotential)}
+                onChange={(e) => setDealPotential(e.target.value)}
                 className="ws_req_form_control"
                 title="Enter the potential deal size in USD"
+                min="0"
               />
             </div>
             <div className="ws_req_form_country">

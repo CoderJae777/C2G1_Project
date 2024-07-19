@@ -29,13 +29,17 @@ const AdminWorkshopRequestPage = () => {
   );
 
   useEffect(() => {
+    console.log("Data fetched:", data);
     const lastFetchTime = localStorage.getItem("lastFetchTime");
     const currentTime = new Date().getTime();
+    console.log("Last Fetch Time:", lastFetchTime);
+    console.log("Current Time:", currentTime);
 
     if (data.length > 0) {
       const latestRequestTime = new Date(data[0].createdAt).getTime();
+      console.log("Latest Request Time:", latestRequestTime);
 
-      if (!lastFetchTime || latestRequestTime > lastFetchTime) {
+      if (!lastFetchTime || latestRequestTime > parseInt(lastFetchTime)) {
         setHasNewRequests(true);
         toast.info("You have new workshop requests!");
       }
