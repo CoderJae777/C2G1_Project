@@ -6,6 +6,7 @@ import Navbar from "../components/NavBar.js";
 import useAxiosPost from "../api/useAxiosPost.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
+import Footer from "../components/Footer.js";
 
 const TrainerLoginPage = () => {
   const nav = useNavigate();
@@ -131,6 +132,7 @@ const TrainerLoginPage = () => {
           </form>
         </motion.div>
       </motion.div>
+      <Footer />
     </>
   );
 };

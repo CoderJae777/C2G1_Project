@@ -3,6 +3,7 @@ import dellacademylogo from "../images/DellAcademy.png";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/NavBar.js";
+import Footer from "../components/Footer.js";
 
 const LoginPage = () => {
   const nav = useNavigate();
@@ -104,7 +105,8 @@ const LoginPage = () => {
             </div>
           </form>
         </motion.div>
-      </motion.div>
+      </motion.div>{" "}
+      <Footer />
     </>
   );
 };
