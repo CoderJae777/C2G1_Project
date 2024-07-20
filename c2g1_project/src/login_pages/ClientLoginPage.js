@@ -6,6 +6,7 @@ import useAxiosPost from "../api/useAxiosPost.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import Navbar from "../components/NavBar.js";
+import Footer from "../components/Footer.js";
 
 const ClientLoginPage = () => {
   const nav = useNavigate();
@@ -130,6 +131,7 @@ const ClientLoginPage = () => {
           </form>
         </motion.div>
       </motion.div>
+      <Footer />
     </>
   );
 };

@@ -5,6 +5,7 @@ import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import Navbar from "../components/NavBar";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer";
 
 const SignUpPage = () => {
   const nav = useNavigate();
@@ -162,6 +163,7 @@ const SignUpPage = () => {
             </div>
           </motion.form>
         </motion.div>
+        <Footer />
       </div>
     </>
   );

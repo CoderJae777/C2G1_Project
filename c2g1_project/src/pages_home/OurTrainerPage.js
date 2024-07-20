@@ -9,6 +9,7 @@ import trainerimg5 from "../images/trainerimg5.jpg";
 import trainerimg6 from "../images/trainerimg6.jpg";
 import trainerimg7 from "../images/trainerimg7.jpg";
 import trainerimg8 from "../images/trainerimg8.jpg";
+import Footer from "../components/Footer";
 
 const OurTrainerPage = () => {
   return (
@@ -137,6 +138,7 @@ const OurTrainerPage = () => {
           <div></div>
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 };
