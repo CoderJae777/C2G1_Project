@@ -10,18 +10,19 @@ const endpoints = {
   logout: "/auth/logout",
   signup: "/auth/signup",
   admin: {
-    addTrainer: "/auth/trainers",
     getTrainers: "/auth/trainers/list",
     getAvailableTrainers: "/auth/trainers/available",
+    addTrainer: "/auth/trainers",
     updateTrainer: "/auth/trainers/update/",
     availabilityTrainer: "/auth/trainers/",
-    getWorkshopRequests: "/workshop/getRequest",
-    approveWorkshopRequest: "/workshop/approve/",
-    rejectWorkshopRequest: "/workshop/reject/",
+    getWorkshopRequests: "/workshoprequest/getSubmitted",
+    approveWorkshopRequest: "/workshoprequest/approve/",
+    rejectWorkshopRequest: "/workshoprequest/reject/",
     deleteTrainer:"/auth/trainers/delete/"
   },
   client: {
-    createWorkshop: "/workshop",
+    getWorkshopData: "/workshopdata",
+    createWorkshop: "/workshoprequest",
   },
 };
 

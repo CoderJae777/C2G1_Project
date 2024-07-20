@@ -131,9 +131,9 @@ const AdminWorkshopRequestPage = () => {
                 <tbody>
                   {data.map((request, index) => (
                     <tr key={index} className="workshop-request-box">
-                      <td>{request.workshop_name}</td>
-                      <td>{request.workshop_ID}</td>
-                      <td>{request.workshop_type}</td>
+                      <td>{request.workshop_data.workshop_name}</td>
+                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.workshop_data.workshop_type}</td>
                       <td>
                         <div className="workshop-request-buttons">
                           <button
