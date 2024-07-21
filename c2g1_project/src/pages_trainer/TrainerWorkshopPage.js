@@ -35,7 +35,8 @@ const TrainerWorkshopPage = () => {
             client_company: "DancingLion",
             client_type: "Executive",
             duration: "3 days",
-            start_date: "31/02/2025",
+            start_date: "07/31/2024",
+            end_date: "08/02/2024",
             deal_size: "$3500",
             location: "Singapore",
             venue: "Istana",
@@ -50,7 +51,8 @@ const TrainerWorkshopPage = () => {
             client_company: "WindsOfUranus",
             client_type: "Technical",
             duration: "4 days",
-            start_date: "18/05/2025",
+            start_date: "07/18/2024",
+            end_date: "07/21/2024",
             deal_size: "$47000",
             location: "Singapore",
             venue: "East Coast Park",
@@ -65,7 +67,8 @@ const TrainerWorkshopPage = () => {
             client_company: "UngaBunga",
             client_type: "Technical",
             duration: "4 days",
-            start_date: "18/05/2025",
+            start_date: "05/18/2024",
+            end_date: "05/21/2024",
             deal_size: "$47000",
             location: "Singapore",
             venue: "East Coast Park",
@@ -80,7 +83,8 @@ const TrainerWorkshopPage = () => {
             client_company: "DramaticExit",
             client_type: "Technical",
             duration: "2 days",
-            start_date: "22/11/2025",
+            start_date: "11/22/2024",
+            end_date: "11/23/2024",
             deal_size: "$678000",
             location: "Singapore",
             venue: "SUTD",
@@ -90,7 +94,7 @@ const TrainerWorkshopPage = () => {
         }
     ];
 
-    const workshopDates = ["2024-07-23", "2024-07-27", "2024-08-01", "2024-07-10"];
+    const workshopStarts = ["2024-07-23", "2024-07-27", "2024-08-01", "2024-07-10"];
 
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
@@ -105,7 +109,9 @@ const TrainerWorkshopPage = () => {
     .filter(workshop => 
       workshop.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
         workshop.client_company.toLowerCase().includes(filterText.toLowerCase()) ||
-        workshop.trainer.toLowerCase().includes(filterText.toLowerCase())
+        workshop.trainer.toLowerCase().includes(filterText.toLowerCase()) ||
+        workshop.start_date.toLowerCase().includes(filterText.toLowerCase()) ||
+        workshop.end_date.toLowerCase().includes(filterText.toLowerCase())
     )
     .sort((a, b) => {
       if (a[sortKey] < b[sortKey]) return -1;
@@ -165,6 +171,16 @@ const TrainerWorkshopPage = () => {
         setIsWorkshopAndClientDetailsOpen(false);
     };
 
+    const handleCalendarSelect = (date) => {
+        if (date === filterText) {
+            setFilterText("");
+        }
+        else {
+            setFilterText(date);
+        }
+    }
+
+
     // CALLING DATA FROM JSON
     const { trainer_data, workshop_data, today_data } = useFetch();
 
@@ -197,7 +213,7 @@ const TrainerWorkshopPage = () => {
                     </div>
                     {today_data && today_data[0] ? (
                         <>
-                            <ColourCalendar workshopDates = {workshopDates}/>
+                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect}/>
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>
