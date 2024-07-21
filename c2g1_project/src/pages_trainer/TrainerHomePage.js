@@ -186,8 +186,10 @@ const TrainerHomePage = () => {
                             }}
                         >
                             <option value="Workshop">-- Workshop --</option>
-                            <option value="Workshop A">Workshop A</option>
-                            <option value="Workshop B"> Workshop B</option>
+                            <option value="Workshop A">Intro to Python</option>
+                            <option value="Workshop B">Intro to Java 21</option>
+                            <option value="Workshop B">Intro to AI</option>
+                            <option value="Workshop B">Intro to C hashtag</option>
                     </select>
                     <h3> Please key in the breakdown on utilization hours for each workshop</h3>
                     <div className="work_hours_row">
@@ -231,8 +233,8 @@ const TrainerHomePage = () => {
                         </div>
                     </div>
                     <div className="sr-submit">
-                        <button type="submit" className="submit-req-button">
-                            Submit Request
+                        <button type="submit" className="update-hrs-button">
+                            Update Hours
                         </button>
                     </div>
                 </div>

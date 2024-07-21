@@ -58,6 +58,8 @@ const ClientHomePage = () => {
   };
 
   const handleConfirmRequest = () => {
+    setShowSummary(false);
+
     createWorkshop.setBody({
       company_role: companyRole,
       company: company,
@@ -147,7 +149,9 @@ const ClientHomePage = () => {
   };
 
   const onSuccess = (response) => {
-    window.location.reload();
+    setShowSummary(false);
+    clearForm();
+    alert("Workshop request created successfully");
   };
 
   const onError = (error) => {

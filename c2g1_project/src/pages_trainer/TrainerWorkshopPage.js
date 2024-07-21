@@ -269,23 +269,22 @@ const TrainerWorkshopPage = () => {
                     {/* Right column MAIN DIV NUMBER 1 */}
                     <div className="workshop-stats">
                         <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
-                        <div>
-                            Filter:
+                        <div className="filter">
+                            <span>Filter:</span>
                             <input
                                 type="text"
                                 placeholder="Type to filter"
                                 value={filterText}
                                 onChange={handleFilterChange}
                             />
-                            Sort:
+                            <span>Sort:</span>
                             <select value={sortKey} onChange={handleSortChange}>
                                 <option value="workshop_name">Workshop Name</option>
                                 <option value="client_company">Client Company</option>
                                 <option value="start_date">Start Date</option>
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
-                        </div>
-                        
+                        </div>                        
                         <div className ="scrollable_list">
                             <ul>
                                 {filteredAndSortedWorkshops.map((workshop, index) => (   
