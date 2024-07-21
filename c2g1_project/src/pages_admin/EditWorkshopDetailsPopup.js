@@ -63,7 +63,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
       workshop_name: newWorkshopName,
       workshop_type: selectedItem,
       workshop_details: newWorkshopDetails,
-      workshop_availability: selectedItem2,
+      availability: selectedItem2,
     });
     refetch();
   };
