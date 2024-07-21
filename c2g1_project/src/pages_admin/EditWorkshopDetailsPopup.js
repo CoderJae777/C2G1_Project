@@ -75,8 +75,6 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
     true
   )
 
-  setSelectedItem(selectedWorkshop.data.workshop_type);
-
   return selectedWorkshop.data !== null ? (
     <div className="ws-details-popup open-ws-details-popup">
       <h2>Edit Details</h2>
