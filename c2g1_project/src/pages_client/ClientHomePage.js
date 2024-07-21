@@ -57,7 +57,8 @@ const ClientHomePage = () => {
     setWorkshopType("");
   };
 
-  const handleConfirmRequest = () => {
+  const handleConfirmRequest = () => {  
+
     createWorkshop.setBody({
       company_role: companyRole,
       company: company,
@@ -115,8 +116,6 @@ const ClientHomePage = () => {
     //     console.error("Error sending email:", error);
     //     alert("You have keyed in an invalid email");
     //   });
-
-    setShowSummary(false);
   };
 
   const handleEditRequest = () => {
@@ -147,7 +146,9 @@ const ClientHomePage = () => {
   };
 
   const onSuccess = (response) => {
-    window.location.reload();
+    setShowSummary(true);
+    clearForm();
+    alert("Workshop request created successfully");
   };
 
   const onError = (error) => {
