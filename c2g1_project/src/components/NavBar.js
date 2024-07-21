@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import dellacademylogo_small from "../images/NavBarLogo.png";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
   const nav = useNavigate();
+  const location = useLocation();
   const navbarRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -20,6 +21,15 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.scrollToContact) {
+      const contactTitle = document.querySelector(".homepage-div-5");
+      if (contactTitle) {
+        contactTitle.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   const handleNavBarSignIn = () => {
     nav("/LoginPage");
@@ -41,13 +51,7 @@ const Navbar = () => {
   };
 
   const handleContactUs = () => {
-    nav("/");
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
-    }, 100);
+    nav("/", { state: { scrollToContact: true } });
   };
 
   const handleTrainerPage = () => {
@@ -60,12 +64,6 @@ const Navbar = () => {
       ref={navbarRef}
     >
       <div className="navbar_contents">
-        {/* <img
-          onClick={handleHomePage}
-          className="navbarlogo"
-          src={dellacademylogo_small}
-          alt="Navbar Logo"
-        ></img> */}
         <motion.button
           className="navbarbutton"
           whileHover={{ scale: 1.2 }}

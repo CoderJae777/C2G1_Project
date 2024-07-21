@@ -49,6 +49,10 @@ const ClientTopLeftSideBar = () => {
     setNavOpen(false);
   };
 
+  const handleSettingsPage = () => {
+    nav("/ClientSettingsPage");
+  };
+
   return (
     <>
       <nav className={navOpen ? 'open' : ''}>
@@ -96,7 +100,7 @@ const ClientTopLeftSideBar = () => {
               <li className="list">
                 <a href="#" className="nav-link">
                   <i className='bx bx-cog icon'></i>
-                  <span className="link">Settings</span>
+                  <span className="link" onClick={handleSettingsPage}>Settings</span>
                 </a>
               </li>
               <li className="list">

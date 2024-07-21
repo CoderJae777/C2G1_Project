@@ -8,11 +8,14 @@ const WorkshopAndClientDetails = ({ onClose, workshop }) => {
     return (
     <div className="details-popup">
     <header>
+        <div className="title">
+            <h2>Workshop Details</h2>
+        </div>
         <div className="icons">
             {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
             <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
             <span className="close-button" onClick={onClose}>
-                <div className="fa-solid fa-check check-icon">
+                <div className="fa-solid fa-x check-icon">
                     <box-icon name='x'></box-icon>
                 </div>
             </span>
