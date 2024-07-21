@@ -72,7 +72,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                         </tr>
                         <tr>
                             <td><strong>Message:</strong></td>
-                            <td>{workshopDetails.description}</td>
+                            <td>{workshopDetails.request_message}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -24,6 +24,10 @@ const endpoints = {
     getWorkshopData: "/workshopdata",
     createWorkshop: "/workshoprequest",
   },
+  trainer: {
+    getAllocatedWorkshops: "/auth/allocatedworkshops",
+    updateUtilisation: "/auth/updateutilisation/",
+  }
 };
 
 export { endpoints };
