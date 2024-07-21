@@ -35,7 +35,7 @@ const TrainerWorkshopPage = () => {
             client_company: "DancingLion",
             client_type: "Executive",
             duration: "3 days",
-            start_date: "31/02/2025",
+            start_date: "20/09/2024",
             deal_size: "$3500",
             location: "Singapore",
             venue: "Istana",
@@ -50,7 +50,7 @@ const TrainerWorkshopPage = () => {
             client_company: "WindsOfUranus",
             client_type: "Technical",
             duration: "4 days",
-            start_date: "18/05/2025",
+            start_date: "13/10/2024",
             deal_size: "$47000",
             location: "Singapore",
             venue: "East Coast Park",
@@ -65,7 +65,7 @@ const TrainerWorkshopPage = () => {
             client_company: "UngaBunga",
             client_type: "Technical",
             duration: "4 days",
-            start_date: "18/05/2025",
+            start_date: "18/01/2025",
             deal_size: "$47000",
             location: "Singapore",
             venue: "East Coast Park",
@@ -80,7 +80,7 @@ const TrainerWorkshopPage = () => {
             client_company: "DramaticExit",
             client_type: "Technical",
             duration: "2 days",
-            start_date: "22/11/2025",
+            start_date: "22/11/2024",
             deal_size: "$678000",
             location: "Singapore",
             venue: "SUTD",
@@ -90,7 +90,7 @@ const TrainerWorkshopPage = () => {
         }
     ];
 
-    const workshopDates = ["2024-07-23", "2024-07-27", "2024-08-01", "2024-07-10"];
+    const workshopDates = ["2024-09-20", "2024-10-13", "2024-11-22", "2025-01-18"];
 
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
@@ -253,23 +253,22 @@ const TrainerWorkshopPage = () => {
                     {/* Right column MAIN DIV NUMBER 1 */}
                     <div className="workshop-stats">
                         <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
-                        <div>
-                            Filter:
+                        <div className="filter">
+                            <span>Filter:</span>
                             <input
                                 type="text"
                                 placeholder="Type to filter"
                                 value={filterText}
                                 onChange={handleFilterChange}
                             />
-                            Sort:
+                            <span>Sort:</span>
                             <select value={sortKey} onChange={handleSortChange}>
                                 <option value="workshop_name">Workshop Name</option>
                                 <option value="client_company">Client Company</option>
                                 <option value="start_date">Start Date</option>
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
-                        </div>
-                        
+                        </div>                        
                         <div className ="scrollable_list">
                             <ul>
                                 {filteredAndSortedWorkshops.map((workshop, index) => (   

@@ -176,7 +176,7 @@ body {
   color: #fff;
 }
 
-/* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
+/* CSS FOR RIGHT SIDE OF TRAINER HOME PAGE --------------------------------------------------------------------- */
 
 .right-column {
   display: flex;
@@ -213,13 +213,15 @@ body {
     padding: 10px;
 }
 
-/* admin home page graphs and buttons design*/
+/* trainer home page graphs and buttons design*/
 
+.update-hrs-button:hover,
 .graph_buttons:hover {
   background-color: #0672cb;
   color: white;
 }
 
+.update-hrs-button,
 .graph_buttons {
   background-color: #80c7fb;
   color: black;
@@ -227,7 +229,7 @@ body {
   height: 50px;
   border-radius: 25px;
   border-width: 0px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   padding: 10px 10px;
   transition: background-color 500ms;
@@ -242,8 +244,8 @@ body {
 .work_hours_row {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    align-items: right;
     padding: 5px;
 }
 
@@ -269,16 +271,16 @@ body {
 
 .scrollable_list {
     padding: 10px;
-    max-height: 1000px; /* Limit height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional styling */
-    outline: none; /* Remove outline */
+    max-height: 1000px;
+    overflow-y: auto; 
+    border: 1px solid #ccc;
+    outline: none;
 }
 
 .workshop_detail_panel {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* Four equal columns */
-    gap: 10px; /* Space between columns */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
     justify-content: space-between;
     border-radius: 5px;
     border-width: 0px;
@@ -291,13 +293,26 @@ body {
 }
 
 .workshop_detail_panel span {
-  margin-right: 10px; /* Add spacing between spans */
+  margin-right: 10px;
 }
 
 .workshop_detail_panel:hover {
-    background-color: #669fc9; /* Darker color on hover */
+    background-color: #669fc9;
 }
 
 .workshop-stats-title {
     padding: 10px;
 }
+
+.filter {
+  padding: 10px;
+}
+
+.filter span {
+  margin-right: 10px;
+}
+
+.filter input {
+  margin-right: 20px;
+}
+
