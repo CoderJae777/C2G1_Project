@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useFetch from "../components/useFetch.js";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import "boxicons/css/boxicons.min.css";
@@ -74,8 +74,6 @@ const TrainerHomePage = () => {
   const [utilisation3, setUtilisation3] = useState("");
   const [utilisation4, setUtilisation4] = useState("");
 
-  console.log(hours1);
-
   // CALLING DATA FROM JSON
   const { trainer_data, workshop_data, today_data } = useFetch();
 
@@ -84,7 +82,7 @@ const TrainerHomePage = () => {
   );
 
   const allocatedWorkshops = useAxiosGet(
-    config.base_url + endpoints.trainer.getAllocatedWorkshops
+    config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
   );
 
   const onSuccess = () => {
@@ -94,26 +92,64 @@ const TrainerHomePage = () => {
     alert(e.message);
   };
 
-  const editUtilisation = useAxiosPatch(
-    "",
-    {},
-    [],
-    onSuccess,
-    onError
-  );
+  const editUtilisation = useAxiosPatch("", {}, [], onSuccess, onError);
+
+  const getWorkshopRequest = useAxiosGet("", {}, [], false);
+
+  useEffect(() => {
+    if (workshop === "Workshop") {
+      setHours1(0);
+      setHours2(0);
+      setHours3(0);
+      setHours4(0);
+      setUtilisation1("");
+      setUtilisation2("");
+      setUtilisation3("");
+      setUtilisation4("");
+    } else {
+      getWorkshopRequest.setUrl(
+        config.base_url + endpoints.trainer.getSingleWorkshopRequest + workshop
+      );
+      getWorkshopRequest.refetch();
+    }
+  }, [workshop]);
+
+  useEffect(() => {
+    if (getWorkshopRequest.data && getWorkshopRequest.data.utilisation) {
+      setHours1(getWorkshopRequest.data.utilisation[0].hours || 0);
+      setHours2(getWorkshopRequest.data.utilisation[1].hours || 0);
+      setHours3(getWorkshopRequest.data.utilisation[2].hours || 0);
+      setHours4(getWorkshopRequest.data.utilisation[3].hours || 0);
+      setUtilisation1(
+        getWorkshopRequest.data.utilisation[0].utilisation_details || ""
+      );
+      setUtilisation2(
+        getWorkshopRequest.data.utilisation[1].utilisation_details || ""
+      );
+      setUtilisation3(
+        getWorkshopRequest.data.utilisation[2].utilisation_details || ""
+      );
+      setUtilisation4(
+        getWorkshopRequest.data.utilisation[3].utilisation_details || ""
+      );
+    }
+  }, [getWorkshopRequest.data]);
 
   const handleSubmit = () => {
     const data = [
-        { hours: parseInt(hours1), utilisation_details: utilisation1 },
-        { hours: parseInt(hours2), utilisation_details: utilisation2 },
-        { hours: parseInt(hours3), utilisation_details: utilisation3 },
-        { hours: parseInt(hours4), utilisation_details: utilisation4 },
+      { hours: parseInt(hours1), utilisation_details: utilisation1 },
+      { hours: parseInt(hours2), utilisation_details: utilisation2 },
+      { hours: parseInt(hours3), utilisation_details: utilisation3 },
+      { hours: parseInt(hours4), utilisation_details: utilisation4 },
     ];
     editUtilisation.setBody(data);
-    editUtilisation.setUrl(config.base_url + endpoints.trainer.updateUtilisation + workshop);
+    editUtilisation.setUrl(
+      config.base_url + endpoints.trainer.updateUtilisation + workshop
+    );
     editUtilisation.refetch();
-  }
+  };
 
+  console.log(workshop);
   return data !== null && data.role === "trainer" ? (
     <motion.div
       className="admin-home-page"
@@ -246,12 +282,14 @@ const TrainerHomePage = () => {
               <h5>Work Hours</h5>
               <input
                 placeholder="0"
+                value={hours1}
                 onChange={(e) => setHours1(e.target.value)}
               />
             </div>
             <div className="work_hours_desc">
               <h5>Utilisation Details</h5>
               <textarea
+                value={utilisation1}
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation1(e.target.value)}
               ></textarea>
@@ -261,6 +299,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                value={hours2}
                 placeholder="0"
                 onChange={(e) => setHours2(e.target.value)}
               />
@@ -268,6 +307,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_desc">
               <h5>Utilisation Details</h5>
               <textarea
+                value={utilisation2}
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation2(e.target.value)}
               ></textarea>
@@ -277,6 +317,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                value={hours3}
                 placeholder="0"
                 onChange={(e) => setHours3(e.target.value)}
               />
@@ -284,6 +325,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_desc">
               <h5>Utilisation Details</h5>
               <textarea
+                value={utilisation3}
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation3(e.target.value)}
               ></textarea>
@@ -293,6 +335,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                value={hours4}
                 placeholder="0"
                 onChange={(e) => setHours4(e.target.value)}
               />
@@ -300,6 +343,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_desc">
               <h5>Utilisation Details</h5>
               <textarea
+                value={utilisation4}
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation4(e.target.value)}
               ></textarea>

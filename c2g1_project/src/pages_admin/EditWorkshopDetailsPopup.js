@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/adminmanageworkshoppagepopup.css";
 import "boxicons/css/boxicons.min.css";
 import useAxiosPatch from "../api/useAxiosPatch";
@@ -73,7 +73,17 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
     {},
     [],
     true
-  )
+  );
+
+  useEffect(() => {
+    if (selectedWorkshop.data) {
+      setNewWorkshopName(selectedWorkshop.data.workshop_name || "");
+      setNewWorkshopID(selectedWorkshop.data.workshop_ID || "");
+      setNewWorkshopDetails(selectedWorkshop.data.workshop_details || "");
+      setSelectedItem(selectedWorkshop.data.workshop_type || null);
+      setSelectedItem2(selectedWorkshop.data.availability || null);
+    }
+  }, [selectedWorkshop.data]);
 
   return selectedWorkshop.data !== null ? (
     <div className="ws-details-popup open-ws-details-popup">
@@ -166,6 +176,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
       <textarea
         className="change-workshop-details-input"
         placeholder=" Enter new workshop details here"
+        value={newWorkshopDetails}
         onChange={handleWorkshopDetailsChange}
       />
       <div className="popup-buttons">
