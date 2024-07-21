@@ -20,6 +20,7 @@ const endpoints = {
     rejectWorkshopRequest: "/workshoprequest/reject/",
     deleteTrainer:"/auth/trainers/delete/",
     getWorkshopData:"/workshopdata",
+    getSingleWorkshopData:"/workshopdata/",
     updateWorkshopData:"/workshopdata/"
   },
   client: {

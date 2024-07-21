@@ -4,6 +4,7 @@ import "boxicons/css/boxicons.min.css";
 import useAxiosPatch from "../api/useAxiosPatch";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
+import useAxiosGet from "../api/useAxiosGet";
 
 const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,18 +63,21 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
       workshop_name: newWorkshopName,
       workshop_type: selectedItem,
       workshop_details: newWorkshopDetails,
-      availability: selectedItem2,
+      workshop_availability: selectedItem2,
     });
     refetch();
   };
 
-  console.log(selectedItem);
-  console.log(selectedItem2);
-  console.log(newWorkshopName);
-  console.log(newWorkshopID);
-  console.log(newWorkshopDetails);
+  const selectedWorkshop = useAxiosGet(
+    config.base_url + endpoints.admin.getSingleWorkshopData + selectedId,
+    {},
+    [],
+    true
+  )
 
-  return (
+  setSelectedItem(selectedWorkshop.data.workshop_type);
+
+  return selectedWorkshop.data !== null ? (
     <div className="ws-details-popup open-ws-details-popup">
       <h2>Edit Details</h2>
       <input
@@ -86,6 +90,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
       <input
         className="new-ws-id-input"
         type="text"
+        
         value={newWorkshopID}
         onChange={handleWorkshopIDChange}
         placeholder="Enter new workshop ID"
@@ -174,6 +179,8 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
         </button>
       </div>
     </div>
+  ) : (
+    <div>LOADING</div>
   );
 };
 
