@@ -12,6 +12,7 @@
     align-items: end;
     justify-content: flex-start;
     height: 100vh;
+    margin-top: -50px;
 }
 
 .manage-trainer-column {

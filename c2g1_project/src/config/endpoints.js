@@ -18,12 +18,20 @@ const endpoints = {
     getWorkshopRequests: "/workshoprequest/getSubmitted",
     approveWorkshopRequest: "/workshoprequest/approve/",
     rejectWorkshopRequest: "/workshoprequest/reject/",
-    deleteTrainer:"/auth/trainers/delete/"
+    deleteTrainer:"/auth/trainers/delete/",
+    getWorkshopData:"/workshopdata",
+    getSingleWorkshopData:"/workshopdata/",
+    updateWorkshopData:"/workshopdata/"
   },
   client: {
     getWorkshopData: "/workshopdata",
     createWorkshop: "/workshoprequest",
   },
+  trainer: {
+    getAllocatedWorkshopRequests: "/auth/allocatedworkshops",
+    getSingleWorkshopRequest: "/workshoprequest/",
+    updateUtilisation: "/auth/updateutilisation/",
+  }
 };
 
 export { endpoints };
