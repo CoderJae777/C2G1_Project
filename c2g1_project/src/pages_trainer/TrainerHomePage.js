@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetch from "../components/useFetch.js";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import TopLeftSideBar from "../components/TrainerTopLeftSideBar.js";
@@ -13,29 +12,20 @@ import {
     Area,
     AreaChart,
     Tooltip,
-    BarChart,
     XAxis,
     YAxis,
-    Legend,
     CartesianGrid,
-    Bar,
-    Line,
-    LineChart,
 } from "recharts";
 
 const TrainerHomePage = () => {
-
-    const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
-        "View Trainer statistics"
-    );
-    const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
-        "Workshop Completed Over the Years"
-    );
-
+    const [trainergraphsTitle, setTrainerGraphsTitle] = useState("View Trainer statistics");
+    const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState("Workshop Completed Over the Years");
     const [key, setKey] = useState("workshops_completed_total");
     const [key_ws, setKeyWS] = useState("completed");
-
     const [domainMax, setDomainMax] = useState(0);
+    const [workshop, setWorkshop] = useState("");
+    const [workHours, setWorkHours] = useState(["", "", "", ""]);
+    const [utilisationDetails, setUtilisationDetails] = useState(["", "", "", ""]);
 
     const viewworkshop = () => {
         setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
@@ -64,12 +54,6 @@ const TrainerHomePage = () => {
         setDomainMax(100);
     };
 
-    const [workshop, workshopchange] = useState(""); 
-    const [hours1, hours1change] = useState(""); 
-    const [hours2, hours2change] = useState(""); 
-    const [hours3, hours3change] = useState(""); 
-    const [hours4, hours4change] = useState(""); 
-
     // CALLING DATA FROM JSON
     const { trainer_data, workshop_data, today_data } = useFetch();
 
@@ -77,8 +61,26 @@ const TrainerHomePage = () => {
         config.base_url + endpoints.verify
     );
 
-    return data !== null && data.role === "trainer" ? (
+    const handleWorkHoursChange = (index, value) => {
+        const newWorkHours = [...workHours];
+        newWorkHours[index] = value;
+        setWorkHours(newWorkHours);
+    };
 
+    const handleUtilisationDetailsChange = (index, value) => {
+        const newUtilisationDetails = [...utilisationDetails];
+        newUtilisationDetails[index] = value;
+        setUtilisationDetails(newUtilisationDetails);
+    };
+
+    const handleSubmit = () => {
+        // Clear all fields
+        setWorkshop("");
+        setWorkHours(["", "", "", ""]);
+        setUtilisationDetails(["", "", "", ""]);
+    };
+
+    return data !== null && data.role === "trainer" ? (
         <motion.div
             className="admin-home-page"
             initial={{ opacity: 0, scale: 0.5 }}
@@ -89,8 +91,7 @@ const TrainerHomePage = () => {
                 <TopLeftSideBar />
             </div>
             <div className="left-column">
-                <div className="admin-home-page-title">
-                </div>
+                <div className="admin-home-page-title"></div>
 
                 {/* Workshop summary starts here */}
                 <div className="workshop-table">
@@ -101,9 +102,7 @@ const TrainerHomePage = () => {
                     {today_data && today_data[0] ? (
                         <>
                             <div className="workshopstoday">
-                                <h2 className="today_data">
-                                    {today_data[0].ongoingworkshopstoday}
-                                </h2>
+                                <h2 className="today_data">{today_data[0].ongoingworkshopstoday}</h2>
                                 <h5>Ongoing workshops today</h5>
                             </div>
                             <div className="trainersworking">
@@ -111,9 +110,7 @@ const TrainerHomePage = () => {
                                 <h5>Trainers conducting across all workshops</h5>
                             </div>
                             <div className="workshopattendees">
-                                <h2 className="today_data">
-                                    {today_data[0].participantstoday}
-                                </h2>
+                                <h2 className="today_data">{today_data[0].participantstoday}</h2>
                                 <h5>Total Participants across all workshops</h5>
                             </div>
                             <div className="attendancepercentage">
@@ -170,70 +167,47 @@ const TrainerHomePage = () => {
             <div className="right-column">
                 <div className="admin-graphs">
                     <h1>Update Work Hours</h1>
-                        <select
-                            id="request-workshop-sel"
-                            value={workshop}
-                            onChange={(e) => {
-                                workshopchange(e.target.value);
-                                document.getElementById("request-workshop-sel").size = "1";
-                            }}
-                            className="form_control"
-                            onFocus={() => {
-                                document.getElementById("request-workshop-sel").size = "1";
-                            }}
-                            onBlur={() => {
-                                document.getElementById("request-workshop-sel").size = "1";
-                            }}
-                        >
-                            <option value="Workshop">-- Workshop --</option>
-                            <option value="Workshop A">Intro to Python</option>
-                            <option value="Workshop B">Intro to Java 21</option>
-                            <option value="Workshop B">Intro to AI</option>
-                            <option value="Workshop B">Intro to C hashtag</option>
+                    <select
+                        id="request-workshop-sel"
+                        value={workshop}
+                        onChange={(e) => setWorkshop(e.target.value)}
+                        className="form_control"
+                        onFocus={() => {
+                            document.getElementById("request-workshop-sel").size = "1";
+                        }}
+                        onBlur={() => {
+                            document.getElementById("request-workshop-sel").size = "1";
+                        }}
+                    >
+                        <option value="Workshop">-- Workshop --</option>
+                        <option value="Workshop A">Intro to Python</option>
+                        <option value="Workshop B">Intro to Java 21</option>
+                        <option value="Workshop B">Intro to AI</option>
+                        <option value="Workshop B">Intro to C hashtag</option>
                     </select>
                     <h3> Please key in the breakdown on utilization hours for each workshop</h3>
-                    <div className="work_hours_row">
-                        <div className="work_hours_num">
-                            <h5>Work Hours</h5>
-                            <input placeholder="0" />
+                    {[0, 1, 2, 3].map((index) => (
+                        <div className="work_hours_row" key={index}>
+                            <div className="work_hours_num">
+                                <h5>Work Hours</h5>
+                                <input
+                                    placeholder="0"
+                                    value={workHours[index]}
+                                    onChange={(e) => handleWorkHoursChange(index, e.target.value)}
+                                />
+                            </div>
+                            <div className="work_hours_desc">
+                                <h5>Utilisation Details</h5>
+                                <textarea
+                                    className="work_hours_desc_area"
+                                    value={utilisationDetails[index]}
+                                    onChange={(e) => handleUtilisationDetailsChange(index, e.target.value)}
+                                ></textarea>
+                            </div>
                         </div>
-                        <div className="work_hours_desc">
-                            <h5>Utilisation Details</h5>
-                            <textarea className="work_hours_desc_area"> </textarea>
-                        </div>
-                    </div>
-                    <div className="work_hours_row">
-                        <div className="work_hours_num">
-                            <h5>Work Hours</h5>
-                            <input placeholder="0" />
-                        </div>
-                        <div className="work_hours_desc">
-                            <h5>Utilisation Details</h5>
-                            <textarea className="work_hours_desc_area"> </textarea>
-                        </div>
-                    </div>
-                    <div className="work_hours_row">
-                        <div className="work_hours_num">
-                            <h5>Work Hours</h5>
-                            <input placeholder="0" />
-                        </div>
-                        <div className="work_hours_desc">
-                            <h5>Utilisation Details</h5>
-                            <textarea className="work_hours_desc_area"> </textarea>
-                        </div>
-                    </div>
-                    <div className="work_hours_row">
-                        <div className="work_hours_num">
-                            <h5>Work Hours</h5>
-                            <input placeholder="0" />
-                        </div>
-                        <div className="work_hours_desc">
-                            <h5>Utilisation Details</h5>
-                            <textarea className="work_hours_desc_area"> </textarea>
-                        </div>
-                    </div>
+                    ))}
                     <div className="sr-submit">
-                        <button type="submit" className="update-hrs-button">
+                        <button type="submit" className="update-hrs-button" onClick={handleSubmit}>
                             Update Hours
                         </button>
                     </div>
@@ -242,7 +216,7 @@ const TrainerHomePage = () => {
         </motion.div>
     ) : (
         <div>Not logged in</div>
-      );
+    );
 };
 
 export default TrainerHomePage;
