@@ -129,7 +129,7 @@ const ClientHomePage = () => {
   const [selectedWorkshop, setSelectedWorkshop] = useState("");
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
-    config.base_url + endpoints.client.getWorkshopData,
+    config.base_url + endpoints.client.getAvailableWorkshopData,
     {},
     [],
     true
