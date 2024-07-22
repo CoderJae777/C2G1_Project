@@ -2,19 +2,30 @@ import React, { useState, useEffect } from 'react';
 import '../styles/colourcalendar.css';
 import 'boxicons/css/boxicons.min.css';
 
-const ColourCalendar = ({ workshopDates }) => {
+const ColourCalendar = ({workshopdata, ondateClick}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [date, setDate] = useState(new Date());
     const [currYear, setCurrYear] = useState(date.getFullYear());
     const [currMonth, setCurrMonth] = useState(date.getMonth());
     const [days, setDays] = useState([]);
 
+
     const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
+    
+    const workshopStarts = workshopdata.map(workshop => workshop.start_date);
+    const workshopEnds = workshopdata.map(workshop => workshop.end_date);
+
+    const getWorkshopByDate = (date) => {
+        let out = workshopdata.filter(workshop => workshop.start_date === date || workshop.end_date === date);
+        return out === undefined ? ({}) : (out);
+    };
+    
+    
 
     useEffect(() => {
         renderCalendar();
-    }, [currYear, currMonth]);
+    }, [currYear, currMonth, workshopdata]);
 
     const renderCalendar = () => {
     const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
@@ -26,21 +37,46 @@ const ColourCalendar = ({ workshopDates }) => {
     const getclassNames = (i) => {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                         && currYear === new Date().getFullYear() ? "active" : "";
-        const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`;
+        //const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`; //YYYY-MM-DD
+        //const formattedDay = `${("0" + i).slice(-2)}/${("0" + (currMonth + 1)).slice(-2)}/${currYear}`; //DD/MM/YYYY
+        const formattedDay = `${("0" + (currMonth + 1)).slice(-2)}/${("0" + i).slice(-2)}/${currYear}`; //MM/DD/YYYY
         // Check if the formatted day exists in workshopDates array
-        let isWorkshopDay = workshopDates.includes(formattedDay) ? "workshop-day" : "";
+        let isWorkshopStart = workshopStarts.includes(formattedDay) ? "workshop-start" : "";
+        let isWorkshopEnd = workshopEnds.includes(formattedDay) ? "workshop-end" : "";
         // Add more for diff categories
-        let classNames = `${isToday} ${isWorkshopDay}`.trim();
+        let classNames = `${isToday} ${isWorkshopStart} ${isWorkshopEnd}`.trim();
         return classNames
     }
 
+    //adding days to calendar
     for (let i = firstDayofMonth; i > 0; i--) {
-        liTag.push(<li className="inactive" key={`prev${i}`}>{lastDateofLastMonth - i + 1}</li>);
+        liTag.push(
+        <li className="inactive" key={`prev${i}`}>
+            {lastDateofLastMonth - i + 1}
+        </li>
+        );
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
         let classNames = getclassNames(i);
-        liTag.push(<li className={classNames} key={`curr${i}`}>{i}</li>);
+        //workshop details is an array of objects
+        let currentdate = `${("0" + (currMonth + 1)).slice(-2)}/${("0" + i).slice(-2)}/${currYear}`
+        let workshopDetails = getWorkshopByDate(currentdate)
+        liTag.push(
+        <li className={classNames} key={`curr${i}`}>
+            <button className='day-number' onClick={() => ondateClick(currentdate)}>{i}</button> 
+            <div className='calendar-details'>
+                {workshopDetails.map(workshop => 
+                    <div className='details'>
+                        <p>Workshop: {workshop.workshop_name}</p>
+                        <p>Client: {workshop.client_company}</p>
+                        <p>Assigned Trainer: {workshop.trainer}</p>
+                    </div>
+                    )
+                }
+            </div>
+        </li>
+        );
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
@@ -72,10 +108,11 @@ const ColourCalendar = ({ workshopDates }) => {
         }
     };
 
+
     return (
     <div data-cy="colour-calendar-popup" className="colour-calendar-popup">
     <header>
-        <div className="icons">
+        <div className="icons"> 
             {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
             <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
             <span id="prev" className="arrow-left">
