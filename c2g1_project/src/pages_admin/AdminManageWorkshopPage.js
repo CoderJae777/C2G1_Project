@@ -34,7 +34,9 @@ const AdminManageWorkshopPage = () => {
                         </div>
                         <h4>{workshop.workshop_name}</h4>
                         <h5>WSID: {workshop.workshop_ID}</h5>
+                        <h6>Type: {workshop.workshop_type}</h6>
                         <h6>{workshop.workshop_details}</h6>
+                        <h6>{workshop.workshop_availability}</h6>
                         <button className="edit-workshop-details-button" onClick={handleOpenEditWorkshopDetailsPopup}>Edit Details</button>
                     </div>
                 </div>
