@@ -361,4 +361,4 @@ const TrainerHomePage = () => {
   );
 };
 
-export default TrainerHomePage;
+export default TrainerHomePage

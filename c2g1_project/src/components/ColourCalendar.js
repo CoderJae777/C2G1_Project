@@ -12,9 +12,19 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
+
+    const convertDate = (dateString) => {
+        const date = new Date(dateString);
+        
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based, so add 1
+        const day = String(date.getDate()).padStart(2, '0');
+        
+        return `${year}-${month}-${day}`;
+    }
     
-    const workshopStarts = workshopdata.map(workshop => workshop.start_date);
-    const workshopEnds = workshopdata.map(workshop => workshop.end_date);
+    const workshopStarts = workshopdata.map(workshop => convertDate(workshop.start_date));
+    const workshopEnds = workshopdata.map(workshop => convertDate(workshop.end_date));
 
     const getWorkshopByDate = (date) => {
         let out = workshopdata.filter(workshop => workshop.start_date === date || workshop.end_date === date);
@@ -34,12 +44,14 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
     const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
     let liTag = [];
 
+
+
     const getclassNames = (i) => {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                         && currYear === new Date().getFullYear() ? "active" : "";
-        //const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`; //YYYY-MM-DD
+        const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`; //YYYY-MM-DD
         //const formattedDay = `${("0" + i).slice(-2)}/${("0" + (currMonth + 1)).slice(-2)}/${currYear}`; //DD/MM/YYYY
-        const formattedDay = `${("0" + (currMonth + 1)).slice(-2)}/${("0" + i).slice(-2)}/${currYear}`; //MM/DD/YYYY
+        //const formattedDay = `${("0" + (currMonth + 1)).slice(-2)}/${("0" + i).slice(-2)}/${currYear}`; //MM/DD/YYYY
         // Check if the formatted day exists in workshopDates array
         let isWorkshopStart = workshopStarts.includes(formattedDay) ? "workshop-start" : "";
         let isWorkshopEnd = workshopEnds.includes(formattedDay) ? "workshop-end" : "";
@@ -60,7 +72,7 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
     for (let i = 1; i <= lastDateofMonth; i++) {
         let classNames = getclassNames(i);
         //workshop details is an array of objects
-        let currentdate = `${("0" + (currMonth + 1)).slice(-2)}/${("0" + i).slice(-2)}/${currYear}`
+        let currentdate = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`
         let workshopDetails = getWorkshopByDate(currentdate)
         liTag.push(
         <li className={classNames} key={`curr${i}`}>
@@ -68,8 +80,8 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
             <div className='calendar-details'>
                 {workshopDetails.map(workshop => 
                     <div className='details'>
-                        <p>Workshop: {workshop.workshop_name}</p>
-                        <p>Client: {workshop.client_company}</p>
+                        <p>Workshop: {workshop.workshop_data.workshop_name}</p>
+                        <p>Client: {workshop.company}</p>
                         <p>Assigned Trainer: {workshop.trainer}</p>
                     </div>
                     )

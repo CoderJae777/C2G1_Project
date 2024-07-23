@@ -131,14 +131,11 @@ header .current-date {
   transform: translate(-50%, -50%);
 }
 
-.days li.active::before {
-  background: #6e93f7;
-  outline: 5px solid #6e93f7;
-}
+
 
 .days li.workshop-start::before {
   background: #3bc452;
-  outline: 3px solid #3bc452;
+  outline: 5px solid #3bc452;
 }
 
 .days li.workshop-end::before {
@@ -155,6 +152,11 @@ header .current-date {
 
 .days li.workshop-start:hover::before {
   background: #279a3a;
+}
+
+.days li.active::before {
+  background: #6e93f7;
+  box-shadow: #6e93f7;
 }
 
 .calendar-details {
