@@ -112,7 +112,6 @@ const ClientHomePage = () => {
       })
       .catch((error) => {
         console.error("Error sending email:", error);
-        alert("You have keyed in an invalid email");
       });
 
     setShowSummary(false);
@@ -152,7 +151,7 @@ const ClientHomePage = () => {
   };
 
   const onError = (error) => {
-    alert("Error creating workshop request. Please try again.");
+    alert("Error creating workshop request. Please try again. You may have keyed in an invalid email.");
   };
 
   const createWorkshop = useAxiosPost(
