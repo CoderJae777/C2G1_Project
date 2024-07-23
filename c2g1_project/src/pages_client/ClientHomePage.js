@@ -32,6 +32,13 @@ const ClientHomePage = () => {
 
   const verify = useAxiosGet(config.base_url + endpoints.verify);
 
+  const wsreq = useAxiosGet(
+    config.base_url + endpoints.getWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -105,14 +112,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-  //   emailjs
-  //     .send(serviceId, templateId, templateParams, publicKey)
-  //     .then((response) => {
-  //       console.log("Email sent successfully!", response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error sending email:", error);
-  //     });
+    //   emailjs
+    //     .send(serviceId, templateId, templateParams, publicKey)
+    //     .then((response) => {
+    //       console.log("Email sent successfully!", response);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error sending email:", error);
+    //     });
 
     setShowSummary(false);
   };
@@ -151,7 +158,9 @@ const ClientHomePage = () => {
   };
 
   const onError = (error) => {
-    alert("Error creating workshop request. Please try again. You may have keyed in an invalid email.");
+    alert(
+      "Error creating workshop request. Please try again. You may have keyed in an invalid email."
+    );
   };
 
   const createWorkshop = useAxiosPost(
@@ -161,6 +170,13 @@ const ClientHomePage = () => {
     onSuccess,
     onError
   );
+
+  const handleRefresh = () => {
+    refetch();
+    console.log("Available Ws Data:" + data);
+    console.log("Workshop Requests:");
+    console.log(wsreq);
+  };
 
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
 
@@ -282,7 +298,14 @@ const ClientHomePage = () => {
                       {data[selectedWorkshop].workshop_type}
                     </p>
                   </div>
-                )}
+                )}         <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="ws_req_submit_button"
+                onClick={handleRefresh}
+              >
+                Refresh
+              </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -298,6 +321,21 @@ const ClientHomePage = () => {
           <div className="client-home-page-left-bottom">
             <div className="view-req-st">
               <h4 className="ws_req_form_heading">View Request Status</h4>
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="ws_req_submit_button"
+                onClick={handleRefresh}
+              >
+                Refresh
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="ws_req_submit_button"
+              >
+                Acknowledged
+              </motion.button>{" "}
             </div>
           </div>
         </div>

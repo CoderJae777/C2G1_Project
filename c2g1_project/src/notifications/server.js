@@ -23,7 +23,7 @@ wss.on('connection', (ws) => {
   setInterval(() => {
     const message = JSON.stringify({ type: 'newRequest', data: { workshop: "New Workshop" } });
     ws.send(message);
-  }, 10000); // send every 10 seconds for demo purposes
+  }, 60000); // send every 10 seconds for demo purposes
 
   ws.on('close', () => {
     console.log('Client disconnected');
