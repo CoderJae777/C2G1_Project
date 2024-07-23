@@ -50,7 +50,7 @@ describe("Client Home Page Test", () => {
 
     cy.get("form").within(() => {
       cy.get('input[placeholder="Role at Company"]').type("President");
-      cy.get('input[placeholder="Your Name"]').type("John Doe");
+      cy.get('input[placeholder="Your Name"]').type("johndoefromjohnbrosinc");
       cy.get('input[placeholder="Your Email"]').type("john.doe@gmail.com");
       cy.get('input[placeholder="Phone Number"]').type(1234567890);
       cy.get('input[placeholder="Your Company"]').type("John Doe & Bros Enterprises");
@@ -80,7 +80,7 @@ describe("Client Home Page Test", () => {
       );
     });
 
-    cy.get(".ws_req_submit_button").click({ force: true });
+    cy.get(".ws_req_submit_button").click();
 
     cy.get(".summary-modal", { timeout: 20000 }).should("be.visible");
 

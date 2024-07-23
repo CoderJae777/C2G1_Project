@@ -31,6 +31,9 @@ const endpoints = {
     getAllocatedWorkshopRequests: "/auth/allocatedworkshops",
     getSingleWorkshopRequest: "/workshoprequest/",
     updateUtilisation: "/auth/updateutilisation/",
+  },
+  notif:{
+    getAllAdminNotificiation: "/notif/getAllAdminNotification",
   }
 };
 

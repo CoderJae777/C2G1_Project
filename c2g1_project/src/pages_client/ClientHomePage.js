@@ -32,6 +32,33 @@ const ClientHomePage = () => {
 
   const verify = useAxiosGet(config.base_url + endpoints.verify);
 
+  // const wsnotiffobject = useAxiosGet(
+  //   config.base_url + endpoints.notif.getAllAdminNotificiation,
+  //   //    "localhost:5001/notif/getAllAdminNotification",
+  //   {},
+  //   [],
+  //   false
+  // );
+
+  const {
+    data: data1,
+    loading: loading1,
+    error: error1,
+    setUrl: setUrl1,
+    setParams: setParams1,
+    refetch: refetch1,
+  } = useAxiosGet(
+    config.base_url + endpoints.admin.getWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
+  const handleRefresh = () => {
+    refetch1();
+    console.log(data1);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -105,14 +132,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-  //   emailjs
-  //     .send(serviceId, templateId, templateParams, publicKey)
-  //     .then((response) => {
-  //       console.log("Email sent successfully!", response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error sending email:", error);
-  //     });
+    //   emailjs
+    //     .send(serviceId, templateId, templateParams, publicKey)
+    //     .then((response) => {
+    //       console.log("Email sent successfully!", response);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error sending email:", error);
+    //     });
 
     setShowSummary(false);
   };
@@ -151,7 +178,9 @@ const ClientHomePage = () => {
   };
 
   const onError = (error) => {
-    alert("Error creating workshop request. Please try again. You may have keyed in an invalid email.");
+    alert(
+      "Error creating workshop request. Please try again. You may have keyed in an invalid email."
+    );
   };
 
   const createWorkshop = useAxiosPost(
@@ -282,7 +311,15 @@ const ClientHomePage = () => {
                       {data[selectedWorkshop].workshop_type}
                     </p>
                   </div>
-                )}
+                )}{" "}
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="refresh_button"
+                  onClick={handleRefresh}
+                >
+                  Refresh
+                </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -298,6 +335,21 @@ const ClientHomePage = () => {
           <div className="client-home-page-left-bottom">
             <div className="view-req-st">
               <h4 className="ws_req_form_heading">View Request Status</h4>
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="refresh_button"
+                onClick={handleRefresh}
+              >
+                Refresh
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="acknowledge_button"
+              >
+                Acknowledged
+              </motion.button>{" "}
             </div>
           </div>
         </div>

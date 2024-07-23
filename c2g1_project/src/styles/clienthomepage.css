@@ -209,7 +209,7 @@
   margin-left: 20px;
 }
 
-.ws_req_submit_button {
+.ws_req_submit_button, .refresh_button, .acknowledge_button {
   background-color: #5cdb5c;
   color: white;
   width: 150px;
@@ -221,6 +221,7 @@
   font-weight: bold;
   transition: background-color 1000ms;
   border-color: black;
+  margin-right: 20px;
 }
 
 .popwsreqbut {

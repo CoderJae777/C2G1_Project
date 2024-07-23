@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
-  font-family: 'Roboto', sans-serif;
-  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -10,244 +9,85 @@ body {
 }
 
 .admin-home-page {
-  display: grid;
-  grid-template-areas: "top-panel left-column right-column";
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px;
-  background-color:white;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.columns-container {
+  display: flex;
   width: 100%;
 }
 
-.top-panel {
-  grid-area: top-panel;
-  width: 10px;
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-right: 40px;
 }
 
-.dell-logo {
-  margin: auto;
-  margin-top: 10px;
+.column-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-right: 40px;
+  margin-top: 30px;
 }
 
-/* TRAINER TABLE CSS--------------------------------------------------------------- */
-.left-column {
-  grid-column-start: 1;
-  padding: 15px;
-  width: 80%;
-  margin-left: 100px;
-}
-
-.admin-home-page-title {
-  margin-top: 10px;
-  margin-bottom: -30px;
-  justify-content: center;
-  width: 500px;
-}
-
-.workshop-table {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  max-width: 1000px;
-  width: 500px;
-  height: 400px;
+.chart-container {
+  width: 100%;
   background: #e3f2fd;
   color: black;
   border-radius: 20px;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
   margin-top: 20px;
-  align-items: center;
 }
 
-.workshop-table-title {
-  grid-row-start: 1;
-  padding: 5px;
-  color: black;
+.chart-title {
   font-size: 20px;
-  border-bottom: 2px solid #0672cb;
-}
-.workshopstoday {
-  grid-row-start: 2;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 10px;
-  margin-top: 5px;
-  padding: 5px;
-}
-
-.trainersworking {
-  grid-row-start: 3;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 10px;
-  margin-top: 5px;
-  padding: 5px;
-}
-
-.workshopattendees {
-  grid-row-start: 4;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 10px;
-  margin-top: 5px;
-  padding: 5px;
-}
-
-.attendancepercentage {
-  grid-row-start: 5;
-  color: #37cc5c;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 10px;
-  margin-top: 5px;
-  padding: 5px;
-}
-
-.breakdown-of-attendance-div {
-  max-width: 1000px;
-  width: 500px;
-  height: 270px;
-  background: #e3f2fd;
-  color: black;
-  border-radius: 20px;
-  padding: 10px;
-  text-align: center;
-  margin-top: 15px;
-  align-items: center;
-  z-index: 500;
-}
-
-.breakdown-of-attendance-title {
-  font-size: 25px;
   color: black;
   border-bottom: 2px solid #0672cb;
-  z-index: 1;
+  padding: 5px;
 }
 
-.admin-home-datetime {
-  text-align: right;
-  margin-top: 50px;
-  margin-bottom: -60px;
-  margin-right: 20px;
-  width: 900px;
+.total-requests {
+  padding: 20px;
 }
 
-/* TRAINER TABLE CSS ------------------------------------------------------------------ */
-.table-striped {
-  flex-direction: column;
-  width: 400px;
-}
-
-.table-striped tbody {
-  background-color: #e3f2fd;
-  z-index: 500;
-}
-
-.table-striped .bg-info {
-  background: #e3f2fd;
-  color: #0672cb;
-  z-index: 500;
-}
-
-.table-striped .bg-info th {
-  cursor: pointer;
-  z-index: 500;
-}
-
-.table-striped .bg-info th:hover {
-  color: #fff;
-  z-index: 500;
-}
-
-/* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
-
-.right-column {
+/* Button styles */
+.buttons-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: right;
-  padding: 15px;
-  margin-right: 100px;
-}
-
-.workshop-stats {
-  grid-row-start: 1;
-  color: black;
-}
-
-.workshop-stats-title {
-  font-size: 20px;
-  color: black;
-  border-bottom: 2px solid #0672cb;
-}
-.trainer-stats {
-  grid-row-start: 2;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.trainer-stats-title {
-  font-size: 20px;
-  color: black;
-  border-bottom: 2px solid #0672cb;
-}
-
-.admin-graphs {
-  max-width: 700px;
-  width: 800px;
-  height: 700px;
-  background-color: #e3f2fd;
-  color: #0672cb;
-  border-radius: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px;
-  
 }
 
-/* admin home page graphs and buttons design*/
-
-.graph_buttons:hover {
+.graph-button:hover,
+.toggle-button:hover,
+.year-button:hover {
   background-color: #0672cb;
   color: white;
 }
 
-.graph_buttons {
+.graph-button,
+.toggle-button,
+.year-button {
   background-color: #80c7fb;
   color: black;
   width: 150px;
   height: 50px;
   border-radius: 25px;
   border-width: 0px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
-  padding: 5px;
-  transition: background-color 500ms;
-  transition: color 500ms;
-  border-width: 0px;
-  border-radius: 8px;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
   text-align: center;
-  margin: 5px;
+  margin: 15px;
   align-self: center;
-}
-
-.scrollable_list {
-    max-height: 150px; /* Limit height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional styling */
-}
-
-.workshop_detail_panel {
-    border-radius: 5px;
-    border-width: 0px;
-    background-color: #80c7fb;
-    height: 50px;
-    margin-top: 5px;
 }
