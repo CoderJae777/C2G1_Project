@@ -478,12 +478,11 @@
   margin-top: 20px;
 }
 
-.contactform {
+.contact_form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 20px;

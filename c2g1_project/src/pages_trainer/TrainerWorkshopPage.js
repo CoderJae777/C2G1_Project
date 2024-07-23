@@ -29,7 +29,7 @@ const TrainerWorkshopPage = () => {
         config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
       );
 
-    const workshopDates = ["2024-09-20", "2024-10-13", "2024-11-22", "2025-01-18"];
+    const workshopStarts = ["2024-07-23", "2024-07-27", "2024-08-01", "2024-07-10"];
 
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
@@ -104,6 +104,16 @@ const TrainerWorkshopPage = () => {
         setIsWorkshopAndClientDetailsOpen(false);
     };
 
+    const handleCalendarSelect = (date) => {
+        if (date === filterText) {
+            setFilterText("");
+        }
+        else {
+            setFilterText(date);
+        }
+    }
+
+
     // CALLING DATA FROM JSON
     const { trainer_data, workshop_data, today_data } = useFetch();
 
@@ -136,7 +146,7 @@ const TrainerWorkshopPage = () => {
                     </div>
                     {today_data && today_data[0] ? (
                         <>
-                            <ColourCalendar workshopDates = {workshopDates}/>
+                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect}/>
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>
