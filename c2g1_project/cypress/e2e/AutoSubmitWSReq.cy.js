@@ -80,7 +80,7 @@ describe("Client Home Page Test", () => {
       );
     });
 
-    cy.get(".ws_req_submit_button").click({ force: true });
+    cy.get(".ws_req_submit_button").click();
 
     cy.get(".summary-modal", { timeout: 20000 }).should("be.visible");
 

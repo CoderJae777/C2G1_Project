@@ -32,12 +32,32 @@ const ClientHomePage = () => {
 
   const verify = useAxiosGet(config.base_url + endpoints.verify);
 
-  const wsreq = useAxiosGet(
-    config.base_url + endpoints.getWorkshopRequests,
+  // const wsnotiffobject = useAxiosGet(
+  //   config.base_url + endpoints.notif.getAllAdminNotificiation,
+  //   //    "localhost:5001/notif/getAllAdminNotification",
+  //   {},
+  //   [],
+  //   false
+  // );
+
+  const {
+    data: data1,
+    loading: loading1,
+    error: error1,
+    setUrl: setUrl1,
+    setParams: setParams1,
+    refetch: refetch1,
+  } = useAxiosGet(
+    config.base_url + endpoints.admin.getWorkshopRequests,
     {},
     [],
     true
   );
+
+  const handleRefresh = () => {
+    refetch1();
+    console.log(data1);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -171,13 +191,6 @@ const ClientHomePage = () => {
     onError
   );
 
-  const handleRefresh = () => {
-    refetch();
-    console.log("Available Ws Data:" + data);
-    console.log("Workshop Requests:");
-    console.log(wsreq);
-  };
-
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
 
   return verify.data !== null && verify.data.role === "client" ? (
@@ -298,14 +311,15 @@ const ClientHomePage = () => {
                       {data[selectedWorkshop].workshop_type}
                     </p>
                   </div>
-                )}         <motion.button
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                className="ws_req_submit_button"
-                onClick={handleRefresh}
-              >
-                Refresh
-              </motion.button>
+                )}{" "}
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="refresh_button"
+                  onClick={handleRefresh}
+                >
+                  Refresh
+                </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -324,7 +338,7 @@ const ClientHomePage = () => {
               <motion.button
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-                className="ws_req_submit_button"
+                className="refresh_button"
                 onClick={handleRefresh}
               >
                 Refresh
@@ -332,7 +346,7 @@ const ClientHomePage = () => {
               <motion.button
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-                className="ws_req_submit_button"
+                className="acknowledge_button"
               >
                 Acknowledged
               </motion.button>{" "}
