@@ -22,18 +22,18 @@ const WorkshopAndClientDetails = ({ onClose, workshop }) => {
         </div>
     </header>
         <div>
-            <div className="workshop-detail">ID: {workshop.id}</div>
-            <div className="workshop-detail">Workshop Name: {workshop.workshop_name}</div>
-            <div className="workshop-detail">Workshop Type: {workshop.workshop_type}</div>
-            <div className="workshop-detail">Client Company: {workshop.client_company}</div>
-            <div className="workshop-detail">Client Type: {workshop.client_type}</div>
+            <div className="workshop-detail">ID: {workshop.workshop_data.workshop_ID}</div>
+            <div className="workshop-detail">Workshop Name: {workshop.workshop_data.workshop_name}</div>
+            <div className="workshop-detail">Workshop Type: {workshop.workshop_data.workshop_type}</div>
+            <div className="workshop-detail">Client Company: {workshop.company}</div>
+            <div className="workshop-detail">Client Type: {workshop.company_role}</div>
             <div className="workshop-detail">Duration: {workshop.duration}</div>
             <div className="workshop-detail">Start Date: {workshop.start_date}</div>
-            <div className="workshop-detail">Deal Size: {workshop.deal_size}</div>
-            <div className="workshop-detail">Location: {workshop.location}</div>
+            <div className="workshop-detail">Deal Size: {workshop.deal_potential}</div>
+            <div className="workshop-detail">Country: {workshop.country}</div>
             <div className="workshop-detail">Venue: {workshop.venue}</div>
-            <div className="workshop-detail">Attendees: {workshop.attendees}</div>
-            <div className="workshop-detail">Comments: {workshop.comments}</div>
+            <div className="workshop-detail">Attendees: {workshop.pax}</div>
+            <div className="workshop-detail">Comments: {workshop.request_message}</div>
         </div>
     </div>
     );

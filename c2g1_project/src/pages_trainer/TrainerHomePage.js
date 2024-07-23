@@ -149,7 +149,6 @@ const TrainerHomePage = () => {
     editUtilisation.refetch();
   };
 
-  console.log(workshop);
   return data !== null && data.role === "trainer" ? (
     <motion.div
       className="admin-home-page"
@@ -257,12 +256,8 @@ const TrainerHomePage = () => {
             }}
           >
             <option value="Workshop">-- Workshop --</option>
-            {allocatedWorkshops &&
-            allocatedWorkshops.data &&
-            allocatedWorkshops.data.trainer &&
-            allocatedWorkshops.data.trainer.workshop_request &&
-            allocatedWorkshops.data.trainer.workshop_request.length > 0 ? (
-              allocatedWorkshops.data.trainer.workshop_request.map(
+            {allocatedWorkshops.data.trainer_workshops ? (
+              allocatedWorkshops.data.trainer_workshops.map(
                 (workshop, index) => (
                   <option key={workshop._id} value={workshop._id}>
                     {workshop.workshop_data.workshop_name}

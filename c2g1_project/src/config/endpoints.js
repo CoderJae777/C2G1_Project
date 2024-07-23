@@ -24,7 +24,7 @@ const endpoints = {
     updateWorkshopData:"/workshopdata/"
   },
   client: {
-    getAvailableWorkshopData: "/workshopdata/available",
+    getAvailableWorkshopData:"/workshopdata/available",
     createWorkshop: "/workshoprequest",
   },
   trainer: {
