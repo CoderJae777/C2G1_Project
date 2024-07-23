@@ -58,11 +58,6 @@ const AddTrainerPopup = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     // Handle submission logic here
-    console.log("Trainer Name:", trainerName);
-    console.log("Trainer Role:", trainerRole);
-    console.log("Trainer ID:", trainerId);
-    console.log("Trainer Email:", trainerEmail);
-    console.log("Trainer Password:", trainerPassword);
     setBody({
       username: trainerId,
       password: trainerPassword,

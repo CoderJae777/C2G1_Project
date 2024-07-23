@@ -29,8 +29,6 @@ const AdminManageTrainerPage = () => {
     true
   );
 
-  console.log(isDeleteTrainerPopupOpen)
-  console.log("HERE")
   const handleOpenTrainerDetailsPopup = (id) => {
     setSelectedId(id);
     setIsTrainerDetailsPopupOpen(true);
