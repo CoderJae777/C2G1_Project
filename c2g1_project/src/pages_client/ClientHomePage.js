@@ -105,14 +105,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log("Email sent successfully!", response);
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-      });
+  //   emailjs
+  //     .send(serviceId, templateId, templateParams, publicKey)
+  //     .then((response) => {
+  //       console.log("Email sent successfully!", response);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending email:", error);
+  //     });
 
     setShowSummary(false);
   };

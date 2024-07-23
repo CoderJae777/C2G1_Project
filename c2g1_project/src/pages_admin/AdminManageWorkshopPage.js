@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "../styles/adminmanageworkshoppage.css";
 import "boxicons/css/boxicons.min.css";
 import TopLeftSideBar from "../components/TopLeftSideBar.js";
-import workshopData from "../old_dbs/all_workshops_db.json";
 import EditWorkshopDetailsPopup from "./EditWorkshopDetailsPopup";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import { config } from "../config/config.js";
@@ -22,7 +21,7 @@ const AdminManageWorkshopPage = () => {
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getWorkshopData,
     {},
-    [],
+    []
   );
 
   const handleCloseEditWorkshopDetailsPopup = () => {
