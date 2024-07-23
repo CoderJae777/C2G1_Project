@@ -29,7 +29,15 @@ const TrainerWorkshopPage = () => {
         config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
       );
 
-    const workshopStarts = ["2024-07-23", "2024-07-27", "2024-08-01", "2024-07-10"];
+    const convertDate = (dateString) => {
+        const date = new Date(dateString);
+        
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based, so add 1
+        const day = String(date.getDate()).padStart(2, '0');
+        
+        return `${year}-${month}-${day}`;
+    }
 
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
@@ -43,7 +51,9 @@ const TrainerWorkshopPage = () => {
     const filteredAndSortedWorkshops = allocatedWorkshops.data.trainer_workshops ? allocatedWorkshops.data.trainer_workshops
     .filter(workshop => 
       workshop.workshop_data.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
-        workshop.company.toLowerCase().includes(filterText.toLowerCase())
+        workshop.company.toLowerCase().includes(filterText.toLowerCase()) ||
+        convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
+        convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase())
         // || workshop.trainer.toLowerCase().includes(filterText.toLowerCase())
     )
     .sort((a, b) => {
@@ -112,6 +122,8 @@ const TrainerWorkshopPage = () => {
             setFilterText(date);
         }
     }
+
+    
 
 
     // CALLING DATA FROM JSON
@@ -221,12 +233,12 @@ const TrainerWorkshopPage = () => {
                         <div className ="scrollable_list">
                             <ul>
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
-                                    <div>
+                                    <div>   
                                         <button className="workshop_detail_panel" key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
                                             <span>Workshop Name: {workshop.workshop_data.workshop_name}</span>
                                             <span>Client: {workshop.company}</span>
-                                            <span>Assigned Trainer: {workshop.trainer}</span>
-                                            <span>Start Date: {workshop.start_date}</span>
+                                            {/*<span>Assigned Trainer: {workshop.trainers}</span>*/}
+                                            <span>Start Date: {convertDate(workshop.start_date)}</span>
                                         </button>
                                     </div>
                                 ))}

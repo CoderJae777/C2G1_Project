@@ -3,6 +3,7 @@ import useFetch from "../components/useFetch.js";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import TopLeftSideBar from "../components/TrainerTopLeftSideBar.js";
@@ -360,4 +361,4 @@ const TrainerHomePage = () => {
   );
 };
 
-export default TrainerHomePage;
+export default TrainerHomePage
