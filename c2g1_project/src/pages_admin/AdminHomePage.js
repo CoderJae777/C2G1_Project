@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import useFetch from "../components/useFetch.js";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import "../styles/adminhomepage.css";
 import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
 import TopLeftSideBar from "../components/TopLeftSideBar.js";
@@ -21,6 +20,9 @@ import {
   Line,
   LineChart,
 } from "recharts";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import WebSocketContext from '../notifications/WebSocketContext';
 
 const AdminHomePage = () => {
   const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
@@ -69,6 +71,20 @@ const AdminHomePage = () => {
     config.base_url + endpoints.verify
   );
 
+  const ws = useContext(WebSocketContext);
+
+  useEffect(() => {
+    if (ws) {
+      ws.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        console.log('WebSocket message received in AdminHomePage:', message);
+        if (message.type === 'newRequest') {
+          toast.info("You have new workshop requests!");
+        }
+      };
+    }
+  }, [ws]);
+
   return data !== null && data.role === "admin" ? (
     <motion.div
       className="admin-home-page"
@@ -76,6 +92,7 @@ const AdminHomePage = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <ToastContainer />
       <div className="top-panel">
         <TopLeftSideBar />
       </div>
@@ -84,7 +101,6 @@ const AdminHomePage = () => {
 
         {/* Workshop summary starts here */}
         <div className="workshop-table">
-          {" "}
           <div className="workshop-table-title">
             <h4>This is today's workshops' statistics: </h4>
           </div>
@@ -195,7 +211,6 @@ const AdminHomePage = () => {
 
           {/* Right column MAIN DIV NUMBER 2 */}
           <div className="trainer-stats">
-            {" "}
             <h5 className="trainer-stats-title">{trainergraphsTitle}</h5>
           </div>
           <>

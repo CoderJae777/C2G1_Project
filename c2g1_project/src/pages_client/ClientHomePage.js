@@ -105,15 +105,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log("Email sent successfully!", response);
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-        alert("You have keyed in an invalid email");
-      });
+  //   emailjs
+  //     .send(serviceId, templateId, templateParams, publicKey)
+  //     .then((response) => {
+  //       console.log("Email sent successfully!", response);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending email:", error);
+  //     });
 
     setShowSummary(false);
   };
@@ -126,7 +125,7 @@ const ClientHomePage = () => {
   const [selectedWorkshop, setSelectedWorkshop] = useState("");
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
-    config.base_url + endpoints.client.getWorkshopData,
+    config.base_url + endpoints.client.getAvailableWorkshopData,
     {},
     [],
     true
@@ -152,7 +151,7 @@ const ClientHomePage = () => {
   };
 
   const onError = (error) => {
-    alert("Error creating workshop request. Please try again.");
+    alert("Error creating workshop request. Please try again. You may have keyed in an invalid email.");
   };
 
   const createWorkshop = useAxiosPost(
