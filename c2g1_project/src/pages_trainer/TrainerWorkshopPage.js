@@ -24,71 +24,10 @@ import {
     LineChart,
 } from "recharts";
 
-
-
 const TrainerWorkshopPage = () => {
-    const workshop_data_temp = [
-        {
-            id: "005379",
-            workshop_name: "Intro to Excel",
-            workshop_type: "Infrastructure and demo",
-            client_company: "DancingLion",
-            client_type: "Executive",
-            duration: "3 days",
-            start_date: "20/09/2024",
-            deal_size: "$3500",
-            location: "Singapore",
-            venue: "Istana",
-            attendees: "17",
-            comments: "Count to fifty in the blink of an eye.",
-            trainer: "Joe"
-        },
-        {
-            id: "002513",
-            workshop_name: "Biased Cognition",
-            workshop_type: "Business value discovery",
-            client_company: "WindsOfUranus",
-            client_type: "Technical",
-            duration: "4 days",
-            start_date: "13/10/2024",
-            deal_size: "$47000",
-            location: "Singapore",
-            venue: "East Coast Park",
-            attendees: "13",
-            comments: "Don't use the saw, he got the wrong thing.",
-            trainer: "Joe"
-        },
-        {
-            id: "001478",
-            workshop_name: "Intro to Computers",
-            workshop_type: "Business value discovery",
-            client_company: "UngaBunga",
-            client_type: "Technical",
-            duration: "4 days",
-            start_date: "18/01/2025",
-            deal_size: "$47000",
-            location: "Singapore",
-            venue: "East Coast Park",
-            attendees: "4",
-            comments: "Inside my mind, there is a digital mind.",
-            trainer: "James"
-        },
-        {
-            id: "006085",
-            workshop_name: "Creative AI",
-            workshop_type: "AI platform",
-            client_company: "DramaticExit",
-            client_type: "Technical",
-            duration: "2 days",
-            start_date: "22/11/2024",
-            deal_size: "$678000",
-            location: "Singapore",
-            venue: "SUTD",
-            attendees: "60",
-            comments: "This table is not very good for glamping. HI HIH HI HIH HI HIH I HI HI HI HI HI HI HI H IHI HI H IH IH IH IH IH IH IH IH IH IH IH IH IH IH I HI HI HI H HI H.",
-            trainer: "James"
-        }
-    ];
+    const allocatedWorkshops = useAxiosGet(
+        config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
+      );
 
     const workshopDates = ["2024-09-20", "2024-10-13", "2024-11-22", "2025-01-18"];
 
@@ -101,17 +40,17 @@ const TrainerWorkshopPage = () => {
         setFilterText(e.target.value);
     };
 
-    const filteredAndSortedWorkshops = workshop_data_temp
+    const filteredAndSortedWorkshops = allocatedWorkshops.data.trainer_workshops ? allocatedWorkshops.data.trainer_workshops
     .filter(workshop => 
-      workshop.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
-        workshop.client_company.toLowerCase().includes(filterText.toLowerCase()) ||
-        workshop.trainer.toLowerCase().includes(filterText.toLowerCase())
+      workshop.workshop_data.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
+        workshop.company.toLowerCase().includes(filterText.toLowerCase())
+        // || workshop.trainer.toLowerCase().includes(filterText.toLowerCase())
     )
     .sort((a, b) => {
       if (a[sortKey] < b[sortKey]) return -1;
       if (a[sortKey] > b[sortKey]) return 1;
       return 0;
-    });
+    }) : [];
 
     const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
         "View Trainer statistics"
@@ -271,11 +210,11 @@ const TrainerWorkshopPage = () => {
                         </div>                        
                         <div className ="scrollable_list">
                             <ul>
-                                {filteredAndSortedWorkshops.map((workshop, index) => (   
+                                {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>
                                         <button className="workshop_detail_panel" key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
-                                            <span>Workshop Name: {workshop.workshop_name}</span>
-                                            <span>Client: {workshop.client_company}</span>
+                                            <span>Workshop Name: {workshop.workshop_data.workshop_name}</span>
+                                            <span>Client: {workshop.company}</span>
                                             <span>Assigned Trainer: {workshop.trainer}</span>
                                             <span>Start Date: {workshop.start_date}</span>
                                         </button>
