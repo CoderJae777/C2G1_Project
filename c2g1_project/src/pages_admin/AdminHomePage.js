@@ -23,6 +23,7 @@ import {
 } from "recharts";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CustomBar from "../components/CustomBar"; // Import the custom bar shape
 
 const AdminHomePage = () => {
   ///////////////////////////////////////////////////////////
@@ -37,6 +38,7 @@ const AdminHomePage = () => {
     percent,
     name,
     value,
+    fill, // Add fill property to get the color
   }) => {
     const radius = outerRadius + 30; // Adjust the distance of the label from the pie chart
     const x = cx + radius * Math.cos((-midAngle * Math.PI) / 180);
@@ -47,7 +49,7 @@ const AdminHomePage = () => {
         <text
           x={x}
           y={y}
-          fill="black"
+          fill={fill} // Use the fill color for the text
           textAnchor={x > cx ? "start" : "end"}
           dominantBaseline="central"
           style={{ fontSize: "18px", fontWeight: "bold" }}
@@ -57,6 +59,7 @@ const AdminHomePage = () => {
       </g>
     );
   };
+  
   ///////////////////////////////////////////////////////////
   // States
   ///////////////////////////////////////////////////////////
@@ -358,6 +361,7 @@ const AdminHomePage = () => {
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
+                      label={renderCustomLabel({ fill: COLORS[index % COLORS.length] })} // Pass fill color
                     />
                   ))}
                 </Pie>
@@ -397,6 +401,7 @@ const AdminHomePage = () => {
                 dataKey="dealSize"
                 fill="#28abf1"
                 label={{ position: "top" }}
+                shape={<CustomBar />} // Use the custom bar shape
               />
             </BarChart>
           </div>
@@ -419,7 +424,7 @@ const AdminHomePage = () => {
                 </button>
               ))}
             </div>
-            <div className="chart-title">Workshop Requests Per Year</div>
+            <div className="chart-title-2">Workshop Requests Per Year</div>
             <LineChart
               width={800}
               height={250}
@@ -430,6 +435,7 @@ const AdminHomePage = () => {
                 left: 0,
                 bottom: 20,
               }}
+              strokeWidth={2}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" angle={0} textAnchor="end" dy={0} />
@@ -442,6 +448,7 @@ const AdminHomePage = () => {
                   dataKey="workshopRequests2022"
                   stroke="green"
                   name="Workshop Requests 2022"
+                  strokeWidth={2}
                 />
               )}
               {visibleYears["2023"] && (
@@ -450,6 +457,7 @@ const AdminHomePage = () => {
                   dataKey="workshopRequests2023"
                   stroke="#28abf1"
                   name="Workshop Requests 2023"
+                  strokeWidth={2}
                 />
               )}
               {visibleYears["2024"] && (
@@ -458,10 +466,11 @@ const AdminHomePage = () => {
                   dataKey="workshopRequests2024"
                   stroke="red"
                   name="Workshop Requests 2024"
+                  strokeWidth={2}
                 />
               )}
             </LineChart>
-            <div className="chart-title">
+            <div className="chart-title-2">
               Total Potential Deal Size Per Year
             </div>
 
@@ -475,6 +484,7 @@ const AdminHomePage = () => {
                 left: 0,
                 bottom: 20,
               }}
+              strokeWidth={2}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" angle={0} textAnchor="end" dy={0} />
@@ -487,6 +497,7 @@ const AdminHomePage = () => {
                   dataKey="dealSize2022"
                   stroke="green"
                   name="Deal Size 2022"
+                  strokeWidth={2}
                 />
               )}
               {visibleYears["2023"] && (
@@ -495,6 +506,7 @@ const AdminHomePage = () => {
                   dataKey="dealSize2023"
                   stroke="#28abf1"
                   name="Deal Size 2023"
+                  strokeWidth={2}
                 />
               )}
               {visibleYears["2024"] && (
@@ -503,6 +515,7 @@ const AdminHomePage = () => {
                   dataKey="dealSize2024"
                   stroke="red"
                   name="Deal Size 2024"
+                  strokeWidth={2}
                 />
               )}
             </LineChart>
@@ -533,7 +546,7 @@ const AdminHomePage = () => {
             </div>
             <BarChart
               width={800}
-              height={300}
+              height={400}
               data={trainer_data}
               margin={{
                 top: 30,
@@ -542,6 +555,8 @@ const AdminHomePage = () => {
                 bottom: 50,
               }}
               barSize={20}
+              strokeWidth={2}
+
             >
               <XAxis
                 dataKey="name"
@@ -557,6 +572,7 @@ const AdminHomePage = () => {
                 fill="#28abf1"
                 background={{ fill: "#ffffff" }}
                 label={{ position: "top" }}
+                shape={<CustomBar />} // Use the custom bar shape
               />
             </BarChart>
           </div>
