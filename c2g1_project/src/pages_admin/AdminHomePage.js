@@ -59,7 +59,7 @@ const AdminHomePage = () => {
       </g>
     );
   };
-  
+
   ///////////////////////////////////////////////////////////
   // States
   ///////////////////////////////////////////////////////////
@@ -112,14 +112,14 @@ const AdminHomePage = () => {
   const COLORS = ["#88D66C", "#FF4C4C", "#FFD35A"];
 
   const workshopTypesData = [
-    { name: "Business Value Discovery", dealSize: 10000 },
-    { name: "AI Platform", dealSize: 5000 },
-    { name: "Infrastructure and Demo", dealSize: 20000 },
+    { name: "Business Value Discovery", dealSize: 9520 },
+    { name: "AI Platform", dealSize: 6570 },
+    { name: "Infrastructure and Demo", dealSize: 18590 },
   ];
 
   const clientTypesData = [
-    { name: "Executive", dealSize: 10000 },
-    { name: "Technical", dealSize: 25000 },
+    { name: "Executive", dealSize: 12570 },
+    { name: "Technical", dealSize: 19850 },
   ];
 
   const workshopTrendData = [
@@ -243,7 +243,7 @@ const AdminHomePage = () => {
   const viewWorkshop = () => {
     setTrainerGraphsTitle("Workshops Completed This Month / Trainer");
     setKey("workshops_completed_this_month");
-    setDomainMax(20);
+    setDomainMax(10);
   };
   const viewOngoing = () => {
     setTrainerGraphsTitle("Ongoing Workshops / Trainer");
@@ -326,7 +326,7 @@ const AdminHomePage = () => {
                 fill="black"
                 textAnchor="middle"
                 dominantBaseline="central"
-                style={{ fontSize: "20px", fontWeight: "bold" }}
+                style={{ fontSize: "18px", fontWeight: "bold" }}
               >
                 Total Requests:{" "}
                 {(selectedYear === "total"
@@ -361,7 +361,9 @@ const AdminHomePage = () => {
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
-                      label={renderCustomLabel({ fill: COLORS[index % COLORS.length] })} // Pass fill color
+                      label={renderCustomLabel({
+                        fill: COLORS[index % COLORS.length],
+                      })} // Pass fill color
                     />
                   ))}
                 </Pie>
@@ -391,6 +393,7 @@ const AdminHomePage = () => {
                   : clientTypesData
               }
               margin={{ top: 20, right: 10, left: 20, bottom: 0 }}
+              strokeWidth={2}
             >
               <XAxis dataKey="name" />
               <YAxis />
@@ -546,7 +549,7 @@ const AdminHomePage = () => {
             </div>
             <BarChart
               width={800}
-              height={400}
+              height={250}
               data={trainer_data}
               margin={{
                 top: 30,
@@ -556,7 +559,6 @@ const AdminHomePage = () => {
               }}
               barSize={20}
               strokeWidth={2}
-
             >
               <XAxis
                 dataKey="name"
