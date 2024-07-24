@@ -47,6 +47,8 @@ body {
   padding: 20px;
   text-align: center;
   margin-top: 20px;
+  box-shadow: grey 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  transition: background-color 500ms;
 }
 
 .chart-title {
@@ -88,6 +90,8 @@ body {
   padding: 10px;
   transition: background-color 500ms, color 500ms;
   text-align: center;
-  margin: 15px;
+  margin: 10px;
   align-self: center;
+  box-shadow: grey 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  transition: background-color 500ms;
 }
