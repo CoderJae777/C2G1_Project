@@ -32,7 +32,7 @@ afterEach(() => {
 // Admin image
 // Role selection buttons (Client, Admin, Trainer)
 // Form elements (Username, Password, Sign in button)
-test("renders AdminLoginPage correctly and logs in with admin credentials", async () => {
+test("Test : AdminLoginPage rendered correctly and logged in with admin credentials", async () => {
   const mockNavigate = jest.fn();
   const useNavigate = require("react-router-dom").useNavigate;
   useNavigate.mockReturnValue(mockNavigate);

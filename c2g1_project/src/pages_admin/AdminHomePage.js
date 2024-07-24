@@ -77,18 +77,18 @@ const AdminHomePage = () => {
 
   // ⚠️⚠️⚠️ FOR THE BACKENDS GUYS!!! ⚠️⚠️⚠️
   ///////////////////////////////////////////////////////////
-  // HARDCODED DATE
+  // HARDCODED DATA
   ///////////////////////////////////////////////////////////
   const totalPieData = [
-    { name: "Workshops Accepted", value: 267 },
-    { name: "Workshops Rejected", value: 124 },
+    { name: "Workshops Accepted", value: 271 },
+    { name: "Workshops Rejected", value: 125 },
     { name: "Pending", value: 13 },
   ];
 
   // 2022 AND 2023 HAS NO PENDING BECAUSE IT DOESNT MAKE SENSE! 
   const yearPieData = {
     2022: [
-      { name: "Workshops Accepted", value: 89 },
+      { name: "Workshops Accepted", value: 90 },
       { name: "Workshops Rejected", value: 41 },
       { name: "Pending", value: 0 },
     ],
@@ -98,8 +98,8 @@ const AdminHomePage = () => {
       { name: "Pending", value: 0 },
     ],
     2024: [
-      { name: "Workshops Accepted", value: 99 },
-      { name: "Workshops Rejected", value: 48 },
+      { name: "Workshops Accepted", value: 102 },
+      { name: "Workshops Rejected", value: 49 },
       { name: "Pending", value: 13 },
     ],
   };
@@ -314,14 +314,14 @@ const AdminHomePage = () => {
               ))}
             </div>
             <div className="workshop-request-piechart">
-              <PieChart width={500} height={350}>
+              <PieChart width={700} height={350}>
                 <Pie
                   data={
                     selectedYear === "total"
                       ? totalPieData
                       : yearPieData[selectedYear]
                   }
-                  cx={250}
+                  cx={350}
                   cy={150}
                   labelLine={false}
                   label={renderCustomLabel}
@@ -341,7 +341,7 @@ const AdminHomePage = () => {
                 </Pie>
                 <Tooltip />
                 <text
-                  x={250}
+                  x={350}
                   y={330}
                   fill="black"
                   textAnchor="middle"
