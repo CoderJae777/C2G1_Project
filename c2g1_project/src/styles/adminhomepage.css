@@ -57,10 +57,11 @@ body {
   color: black;
   border-bottom: 2px solid #0672cb;
   padding: 5px;
+  font-weight: bold;
 }
 
 .total-requests {
-  padding: 20px;
+  padding: 30px;
 }
 
 /* Button styles */

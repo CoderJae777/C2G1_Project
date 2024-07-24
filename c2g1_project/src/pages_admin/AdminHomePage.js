@@ -36,25 +36,27 @@ const AdminHomePage = () => {
     outerRadius,
     percent,
     name,
+    value,
   }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const radius = outerRadius + 30; // Adjust the distance of the label from the pie chart
     const x = cx + radius * Math.cos((-midAngle * Math.PI) / 180);
     const y = cy + radius * Math.sin((-midAngle * Math.PI) / 180);
 
     return (
-      <text
-        x={x}
-        y={y}
-        fill="black"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-        style={{ fontSize: "15px", fontWeight: "bold" }}
-      >
-        {`${name}: ${(percent * 100).toFixed(0)}%`}
-      </text>
+      <g>
+        <text
+          x={x}
+          y={y}
+          fill="black"
+          textAnchor={x > cx ? "start" : "end"}
+          dominantBaseline="central"
+          style={{ fontSize: "18px", fontWeight: "bold" }}
+        >
+          {`${name}: ${value} (${(percent * 100).toFixed(0)}%)`}
+        </text>
+      </g>
     );
   };
-
   ///////////////////////////////////////////////////////////
   // States
   ///////////////////////////////////////////////////////////
@@ -85,7 +87,7 @@ const AdminHomePage = () => {
     { name: "Pending", value: 13 },
   ];
 
-  // 2022 AND 2023 HAS NO PENDING BECAUSE IT DOESNT MAKE SENSE! 
+  // 2022 AND 2023 HAS NO PENDING BECAUSE IT DOESNT MAKE SENSE!
   const yearPieData = {
     2022: [
       { name: "Workshops Accepted", value: 90 },
@@ -300,6 +302,7 @@ const AdminHomePage = () => {
           {/* ⚠️⚠️⚠️ PIE CHART STARTS HERE ⚠️⚠️⚠️ */}
           <div className="chart-container">
             <div className="chart-title">Breakdown of Workshop Requests</div>
+
             <div className="year-buttons-container">
               {["2022", "2023", "2024", "total"].map((year) => (
                 <button
@@ -313,6 +316,22 @@ const AdminHomePage = () => {
                 </button>
               ))}
             </div>
+            <div className="total-requests">
+              <text
+                x={350}
+                y={330}
+                fill="black"
+                textAnchor="middle"
+                dominantBaseline="central"
+                style={{ fontSize: "20px", fontWeight: "bold" }}
+              >
+                Total Requests:{" "}
+                {(selectedYear === "total"
+                  ? totalPieData
+                  : yearPieData[selectedYear]
+                ).reduce((acc, curr) => acc + curr.value, 0)}
+              </text>
+            </div>
             <div className="workshop-request-piechart">
               <PieChart width={700} height={350}>
                 <Pie
@@ -323,11 +342,14 @@ const AdminHomePage = () => {
                   }
                   cx={350}
                   cy={150}
-                  labelLine={false}
+                  labelLine={true}
                   label={renderCustomLabel}
                   outerRadius={130}
-                  fill="#8884d8"
+                  innerRadius={50}
+                  fill="#28abf1"
                   dataKey="value"
+                  stroke="#000" // Add stroke color
+                  strokeWidth={2} // Add stroke width
                 >
                   {(selectedYear === "total"
                     ? totalPieData
@@ -340,20 +362,6 @@ const AdminHomePage = () => {
                   ))}
                 </Pie>
                 <Tooltip />
-                <text
-                  x={350}
-                  y={330}
-                  fill="black"
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                  style={{ fontSize: "18px", fontWeight: "bold" }}
-                >
-                  Total Requests:{" "}
-                  {(selectedYear === "total"
-                    ? totalPieData
-                    : yearPieData[selectedYear]
-                  ).reduce((acc, curr) => acc + curr.value, 0)}
-                </text>
               </PieChart>
             </div>
           </div>
@@ -371,21 +379,25 @@ const AdminHomePage = () => {
               </button>
             </div>
             <BarChart
-              width={500}
+              width={700}
               height={400}
               data={
                 currentChart === "workshopTypes"
                   ? workshopTypesData
                   : clientTypesData
               }
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+              margin={{ top: 20, right: 10, left: 20, bottom: 0 }}
             >
               <XAxis dataKey="name" />
               <YAxis />
               <CartesianGrid strokeDasharray="3 3" />
               <Tooltip />
               <Legend />
-              <Bar dataKey="dealSize" fill="#82ca9d" />
+              <Bar
+                dataKey="dealSize"
+                fill="#28abf1"
+                label={{ position: "top" }}
+              />
             </BarChart>
           </div>
         </div>
@@ -428,7 +440,7 @@ const AdminHomePage = () => {
                 <Line
                   type="monotone"
                   dataKey="workshopRequests2022"
-                  stroke="#8884d8"
+                  stroke="green"
                   name="Workshop Requests 2022"
                 />
               )}
@@ -436,7 +448,7 @@ const AdminHomePage = () => {
                 <Line
                   type="monotone"
                   dataKey="workshopRequests2023"
-                  stroke="#82ca9d"
+                  stroke="#28abf1"
                   name="Workshop Requests 2023"
                 />
               )}
@@ -444,7 +456,7 @@ const AdminHomePage = () => {
                 <Line
                   type="monotone"
                   dataKey="workshopRequests2024"
-                  stroke="#ffc658"
+                  stroke="red"
                   name="Workshop Requests 2024"
                 />
               )}
@@ -473,7 +485,7 @@ const AdminHomePage = () => {
                 <Line
                   type="monotone"
                   dataKey="dealSize2022"
-                  stroke="#8884d8"
+                  stroke="green"
                   name="Deal Size 2022"
                 />
               )}
@@ -481,7 +493,7 @@ const AdminHomePage = () => {
                 <Line
                   type="monotone"
                   dataKey="dealSize2023"
-                  stroke="#82ca9d"
+                  stroke="#28abf1"
                   name="Deal Size 2023"
                 />
               )}
@@ -489,7 +501,7 @@ const AdminHomePage = () => {
                 <Line
                   type="monotone"
                   dataKey="dealSize2024"
-                  stroke="#ffc658"
+                  stroke="red"
                   name="Deal Size 2024"
                 />
               )}
@@ -542,7 +554,7 @@ const AdminHomePage = () => {
               <Tooltip />
               <Bar
                 dataKey={key}
-                fill="#0083CA"
+                fill="#28abf1"
                 background={{ fill: "#ffffff" }}
                 label={{ position: "top" }}
               />
