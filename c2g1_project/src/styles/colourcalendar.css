@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: roboto;
+}
+
+.colour-calendar-popup {
+  width: 100%; /* Make the calendar responsive to the parent width */
+  max-width: 400px; /* Optional: set a maximum width */
+  background: #fff;
+  border-radius: 6px;
+  text-align: center;
+  padding: 15px 10px;
+  color: #333;
+  visibility: visible; /* Ensure it is visible */
+  transition: none; /* Remove transitions if not needed */
+  position: relative; /* Ensure it is part of the normal flow */
+  box-sizing: border-box; /* Include padding in the element's width */
+  height: 80%;
+}
+
+.colour-popup header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+header .icons {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+
+header .icons span:hover {
+  background: #f2f2f2;
+}
+
+.colour-calendar-popup .arrow-left,
+.colour-calendar-popup .arrow-right {
+  display: flex;
+  height: 20px;
+  width: 20px;
+  color: black;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+.colour-popup .close-button {
+  margin-left: 20px;
+}
+
+header .current-date {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.calendar {
+  padding: 20px;
+}
+
+.calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+
+.calendar .days {
+  cursor: default;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.calendar li {
+  cursor: default;
+  color: #333;
+  width: 14.2857%; /* Equal width for 7 columns */
+  height: 10%;
+  font-size: 1.07rem;
+  position: relative;
+}
+
+.calendar .weeks li {
+  font-weight: 500;
+  cursor: default;
+}
+
+.calendar .days li {
+  cursor: default;
+  position: relative;
+  margin-top: 2%;
+}
+
+.days li.inactive {
+  color: #aaa;
+}
+
+.days li.active {
+  color: #fff;
+}
+
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 30px;
+  width: 30px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.days li.workshop-start::before {
+  background: #3bc452;
+  outline: 5px solid #3bc452;
+}
+
+.days li.workshop-end::before {
+  background: #ff8800;
+}
+
+.days li:not(.active):hover::before {
+  background: #f2f2f2;
+}
+
+.days li.workshop-end:hover::before {
+  background: #d67607;
+}
+
+.days li.workshop-start:hover::before {
+  background: #279a3a;
+}
+
+.days li.active::before {
+  background: #6e93f7;
+  box-shadow: #6e93f7;
+}
+
+.calendar-details {
+  color: black;
+  display: none;
+  position: absolute;
+  top: -500%; /* Position it above the day-number */
+  left: 50%;
+  transform: translateX(-50%); /* Center it horizontally */
+  background-color: #fff; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it appears above other elements */
+}
+
+.workshop-start:hover .calendar-details,
+.workshop-end:hover .calendar-details { 
+  display: block;
+}
+
+.day-number {
+  cursor: pointer;
+  position: relative; /* Ensure the calendar-details is positioned correctly */
+  background-color: transparent;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.details {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr; 
+}
+
+.details p {
+  white-space: nowrap;
+}

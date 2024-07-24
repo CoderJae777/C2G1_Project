@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/adminmanagetrainerspagepopup.css";
 import "boxicons/css/boxicons.min.css";
 import useAxiosPost from "../api/useAxiosPost";
@@ -13,6 +13,7 @@ const AddTrainerPopup = ({ onClose }) => {
   const [trainerPassword, setTrainerPassword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState(null);
+  const popupRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -58,11 +59,6 @@ const AddTrainerPopup = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     // Handle submission logic here
-    console.log("Trainer Name:", trainerName);
-    console.log("Trainer Role:", trainerRole);
-    console.log("Trainer ID:", trainerId);
-    console.log("Trainer Email:", trainerEmail);
-    console.log("Trainer Password:", trainerPassword);
     setBody({
       username: trainerId,
       password: trainerPassword,
@@ -73,8 +69,21 @@ const AddTrainerPopup = ({ onClose }) => {
     refetch();
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [popupRef, onClose]);
+
   return (
-    <div className="add-trainer-popup open-add-trainer-popup">
+    <div ref={popupRef} data-cy="add-trainer-popup" className="add-trainer-popup open-add-trainer-popup">
       <h2>Add Trainer</h2>
       <p>Please fill in the details for adding a new trainer.</p>
       <input
@@ -142,7 +151,7 @@ const AddTrainerPopup = ({ onClose }) => {
         <button className="submit-button" type="button" onClick={handleSubmit}>
           Submit
         </button>
-        <button className="cancel-button" type="button" onClick={onClose}>
+        <button data-cy="add-trainer-cancel-button" className="cancel-button" type="button" onClick={onClose}>
           Cancel
         </button>
       </div>

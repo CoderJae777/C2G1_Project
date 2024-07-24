@@ -7,7 +7,7 @@ import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import DateAndTime from "./DateAndTime";
 
-const TopLeftSideBar = () => {
+const TopLeftSideBar = ({ hasNewRequests }) => {
   const [navOpen, setNavOpen] = useState(false);
   const nav = useNavigate();
 
@@ -24,8 +24,8 @@ const TopLeftSideBar = () => {
   };
 
   const handleProfilePage = () => {
-    nav("/ProfilePage")
-  }
+    nav("/ProfilePage");
+  };
 
   const handleAdminWorkshopRequestPage = (e) => {
     e.preventDefault();
@@ -67,11 +67,17 @@ const TopLeftSideBar = () => {
       <nav data-cy="nav" className={navOpen ? "open" : ""}>
         <div className="logo">
           <div className="hamburger">
-            <i data-cy="open-tlsb" className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <i
+              data-cy="open-tlsb"
+              className="bx bx-menu menu-icon"
+              onClick={toggleNav}
+            ></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span data-cy="welcome" className="logo-name">Hi Dil, Welcome Back!</span>
+            <span data-cy="welcome" className="logo-name">
+              Hi, Welcome Back!
+            </span>
           </div>
           <div className="date">
             <span className="logo-name">
@@ -81,38 +87,67 @@ const TopLeftSideBar = () => {
         </div>
         <div data-cy="sidebar" className="sidebar">
           <div className="logo">
-            <i data-cy="toggle-nav" className="bx bx-menu menu-icon" onClick={toggleNav}></i>
+            <i
+              data-cy="toggle-nav"
+              className="bx bx-menu menu-icon"
+              onClick={toggleNav}
+            ></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminHomePage}>
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleAdminHomePage}
+                >
                   <i className="bx bx-home-alt icon"></i>
                   <span className="link">Home</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleProfilePage}>
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleProfilePage}
+                >
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
                   <span className="link">Profile</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminWorkshopRequestPage}>
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleAdminWorkshopRequestPage}
+                >
                   <i className="bx bx-clipboard icon"></i>
                   <span className="link">Workshop Requests</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminManageTrainerPage}>
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleAdminManageTrainerPage}
+                >
                   <i className="bx bx-group icon"></i>
                   <span className="link">Manage Trainers</span>
                 </a>
               </li>
               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleAdminManageWorkshopPage}>
-                  <i class='bx bx-spreadsheet icon'></i>
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleAdminManageWorkshopPage}
+                >
+                  <i className="bx bx-spreadsheet icon"></i>
                   <span className="link">Manage Workshops</span>
                 </a>
               </li>
@@ -125,7 +160,12 @@ const TopLeftSideBar = () => {
                 </a>
               </li>
               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleNavBarSignOut}>
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleNavBarSignOut}
+                >
                   <i className="bx bx-log-out icon"></i>
                   <span className="link">Logout</span>
                 </a>
@@ -134,10 +174,7 @@ const TopLeftSideBar = () => {
           </div>
         </div>
       </nav>
-      <section
-        className={navOpen ? "overlay" : ""}
-        onClick={closeNav}
-      ></section>
+      <section className={navOpen ? "overlay" : ""} onClick={closeNav}></section>
     </>
   );
 };

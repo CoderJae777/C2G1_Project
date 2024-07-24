@@ -3,16 +3,12 @@ import dellacademylogo from "../images/DellAcademy.png";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/NavBar.js";
-
-// Running Json Server
-// npx json-server --watch db.json --port 8000
-// npx json-server --watch trainer_db.json --port 8000
+import Footer from "../components/Footer.js";
 
 const LoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
-  const [move, setMove] = useState(false);
 
   const ProceedLogin = (e) => {
     e.preventDefault();
@@ -20,9 +16,6 @@ const LoginPage = () => {
     window.location.reload();
   };
 
-  // const handleSignIn = () => {
-  //    nav("/AdminHomePage");
-  // }
   const handleTrainerLoginPage = () => {
     nav("/TrainerLoginPage");
   };
@@ -44,15 +37,16 @@ const LoginPage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           initial={{ opacity: 0 }}
-          className="login_buttons"
+          className="login_card"
         >
           <img src={dellacademylogo} className="dell_logo" alt="logo"></img>
-          <h5 className="role">Pick your role: </h5>{" "}
+          <h5 className="role">Pick your role: </h5>
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             className="client_login_button"
             onClick={handleClientLoginPage}
+            data-cy="clientlogin-button"
           >
             Client
           </motion.button>
@@ -61,6 +55,7 @@ const LoginPage = () => {
             whileTap={{ scale: 0.9 }}
             className="admin_login_button"
             onClick={handleAdminLoginPage}
+            data-cy="adminlogin-button"
           >
             Admin
           </motion.button>
@@ -69,15 +64,13 @@ const LoginPage = () => {
             whileTap={{ scale: 0.9 }}
             className="trainer_login_button"
             onClick={handleTrainerLoginPage}
+            data-cy="trainerlogin-button"
           >
             Trainer
           </motion.button>
           <form onSubmit={ProceedLogin} className="login_form">
             <div className="card-body">
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Username"
                   value={username}
@@ -87,16 +80,12 @@ const LoginPage = () => {
                 />
               </div>
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Password"
                   value={password}
                   onChange={(e) => passwordupdate(e.target.value)}
                   className="password"
                   type="password"
-                  // this will print out ..... when typing
                 />
               </div>
             </div>
@@ -116,7 +105,8 @@ const LoginPage = () => {
             </div>
           </form>
         </motion.div>
-      </motion.div>
+      </motion.div>{" "}
+      <Footer />
     </>
   );
 };

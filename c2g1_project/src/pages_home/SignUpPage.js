@@ -1,14 +1,11 @@
-// Running Json Server
-// npx json-server --watch db.json --port 8000
 import { useNavigate } from "react-router-dom";
-import LoginPage from "../login_pages/LoginPage";
-import { isValidElement, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useState } from "react";
 import useAxiosPost from "../api/useAxiosPost";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import Navbar from "../components/NavBar";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer";
 
 const SignUpPage = () => {
   const nav = useNavigate();
@@ -87,7 +84,7 @@ const SignUpPage = () => {
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ delay: 0.3 }}
-            className="contrainer"
+            className="container"
             onSubmit={handlesubmit}
           >
             <div className="card">
@@ -96,69 +93,77 @@ const SignUpPage = () => {
                 <h5>All fields are required</h5>
               </div>
               <div className="card-body">
-                <div className="row">
-                  <div className="form_group">
-                    <input
-                      placeholder="Username"
-                      value={username}
-                      onChange={(e) => usernamechange(e.target.value)}
-                      className="form_control"
-                    ></input>
-                  </div>
+                <div className="form_group">
+                  <input
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => usernamechange(e.target.value)}
+                    className="form_control"
+                  />
+                </div>
 
-                  <div className="form_group">
-                    <input
-                      placeholder="Password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => passwordchange(e.target.value)}
-                      className="form_control"
-                    ></input>
-                  </div>
+                <div className="form_group">
+                  <input
+                    placeholder="Password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => passwordchange(e.target.value)}
+                    className="form_control"
+                  />
+                </div>
 
-                  <div className="form_group">
-                    <input
-                      placeholder="Fullname"
-                      value={fullname}
-                      onChange={(e) => fullnamechange(e.target.value)}
-                      className="form_control"
-                    ></input>
-                  </div>
+                <div className="form_group">
+                  <input
+                    placeholder="Fullname"
+                    value={fullname}
+                    onChange={(e) => fullnamechange(e.target.value)}
+                    className="form_control"
+                  />
+                </div>
 
-                  <div className="form_group">
-                    <input
-                      placeholder="Email"
-                      value={email}
-                      onChange={(e) => emailchange(e.target.value)}
-                      className="form_control"
-                    ></input>
-                  </div>
+                <div className="form_group">
+                  <input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => emailchange(e.target.value)}
+                    className="form_control"
+                  />
+                </div>
 
-                  <div className="form_group">
-                    <select
-                      value={country}
-                      onChange={(e) => countrychange(e.target.value)}
-                      className="form_control"
-                    >
-                      <option value="Default">-- Country --</option>
-                      <option value="Singapore">Singapore</option>
-                      <option value="USA">USA</option>
-                      <option value="Malaysia">Malaysia</option>
-                    </select>
-                  </div>
+                <div className="form_group">
+                  <select
+                    value={country}
+                    onChange={(e) => countrychange(e.target.value)}
+                    className="form_control"
+                  >
+                    <option value="Default">-- Country --</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="USA">USA</option>
+                    <option value="Malaysia">Malaysia</option>
+                  </select>
                 </div>
               </div>
-              <div classname="card-footer">
-                <button type="submit" className="signup_submit_button">
-                  Register
-                </button>
-                <button className="signup_back_button" onClick={handleBack}>
-                  Back
-                </button>
+              <div className="card-footer">
+                <div className="signup-button-div">
+                  <button type="submit" className="signup_submit_button">
+                    Register
+                  </button>
+                </div>
+                <div className="signup-button-div">
+                  {" "}
+                  <button
+                    type="button"
+                    className="signup_back_button"
+                    onClick={handleBack}
+                  >
+                    Back
+                  </button>
+                </div>
               </div>
             </div>
           </motion.form>
         </motion.div>
+        <Footer />
       </div>
     </>
   );

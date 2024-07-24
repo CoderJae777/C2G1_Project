@@ -25,15 +25,9 @@ const useFetch = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data.data);
         setWorkshopData(data.data);
       })
       .catch((error) => console.error("Error:", error));
-
-    // .then((data2) => {
-    //   console.log("here", data2);
-    //   setWorkshopData(data2);
-    // });
   }, []); // Empty dependency array ensures useEffect runs only once
 
   useEffect(() => {

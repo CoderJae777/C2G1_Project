@@ -1,4 +1,5 @@
-import { useState } from "react";
+// HomePage.js
+import React, { useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import Navbar from "../components/NavBar.js";
 import { Testimonials } from "../components/Testimonials.js";
@@ -7,29 +8,28 @@ import ContactForm from "../components/ContactForm.js";
 import AnimatedHead from "../components/AnimatedHeading.js";
 import dellacademylogo_small from "../images/NavBarLogo.png";
 import Carousel from "../components/Carousel.js";
-
 import slideshowimg1 from "../images/slideshowimg1.jpg";
 import slideshowimg2 from "../images/slideshowimg2.jpg";
 import slideshowimg3 from "../images/slideshowimg3.jpg";
-import slideshowimg4 from "../images/slideshowimg4.jpg";
-import slideshowimg5 from "../images/slideshowimg5.jpg";
-import slideshowimg6 from "../images/slideshowimg6.jpg";
+import Footer from "../components/Footer.js"; // Import the Footer component
 
 const HomePage = () => {
   const { scrollYProgress } = useScroll();
-
   const [move, setMove] = useState(false);
   const nav = useNavigate();
+
   const handleSignUp = () => {
     nav("/LoginPage");
   };
+
   const handleworkshop = () => {
     nav("/OurWorkshopPage");
   };
+
   const images = [slideshowimg1, slideshowimg2, slideshowimg3];
+
   return (
     <>
-      {" "}
       <Navbar />
       <motion.div
         animate={{ opacity: 1 }}
@@ -37,8 +37,11 @@ const HomePage = () => {
         transition={{ delay: 0.25 }}
         whileInView={{ opacity: 1 }}
         className="homepage"
-      >      <motion.div className="progress-bar" style={{ scaleX: scrollYProgress }} />
-
+      >
+        <motion.div
+          className="progress-bar"
+          style={{ scaleX: scrollYProgress }}
+        />
         <div className="homepageinfo">
           <motion.div
             className="about"
@@ -47,7 +50,7 @@ const HomePage = () => {
             transition={{ delay: 1 }}
             whileInView={{ scale: 1, opacity: 1 }}
           >
-            <AnimatedHead />{" "}
+            <AnimatedHead />
             <div>
               <motion.img
                 animate={{ scale: 1, opacity: 1 }}
@@ -57,7 +60,7 @@ const HomePage = () => {
                 className="navbarlogo"
                 src={dellacademylogo_small}
                 alt="Navbar Logo"
-              ></motion.img>
+              />
             </div>
           </motion.div>
           <motion.div
@@ -67,7 +70,7 @@ const HomePage = () => {
             transition={{ delay: 1 }}
             whileInView={{ opacity: 1 }}
           >
-            <h2 data-cy="h2-test" >Grow your skills with Dell Academy!</h2>{" "}
+            <h2 data-cy="h2-test">Grow your skills with Dell Academy!</h2>
             <div>
               <motion.button
                 transition={{ delay: 1.25 }}
@@ -89,29 +92,19 @@ const HomePage = () => {
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        transition={{ delay: 0.5 }}
-        whileInView={{ opacity: 1}}
+        transition={{ delay: 0.25 }}
+        whileInView={{ opacity: 1 }}
         className="homepage-div-2"
       >
         <div className="homepageinfo">
           <motion.div
             className="testimonials"
-            transition={{ delay: 1.25 }}
+            transition={{ delay: 0.25 }}
             animate={{ scale: 1 }}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
           >
             <Testimonials />
-            {/* <motion.button
-              transition={{ delay: 1.25 }}
-              animate={{ scale: 1 }}
-              initial={{ scale: 0 }}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              className="testibutton"
-            >
-              Learn more!
-            </motion.button> */}
           </motion.div>
           <div></div>
         </div>
@@ -136,7 +129,6 @@ const HomePage = () => {
           initial={{ opacity: 0 }}
           transition={{ delay: 0.25 }}
         >
-          {" "}
           <div className="slideshow">
             <Carousel images={images} />
           </div>
@@ -207,7 +199,7 @@ const HomePage = () => {
         whileInView={{ scale: 1 }}
         initial={{ scale: 0 }}
         className="bottom-of-homepage"
-        data-cy = "bottom-of-homepage"
+        data-cy="bottom-of-homepage"
       >
         <div className="contactustitle">
           <h3>Contact Us</h3>
@@ -215,7 +207,8 @@ const HomePage = () => {
         <div className="contactform">
           <ContactForm />
         </div>
-      </motion.div>
+      </motion.div>{" "}
+      <Footer /> {/* Add Footer component */}
     </>
   );
 };

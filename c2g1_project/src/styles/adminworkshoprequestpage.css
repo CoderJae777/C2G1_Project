@@ -9,128 +9,114 @@
 
 .admin-workshop-request-page {
     display: flex;
-    flex-direction: column;
+    align-items: end;
+    justify-content: flex-start;
     height: 100vh;
-    background-image: url("../images/dashboardbackground.jpg");
-
+    margin-top: -50px;
 }
 
-.top-panel {
-    flex: 0 0 auto;
-    z-index: 1;
-}
-
-.admin-workshop-request-page-right-panel {
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 60px;
-    margin-bottom: -10px;
-}
-
-.admin-workshop-request-page-title {
+.admin-workshop-request-page-bottom-panel {
     flex: 1;
-    text-align: center;
-}
-
-.workshop-request-column {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
     padding: 15px;
 }
 
-.workshop-request-panel {
-    flex: 1 1 45%;
-    max-width: 600px;
-    min-width: 300px;
-    height: 300px;
-    /* background: #d7d7d7; */
-    background: white;
+.admin-workshop-request-page-title{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-workshop-request-page-title h2 {
+    margin-right: 480px;
+}
+
+.manage-workshop-request-panel-outer {
+    height: 540px;
+    width: 80%;
+    background: #d7d7d7;
     color: #707070;
     border-radius: 20px;
     padding: 10px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    margin-top: 5px;
     align-items: center;
-    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* CSS FOR WORKSHOP REQUEST DETAILS ----------------------------------------------------------------------------- */
+.manage-workshop-request-panel {
+    height: 500px;
+    background: #d7d7d7;
+    color: #707070;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5px;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* CSS FOR WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
 
 .workshop-request-table {
-    display: table;
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .workshop-request-table-row {
-    display: table-row;
-  }
-  
-  .workshop-request-table-cell {
-    display: table-cell;
-    padding: 8px;
-    border: 1px solid white;
-    vertical-align: top;
-    width: 50%;
-    text-align: left;
-  }
-  
-  .workshop-request-details {
-    width: 560PX;
-    margin-bottom: 5px;
-    overflow: auto;
-  }
-  
-
-/* CSS FOR WORKSHOP REQUEST BUTTONS ----------------------------------------------------------------------------- */
-
-.workshop-request-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding-top: 10px;
+    margin-top: 10px;
 }
 
-.accept-workshop-request-button,
-.allocate-trainer-to-workshop-button,
-.reject-workshop-request-button,
-.workshop-request-button {
-    max-width: 200px;
-    align-items: center;
-    padding: 12px 10px;
+.workshop-request-table th,
+.workshop-request-table td {
     border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 10px;
-    background-color: #80C7FB;
-    flex: 1;
-    margin: 0 5px;
+    padding: 10px;
+    text-align: center;
 }
 
-.accept-workshop-request-button {
+.workshop-request-table th.action-column {
+    width: 670px;
+    max-width: 670px;
+  }
+
+.workshop-request-table th {
+    background-color: #f2f2f2;
+}
+
+.view-workshop-details-button,
+.approve-workshop-request-button,
+/* .allocate-trainer-to-workshop-button, */
+.reject-workshop-request-button {
+    background-color: #80C7FB;
+    color: black;
+    width: 200px;
+    height: 30x;
+    border-radius: 25px;
+    border-width: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 10px;
+    transition: background-color 500ms;
+    transition: color 500ms;
+    border-width: 0px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 5px;
+}
+
+.approve-workshop-request-button {
     background-color: #37CC5C;
 }
 
-.accept-workshop-request-button:hover {
+.approve-workshop-request-button:hover {
     background-color: #247554;
 }
 
-.allocate-trainer-to-workshop-button {
-    background-color: #80C7FB;
-}
-
-.allocate-trainer-to-workshop-button:hover {
+.allocate-trainer-to-workshop-button:hover,
+.view-workshop-details-button:hover {
     background-color: #0672CB;
+    color: white;
 }
 
 .reject-workshop-request-button {
@@ -140,3 +126,6 @@
 .reject-workshop-request-button:hover {
     background-color: #B30B37;
 }
+
+
+  

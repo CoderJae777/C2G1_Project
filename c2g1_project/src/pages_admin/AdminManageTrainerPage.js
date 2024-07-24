@@ -6,8 +6,8 @@ import TopLeftSidebar from "../components/TopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
 import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
-import useFetch from "../components/useFetch";
 import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar";
+import DeleteTrainerPopup from "./DeleteTrainerPopup";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
@@ -20,24 +20,26 @@ const AdminManageTrainerPage = () => {
   const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
   const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
     useState(false);
+  const [isDeleteTrainerPopupOpen, setIsDeleteTrainerPopupOpen] =
+    useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [fullname, setFullname] = useState(null);
+  const [username, setUsername] = useState(null);
   const [availability, setAvailability] = useState(null);
 
-  var trainer_data = [];
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
     {},
     [],
     true
   );
-  try {
-    trainer_data = data.trainers;
-  } catch (error) {}
 
-  const handleOpenTrainerDetailsPopup = (id) => {
+  const handleOpenTrainerDetailsPopup = (id, fullname, username) => {
     setSelectedId(id);
     setIsTrainerDetailsPopupOpen(true);
+    setFullname(fullname);
+    setUsername(username);
   };
 
   const handleCloseTrainerDetailsPopup = () => {
@@ -45,11 +47,19 @@ const AdminManageTrainerPage = () => {
     setIsTrainerDetailsPopupOpen(false);
   };
 
-  const handleOpenTrainerActivityPopup = (index, id, availability) => {
+  const handleOpenTrainerActivityPopup = (
+    index,
+    id,
+    fullname,
+    username,
+    availability
+  ) => {
     setIsTrainerActivityPopupOpen(true);
     setPopupIndex(index);
     setAvailability(availability);
     setSelectedId(id);
+    setFullname(fullname);
+    setUsername(username);
   };
 
   const handleCloseTrainerActivityPopup = () => {
@@ -74,7 +84,9 @@ const AdminManageTrainerPage = () => {
     setIsAddTrainerPopupOpen(false);
   };
 
-  const handleOpenTrainerScheduleCalendar = () => {
+  const handleOpenTrainerScheduleCalendar = (id, fullname) => {
+    setSelectedId(id);
+    setFullname(fullname);
     setIsTrainerScheduleCalendarOpen(true);
   };
 
@@ -82,11 +94,105 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  return (trainer_data !== null) | (trainer_data.trainers !== null) ? (
+  const handleOpenDeleteTrainerPopup = (id, fullname, username) => {
+    setSelectedId(id);
+    setFullname(fullname);
+    setUsername(username);
+    setIsDeleteTrainerPopupOpen(true);
+  };
+
+  const handleCloseDeleteTrainerPopup = () => {
+    refetch();
+    setIsDeleteTrainerPopupOpen(false);
+  };
+
+  const renderTrainerRows = () => {
+    const rows = [];
+    if (Array.isArray(data)) {
+      for (let i = 0; i < data.length; i++) {
+        const trainer = data[i];
+        rows.push(
+          <tr key={i}>
+            <td className="trainer-info-table-td">{trainer.fullname}</td>
+            <td className="trainer-info-table-td">{trainer.trainer_role}</td>
+            <td className="trainer-info-table-td">{trainer.username}</td>
+            <td className="trainer-info-table-td action-column">
+              <button
+                className="trainer-info-table-button"
+                onClick={() =>
+                  handleOpenTrainerScheduleCalendar(
+                    trainer._id,
+                    trainer.fullname
+                  )
+                }
+              >
+                View Schedule
+              </button>
+              <button
+                className="trainer-info-table-button"
+                onClick={() =>
+                  handleOpenTrainerDetailsPopup(
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username
+                  )
+                }
+              >
+                Edit Details
+              </button>
+              <button
+                data-cy="trainer-activity-button"
+                className="trainer-info-table-button"
+                onClick={() =>
+                  handleOpenTrainerActivityPopup(
+                    i,
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username,
+                    trainer.availability
+                  )
+                }
+              >
+                {trainer.availability}
+              </button>
+              <button
+                data-cy="delete-trainer-button"
+                className="delete-trainer-button"
+                onClick={() =>
+                  handleOpenDeleteTrainerPopup(
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username
+                  )
+                }
+              >
+                Delete Trainer
+              </button>
+            </td>
+          </tr>
+        );
+      }
+    }
+    return rows;
+  };
+
+  return (
     <>
+      {isAddTrainerPopupOpen && (
+        <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
+      )}
+      {isTrainerScheduleCalendarOpen && (
+        <TrainerScheduleCalendar
+          trainerId={selectedId}
+          fullname={fullname}
+          onClose={handleCloseTrainerScheduleCalendar}
+        />
+      )}
       {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
           trainerId={selectedId}
+          fullname={fullname}
+          username={username}
           onClose={handleCloseTrainerDetailsPopup}
         />
       )}
@@ -96,14 +202,18 @@ const AdminManageTrainerPage = () => {
           onActivityChange={handleActivityChange}
           index={popupIndex}
           trainerId={selectedId}
+          fullname={fullname}
+          username={username}
           availability={availability}
         />
       )}
-      {isAddTrainerPopupOpen && (
-        <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
-      )}
-      {isTrainerScheduleCalendarOpen && (
-        <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
+      {isDeleteTrainerPopupOpen && (
+        <DeleteTrainerPopup
+          onClose={handleCloseDeleteTrainerPopup}
+          trainerId={selectedId}
+          fullname={fullname}
+          username={username}
+        />
       )}
       <div className="admin-manage-trainer-page">
         <div className="top-panel">
@@ -121,66 +231,27 @@ const AdminManageTrainerPage = () => {
           </div>
           <div className="manage-trainer-panel-outer">
             <div className="manage-trainer-panel">
-              <table className="trainer-info-table">
+              <table
+                data-cy="trainer-info-table"
+                className="trainer-info-table"
+              >
                 <thead>
                   <tr>
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
-                    <th className="trainer-info-table-th">Actions</th>
+                    <th className="trainer-info-table-th action-column">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {trainer_data.map((trainer, index) => (
-                    <tr key={index}>
-                      <td className="trainer-info-table-td">
-                        {trainer.fullname}
-                      </td>
-                      <td className="trainer-info-table-td">
-                        {trainer.trainer_role}
-                      </td>
-                      <td className="trainer-info-table-td">
-                        {trainer.username}
-                      </td>
-                      <td className="trainer-info-table-td">
-                        <button
-                          className="trainer-info-table-button"
-                          onClick={handleOpenTrainerScheduleCalendar}
-                        >
-                          View Schedule
-                        </button>
-                        <button
-                          className="trainer-info-table-button"
-                          onClick={() =>
-                            handleOpenTrainerDetailsPopup(trainer._id)
-                          }
-                        >
-                          Edit Details
-                        </button>
-                        <button
-                          className="trainer-info-table-button"
-                          onClick={() =>
-                            handleOpenTrainerActivityPopup(
-                              index,
-                              trainer._id,
-                              trainer.availability.toString()
-                            )
-                          }
-                        >
-                          {trainer.availability.toString()}
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+                <tbody>{renderTrainerRows()}</tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
     </>
-  ) : (
-    <div>Calculating all data... This may take awhile...</div>
   );
 };
 

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/adminworkshoprequestpagepopups.css';
 import 'boxicons/css/boxicons.min.css';
 
 const AllocateTrainerPopup = ({ onClose }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
+    const popupRef = useRef(null);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -18,8 +19,21 @@ const AllocateTrainerPopup = ({ onClose }) => {
         setSelectedItems(newSelectedItems);
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [popupRef, onClose]);
+
     return (
-        <div className="allocate-trainer-popup open-allocate-trainer-popup">
+        <div ref={popupRef} data-cy="allocate-trainer-popup" className="allocate-trainer-popup open-allocate-trainer-popup">
             <h2>Assign Trainer</h2>
             <div className="select-menu-container">
                 <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
@@ -51,7 +65,7 @@ const AllocateTrainerPopup = ({ onClose }) => {
             </div>
             <div className="popup-buttons">
                 <button className="submit-button" type="button" onClick={onClose}>Submit</button>
-                <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
+                <button data-cy="allocate-trainer-cancel-button" className="cancel-button" type="button" onClick={onClose}>Cancel</button>
             </div>
         </div>
     );

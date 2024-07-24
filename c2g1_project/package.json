@@ -11,7 +11,9 @@
     "boxicons": "^2.1.4",
     "emailjs": "^4.0.3",
     "emailjs-com": "^3.2.0",
+    "express": "^4.19.2",
     "framer-motion": "^11.2.12",
+    "jest": "^27.5.1",
     "json-server": "^1.0.0-beta.1",
     "npx": "^3.0.0",
     "react": "^18.3.1",
@@ -24,12 +26,14 @@
     "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "switch": "^0.0.0",
-    "web-vitals": "^2.1.4"
+    "testing-library": "^0.0.2",
+    "web-vitals": "^2.1.4",
+    "ws": "^8.18.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,11 +55,17 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
     "@cypress/react18": "^2.0.1",
     "@cypress/webpack-dev-server": "^3.10.0",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/react": "^16.0.0",
+    "babel-jest": "^29.7.0",
     "cypress": "^13.13.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-mock-axios": "^4.7.3",
     "react-router-dom": "^6.23.1",
     "supertest": "^7.0.0"
   }

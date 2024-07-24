@@ -9,6 +9,7 @@ import ws5img from "../images/ws5img.png";
 import ws6img from "../images/ws6img.png";
 import ws7img from "../images/ws7img.png";
 import ws8img from "../images/ws8img.png";
+import Footer from "./Footer";
 
 const OurWorkshopPage = () => {
   return (
@@ -139,6 +140,7 @@ const OurWorkshopPage = () => {
           <div></div>
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 };

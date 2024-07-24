@@ -6,15 +6,12 @@ import Navbar from "../components/NavBar.js";
 import useAxiosPost from "../api/useAxiosPost.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
-
-// Running Json Server
-// npx json-server --watch db.json --port 8000
+import Footer from "../components/Footer.js";
 
 const TrainerLoginPage = () => {
   const nav = useNavigate();
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
-  const [move, setMove] = useState(false);
 
   const handleSuccess = (data) => {
     nav("/TrainerHomePage");
@@ -52,6 +49,7 @@ const TrainerLoginPage = () => {
     }
     return result;
   };
+
   const handleTrainerLoginPage = () => {
     nav("/TrainerLoginPage");
   };
@@ -68,9 +66,8 @@ const TrainerLoginPage = () => {
   return (
     <>
       <Navbar />
-      <div className="login_page">
-        <motion.div className="login_buttons">
-          {/* <img src={dellacademylogo} className="dell_logo" alt="logo"></img> */}
+      <motion.div className="login_page">
+        <motion.div className="login_card">
           <img src={trainerimg} className="trainer-img" alt="trainerimg"></img>
           <h5 className="role">Pick your role: </h5>{" "}
           <motion.button
@@ -100,9 +97,6 @@ const TrainerLoginPage = () => {
           <form onSubmit={ProceedLogin} className="login_form">
             <div className="card-body">
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Username"
                   value={username}
@@ -112,16 +106,12 @@ const TrainerLoginPage = () => {
                 />
               </div>
               <div className="form-group">
-                <label>
-                  <span className="errMsg"></span>
-                </label>
                 <input
                   placeholder="Password"
                   value={password}
                   onChange={(e) => passwordupdate(e.target.value)}
                   className="password"
                   type="password"
-                  // this will print out ..... when typing
                 />
               </div>
             </div>
@@ -141,7 +131,8 @@ const TrainerLoginPage = () => {
             </div>
           </form>
         </motion.div>
-      </div>
+      </motion.div>
+      <Footer />
     </>
   );
 };

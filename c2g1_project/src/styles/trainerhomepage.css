@@ -17,7 +17,6 @@ body {
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr;
   padding: 20px;
-  background-image: url("../images/dashboardbackground.jpg");
   justify-content: center;
 
 
@@ -32,7 +31,6 @@ body {
 
 .top-panel {
   grid-area: top-panel;
-  background-image: url("../images/dashboardbackground.jpg");
   width: 10px;
 }
 
@@ -70,10 +68,27 @@ body {
   align-items: center;
 }
 
+.workshop-calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  justify-content: center; /* Centers items vertically */
+  max-width: 1000px;
+  width: 500px;
+  height: 400px;
+  background: #e3f2fd;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
 .workshop-table-title {
   grid-row-start: 1;
   padding: 5px;
   color: #0672cb;
+  margin-bottom: 10px;
 }
 .workshopstoday {
   grid-row-start: 2;
@@ -161,7 +176,7 @@ body {
   color: #fff;
 }
 
-/* CSS FOR RIGHT SIDE OF ADMIN HOME PAGE --------------------------------------------------------------------- */
+/* CSS FOR RIGHT SIDE OF TRAINER HOME PAGE --------------------------------------------------------------------- */
 
 .right-column {
   display: flex;
@@ -172,7 +187,8 @@ body {
 }
 
 .workshop-stats {
-  grid-row-start: 1;
+    margin-top: 20px;
+  grid-row-start: 0;
   color: #0672cb;
 }
 
@@ -182,27 +198,30 @@ body {
   margin-bottom: 10px;
 }
 .admin-graphs {
-  max-width: 1000px;
-  width: 900px;
-  height: 700px;
-  background-color: #e3f2fd;
-  color: #0672cb;
-  border-radius: 20px;
-  /* padding: 10px; */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 50px;
+    max-width: 1000px;
+    width: 900px;
+    height: 700px;
+    background-color: #e3f2fd;
+    color: #0672cb;
+    border-radius: 20px;
+    /* padding: 10px; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 50px;
+    padding: 10px;
 }
 
-/* admin home page graphs and buttons design*/
+/* trainer home page graphs and buttons design*/
 
+.update-hrs-button:hover,
 .graph_buttons:hover {
   background-color: #0672cb;
   color: white;
 }
 
+.update-hrs-button,
 .graph_buttons {
   background-color: #80c7fb;
   color: black;
@@ -210,7 +229,7 @@ body {
   height: 50px;
   border-radius: 25px;
   border-width: 0px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   padding: 10px 10px;
   transition: background-color 500ms;
@@ -225,8 +244,8 @@ body {
 .work_hours_row {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    align-items: right;
     padding: 5px;
 }
 
@@ -249,3 +268,51 @@ body {
     height: 70px;
     resize: none;
 }
+
+.scrollable_list {
+    padding: 10px;
+    max-height: 1000px;
+    overflow-y: auto; 
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.workshop_detail_panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    justify-content: space-between;
+    border-radius: 5px;
+    border-width: 0px;
+    background-color: #80c7fb;
+    height: 50px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 0px;
+    align-items: center;
+}
+
+.workshop_detail_panel span {
+  margin-right: 10px;
+}
+
+.workshop_detail_panel:hover {
+    background-color: #669fc9;
+}
+
+.workshop-stats-title {
+    padding: 10px;
+}
+
+.filter {
+  padding: 10px;
+}
+
+.filter span {
+  margin-right: 10px;
+}
+
+.filter input {
+  margin-right: 20px;
+}
+

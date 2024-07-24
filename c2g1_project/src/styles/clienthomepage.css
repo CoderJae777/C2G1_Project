@@ -1,6 +1,7 @@
 /* LAYER 1 */
 .client-home-page {
-  background-image: url("../images/dashboardbackground.jpg");
+  /* background-image: url("../images/dashboardbackground.jpg"); */
+  background-color: #e3f2fd;
   display: grid;
   grid-template-columns: 500px 1fr;
   width: 100%;
@@ -16,16 +17,27 @@
 }
 .client-home-page-right {
   grid-column-start: 2;
+  width: 90%;
+  height: 52%;
   margin: 30px;
+  background: white;
+  color: black;
+  border-radius: 20px;
+  padding: 20px;
+  color: #0672cb;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  transition: background-color 500ms, box-shadow 500ms;
 }
 
 /* LAYER 3 */
 .client-home-page-left-top,
 .client-home-page-left-bottom {
   width: 90%;
-  height: 20%;
+  height: 25%;
   margin: 30px;
-  background: #e3f2fd;
+  background: white;
   color: black;
   border-radius: 20px;
   padding: 20px;
@@ -34,10 +46,25 @@
   flex-direction: column;
   justify-content: flex-start; /* Aligns the content at the top */
   align-items: center;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  transition: background-color 500ms, box-shadow 500ms;
 }
 
 .client-home-page-left-bottom {
   grid-row-start: 2;
+}
+
+.workshop-request-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.workshop-request-table th,
+.workshop-request-table td {
+  border: none;
+  padding: 10px;
+  text-align: center;
 }
 
 .ws_req_form_heading {
@@ -69,7 +96,8 @@
 }
 
 .ws_req_form_group input,
-.ws_req_form_group textarea {
+.ws_req_form_group textarea,
+.ws_req_form_group select {
   width: 90%;
   padding: 10px;
   font-size: 16px;
@@ -77,13 +105,21 @@
   border-radius: 5px;
   box-sizing: border-box;
   margin: 10px 0;
+  text-align: center; /* Center text and placeholder */
 }
 
 .ws_req_form_group input:focus,
 .ws_req_form_group textarea:focus,
+.ws_req_form_group select:focus,
 .dropdown:focus {
   border-color: #28abf1;
   outline: none;
+}
+
+.ws_req_form_group input::placeholder,
+.ws_req_form_group textarea::placeholder,
+.ws_req_form_group select::placeholder {
+  text-align: center; /* Center placeholder text */
 }
 
 .ws_req_form_workshop_id {
@@ -131,17 +167,41 @@
   grid-column-start: 1;
 }
 
-.ws_req_form_location {
+.ws_req_form_country {
   grid-row-start: 6;
   grid-column-start: 2;
 }
 
+.ws_req_form_venue {
+  grid-row-start: 7;
+  grid-column-start: 1;
+}
+
+.ws_req_form_workshop_type {
+  grid-row-start: 7;
+  grid-column-start: 2;
+}
+
+.ws_req_form_start_date {
+  grid-row-start: 8;
+  grid-column-start: 1;
+  z-index: 1;
+}
+
+.ws_req_form_end_date {
+  grid-row-start: 8;
+  grid-column-start: 2;
+  z-index: 1;
+}
+
 .ws_req_form_message {
-  grid-column: 1;
+  grid-row-start: 9;
+  grid-column: 1 / span 2; /* Adjust to span across both columns */
 }
 
 .ws_req_form_button {
-  grid-column: 2;
+  grid-row-start: 10;
+  grid-column: 1 / span 2; /* Adjust to span across both columns */
   display: flex;
   justify-content: center; /* Centralizes the submit button */
   margin-top: 20px; /* Adds some space before the button */
@@ -162,7 +222,7 @@
   margin-left: 20px;
 }
 
-.ws_req_submit_button {
+.ws_req_submit_button, .refresh_button, .acknowledge_button {
   background-color: #5cdb5c;
   color: white;
   width: 150px;
@@ -174,6 +234,7 @@
   font-weight: bold;
   transition: background-color 1000ms;
   border-color: black;
+  margin-right: 20px;
 }
 
 .popwsreqbut {
@@ -189,7 +250,9 @@
   transition: background-color 1000ms;
   border-color: black;
   margin-top: 20px;
-} /* Summary Modal */
+}
+
+/* Summary Modal */
 .summary-modal {
   position: fixed;
   top: 0;
@@ -200,6 +263,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .summary-content {
@@ -263,4 +327,15 @@
   border-radius: 5px;
   box-sizing: border-box;
   margin: 10px 0;
+}
+
+/* Show placeholder on hover */
+.ws_req_form_control:hover::placeholder {
+  color: #aaa; /* Adjust the color as needed */
+}
+
+/* Style for readonly fields */
+.ws_req_form_control[readonly] {
+  background-color: #f5f5f5; /* Light grey background for readonly fields */
+  cursor: not-allowed;
 }

@@ -18,9 +18,11 @@ import ClientWorkshopPage from "./pages_client/ClientWorkshopPage";
 import ProfilePage from "./components/ProfilePage";
 import ScrollToTop from "./components/ScrollToTop";
 import TrainerWorkshopPage from "./pages_trainer/TrainerWorkshopPage";
+import OurTrainerPage from "./pages_home/OurTrainerPage";
+import TrainerViewTrainerPage from "./pages_trainer/TrainerViewTrainerPage";
+import ClientSettingsPage from "./pages_client/ClientSettingsPage";
 
 function App() {
-
   return (
     <Router>
       <div className="App">
@@ -72,6 +74,13 @@ function App() {
             path="/TrainerWorkshopPage"
             element={<TrainerWorkshopPage />}
           />
+          <Route exact path="/OurTrainerPage" element={<OurTrainerPage />} />
+          <Route
+            exact
+            path="/TrainerViewTrainerPage"
+            element={<TrainerViewTrainerPage />}
+          />
+          <Route exact path="/ClientSettingsPage" element={<ClientSettingsPage />} />
         </Routes>
       </div>
     </Router>
