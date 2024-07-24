@@ -30,6 +30,7 @@ const endpoints = {
   trainer: {
     getAllocatedWorkshopRequests: "/auth/allocatedworkshops",
     getSingleWorkshopRequest: "/workshoprequest/",
+    getTeammates: "/auth/getteammates",
     updateUtilisation: "/auth/updateutilisation/",
   },
   notif:{
