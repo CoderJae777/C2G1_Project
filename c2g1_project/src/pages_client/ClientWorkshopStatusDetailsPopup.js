@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../styles/adminworkshoprequestpagepopups.css';
+import '../styles/clienthomepagepopups.css';
 
 const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
     const [workshopDetails, setWorkshopDetails] = useState(workshop);
@@ -23,7 +23,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
       }, [popupRef, onClose]);
 
     return (
-        <div ref={popupRef} data-cy="wsrqd-popup" className="workshop-request-details-popup open-workshop-request-details-popup">
+        <div ref={popupRef} data-cy="clwsrqd-popup" className="cl-workshop-request-details-popup open-cl-workshop-request-details-popup">
             <h2>Workshop Request Details</h2>
             <div className="workshop-details-content">
                 <table className="details-table">
@@ -92,7 +92,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                 </table>
             </div>
             <div className="popup-buttons">
-                <button data-cy="wsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
+                <button data-cy="clwsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
             </div>
         </div>
     );

@@ -25,7 +25,7 @@
     transition: transform 0.4s, top 0.4s;
 }
 
-.workshop-request-details-popup,
+.open-workshop-request-details-popup,
 .open-approve-workshop-request-popup,
 .open-allocate-trainer-popup,
 .open-reject-workshop-request-popup {

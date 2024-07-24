@@ -4,6 +4,7 @@ import "boxicons/css/boxicons.min.css";
 import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import ClientWorkshopStatusDetailsPopup from "./ClientWorkshopStatusDetailsPopup";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import useAxiosGet from "../api/useAxiosGet.jsx";
@@ -12,6 +13,7 @@ import { endpoints } from "../config/endpoints.js";
 import useAxiosPost from "../api/useAxiosPost.jsx";
 
 const ClientHomePage = () => {
+  const [isClientWorkshopStatusDetailsPopupOpen, setIsClientWorkshopStatusDetailsPopupOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -46,6 +48,16 @@ const ClientHomePage = () => {
   //   [],
   //   false
   // );
+
+  const handleOpenClientWorkshopStatusDetailsPopup = (request) => {
+    setSelectedWorkshop(request);
+    setIsClientWorkshopStatusDetailsPopupOpen(true);
+  };
+
+  const handleCloseClientWorkshopStatusDetailsPopup = () => {
+    setIsClientWorkshopStatusDetailsPopupOpen(false);
+    setSelectedWorkshop(null);
+  };
 
   const handleRefresh = () => {
     pendingWorkshops.refetch();
@@ -191,6 +203,12 @@ const ClientHomePage = () => {
       {/* Summary Modal */}
       {showSummary && (
         <div className="summary-modal">
+          {isClientWorkshopStatusDetailsPopupOpen && selectedWorkshop && (
+            <ClientWorkshopStatusDetailsPopup
+              request={selectedWorkshop}
+              onClose={handleCloseClientWorkshopStatusDetailsPopup}
+            />
+          )}
           <div className="summary-content">
             <h2>Summary of Workshop Request</h2>
             <p>
@@ -326,45 +344,22 @@ const ClientHomePage = () => {
           <div className="client-home-page-left-bottom">
             <div className="view-req-st">
               <h4 className="ws_req_form_heading">View Request Status</h4>
-              {pendingWorkshops.data.workshop_requests && pendingWorkshops.data.workshop_requests.length !== 0 && <div>
-                <table
-                  data-cy="workshop-request-table"
-                  className="workshop-request-table"
-                >
-                  <thead>
-                    <tr>
-                      <th>Workshop Name</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pendingWorkshops.data.workshop_requests &&
-                      pendingWorkshops.data.workshop_requests.map(
-                        (request, index) => (
-                          <tr key={index} className="workshop-request-box">
-                            <td>{request.company + "_" + request.name}</td>
-                            <td>{request.status}</td>
-                          </tr>
-                        )
-                      )}
-                  </tbody>
-                </table>
-                <motion.button
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="refresh_button"
-                  onClick={handleRefresh}
-                >
-                  Refresh
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="acknowledge_button"
-                >
-                  Acknowledged
-                </motion.button>
-              </div>}
+              {pendingWorkshops.data.workshop_requests && pendingWorkshops.data.workshop_requests.length !== 0 && (
+                <div className="scrollable-list">
+                  <ul>
+                    {pendingWorkshops.data.workshop_requests.map((request, index) => (
+                      <div key={index}>
+                        <button className="workshop-detail-panel" 
+                          onClick={() => handleOpenClientWorkshopStatusDetailsPopup(request)}
+                        >
+                          <span>{request.company + "_" + request.name}</span>
+                          <span>Status: {request.status}</span>
+                        </button>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>
