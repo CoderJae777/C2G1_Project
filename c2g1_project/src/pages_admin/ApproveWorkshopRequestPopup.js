@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/adminworkshoprequestpagepopups.css";
 import "boxicons/css/boxicons.min.css";
 import { config } from "../config/config";
@@ -20,6 +20,8 @@ const ApproveWorkshopRequestPopup = ({
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const popupRef = useRef(null);
 
   const handleItemClick = (item) => {
     const newSelectedItems = selectedItems.includes(item)
@@ -60,8 +62,22 @@ const ApproveWorkshopRequestPopup = ({
     handleError
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [popupRef, onClose]);
+
   return (
     <div
+      ref={popupRef}
       data-cy="approve-wsrq-popup"
       className="approve-workshop-request-popup open-approve-workshop-request-popup"
     >
