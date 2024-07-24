@@ -53,6 +53,7 @@ const RejectWorkshopRequestPopup = ({ selectedId, onClose }) => {
       className="reject-workshop-request-popup open-reject-workshop-request-popup"
     >
       <h2>Reject Workshop</h2>
+      <p>Workshop: {selectedId}</p> 
       <p>Please provide a reason for rejecting the workshop request.</p>
       <textarea
         className="reject-reason-input"

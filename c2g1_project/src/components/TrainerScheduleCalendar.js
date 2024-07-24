@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef  } from 'react';
 import '../styles/trainerschedulecalendar.css';
 import 'boxicons/css/boxicons.min.css';
 
-const TrainerScheduleCalendar = ({ onClose }) => {
+const TrainerScheduleCalendar = ({ onClose, fullname, trainerId }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [date, setDate] = useState(new Date());
     const [currYear, setCurrYear] = useState(date.getFullYear());
@@ -69,26 +69,32 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     return (
         <div ref={popupRef} data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
             <header>
-                <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
-                <div className="icons">
-                    {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
-                    <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
-                    <span id="prev" className="arrow-left">
-                        <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
-                            <box-icon name='chevron-left'></box-icon>
-                        </div>
-                    </span>
-                    <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
-                        <div className="fa-solid fa-chevron-right">
-                            <box-icon name='chevron-right'></box-icon>
-                        </div>
-                    </span>
+                <div className="trainer-info-container">
+                    <div className="trainer-info">
+                        <p>Trainer: {fullname}</p>
+                        {/* <p>Trainer ID: {trainerId}</p> */}
+                    </div>
                     <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
                         <div className="fa-solid fa-x x-icon">
-                            <box-icon name='x' ></box-icon>
+                            <box-icon name='x'></box-icon>
                         </div>
                     </span>
                 </div>
+                <div className='title-row'>
+                    <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
+                    <div className="icons">
+                        <span id="prev" className="arrow-left">
+                            <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
+                                <box-icon name='chevron-left'></box-icon>
+                            </div>
+                        </span>
+                        <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
+                            <div className="fa-solid fa-chevron-right">
+                                <box-icon name='chevron-right'></box-icon>
+                            </div>
+                        </span>
+                    </div>
+                </div>    
             </header>
             <div className="calendar">
                 <ul className="weeks">
