@@ -12,8 +12,10 @@ const TrainerViewTrainerPage = () => {
   const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
     useState(false);
 
+  const verifyUser = useAxiosGet(config.base_url + endpoints.verify);
+
   const { data, loading, error, setBody, refetch } = useAxiosGet(
-    config.base_url + endpoints.admin.getTrainers,
+    config.base_url + endpoints.trainer.getTeammates,
     {},
     [],
     true
@@ -27,32 +29,10 @@ const TrainerViewTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  const renderTrainerRows = () => {
-    const rows = [];
-    if (Array.isArray(data)) {
-      for (let i = 0; i < data.length; i++) {
-        const trainer = data[i];
-        rows.push(
-          <tr key={i}>
-            <td className="trainer-info-table-td">{trainer.fullname}</td>
-            <td className="trainer-info-table-td">{trainer.trainer_role}</td>
-            <td className="trainer-info-table-td">{trainer.username}</td>
-            <td className="trainer-info-table-td action-column">
-              <button
-                className="trainer-info-table-button"
-                onClick={handleOpenTrainerScheduleCalendar}
-              >
-                View Schedule
-              </button>
-            </td>
-          </tr>
-        );
-      }
-    }
-    return rows;
-  };
+  data.trainer_workshops &&
+    data.trainer_workshops.map((request) => console.log(request.company));
 
-  return (
+  return verifyUser !== null && verifyUser.data.role === "trainer" ? (
     <>
       {isTrainerScheduleCalendarOpen && (
         <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
@@ -67,17 +47,51 @@ const TrainerViewTrainerPage = () => {
           </div>
           <div className="manage-trainer-panel-outer">
             <div className="manage-trainer-panel">
-              <table data-cy="trainer-info-table" className="trainer-info-table">
+              <table
+                data-cy="trainer-info-table"
+                className="trainer-info-table"
+              >
                 <thead>
                   <tr>
+                  <th className="trainer-info-table-th">Request Name</th>
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
-                    <th className="trainer-info-table-th action-column">Actions</th>
+                    <th className="trainer-info-table-th action-column">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {renderTrainerRows()}
+                  {data.trainer_workshops &&
+                    data.trainer_workshops.map((request) =>
+                      request.trainers
+                        .filter((trainer) => trainer._id !== verifyUser.data.id)
+                        .map((trainer, index) => (
+                          <tr key={index}>
+                            <td className="trainer-info-table-td">
+                              {request.company + "_" + request.name}
+                            </td>
+                            <td className="trainer-info-table-td">
+                              {trainer.fullname}
+                            </td>
+                            <td className="trainer-info-table-td">
+                              {trainer.trainer_role}
+                            </td>
+                            <td className="trainer-info-table-td">
+                              {trainer.username}
+                            </td>
+                            <td className="trainer-info-table-td">
+                              <button
+                                className="trainer-info-table-button"
+                                onClick={handleOpenTrainerScheduleCalendar}
+                              >
+                                View Schedule
+                              </button>
+                            </td>
+                          </tr>
+                        ))
+                    )}
                 </tbody>
               </table>
             </div>
@@ -85,6 +99,8 @@ const TrainerViewTrainerPage = () => {
         </div>
       </div>
     </>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 
