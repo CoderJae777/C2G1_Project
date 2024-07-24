@@ -32,6 +32,13 @@ const ClientHomePage = () => {
 
   const verify = useAxiosGet(config.base_url + endpoints.verify);
 
+  const pendingWorkshops = useAxiosGet(
+    config.base_url + endpoints.client.getPendingWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
   // const wsnotiffobject = useAxiosGet(
   //   config.base_url + endpoints.notif.getAllAdminNotificiation,
   //   //    "localhost:5001/notif/getAllAdminNotification",
@@ -40,28 +47,12 @@ const ClientHomePage = () => {
   //   false
   // );
 
-  const {
-    data: data1,
-    loading: loading1,
-    error: error1,
-    setUrl: setUrl1,
-    setParams: setParams1,
-    refetch: refetch1,
-  } = useAxiosGet(
-    config.base_url + endpoints.admin.getWorkshopRequests,
-    {},
-    [],
-    true
-  );
-
   const handleRefresh = () => {
-    refetch1();
-    console.log(data1);
+    pendingWorkshops.refetch();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Show summary modal
     setShowSummary(true);
   };
@@ -140,7 +131,6 @@ const ClientHomePage = () => {
     //     .catch((error) => {
     //       console.error("Error sending email:", error);
     //     });
-
     setShowSummary(false);
   };
 
@@ -175,6 +165,7 @@ const ClientHomePage = () => {
     setShowSummary(false);
     clearForm();
     alert("Workshop request created successfully");
+    pendingWorkshops.refetch();
   };
 
   const onError = (error) => {
@@ -335,21 +326,45 @@ const ClientHomePage = () => {
           <div className="client-home-page-left-bottom">
             <div className="view-req-st">
               <h4 className="ws_req_form_heading">View Request Status</h4>
-              <motion.button
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                className="refresh_button"
-                onClick={handleRefresh}
-              >
-                Refresh
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                className="acknowledge_button"
-              >
-                Acknowledged
-              </motion.button>{" "}
+              {pendingWorkshops.data.workshop_requests && pendingWorkshops.data.workshop_requests.length !== 0 && <div>
+                <table
+                  data-cy="workshop-request-table"
+                  className="workshop-request-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>Workshop Name</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pendingWorkshops.data.workshop_requests &&
+                      pendingWorkshops.data.workshop_requests.map(
+                        (request, index) => (
+                          <tr key={index} className="workshop-request-box">
+                            <td>{request.company + "_" + request.name}</td>
+                            <td>{request.status}</td>
+                          </tr>
+                        )
+                      )}
+                  </tbody>
+                </table>
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="refresh_button"
+                  onClick={handleRefresh}
+                >
+                  Refresh
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="acknowledge_button"
+                >
+                  Acknowledged
+                </motion.button>
+              </div>}
             </div>
           </div>
         </div>

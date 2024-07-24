@@ -25,6 +25,7 @@ const endpoints = {
   },
   client: {
     getAvailableWorkshopData:"/workshopdata/available",
+    getPendingWorkshopRequests: "/auth/pendingworkshops",
     createWorkshop: "/workshoprequest",
   },
   trainer: {
