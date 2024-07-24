@@ -13,7 +13,10 @@ import { endpoints } from "../config/endpoints.js";
 import useAxiosPost from "../api/useAxiosPost.jsx";
 
 const ClientHomePage = () => {
-  const [isClientWorkshopStatusDetailsPopupOpen, setIsClientWorkshopStatusDetailsPopupOpen] = useState(false);
+  const [
+    isClientWorkshopStatusDetailsPopupOpen,
+    setIsClientWorkshopStatusDetailsPopupOpen,
+  ] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -29,6 +32,8 @@ const ClientHomePage = () => {
   const [endDate, setEndDate] = useState(null);
   const [venue, setVenue] = useState("");
   const [workshopType, setWorkshopType] = useState("");
+  const [selectedWorkshop, setSelectedWorkshop] = useState("");
+  const [selectedWorkshopStatus, setSelectedWorkshopStatus] = useState("");
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
@@ -50,13 +55,13 @@ const ClientHomePage = () => {
   // );
 
   const handleOpenClientWorkshopStatusDetailsPopup = (request) => {
-    setSelectedWorkshop(request);
+    setSelectedWorkshopStatus(request);
     setIsClientWorkshopStatusDetailsPopupOpen(true);
   };
 
   const handleCloseClientWorkshopStatusDetailsPopup = () => {
     setIsClientWorkshopStatusDetailsPopupOpen(false);
-    setSelectedWorkshop(null);
+    setSelectedWorkshopStatus(null);
   };
 
   const handleRefresh = () => {
@@ -151,8 +156,6 @@ const ClientHomePage = () => {
     setShowSummary(false);
   };
 
-  const [selectedWorkshop, setSelectedWorkshop] = useState("");
-
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.client.getAvailableWorkshopData,
     {},
@@ -199,16 +202,15 @@ const ClientHomePage = () => {
   return verify.data !== null && verify.data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
-
+      {isClientWorkshopStatusDetailsPopupOpen && (
+        <ClientWorkshopStatusDetailsPopup
+          request={selectedWorkshopStatus}
+          onClose={handleCloseClientWorkshopStatusDetailsPopup}
+        />
+      )}
       {/* Summary Modal */}
       {showSummary && (
         <div className="summary-modal">
-          {isClientWorkshopStatusDetailsPopupOpen && selectedWorkshop && (
-            <ClientWorkshopStatusDetailsPopup
-              request={selectedWorkshop}
-              onClose={handleCloseClientWorkshopStatusDetailsPopup}
-            />
-          )}
           <div className="summary-content">
             <h2>Summary of Workshop Request</h2>
             <p>
@@ -344,22 +346,32 @@ const ClientHomePage = () => {
           <div className="client-home-page-left-bottom">
             <div className="view-req-st">
               <h4 className="ws_req_form_heading">View Request Status</h4>
-              {pendingWorkshops.data.workshop_requests && pendingWorkshops.data.workshop_requests.length !== 0 && (
-                <div className="scrollable-list">
-                  <ul>
-                    {pendingWorkshops.data.workshop_requests.map((request, index) => (
-                      <div key={index}>
-                        <button className="workshop-detail-panel" 
-                          onClick={() => handleOpenClientWorkshopStatusDetailsPopup(request)}
-                        >
-                          <span>{request.company + "_" + request.name}</span>
-                          <span>Status: {request.status}</span>
-                        </button>
-                      </div>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {pendingWorkshops.data.workshop_requests &&
+                pendingWorkshops.data.workshop_requests.length !== 0 && (
+                  <div className="scrollable-list">
+                    <ul>
+                      {pendingWorkshops.data.workshop_requests.map(
+                        (request, index) => (
+                          <div key={index}>
+                            <button
+                              className="workshop-detail-panel"
+                              onClick={() =>
+                                handleOpenClientWorkshopStatusDetailsPopup(
+                                  request
+                                )
+                              }
+                            >
+                              <span>
+                                {request.company + "_" + request.name}
+                              </span>
+                              <span>Status: {request.status}</span>
+                            </button>
+                          </div>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
             </div>
           </div>
         </div>
