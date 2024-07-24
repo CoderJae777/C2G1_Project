@@ -48,7 +48,7 @@ const AdminHomePage = () => {
         fill="black"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
-        style={{ fontSize: "18px", fontWeight: "bold" }}
+        style={{ fontSize: "15px", fontWeight: "bold" }}
       >
         {`${name}: ${(percent * 100).toFixed(0)}%`}
       </text>
@@ -85,6 +85,7 @@ const AdminHomePage = () => {
     { name: "Pending", value: 13 },
   ];
 
+  // 2022 AND 2023 HAS NO PENDING BECAUSE IT DOESNT MAKE SENSE! 
   const yearPieData = {
     2022: [
       { name: "Workshops Accepted", value: 89 },
@@ -296,10 +297,11 @@ const AdminHomePage = () => {
         <div className="column">
           <div className="admin-home-page-title"></div>
 
+          {/* ⚠️⚠️⚠️ PIE CHART STARTS HERE ⚠️⚠️⚠️ */}
           <div className="chart-container">
             <div className="chart-title">Breakdown of Workshop Requests</div>
             <div className="year-buttons-container">
-              {["total", "2022", "2023", "2024"].map((year) => (
+              {["2022", "2023", "2024", "total"].map((year) => (
                 <button
                   key={year}
                   className={`year-button ${
@@ -323,7 +325,7 @@ const AdminHomePage = () => {
                   cy={150}
                   labelLine={false}
                   label={renderCustomLabel}
-                  outerRadius={125}
+                  outerRadius={130}
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -344,7 +346,7 @@ const AdminHomePage = () => {
                   fill="black"
                   textAnchor="middle"
                   dominantBaseline="central"
-                  style={{ fontSize: "16px", fontWeight: "bold" }}
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
                 >
                   Total Requests:{" "}
                   {(selectedYear === "total"
@@ -356,6 +358,7 @@ const AdminHomePage = () => {
             </div>
           </div>
 
+          {/* ⚠️⚠️⚠️ PIPELINE BAR GRAPHS STARTS HERE ⚠️⚠️⚠️ */}
           <div className="chart-container">
             <div className="chart-title">
               Total Pipeline (USD) Associated with the Client/ Workshop
@@ -387,6 +390,7 @@ const AdminHomePage = () => {
           </div>
         </div>
 
+        {/* ⚠️⚠️⚠️ LINE GRAPHS STARTS HERE ⚠️⚠️⚠️ */}
         <div className="column-right">
           <div className="chart-container">
             <div className="chart-title">{workshopGraphsTitle}</div>
@@ -492,6 +496,7 @@ const AdminHomePage = () => {
             </LineChart>
           </div>
 
+          {/* ⚠️⚠️⚠️ TRAINER STATISTICS BAR GRAPHS STARTS HERE ⚠️⚠️⚠️ */}
           <div className="chart-container">
             <div className="chart-title">{trainerGraphsTitle}</div>
             <div className="buttons-container">
