@@ -21,7 +21,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test('Testing Home Page', async () => {
+test('Test : Home Page renders correctly', async () => {
   const mockNavigate = jest.fn();
   useNavigate.mockReturnValue(mockNavigate);
 
@@ -77,7 +77,7 @@ test('Testing Home Page', async () => {
   expect(companyInput).toHaveValue('Example Company');
   expect(messageInput).toHaveValue('Hello, I am interested in your workshops.');
 
-  // Simulate form submission
+// Simulate form submission
 //   userEvent.click(submitButton);
 
 //   // Ensure EmailJS send function was called with correct parameters
