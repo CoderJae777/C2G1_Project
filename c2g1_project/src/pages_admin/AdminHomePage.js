@@ -532,7 +532,7 @@ const AdminHomePage = () => {
                 Workshops Completed (Total)
               </button>
               <button className="graph-button" onClick={viewWorkshop}>
-                Workshops Completed (This Month)
+                Workshops Completed (Month)
               </button>
               <button className="graph-button" onClick={viewOngoing}>
                 Ongoing Workshops
