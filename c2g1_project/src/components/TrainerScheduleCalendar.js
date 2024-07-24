@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import '../styles/trainerschedulecalendar.css';
 import 'boxicons/css/boxicons.min.css';
 
@@ -8,6 +8,7 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     const [currYear, setCurrYear] = useState(date.getFullYear());
     const [currMonth, setCurrMonth] = useState(date.getMonth());
     const [days, setDays] = useState([]);
+    const popupRef = useRef(null);
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
@@ -15,6 +16,19 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     useEffect(() => {
         renderCalendar();
     }, [currYear, currMonth]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [popupRef, onClose]);
 
     const renderCalendar = () => {
     const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
@@ -53,42 +67,42 @@ const TrainerScheduleCalendar = ({ onClose }) => {
     };
 
     return (
-    <div data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
-    <header>
-        <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
-        <div className="icons">
-            {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
-            <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
-            <span id="prev" className="arrow-left">
-                <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
-                    <box-icon name='chevron-left'></box-icon>
+        <div ref={popupRef} data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
+            <header>
+                <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
+                <div className="icons">
+                    {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
+                    <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
+                    <span id="prev" className="arrow-left">
+                        <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
+                            <box-icon name='chevron-left'></box-icon>
+                        </div>
+                    </span>
+                    <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
+                        <div className="fa-solid fa-chevron-right">
+                            <box-icon name='chevron-right'></box-icon>
+                        </div>
+                    </span>
+                    <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
+                        <div className="fa-solid fa-x x-icon">
+                            <box-icon name='x' ></box-icon>
+                        </div>
+                    </span>
                 </div>
-            </span>
-            <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
-                <div className="fa-solid fa-chevron-right">
-                    <box-icon name='chevron-right'></box-icon>
-                </div>
-            </span>
-            <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
-                <div className="fa-solid fa-x x-icon">
-                    <box-icon name='x' ></box-icon>
-                </div>
-            </span>
+            </header>
+            <div className="calendar">
+                <ul className="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+                </ul>
+                <ul className="days">{days}</ul>
+            </div>
         </div>
-    </header>
-    <div className="calendar">
-        <ul className="weeks">
-        <li>Sun</li>
-        <li>Mon</li>
-        <li>Tue</li>
-        <li>Wed</li>
-        <li>Thu</li>
-        <li>Fri</li>
-        <li>Sat</li>
-        </ul>
-        <ul className="days">{days}</ul>
-    </div>
-    </div>
     );
 };
 

@@ -76,7 +76,7 @@ const TopLeftSideBar = ({ hasNewRequests }) => {
           </div>
           <div className="welcome">
             <span data-cy="welcome" className="logo-name">
-              Hi Dil, Welcome Back!
+              Hi, Welcome Back!
             </span>
           </div>
           <div className="date">
