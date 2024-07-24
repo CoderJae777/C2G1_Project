@@ -6,7 +6,7 @@ import useAxiosDelete from "../api/useAxiosDelete";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
-const DeleteTrainerPopup = ({ onClose, trainerId }) => {
+const DeleteTrainerPopup = ({ onClose, fullname, username, trainerId }) => {
   const popupRef = useRef(null);
 
   const handleSuccess = () => {
@@ -50,6 +50,8 @@ const DeleteTrainerPopup = ({ onClose, trainerId }) => {
       className="trainer-activity-popup open-trainer-activity-popup"
     >
       <h2>Delete Trainer</h2>
+      <p>Trainer Name: {fullname}</p>
+      <p>Trainer ID: {username}</p>
       <p>Are you sure you want to delete this trainer?</p>
       <div className="popup-buttons">
         <button

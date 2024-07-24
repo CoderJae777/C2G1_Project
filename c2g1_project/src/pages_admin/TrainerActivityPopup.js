@@ -10,6 +10,8 @@ const TrainerActivityPopup = ({
   onActivityChange,
   index,
   trainerId,
+  fullname,
+  username,
   availability,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,6 +86,8 @@ const TrainerActivityPopup = ({
   return (
     <div ref={popupRef} data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
       <h2>Select Activity</h2>
+      <p>Trainer Name: {fullname}</p>
+      <p>Trainer ID: {username}</p>
       <div className="select-menu-container">
         <div
           className={`select-btn ${isOpen ? "open" : ""}`}

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/adminmanagetrainerspagepopup.css';
 import 'boxicons/css/boxicons.min.css';
-import useAxiosGet from '../api/useAxiosGet';
 import useAxiosPatch from '../api/useAxiosPatch';
 import { config } from '../config/config';
 import { endpoints } from '../config/endpoints';
 
-const EditTrainerDetailsPopup = ({ onClose, trainerId }) => {
+const EditTrainerDetailsPopup = ({ onClose, fullname, username, trainerId }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [newTrainerPassword, setNewTrainerPassword] = useState("");
@@ -41,12 +40,6 @@ const EditTrainerDetailsPopup = ({ onClose, trainerId }) => {
         refetchPatch();
     };
 
-    const { data: trainerData, loading, error, refetch: refetchTrainerData } = useAxiosGet(
-        config.base_url + endpoints.admin.getTrainers,
-        {},
-        []
-    );
-
     const { data, loading: patchLoading, error: patchError, setBody, refetch: refetchPatch } = useAxiosPatch(
         config.base_url + endpoints.admin.updateTrainer + trainerId,
         {},
@@ -68,16 +61,12 @@ const EditTrainerDetailsPopup = ({ onClose, trainerId }) => {
         };
     }, [popupRef, onClose]);
 
-    useEffect(() => {
-        refetchTrainerData();
-    }, [trainerId, refetchTrainerData]);
-
     return (
         <>
             <div ref={popupRef} data-cy="edit-trainer-details-popup" className="trainer-role-popup open-trainer-role-popup">
                 <h2>Edit Details</h2>
-                    <p>Trainer Name: {trainerData.fullname}</p>
-                    <p>Trainer ID: {trainerData._id}</p>
+                    <p>Trainer Name: {fullname}</p>
+                    <p>Trainer ID: {username}</p>
                 <div className="select-menu-container">
                     <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
                         <span className="btn-text">{selectedItem ? selectedItem : 'Select Role'}</span>
