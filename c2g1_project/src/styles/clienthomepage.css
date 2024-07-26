@@ -18,7 +18,7 @@
 .client-home-page-right {
   grid-column-start: 2;
   width: 90%;
-  height: 52%;
+  height: 45%;
   margin: 30px;
   background: white;
   color: black;
@@ -35,7 +35,6 @@
 .client-home-page-left-top,
 .client-home-page-left-bottom {
   width: 90%;
-  height: 25%;
   margin: 30px;
   background: white;
   color: black;
@@ -50,8 +49,17 @@
   transition: background-color 500ms, box-shadow 500ms;
 }
 
+.client-home-page-left-top {
+  height: 15%;
+}
+
 .client-home-page-left-bottom {
   grid-row-start: 2;
+  height: 28.5%;
+}
+
+.view-avail-ws-details {
+  margin-bottom: 15px;
 }
 
 .workshop-request-table {
@@ -101,6 +109,7 @@
   background-color: #80c7fb;
   height: 50px;
   margin-top: 5px;
+  margin-bottom: 10px;
   width: 100%;
   padding: 0px;
   align-items: center;
@@ -121,7 +130,6 @@
 .workshop-detail-panel:hover {
   background-color: #669fc9;
 }
-
 
 .dropdown {
   width: 100%;
@@ -253,52 +261,35 @@
   grid-column: 1 / span 2;
   display: flex;
   justify-content: center; 
-  margin-top: 20px; 
+  margin-top: 10px; 
 }
 
-.clear-button-design {
-  background-color: gray;
-  color: white;
+.ws_req_submit_button, .refresh_button, .acknowledge_button, .popwsreqbut, .clear-button-design {
+  color: black;
   width: 150px;
   height: 50px;
   border-radius: 25px;
-  border-width: 3px;
-  font-family: roboto;
-  font-size: 15px;
+  border-width: 0px;
+  font-size: 14px;
   font-weight: bold;
-  transition: background-color 1000ms;
-  border-color: black;
+  padding: 10px 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 5px;
+  align-self: center;
   margin-left: 20px;
-}
-
-.ws_req_submit_button, .refresh_button, .acknowledge_button {
-  background-color: #5cdb5c;
-  color: white;
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
-  border-width: 3px;
-  font-family: roboto;
-  font-size: 15px;
-  font-weight: bold;
-  transition: background-color 1000ms;
-  border-color: black;
   margin-right: 20px;
 }
 
-.popwsreqbut {
+.clear-button-design {
+  background-color: #afafaf;
+}
+
+.ws_req_submit_button, .refresh_button, .acknowledge_button, .popwsreqbut {
   background-color: #5cdb5c;
-  color: white;
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
-  border-width: 3px;
-  font-family: roboto;
-  font-size: 15px;
-  font-weight: bold;
-  transition: background-color 1000ms;
-  border-color: black;
-  margin-top: 20px;
 }
 
 /* Summary Modal */
@@ -369,13 +360,14 @@
 }
 
 .view-avail-ws-select {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   font-size: 16px;
   border: 2px solid #0083ca;
   border-radius: 5px;
   box-sizing: border-box;
   margin: 10px 0;
+  margin-bottom: 20px;
 }
 
 /* Show placeholder on hover */
