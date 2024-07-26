@@ -33,9 +33,9 @@ const TrainerTopLeftSideBar = () => {
     nav("/TrainerViewTrainerPage");
   };
 
-  const handleprofile = () => {
-    nav("/ProfilePage")
-  }
+  // const handleprofile = () => {
+  //   nav("/ProfilePage")
+  // }
 
   const handleNavBarSignOut = (e) => {
     e.preventDefault();
@@ -66,7 +66,7 @@ const TrainerTopLeftSideBar = () => {
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span className="logo-name">Hi Dil, Welcome Back!</span>
+            <span className="logo-name">Hi, Welcome Back!</span>
           </div>
           <div className="date">
             <span className="logo-name">
@@ -87,12 +87,12 @@ const TrainerTopLeftSideBar = () => {
                   <span className="link">Home</span>
                 </a>
               </li>
-              <li className="list">
+              {/* <li className="list">
                 <a href="#" className="nav-link">
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
                   <span className="link" onClick={handleprofile}>Profile</span>
                 </a>
-              </li>
+              </li> */}
               <li className="list">
                 <a
                   href="#"
