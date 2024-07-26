@@ -37,6 +37,7 @@ const TrainerTopLeftSideBar = () => {
     nav("/ProfilePage");
   };
 
+
   const handleNavBarSignOut = (e) => {
     e.preventDefault();
     setUrl(config.base_url + endpoints.logout);
