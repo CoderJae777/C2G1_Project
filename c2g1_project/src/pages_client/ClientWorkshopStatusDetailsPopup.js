@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../styles/adminworkshoprequestpagepopups.css';
+import '../styles/clienthomepagepopups.css';
 
-const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
-    const [workshopDetails, setWorkshopDetails] = useState(workshop);
+const WorkshopRequestDetailsPopup = ({ onClose, request }) => {
+    const [workshopDetails, setWorkshopDetails] = useState(request);
     const popupRef = useRef(null);
 
     useEffect(() => {
-        setWorkshopDetails(workshop);
-    }, [workshop]);
+        setWorkshopDetails(request);
+    }, [request]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -22,16 +22,18 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
         };
       }, [popupRef, onClose]);
 
+      console.log(workshopDetails)
+
     return (
-        <div ref={popupRef} data-cy="wsrqd-popup" className="workshop-request-details-popup open-workshop-request-details-popup">
+        <div ref={popupRef} data-cy="clwsrqd-popup" className="cl-workshop-request-details-popup open-cl-workshop-request-details-popup">
             <h2>Workshop Request Details</h2>
             <div className="workshop-details-content">
                 <table className="details-table">
                     <tbody>
-                        {/* <tr>
+                        <tr>
                             <td><strong>Workshop ID:</strong></td>
-                            <td>{workshopDetails.workshopId}</td>
-                        </tr> */}
+                            <td>{workshopDetails._id}</td>
+                        </tr>
                         <tr>
                             <td><strong>Client Company:</strong></td>
                             <td>{workshopDetails.company}</td>
@@ -92,7 +94,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                 </table>
             </div>
             <div className="popup-buttons">
-                <button data-cy="wsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
+                <button data-cy="clwsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
             </div>
         </div>
     );

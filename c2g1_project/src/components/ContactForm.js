@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion, useScroll } from "framer-motion";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -84,9 +85,14 @@ const ContactForm = () => {
         className="form_control"
       ></textarea>
       <div>
-        <button type="submit" className="sendemailbutton">
+        <motion.button
+          type="submit"
+          className="sendemailbutton"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
           Send!
-        </button>
+        </motion.button>
       </div>
     </form>
   );

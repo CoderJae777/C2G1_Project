@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../styles/adminhomepage.css";
 import "../styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
-import TopLeftSidebar from "../components/TopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
 import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
@@ -11,6 +10,7 @@ import DeleteTrainerPopup from "./DeleteTrainerPopup";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
+import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar";
 
 const AdminManageTrainerPage = () => {
   const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
@@ -217,7 +217,7 @@ const AdminManageTrainerPage = () => {
       )}
       <div className="admin-manage-trainer-page">
         <div className="top-panel">
-          <TopLeftSidebar />
+          <AdminTopLeftSideBar />{" "}
         </div>
         <div className="manage-trainer-column">
           <div className="manage-trainer-title">

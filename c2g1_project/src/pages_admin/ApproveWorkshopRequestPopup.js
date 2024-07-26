@@ -6,8 +6,6 @@ import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import useAxiosPatch from "../api/useAxiosPatch";
 
-const trainers = ["Mike", "Kowalski", "Rico", "June", "A2"];
-
 const ApproveWorkshopRequestPopup = ({
   selectedId,
   selectedStartDate,

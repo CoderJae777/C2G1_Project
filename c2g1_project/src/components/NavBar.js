@@ -66,7 +66,7 @@ const Navbar = () => {
       <div className="navbar_contents">
         <motion.button
           className="navbarbutton"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleHomePage}
         >
@@ -74,7 +74,7 @@ const Navbar = () => {
         </motion.button>
         <motion.button
           className="navbarbutton"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleWorkshop}
           data-cy="ourwspage-button"
@@ -83,7 +83,7 @@ const Navbar = () => {
         </motion.button>
         <motion.button
           className="navbarbutton"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleTrainerPage}
           data-cy="ourtrpage-button"
@@ -92,7 +92,7 @@ const Navbar = () => {
         </motion.button>
         <motion.button
           className="navbarbutton"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleContactUs}
         >
@@ -100,7 +100,7 @@ const Navbar = () => {
         </motion.button>
         <motion.button
           className="navbarbutton"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleSignUp}
           data-cy="signuppg-button"
@@ -109,7 +109,7 @@ const Navbar = () => {
         </motion.button>
         <motion.button
           className="loginbutton"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleNavBarSignIn}
           data-cy="loginpg-button"
