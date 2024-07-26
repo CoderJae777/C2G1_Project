@@ -2,11 +2,11 @@ import React, { useState } from "react";
 // import "../styles/clienthomepage.css";
 import "../styles/adminmanageworkshoppage.css";
 import "boxicons/css/boxicons.min.css";
-import TopLeftSideBar from "../components/TopLeftSideBar.js";
 import EditWorkshopDetailsPopup from "./EditWorkshopDetailsPopup";
 import useAxiosGet from "../api/useAxiosGet.jsx";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
+import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar.js";
 
 const AdminManageWorkshopPage = () => {
   const [isEditWorkshopDetailsPopupOpen, setIsEditWorkshopDetailsPopupOpen] =
@@ -31,7 +31,7 @@ const AdminManageWorkshopPage = () => {
 
   return (
     <>
-      <TopLeftSideBar />
+      <AdminTopLeftSideBar />{" "}
       <div className="workshoppage">
         {isEditWorkshopDetailsPopupOpen && (
           <EditWorkshopDetailsPopup

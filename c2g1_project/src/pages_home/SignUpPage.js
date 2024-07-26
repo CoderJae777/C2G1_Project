@@ -49,6 +49,7 @@ const SignUpPage = () => {
   const [fullname, fullnamechange] = useState("");
   const [email, emailchange] = useState("");
   const [country, countrychange] = useState("");
+  const [clientype, clientypechange] = useState("");
 
   const handleSuccess = (data) => {
     nav("/ClientLoginPage");
@@ -94,6 +95,17 @@ const SignUpPage = () => {
               </div>
               <div className="card-body">
                 <div className="form_group">
+                  <select
+                    value={clientype}
+                    onChange={(e) => countrychange(e.target.value)}
+                    className="form_control"
+                  >
+                    <option value="Default">Select Your Client Type</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Executive">Executive</option>
+                  </select>
+                </div>
+                <div className="form_group">
                   <input
                     placeholder="Username"
                     value={username}
@@ -136,7 +148,7 @@ const SignUpPage = () => {
                     onChange={(e) => countrychange(e.target.value)}
                     className="form_control"
                   >
-                    <option value="Default">-- Country --</option>
+                    <option value="Default">Select Your Country</option>
                     <option value="Singapore">Singapore</option>
                     <option value="USA">USA</option>
                     <option value="Malaysia">Malaysia</option>

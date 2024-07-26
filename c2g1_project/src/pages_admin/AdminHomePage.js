@@ -6,7 +6,7 @@ import "boxicons/css/boxicons.min.css";
 import { motion } from "framer-motion";
 import { config } from "../config/config.js";
 import { endpoints } from "../config/endpoints.js";
-import TopLeftSideBar from "../components/TopLeftSideBar.js";
+import TopLeftSideBar from "../components/AdminTopLeftSideBar.js";
 import {
   Pie,
   PieChart,
