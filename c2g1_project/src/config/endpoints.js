@@ -18,13 +18,13 @@ const endpoints = {
     getWorkshopRequests: "/workshoprequest/getSubmitted",
     approveWorkshopRequest: "/workshoprequest/approve/",
     rejectWorkshopRequest: "/workshoprequest/reject/",
-    deleteTrainer:"/auth/trainers/delete/",
-    getWorkshopData:"/workshopdata",
-    getSingleWorkshopData:"/workshopdata/",
-    updateWorkshopData:"/workshopdata/"
+    deleteTrainer: "/auth/trainers/delete/",
+    getWorkshopData: "/workshopdata",
+    getSingleWorkshopData: "/workshopdata/",
+    updateWorkshopData: "/workshopdata/",
   },
   client: {
-    getAvailableWorkshopData:"/workshopdata/available",
+    getAvailableWorkshopData: "/workshopdata/available",
     getPendingWorkshopRequests: "/auth/pendingworkshops",
     createWorkshop: "/workshoprequest",
   },
@@ -34,9 +34,17 @@ const endpoints = {
     getTeammates: "/auth/getteammates",
     updateUtilisation: "/auth/updateutilisation/",
   },
-  notif:{
+  notif: {
     getAllAdminNotificiation: "/notif/getAllAdminNotification",
-  }
+  },
+  graph: {
+    // hardcoded data below
+    getHCtotalPieData: "/graph/getHCtotalPieData",
+    getHCyearsPieData: "/graph/getHCyearsPieData",
+    getHCWorkshopTypesData: "/graph/getHCWorkshopTypesData",
+    getHCClientTypesData: "/graph/getHCClientTypesData",
+    getHCWorkshopTrendData: "/graph/getHCWorkshopTrendData",
+  },
 };
 
 export { endpoints };
