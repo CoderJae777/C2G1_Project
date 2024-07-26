@@ -85,14 +85,17 @@ const AdminHomePage = () => {
   // HARDCODED DATA
   ///////////////////////////////////////////////////////////
   const totalPieData = [
+    // this one is a sum of all workshops that have the status "accepted", "rejected", "pending"
     { name: "Workshops Accepted", value: 271 },
     { name: "Workshops Rejected", value: 125 },
     { name: "Pending", value: 13 },
   ];
 
-  // 2022 AND 2023 HAS NO PENDING BECAUSE IT DOESNT MAKE SENSE!
+  // 2022 and 2023 has no pending workshops because it should have been resolved
   const yearPieData = {
-    2022: [
+    // these are the sum of all accepted and rejected workshops for 2022
+    // might need a new field for workshops? like year?
+    2022: [  
       { name: "Workshops Accepted", value: 90 },
       { name: "Workshops Rejected", value: 41 },
       { name: "Pending", value: 0 },
@@ -112,18 +115,23 @@ const AdminHomePage = () => {
   const COLORS = ["#88D66C", "#FF4C4C", "#FFD35A"];
 
   const workshopTypesData = [
+    // {name: "Workshops Completed", dealSize: 10000},
+    // Idea is to first filter all workshops by types, then add all dealsize together
     { name: "Business Value Discovery", dealSize: 9520 },
     { name: "AI Platform", dealSize: 6570 },
     { name: "Infrastructure and Demo", dealSize: 18590 },
   ];
 
   const clientTypesData = [
+    // same for client type
     { name: "Executive", dealSize: 12570 },
     { name: "Technical", dealSize: 19850 },
   ];
 
   const workshopTrendData = [
     {
+      // not sure if this is doable for backend, need discuss
+      // what are the fields right now
       month: "Jan",
       workshopRequests2022: 10,
       dealSize2022: 2000,
