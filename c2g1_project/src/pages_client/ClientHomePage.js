@@ -308,7 +308,7 @@ const ClientHomePage = () => {
                   ))}
                 </select>
                 {selectedWorkshop && (
-                  <div>
+                  <div className="view-avail-ws-details">
                     <p>
                       <strong>Workshop ID:</strong>{" "}
                       {data[selectedWorkshop].workshop_ID}
