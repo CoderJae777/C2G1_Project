@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/topleftsidebar.css";
-import 'boxicons/css/boxicons.min.css';
+import "boxicons/css/boxicons.min.css";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import DateAndTime from "./DateAndTime";
-
 
 const ClientTopLeftSideBar = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -21,12 +20,12 @@ const ClientTopLeftSideBar = () => {
 
   const handleClientWorkshopPage = (e) => {
     e.preventDefault();
-      nav("/ClientWorkshopPage");
+    nav("/ClientWorkshopPage");
   };
 
   const handleClientHomePage = (e) => {
     e.preventDefault();
-      nav("/ClientHomePage");
+    nav("/ClientHomePage");
   };
 
   const handleNavBarSignOut = (e) => {
@@ -55,14 +54,16 @@ const ClientTopLeftSideBar = () => {
 
   return (
     <>
-      <nav className={navOpen ? 'open' : ''}>
+      <nav className={navOpen ? "open" : ""}>
         <div className="logo">
-           <div className="hamburger">
+          <div className="hamburger">
             <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span className="logo-name">Hi, Welcome Back!</span>
+            <span data-cy="welcome" className="logo-name">
+              Welcome Back, (insert username here)
+            </span>
           </div>
           <div className="date">
             <span className="logo-name">
@@ -72,26 +73,30 @@ const ClientTopLeftSideBar = () => {
         </div>
         <div className="sidebar">
           <div className="logo">
-            <i className='bx bx-menu menu-icon' onClick={toggleNav}></i>
+            <i className="bx bx-menu menu-icon" onClick={toggleNav}></i>
             <span className="logo-name">Menu</span>
           </div>
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
                 <a href="#" className="nav-link" onClick={handleClientHomePage}>
-                  <i className='bx bx-home-alt icon'></i>
+                  <i className="bx bx-home-alt icon"></i>
                   <span className="link">Home</span>
                 </a>
               </li>
               {/* <li className="list">
                 <a href="#" className="nav-link">
-                  <i className='bx bx-bar-chart-alt-2 icon'></i>
+                  <i className="bx bx-bar-chart-alt-2 icon"></i>
                   <span className="link">Profile</span>
                 </a>
               </li> */}
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleClientWorkshopPage}>
-                  <i className='bx bx-clipboard icon'></i>
+                <a
+                  href="#"
+                  className="nav-link"
+                  onClick={handleClientWorkshopPage}
+                >
+                  <i className="bx bx-clipboard icon"></i>
                   <span className="link">See all workshops</span>
                 </a>
               </li>
@@ -99,13 +104,15 @@ const ClientTopLeftSideBar = () => {
             <div className="bottom-content">
               <li className="list">
                 <a href="#" className="nav-link">
-                  <i className='bx bx-cog icon'></i>
-                  <span className="link" onClick={handleSettingsPage}>Settings</span>
+                  <i className="bx bx-cog icon"></i>
+                  <span className="link" onClick={handleSettingsPage}>
+                    Settings
+                  </span>
                 </a>
               </li>
               <li className="list">
                 <a href="#" className="nav-link" onClick={handleNavBarSignOut}>
-                  <i className='bx bx-log-out icon'></i>
+                  <i className="bx bx-log-out icon"></i>
                   <span className="link">Logout</span>
                 </a>
               </li>
@@ -113,7 +120,10 @@ const ClientTopLeftSideBar = () => {
           </div>
         </div>
       </nav>
-      <section className={navOpen ? 'overlay' : ''} onClick={closeNav}></section>
+      <section
+        className={navOpen ? "overlay" : ""}
+        onClick={closeNav}
+      ></section>
     </>
   );
 };

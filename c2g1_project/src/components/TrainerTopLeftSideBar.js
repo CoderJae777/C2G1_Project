@@ -26,16 +26,17 @@ const TrainerTopLeftSideBar = () => {
   const handleTrainerHomePage = (e) => {
     e.preventDefault();
     nav("/TrainerHomePage");
-    };
+  };
 
   const handleTrainerViewTrainerPage = (e) => {
     e.preventDefault();
     nav("/TrainerViewTrainerPage");
   };
 
-  // const handleprofile = () => {
-  //   nav("/ProfilePage")
-  // }
+  const handleprofile = () => {
+    nav("/ProfilePage");
+  };
+
 
   const handleNavBarSignOut = (e) => {
     e.preventDefault();
@@ -66,7 +67,9 @@ const TrainerTopLeftSideBar = () => {
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span className="logo-name">Hi, Welcome Back!</span>
+            <span data-cy="welcome" className="logo-name">
+              Welcome Back, (insert username here)
+            </span>
           </div>
           <div className="date">
             <span className="logo-name">
@@ -82,7 +85,11 @@ const TrainerTopLeftSideBar = () => {
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link" onClick={handleTrainerHomePage}>
+                <a
+                  href="#"
+                  className="nav-link"
+                  onClick={handleTrainerHomePage}
+                >
                   <i className="bx bx-home-alt icon"></i>
                   <span className="link">Home</span>
                 </a>
@@ -90,7 +97,9 @@ const TrainerTopLeftSideBar = () => {
               {/* <li className="list">
                 <a href="#" className="nav-link">
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
-                  <span className="link" onClick={handleprofile}>Profile</span>
+                  <span className="link" onClick={handleprofile}>
+                    Profile
+                  </span>
                 </a>
               </li> */}
               <li className="list">
@@ -103,8 +112,13 @@ const TrainerTopLeftSideBar = () => {
                   <span className="link">View My Workshops</span>
                 </a>
               </li>
-               <li className="list">
-                <a href="#" data-cy="nav-btn" className="nav-link" onClick={handleTrainerViewTrainerPage}>
+              <li className="list">
+                <a
+                  href="#"
+                  data-cy="nav-btn"
+                  className="nav-link"
+                  onClick={handleTrainerViewTrainerPage}
+                >
                   <i className="bx bx-group icon"></i>
                   <span className="link">View My Team</span>
                 </a>

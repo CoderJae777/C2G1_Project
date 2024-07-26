@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "boxicons/css/boxicons.min.css";
-import TopLeftSideBar from "./TopLeftSideBar";
+import AdminTopLeftSideBar from "./AdminTopLeftSideBar";
 
 const ProfilePage = () => {
   return (
     <>
       <div className="profile-page">
-        <TopLeftSideBar />
+        <AdminTopLeftSideBar />
       </div>
       <h1>hi</h1>
     </>
