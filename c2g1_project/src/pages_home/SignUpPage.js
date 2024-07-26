@@ -157,19 +157,26 @@ const SignUpPage = () => {
               </div>
               <div className="card-footer">
                 <div className="signup-button-div">
-                  <button type="submit" className="signup_submit_button">
+                  <motion.button
+                    type="submit"
+                    className="signup_submit_button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     Register
-                  </button>
+                  </motion.button>
                 </div>
                 <div className="signup-button-div">
                   {" "}
-                  <button
+                  <motion.button
                     type="button"
                     className="signup_back_button"
                     onClick={handleBack}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     Back
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             </div>

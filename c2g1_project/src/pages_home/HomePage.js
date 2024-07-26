@@ -38,16 +38,11 @@ const HomePage = () => {
         whileInView={{ opacity: 1 }}
         className="homepage"
       >
-        <motion.div
-          className="progress-bar"
-          style={{ scaleX: scrollYProgress }}
-        />
         <div className="homepageinfo">
           <motion.div
             className="about"
             animate={{ scale: 1, opacity: 1 }}
             initial={{ opacity: 0, scale: 0 }}
-            transition={{ delay: 1 }}
             whileInView={{ scale: 1, opacity: 1 }}
           >
             <AnimatedHead />
@@ -55,7 +50,6 @@ const HomePage = () => {
               <motion.img
                 animate={{ scale: 1, opacity: 1 }}
                 initial={{ opacity: 0, scale: 0 }}
-                transition={{ delay: 1 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 className="navbarlogo"
                 src={dellacademylogo_small}
@@ -65,19 +59,18 @@ const HomePage = () => {
           </motion.div>
           <motion.div
             className="about2"
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ delay: 1 }}
+            animate={{ scale: 1 }}
+            initial={{ scale: 0 }}
             whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
           >
             <h2 data-cy="h2-test">Grow your skills with Dell Academy!</h2>
             <div>
               <motion.button
-                transition={{ delay: 1.25 }}
                 animate={{ scale: 1 }}
                 initial={{ scale: 0 }}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.4 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 whileInView={{ scale: 1 }}
                 className="testibutton"
                 onClick={handleSignUp}
@@ -133,10 +126,9 @@ const HomePage = () => {
             <Carousel images={images} />
           </div>
           <motion.button
-            transition={{ delay: 0.25 }}
             whileInView={{ scale: 1 }}
             initial={{ scale: 0 }}
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="testibutton"
             onClick={handleworkshop}

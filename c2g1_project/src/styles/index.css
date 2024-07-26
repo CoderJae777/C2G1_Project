@@ -13,7 +13,8 @@
 
 .login_card {
   background-color: white;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   border-radius: 10px;
   padding: 20px;
   max-width: 500px;
@@ -55,14 +56,17 @@
 .trainer_login_button_blue {
   width: 90px;
   height: 90px;
-  border-radius: 20px;
+  border-radius: 15px;
   font-family: Roboto;
   font-size: 15px;
   font-weight: bold;
   margin: 10px;
   padding: 10px;
-  border-width: 3px;
+  border-width: 2px;
   transition: background-color 500ms, color 500ms;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .client_login_button,
@@ -70,42 +74,56 @@
 .trainer_login_button {
   background-color: white;
   color: black;
-  border-color: #0083ca;
+  border-color: #28abf1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .client_login_button:hover,
 .admin_login_button:hover,
 .trainer_login_button:hover {
-  background-color: #0083ca;
+  background-color: #28abf1;
   color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .client_login_button_blue,
 .admin_login_button_blue,
 .trainer_login_button_blue {
-  background-color: #0083ca;
+  background-color: #28abf1;
   color: white;
   border-color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .signin_button {
   width: 150px;
   height: 50px;
-  background-color: #0083ca;
-  color: white;
-  border-radius: 25px;
-  border-width: 3px;
-  border-color: black;
+  border-radius: 15px;
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
-  margin: 20px 0 10px;
   padding: 10px;
-  transition: background-color 1000ms;
+  transition: background-color 500ms, color 500ms;
+  margin: 10px;
+  background-color: #28abf1;
+  color: white;
+  border-width: 0px;
+  margin-top: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .signin_button:hover {
-  background-color: #005f8a;
+  background-color: #28abf1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .username,
@@ -149,7 +167,8 @@
   left: 0;
   z-index: 1000;
   padding: 10px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   transition: background-color 500ms, box-shadow 500ms;
 }
 
@@ -170,7 +189,7 @@
 .testibutton {
   width: 150px;
   height: 50px;
-  border-radius: 15px;
+  border-radius: 8px;
   font-family: Roboto;
   font-size: 16px;
   font-weight: bold;
@@ -185,17 +204,23 @@
   border-width: 0px;
 }
 
-.navbarbutton:hover,
-.testibutton:hover {
+.navbarbutton:hover {
   background-color: #0083ca;
   color: white;
 }
 
+.testibutton:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
 .testibutton {
   background-color: white;
   color: black;
   border-width: 0px;
   margin-top: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .loginbutton {
@@ -206,7 +231,7 @@
   border-radius: 15px;
   border-width: 0px;
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   margin: 10px;
   padding: 10px;
@@ -241,10 +266,10 @@
   max-width: 5000px;
   border: none;
   background-color: white;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   border-radius: 10px;
-  padding: 20px;
-  margin: 30px 0 25px;
+  padding: 10px;
 }
 
 .card-header {
@@ -262,7 +287,6 @@
 }
 
 .form_group {
-  margin-bottom: 15px;
   font-size: 15px;
   text-align: center;
 }
@@ -274,7 +298,6 @@
   border: 2px solid #0083ca;
   border-radius: 5px;
   box-sizing: border-box;
-  margin: 5px;
   text-align: center;
 }
 
@@ -282,32 +305,61 @@
 .signup_back_button {
   width: 150px;
   height: 50px;
-  border-radius: 25px;
-  border-width: 3px;
+  border-radius: 8px;
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   padding: 10px;
   transition: background-color 1000ms;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .signup_submit_button {
   background-color: #5cdb5c;
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  border-width: 0px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
+  margin: 10px;
   color: white;
-  margin: 25px 30px 0 0;
-  border-color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .signup_back_button {
   background-color: #bfbfbf;
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  border-width: 0px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
+  margin: 10px;
   color: white;
-  margin-top: 25px;
-  border-color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .signup_back_button:hover {
-  background-color: darkgrey;
-  color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.signup_submit_button:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .signup-button-div {
@@ -412,7 +464,8 @@
 .info4 {
   width: 300px;
   height: 200px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   background-color: #eef8ff;
 }
 
@@ -440,7 +493,8 @@
 .info2:hover,
 .info3:hover,
 .info4:hover {
-  box-shadow: #28abf1 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: #28abf1 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   transition: background-color 500ms;
 }
 
@@ -491,59 +545,23 @@
 .sendemailbutton {
   width: 150px;
   height: 50px;
-  background-color: #5cdb5c;
-  color: white;
-  border-radius: 25px;
-  border-width: 3px;
+  border-radius: 8px;
+  border-width: 0px;
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
-  transition: background-color 1000ms;
-  border-color: black;
-  margin-top: 10px;
+  padding: 10px;
+  transition: background-color 500ms, color 500ms;
+  margin: 10px;
+  background-color: #28abf1;
+  color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .sendemailbutton:hover {
-  background-color: darkgreen;
-  color: white;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .login_card {
-    margin-top: 20px;
-    padding: 20px;
-  }
-
-  .client_login_button,
-  .admin_login_button,
-  .trainer_login_button,
-  .client_login_button_blue,
-  .admin_login_button_blue,
-  .trainer_login_button_blue {
-    width: 70px;
-    height: 70px;
-    font-size: 13px;
-  }
-
-  .signin_button {
-    width: 100px;
-    height: 40px;
-    font-size: 13px;
-  }
-
-  .username,
-  .password {
-    width: 90%;
-    font-size: 14px;
-  }
-
-  .form_control {
-    width: 90%;
-  }
-
-  .contactform {
-    max-width: 100%;
-    padding: 10px;
-  }
+  border-width: 0px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
