@@ -3,14 +3,33 @@ import "../styles/adminhomepage.css";
 import "../styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
 import TopLeftSidebar from "../components/TrainerTopLeftSideBar";
-import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar";
+import TrainerScheduleCalendar from "../components/ColourCalendarPopup";
+import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
 const TrainerViewTrainerPage = () => {
+  const [selectedId, setSelectedId] = useState(null);
+  const [fullname, setFullname] = useState(null);
   const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
     useState(false);
+  const [selectedWorkshops, setSelectedWorkshops] = useState([]);
+  const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] = useState(false);
+
+  const {
+    data: workshopdata,
+    loading: workshoploading,
+    error: workshoperror,
+    seturl: workshopseturl,
+    setParams: workshopsetParams,
+    refetch: workshoprefetch
+  } = useAxiosGet(
+    config.base_url + endpoints.admin.getApprovedWorkshops, // Ensure the correct endpoint is used here
+    {},
+    [],
+    true  
+  );
 
   const verifyUser = useAxiosGet(config.base_url + endpoints.verify);
 
@@ -21,7 +40,11 @@ const TrainerViewTrainerPage = () => {
     true
   );
 
-  const handleOpenTrainerScheduleCalendar = () => {
+  console.log(data);
+
+  const handleOpenTrainerScheduleCalendar = (id, fullname) => {
+    setSelectedId(id);
+    setFullname(fullname);
     setIsTrainerScheduleCalendarOpen(true);
   };
 
@@ -29,13 +52,48 @@ const TrainerViewTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
+  const handleOpenWorkshopAndClientDetails = (workshop) => {
+    if (Array.isArray(workshop) && workshop.length > 0){
+      setSelectedWorkshops(workshop);
+      setIsWorkshopAndClientDetailsOpen(true);
+    }
+  };
+
+const handleCloseWorkshopAndClientDetails = () => {
+    setIsWorkshopAndClientDetailsOpen(false);
+  };
+
+
+// Function to combine all trainers into one array
+const combineTrainers = (workshops) => {
+  // Use flatMap to merge all trainers arrays into one
+  return workshops.flatMap(workshop => workshop.trainers);
+};
+
+// Example usage
+const allTrainers = combineTrainers(data.trainer_workshops);
+console.log("All trainers:")
+console.log(allTrainers);
+
+
+
   data.trainer_workshops &&
     data.trainer_workshops.map((request) => console.log(request.company));
 
   return verifyUser !== null && verifyUser.data.role === "trainer" ? (
     <>
+      {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+        <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
+      )}
       {isTrainerScheduleCalendarOpen && (
-        <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
+        <TrainerScheduleCalendar 
+          trainerId={selectedId}
+          fullname={fullname} 
+          onClose={handleCloseTrainerScheduleCalendar}
+          ondateClick={handleOpenWorkshopAndClientDetails}
+          trainerdata={allTrainers}
+          workshopdata={workshopdata}
+        />
       )}
       <div className="admin-manage-trainer-page">
         <div className="top-panel">
@@ -84,7 +142,7 @@ const TrainerViewTrainerPage = () => {
                             <td className="trainer-info-table-td">
                               <button
                                 className="trainer-info-table-button"
-                                onClick={handleOpenTrainerScheduleCalendar}
+                                onClick={() => handleOpenTrainerScheduleCalendar(trainer._id, trainer.fullname)}
                               >
                                 View Schedule
                               </button>

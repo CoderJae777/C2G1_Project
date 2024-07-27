@@ -6,13 +6,64 @@ import TopLeftSidebar from "../components/TopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
 import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
-import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar";
+import TrainerScheduleCalendar from "../components/ColourCalendarPopup";
 import DeleteTrainerPopup from "./DeleteTrainerPopup";
+import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
 const AdminManageTrainerPage = () => {
+  const spoofedWorkshopData = [[
+    {
+      _id: "66a2417a01cc76ed91af0f8a",
+      client: "66a23f9d5f22846308149f49",
+      company: "John Doe & Bros Enterprises",
+      company_role: "President",
+      country: "USA",
+      createdAt: "2024-07-25T12:13:46.724Z",
+      deal_potential: 100000,
+      email: "john.doe@gmail.com",
+      end_date: "2024-07-25T16:00:00.000Z",
+      name: "johndoefromjohnbrosinc",
+      pax: 10,
+      phone_number: 1234567890,
+      reject_reason: "N/A",
+      request_message: "Looking forward to the workshop!",
+      start_date: "2024-07-20T16:00:00.000Z",
+      status: "approved",
+      trainers: ["66a23f9d5f22846308149f4a", "66a23f9d5f22846308149f4b"],
+      updatedAt: "2024-07-25T12:14:27.908Z",
+      utilisation: [{}, {}, {}, {}],
+      venue: "Central Hall",
+      workshop_data: "66a23f9d5f22846308149f4c",
+      __v: 0
+    },
+    {
+      _id: "66a325f459296527fd2580dd",
+      client: "66a23f9d5f22846308149f49",
+      company: "John Doe & Bros Enterprises",
+      company_role: "President",
+      country: "USA",
+      createdAt: "2024-07-26T04:28:36.780Z",
+      deal_potential: 100000,
+      email: "john.doe@gmail.com",
+      end_date: "2024-07-26T16:00:00.000Z",
+      name: "johndoefromjohnbrosinc",
+      pax: 10,
+      phone_number: 1234567890,
+      reject_reason: "N/A",
+      request_message: "Looking forward to the workshop!",
+      start_date: "2024-07-25T16:00:00.000Z",
+      status: "approved",
+      trainers: ["66a3377a59296527fd25828e"],
+      updatedAt: "2024-07-27T05:32:54.336Z",
+      utilisation: [{}, {}, {}, {}],
+      venue: "Central Hall",
+      workshop_data: "66a23f9d5f22846308149f4c",
+      __v: 0
+    }
+  ]];
   const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] = useState(false);
   const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] = useState(false);
   const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
@@ -23,12 +74,29 @@ const AdminManageTrainerPage = () => {
   const [fullname, setFullname] = useState(null);
   const [username, setUsername] = useState(null);
   const [availability, setAvailability] = useState(null);
+  const [selectedWorkshops, setSelectedWorkshops] = useState([]);
+  const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] = useState(false);
+
 
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
     {},
     [],
-    true
+    true  
+  );
+  
+  const {
+    data: workshopdata,
+    loading: workshoploading,
+    error: workshoperror,
+    seturl: workshopseturl,
+    setParams: workshopsetParams,
+    refetch: workshoprefetch
+  } = useAxiosGet(
+    config.base_url + endpoints.admin.getApprovedWorkshops, // Ensure the correct endpoint is used here
+    {},
+    [],
+    true  
   );
 
   const handleOpenTrainerDetailsPopup = (id, fullname, username) => {
@@ -96,6 +164,21 @@ const AdminManageTrainerPage = () => {
     setIsDeleteTrainerPopupOpen(false);
   };
 
+  const handleOpenWorkshopAndClientDetails = (workshop) => {
+    if (Array.isArray(workshop) && workshop.length > 0){
+      setSelectedWorkshops(workshop);
+      setIsWorkshopAndClientDetailsOpen(true);
+    }
+  };
+  
+
+const handleCloseWorkshopAndClientDetails = () => {
+    setIsWorkshopAndClientDetailsOpen(false);
+  };
+
+  console.log(data);
+  
+
   const renderTrainerRows = () => {
     const rows = [];
     if (Array.isArray(data)) {
@@ -151,6 +234,9 @@ const AdminManageTrainerPage = () => {
 
   return (
     <>
+      {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
+      )}
       {isAddTrainerPopupOpen && (
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
       )}
@@ -158,7 +244,10 @@ const AdminManageTrainerPage = () => {
         <TrainerScheduleCalendar 
           trainerId={selectedId}
           fullname={fullname} 
-          onClose={handleCloseTrainerScheduleCalendar} 
+          onClose={handleCloseTrainerScheduleCalendar}
+          ondateClick={handleOpenWorkshopAndClientDetails}
+          trainerdata={data}  
+          workshopdata={spoofedWorkshopData}
         />
       )}
       {isTrainerDetailsPopupOpen && (

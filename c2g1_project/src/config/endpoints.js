@@ -21,7 +21,8 @@ const endpoints = {
     deleteTrainer:"/auth/trainers/delete/",
     getWorkshopData:"/workshopdata",
     getSingleWorkshopData:"/workshopdata/",
-    updateWorkshopData:"/workshopdata/"
+    updateWorkshopData:"/workshopdata/",
+    getApprovedWorkshops: "/workshoprequest/getApproved"
   },
   client: {
     getAvailableWorkshopData:"/workshopdata/available",
@@ -33,6 +34,7 @@ const endpoints = {
     getSingleWorkshopRequest: "/workshoprequest/",
     getTeammates: "/auth/getteammates",
     updateUtilisation: "/auth/updateutilisation/",
+    getApprovedWorkshops: "/workshoprequest/getApproved"
   },
   notif:{
     getAllAdminNotificiation: "/notif/getAllAdminNotification",

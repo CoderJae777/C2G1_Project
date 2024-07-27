@@ -29,6 +29,12 @@ const TrainerWorkshopPage = () => {
         config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
       );
 
+    console.log(allocatedWorkshops)
+
+    const Teammates = useAxiosGet(
+        config.base_url + endpoints.trainer.getTeammates
+      );
+
     const convertDate = (dateString) => {
         const date = new Date(dateString);
         
@@ -69,7 +75,7 @@ const TrainerWorkshopPage = () => {
         "Workshops"
     );
 
-    const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+    const [selectedWorkshops, setSelectedWorkshops] = useState([]);
 
     const [key, setKey] = useState("workshops_completed_total");
     const [key_ws, setKeyWS] = useState("completed");
@@ -105,8 +111,8 @@ const TrainerWorkshopPage = () => {
         setDomainMax(100);
     };
 
-    const handleOpenWorkshopAndClientDetails = (workshop) => {
-        setSelectedWorkshop(workshop);
+    const handleOpenWorkshopAndClientDetails = (workshoplist) => {
+        setSelectedWorkshops(workshoplist);
         setIsWorkshopAndClientDetailsOpen(true);
     };
 
@@ -123,9 +129,6 @@ const TrainerWorkshopPage = () => {
         }
     }
 
-    
-
-
     // CALLING DATA FROM JSON
     const { trainer_data, workshop_data, today_data } = useFetch();
 
@@ -140,8 +143,8 @@ const TrainerWorkshopPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
         >
-            {isWorkshopAndClientDetailsOpen && selectedWorkshop && (
-                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshop} />
+            {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
             )}
             
             <div className="top-panel">
@@ -234,7 +237,7 @@ const TrainerWorkshopPage = () => {
                             <ul>
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>   
-                                        <button className="workshop_detail_panel" key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
+                                        <button className="workshop_detail_panel" key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails([workshop])}> 
                                             <span>Workshop Name: {workshop.workshop_data.workshop_name}</span>
                                             <span>Client: {workshop.company}</span>
                                             {/*<span>Assigned Trainer: {workshop.trainers}</span>*/}
@@ -254,3 +257,4 @@ const TrainerWorkshopPage = () => {
 };
 
 export default TrainerWorkshopPage;
+
