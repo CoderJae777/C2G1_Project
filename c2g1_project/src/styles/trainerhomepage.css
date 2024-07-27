@@ -11,18 +11,16 @@ body {
   background: #fff;
 }
 
-.admin-home-page {
+.trainer-home-page {
   display: grid;
   grid-template-areas: "top-panel left-column right-column";
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr;
   padding: 20px;
   justify-content: center;
-
-
 }
 
-.admin-home-page-title {
+.trainer-home-page-title {
   padding: 25px;
   margin-bottom: -5px;
   justify-content: center;
@@ -46,12 +44,12 @@ body {
   width: 80%;
 }
 
-.admin-home-page-title {
+/* .trainer-home-page-title {
   margin-top: 10px;
   margin-bottom: -30px;
   justify-content: center;
   width: 500px;
-}
+} */
 
 .workshop-table {
   display: grid;
@@ -131,7 +129,7 @@ body {
   padding: 5px;
 }
 
-.breakdown-of-attendance-div{
+.breakdown-of-attendance-div {
   max-width: 1000px;
   width: 500px;
   height: 270px;
@@ -187,7 +185,7 @@ body {
 }
 
 .workshop-stats {
-    margin-top: 20px;
+  margin-top: 20px;
   grid-row-start: 0;
   color: #0672cb;
 }
@@ -198,27 +196,34 @@ body {
   margin-bottom: 10px;
 }
 .admin-graphs {
-    max-width: 1000px;
-    width: 900px;
-    height: 700px;
-    background-color: #e3f2fd;
-    color: #0672cb;
-    border-radius: 20px;
-    /* padding: 10px; */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-top: 50px;
-    padding: 10px;
+  max-width: 1000px;
+  width: 900px;
+  height: 700px;
+  background-color: #e3f2fd;
+  color: #0672cb;
+  border-radius: 20px;
+  /* padding: 10px; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+.form_control {
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: center;
 }
 
 /* trainer home page graphs and buttons design*/
 
 .update-hrs-button:hover,
 .graph_buttons:hover {
-  background-color: #0672cb;
-  color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .update-hrs-button,
@@ -239,57 +244,76 @@ body {
   text-align: center;
   margin: 5px;
   align-self: center;
+  margin-top: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .work_hours_row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  align-self: center;
+}
+
+.admin-graphs h1 {
+  margin-top: 20px;
+}
+
+.admin-graphs h3 {
+  margin-bottom: 20px;
 }
 
 .work_hours_num {
-    display: flex;
-    flex-direction: column;
-    width: 10%;
-    height: 30px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  height: 30px;
+  text-align: center;
 }
 
 .work_hours_desc {
-    display: flex;
-    flex-direction: column;
-    flex-direction: column;
-    width: 85%;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  width: 85%;
+}
+
+.work_hours_desc h5 {
+  margin-left: 10px;
+  align-self: flex-start;
 }
 
 .work_hours_desc_area {
-    height: 70px;
-    resize: none;
+  height: 70px;
+  resize: none;
 }
 
 .scrollable_list {
-    padding: 10px;
-    max-height: 1000px;
-    overflow-y: auto; 
-    border: 1px solid #ccc;
-    outline: none;
+  padding: 10px;
+  max-height: 1000px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
 .workshop_detail_panel {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
-    justify-content: space-between;
-    border-radius: 5px;
-    border-width: 0px;
-    background-color: #80c7fb;
-    height: 50px;
-    margin-top: 5px;
-    width: 100%;
-    padding: 0px;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  justify-content: space-between;
+  border-radius: 5px;
+  border-width: 0px;
+  background-color: #80c7fb;
+  height: 50px;
+  margin-top: 5px;
+  width: 100%;
+  padding: 0px;
+  align-items: center;
 }
 
 .workshop_detail_panel span {
@@ -297,11 +321,11 @@ body {
 }
 
 .workshop_detail_panel:hover {
-    background-color: #669fc9;
+  background-color: #669fc9;
 }
 
 .workshop-stats-title {
-    padding: 10px;
+  padding: 10px;
 }
 
 .filter {
@@ -315,4 +339,3 @@ body {
 .filter input {
   margin-right: 20px;
 }
-

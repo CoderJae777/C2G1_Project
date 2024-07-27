@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../styles/adminhomepage.css";
 import "../styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
-import TopLeftSidebar from "../components/TopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
 import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
@@ -12,63 +11,18 @@ import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
+import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar";
 
 const AdminManageTrainerPage = () => {
-  const spoofedWorkshopData = [[
-    {
-      _id: "66a2417a01cc76ed91af0f8a",
-      client: "66a23f9d5f22846308149f49",
-      company: "John Doe & Bros Enterprises",
-      company_role: "President",
-      country: "USA",
-      createdAt: "2024-07-25T12:13:46.724Z",
-      deal_potential: 100000,
-      email: "john.doe@gmail.com",
-      end_date: "2024-07-25T16:00:00.000Z",
-      name: "johndoefromjohnbrosinc",
-      pax: 10,
-      phone_number: 1234567890,
-      reject_reason: "N/A",
-      request_message: "Looking forward to the workshop!",
-      start_date: "2024-07-20T16:00:00.000Z",
-      status: "approved",
-      trainers: ["66a23f9d5f22846308149f4a", "66a23f9d5f22846308149f4b"],
-      updatedAt: "2024-07-25T12:14:27.908Z",
-      utilisation: [{}, {}, {}, {}],
-      venue: "Central Hall",
-      workshop_data: "66a23f9d5f22846308149f4c",
-      __v: 0
-    },
-    {
-      _id: "66a325f459296527fd2580dd",
-      client: "66a23f9d5f22846308149f49",
-      company: "John Doe & Bros Enterprises",
-      company_role: "President",
-      country: "USA",
-      createdAt: "2024-07-26T04:28:36.780Z",
-      deal_potential: 100000,
-      email: "john.doe@gmail.com",
-      end_date: "2024-07-26T16:00:00.000Z",
-      name: "johndoefromjohnbrosinc",
-      pax: 10,
-      phone_number: 1234567890,
-      reject_reason: "N/A",
-      request_message: "Looking forward to the workshop!",
-      start_date: "2024-07-25T16:00:00.000Z",
-      status: "approved",
-      trainers: ["66a3377a59296527fd25828e"],
-      updatedAt: "2024-07-27T05:32:54.336Z",
-      utilisation: [{}, {}, {}, {}],
-      venue: "Central Hall",
-      workshop_data: "66a23f9d5f22846308149f4c",
-      __v: 0
-    }
-  ]];
-  const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] = useState(false);
-  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] = useState(false);
+  const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
+    useState(false);
+  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
+    useState(false);
   const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
-  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] = useState(false);
-  const [isDeleteTrainerPopupOpen, setIsDeleteTrainerPopupOpen] = useState(false);
+  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
+    useState(false);
+  const [isDeleteTrainerPopupOpen, setIsDeleteTrainerPopupOpen] =
+    useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
   const [fullname, setFullname] = useState(null);
@@ -77,6 +31,7 @@ const AdminManageTrainerPage = () => {
   const [selectedWorkshops, setSelectedWorkshops] = useState([]);
   const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] = useState(false);
 
+  const [unavailability, setUnavailability] = useState([]);
 
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
@@ -111,7 +66,13 @@ const AdminManageTrainerPage = () => {
     setIsTrainerDetailsPopupOpen(false);
   };
 
-  const handleOpenTrainerActivityPopup = (index, id, fullname, username, availability) => {
+  const handleOpenTrainerActivityPopup = (
+    index,
+    id,
+    fullname,
+    username,
+    availability
+  ) => {
     setIsTrainerActivityPopupOpen(true);
     setPopupIndex(index);
     setAvailability(availability);
@@ -142,8 +103,8 @@ const AdminManageTrainerPage = () => {
     setIsAddTrainerPopupOpen(false);
   };
 
-  const handleOpenTrainerScheduleCalendar = (id, fullname) => {
-    setSelectedId(id);
+  const handleOpenTrainerScheduleCalendar = (unavailability, fullname) => {
+    setUnavailability(unavailability);
     setFullname(fullname);
     setIsTrainerScheduleCalendarOpen(true);
   };
@@ -192,13 +153,24 @@ const handleCloseWorkshopAndClientDetails = () => {
             <td className="trainer-info-table-td action-column">
               <button
                 className="trainer-info-table-button"
-                onClick={() => handleOpenTrainerScheduleCalendar(trainer._id, trainer.fullname)}
+                onClick={() =>
+                  handleOpenTrainerScheduleCalendar(
+                    trainer.unavailableTimeslots,
+                    trainer.fullname
+                  )
+                }
               >
                 View Schedule
               </button>
               <button
                 className="trainer-info-table-button"
-                onClick={() => handleOpenTrainerDetailsPopup(trainer._id, trainer.fullname, trainer.username)}
+                onClick={() =>
+                  handleOpenTrainerDetailsPopup(
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username
+                  )
+                }
               >
                 Edit Details
               </button>
@@ -220,7 +192,13 @@ const handleCloseWorkshopAndClientDetails = () => {
               <button
                 data-cy="delete-trainer-button"
                 className="delete-trainer-button"
-                onClick={() => handleOpenDeleteTrainerPopup(trainer._id, trainer.fullname, trainer.username)}
+                onClick={() =>
+                  handleOpenDeleteTrainerPopup(
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username
+                  )
+                }
               >
                 Delete Trainer
               </button>
@@ -270,15 +248,16 @@ const handleCloseWorkshopAndClientDetails = () => {
         />
       )}
       {isDeleteTrainerPopupOpen && (
-        <DeleteTrainerPopup onClose={handleCloseDeleteTrainerPopup}
-        trainerId={selectedId}
-        fullname={fullname}
-        username={username}
+        <DeleteTrainerPopup
+          onClose={handleCloseDeleteTrainerPopup}
+          trainerId={selectedId}
+          fullname={fullname}
+          username={username}
         />
       )}
       <div className="admin-manage-trainer-page">
         <div className="top-panel">
-          <TopLeftSidebar />
+          <AdminTopLeftSideBar />{" "}
         </div>
         <div className="manage-trainer-column">
           <div className="manage-trainer-title">
@@ -292,18 +271,21 @@ const handleCloseWorkshopAndClientDetails = () => {
           </div>
           <div className="manage-trainer-panel-outer">
             <div className="manage-trainer-panel">
-              <table data-cy="trainer-info-table" className="trainer-info-table">
+              <table
+                data-cy="trainer-info-table"
+                className="trainer-info-table"
+              >
                 <thead>
                   <tr>
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
-                    <th className="trainer-info-table-th action-column">Actions</th>
+                    <th className="trainer-info-table-th action-column">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {renderTrainerRows()}
-                </tbody>
+                <tbody>{renderTrainerRows()}</tbody>
               </table>
             </div>
           </div>

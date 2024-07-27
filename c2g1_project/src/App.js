@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminLoginPage from "./login_pages/AdminLoginPage";
@@ -11,7 +12,6 @@ import AdminManageTrainerPage from "./pages_admin/AdminManageTrainerPage";
 import AdminManageWorkshopPage from "./pages_admin/AdminManageWorkshopPage";
 import LoginPage from "./login_pages/LoginPage";
 import SignUpPage from "./pages_home/SignUpPage";
-import { ToastContainer } from "react-toastify";
 import HomePage from "./pages_home/HomePage";
 import OurWorkshopPage from "./components/OurWorkshopPage";
 import ClientWorkshopPage from "./pages_client/ClientWorkshopPage";
@@ -27,7 +27,6 @@ function App() {
     <Router>
       <div className="App">
         <ScrollToTop />
-        <ToastContainer theme="colored"></ToastContainer>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/LoginPage" element={<LoginPage />} />
@@ -60,11 +59,6 @@ function App() {
           <Route exact path="/OurWorkshopPage" element={<OurWorkshopPage />} />
           <Route
             exact
-            path="/AdminManageTrainerPage"
-            element={<AdminManageTrainerPage />}
-          />
-          <Route
-            exact
             path="/ClientWorkshopPage"
             element={<ClientWorkshopPage />}
           />
@@ -80,7 +74,11 @@ function App() {
             path="/TrainerViewTrainerPage"
             element={<TrainerViewTrainerPage />}
           />
-          <Route exact path="/ClientSettingsPage" element={<ClientSettingsPage />} />
+          <Route
+            exact
+            path="/ClientSettingsPage"
+            element={<ClientSettingsPage />}
+          />
         </Routes>
       </div>
     </Router>

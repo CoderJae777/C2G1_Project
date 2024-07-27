@@ -49,6 +49,7 @@ const SignUpPage = () => {
   const [fullname, fullnamechange] = useState("");
   const [email, emailchange] = useState("");
   const [country, countrychange] = useState("");
+  const [clientype, clientypechange] = useState("");
 
   const handleSuccess = (data) => {
     nav("/ClientLoginPage");
@@ -70,7 +71,7 @@ const SignUpPage = () => {
     e.preventDefault();
     if (IsValidate()) {
       e.preventDefault();
-      setBody({ username, password, email, fullname, country });
+      setBody({ username, password, email, fullname, country, client_type: clientype });
       refetch();
     }
   };
@@ -93,6 +94,17 @@ const SignUpPage = () => {
                 <h5>All fields are required</h5>
               </div>
               <div className="card-body">
+                <div className="form_group">
+                  <select
+                    value={clientype}
+                    onChange={(e) => clientypechange(e.target.value)}
+                    className="form_control"
+                  >
+                    <option value="Default">Select Your Client Type</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Executive">Executive</option>
+                  </select>
+                </div>
                 <div className="form_group">
                   <input
                     placeholder="Username"
@@ -136,7 +148,7 @@ const SignUpPage = () => {
                     onChange={(e) => countrychange(e.target.value)}
                     className="form_control"
                   >
-                    <option value="Default">-- Country --</option>
+                    <option value="Default">Select Your Country</option>
                     <option value="Singapore">Singapore</option>
                     <option value="USA">USA</option>
                     <option value="Malaysia">Malaysia</option>
@@ -145,19 +157,26 @@ const SignUpPage = () => {
               </div>
               <div className="card-footer">
                 <div className="signup-button-div">
-                  <button type="submit" className="signup_submit_button">
+                  <motion.button
+                    type="submit"
+                    className="signup_submit_button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     Register
-                  </button>
+                  </motion.button>
                 </div>
                 <div className="signup-button-div">
                   {" "}
-                  <button
+                  <motion.button
                     type="button"
                     className="signup_back_button"
                     onClick={handleBack}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     Back
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             </div>
