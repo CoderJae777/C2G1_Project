@@ -138,7 +138,7 @@ const TrainerWorkshopPage = () => {
 
     return data !== null && data.role === "trainer" ?  (
         <motion.div
-            className="admin-home-page"
+            className="trainer-home-page"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -151,7 +151,7 @@ const TrainerWorkshopPage = () => {
                 <TopLeftSideBar />
             </div>
             <div className="left-column">
-                <div className="admin-home-page-title"></div>
+                <div className="trainer-home-page-title"></div>
 
                 {/* Workshop summary starts here */}
                 <div className="workshop-calendar">

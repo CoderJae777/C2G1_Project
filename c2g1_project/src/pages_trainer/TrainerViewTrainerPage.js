@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/adminhomepage.css";
 import "../styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
@@ -25,7 +25,7 @@ const TrainerViewTrainerPage = () => {
     setParams: workshopsetParams,
     refetch: workshoprefetch
   } = useAxiosGet(
-    config.base_url + endpoints.admin.getApprovedWorkshops, // Ensure the correct endpoint is used here
+    config.base_url + endpoints.admin.getApprovedWorkshops,
     {},
     [],
     true  
@@ -39,8 +39,6 @@ const TrainerViewTrainerPage = () => {
     [],
     true
   );
-
-  console.log(data);
 
   const handleOpenTrainerScheduleCalendar = (id, fullname) => {
     setSelectedId(id);
@@ -59,30 +57,24 @@ const TrainerViewTrainerPage = () => {
     }
   };
 
-const handleCloseWorkshopAndClientDetails = () => {
+  const handleCloseWorkshopAndClientDetails = () => {
     setIsWorkshopAndClientDetailsOpen(false);
   };
 
+  // Function to combine all trainers into one array
+  const combineTrainers = (workshops) => {
+    return workshops.flatMap(workshop => workshop.trainers);
+  };
 
-// Function to combine all trainers into one array
-const combineTrainers = (workshops) => {
-  // Use flatMap to merge all trainers arrays into one
-  return workshops.flatMap(workshop => workshop.trainers);
-};
+  // Initialize allTrainers only if data.trainer_workshops is defined and is an array
+  const allTrainers = data && Array.isArray(data.trainer_workshops) ? combineTrainers(data.trainer_workshops) : [];
 
-// Example usage
-const allTrainers = combineTrainers(data.trainer_workshops);
-console.log("All trainers:")
-console.log(allTrainers);
+  console.log("All trainers:");
+  console.log(allTrainers);
 
-
-
-  data.trainer_workshops &&
-    data.trainer_workshops.map((request) => console.log(request.company));
-
-  return verifyUser !== null && verifyUser.data.role === "trainer" ? (
+  return verifyUser && verifyUser.data && verifyUser.data.role === "trainer" ? (
     <>
-      {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+      {isWorkshopAndClientDetailsOpen && selectedWorkshops.length > 0 && (
         <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
       )}
       {isTrainerScheduleCalendarOpen && (
@@ -111,7 +103,7 @@ console.log(allTrainers);
               >
                 <thead>
                   <tr>
-                  <th className="trainer-info-table-th">Request Name</th>
+                    <th className="trainer-info-table-th">Request Name</th>
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
