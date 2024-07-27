@@ -27,6 +27,7 @@ const AdminManageTrainerPage = () => {
   const [fullname, setFullname] = useState(null);
   const [username, setUsername] = useState(null);
   const [availability, setAvailability] = useState(null);
+  const [unavailability, setUnavailability] = useState([]);
 
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
@@ -84,8 +85,8 @@ const AdminManageTrainerPage = () => {
     setIsAddTrainerPopupOpen(false);
   };
 
-  const handleOpenTrainerScheduleCalendar = (id, fullname) => {
-    setSelectedId(id);
+  const handleOpenTrainerScheduleCalendar = (unavailability, fullname) => {
+    setUnavailability(unavailability);
     setFullname(fullname);
     setIsTrainerScheduleCalendarOpen(true);
   };
@@ -121,7 +122,7 @@ const AdminManageTrainerPage = () => {
                 className="trainer-info-table-button"
                 onClick={() =>
                   handleOpenTrainerScheduleCalendar(
-                    trainer._id,
+                    trainer.unavailableTimeslots,
                     trainer.fullname
                   )
                 }
@@ -183,7 +184,7 @@ const AdminManageTrainerPage = () => {
       )}
       {isTrainerScheduleCalendarOpen && (
         <TrainerScheduleCalendar
-          trainerId={selectedId}
+          unavailability={unavailability}
           fullname={fullname}
           onClose={handleCloseTrainerScheduleCalendar}
         />
