@@ -71,7 +71,7 @@ const SignUpPage = () => {
     e.preventDefault();
     if (IsValidate()) {
       e.preventDefault();
-      setBody({ username, password, email, fullname, country });
+      setBody({ username, password, email, fullname, country, client_type: clientype });
       refetch();
     }
   };
@@ -97,7 +97,7 @@ const SignUpPage = () => {
                 <div className="form_group">
                   <select
                     value={clientype}
-                    onChange={(e) => countrychange(e.target.value)}
+                    onChange={(e) => clientypechange(e.target.value)}
                     className="form_control"
                   >
                     <option value="Default">Select Your Client Type</option>
