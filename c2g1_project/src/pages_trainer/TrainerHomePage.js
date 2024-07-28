@@ -23,6 +23,7 @@ import {
   LineChart,
 } from "recharts";
 import useAxiosPatch from "../api/useAxiosPatch.jsx";
+import UtilHrsDetailsPopup from "./UtilHrsDetailsPopup.js";
 
 const TrainerHomePage = () => {
   // const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
@@ -73,6 +74,8 @@ const TrainerHomePage = () => {
   const [utilisation2, setUtilisation2] = useState("");
   const [utilisation3, setUtilisation3] = useState("");
   const [utilisation4, setUtilisation4] = useState("");
+  const [selectedUtilHrsDetails, setSelectedUtilHrsDetails] = useState("");
+  const [isUtilHrsDetailsPopupOpen, setIsUtilHrsDetailsPopupOpen] = useState(false)
 
   // CALLING DATA FROM JSON
   const { trainer_data, workshop_data, today_data } = useFetch();
@@ -90,7 +93,14 @@ const TrainerHomePage = () => {
   );
 
   const handleOpenUtilHrsDetailsPopup = (util) => {
-  }
+    setSelectedUtilHrsDetails(util);
+    setIsUtilHrsDetailsPopupOpen(true);
+  };
+
+  const handleCloseUtilHrsDetailsPopup = () => {
+    setIsUtilHrsDetailsPopupOpen(false);
+    setSelectedUtilHrsDetails(null);
+  };
 
   const handleRefresh = () => {
     WorkshopUtilisations.refetch();
@@ -167,6 +177,12 @@ const TrainerHomePage = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {isUtilHrsDetailsPopupOpen && (
+        <UtilHrsDetailsPopup
+          util={selectedUtilHrsDetails}
+          onClose={handleCloseUtilHrsDetailsPopup}
+        />
+      )}
       <div className="top-panel">
         <TopLeftSideBar />
       </div>
@@ -217,11 +233,11 @@ const TrainerHomePage = () => {
                         <div key={index}>
                           <button
                             className="util-hrs-detail-panel"
-                            // onClick={() =>
-                            //   handleOpenUtilHrsDetailsPopup(
-                            //     util
-                            //   )
-                            // }
+                            onClick={() =>
+                              handleOpenUtilHrsDetailsPopup(
+                                util
+                              )
+                            }
                           >
                             <span>
                               {util.company + "_" + util.name}
