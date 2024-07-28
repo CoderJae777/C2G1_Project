@@ -33,6 +33,7 @@ const endpoints = {
     getAllocatedWorkshopRequests: "/auth/allocatedworkshops",
     getSingleWorkshopRequest: "/workshoprequest/",
     getTeammates: "/auth/getteammates",
+    getOthers: "/auth/getothers",
     updateUtilisation: "/auth/updateutilisation/",
     getApprovedWorkshops: "/workshoprequest/getApproved"
   },
