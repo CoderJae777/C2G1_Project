@@ -125,37 +125,55 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
 
     return (
     <div data-cy="colour-calendar-popup" className="colour-calendar-popup">
-    <header>
-        <div className="icons"> 
-            {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
-            <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
-            <span id="prev" className="arrow-left">
-                <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
-                    <box-icon name='chevron-left'></box-icon>
-                </div>
-            </span>
-            <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
-            <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
-                <div className="fa-solid fa-chevron-right">
-                    <box-icon name='chevron-right'></box-icon>
-                </div>
-            </span>
+        <header>
+            <div className="icons"> 
+                {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
+                <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
+                <span id="prev" className="arrow-left">
+                    <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
+                        <box-icon name='chevron-left'></box-icon>
+                    </div>
+                </span>
+                <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
+                <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
+                    <div className="fa-solid fa-chevron-right">
+                        <box-icon name='chevron-right'></box-icon>
+                    </div>
+                </span>
+            </div>
+        </header>
+        <div className="calendar-container">       
+            <div className="calendar">
+                <ul className="weeks">
+                    <li>Sun</li>
+                    <li>Mon</li>
+                    <li>Tue</li>
+                    <li>Wed</li>
+                    <li>Thu</li>
+                    <li>Fri</li>
+                    <li>Sat</li>
+                </ul>
+                <ul className="days">{days}</ul>
+            </div>
         </div>
-    </header>
-    <div className="calendar-container">       
-        <div className="calendar">
-            <ul className="weeks">
-            <li>Sun</li>
-            <li>Mon</li>
-            <li>Tue</li>
-            <li>Wed</li>
-            <li>Thu</li>
-            <li>Fri</li>
-            <li>Sat</li>
-            </ul>
-            <ul className="days">{days}</ul>
-        </div>
-    </div>
+        <div className="calendar-legend">
+                    <div className="legend-item">
+                        <span className="legend-color workshop-start"></span>
+                        <span className="legend-text">Workshop Start</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color workshop-end"></span>
+                        <span className="legend-text">Workshop End</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color workshop-in-between"></span>
+                        <span className="legend-text">Conducting Workshop</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color pre-workshop-day"></span>
+                        <span className="legend-text">7 Days before Workshop</span>
+                    </div>
+                </div>  
     </div>
     );
 };
