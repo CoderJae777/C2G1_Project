@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/adminmanagetrainerspagepopup.css";
 import "boxicons/css/boxicons.min.css";
 import useAxiosPatch from "../api/useAxiosPatch";
@@ -10,10 +10,13 @@ const TrainerActivityPopup = ({
   onActivityChange,
   index,
   trainerId,
+  fullname,
+  username,
   availability,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(availability);
+  const popupRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -21,6 +24,7 @@ const TrainerActivityPopup = ({
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+    setIsOpen(!isOpen);
   };
 
   const handleSuccess = () => {
@@ -66,9 +70,24 @@ const TrainerActivityPopup = ({
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [popupRef, onClose]);
+
   return (
-    <div data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
+    <div ref={popupRef} data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
       <h2>Select Activity</h2>
+      <p>Trainer Name: {fullname}</p>
+      <p>Trainer ID: {username}</p>
       <div className="select-menu-container">
         <div
           className={`select-btn ${isOpen ? "open" : ""}`}

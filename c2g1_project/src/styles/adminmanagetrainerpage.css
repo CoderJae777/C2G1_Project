@@ -1,100 +1,104 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: roboto; 
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: roboto;
+  box-sizing: border-box;
 }
 
-.admin-manage-trainer-page{
-    display: flex;
-    align-items: end;
-    justify-content: flex-start;
-    height: 100vh;
-    margin-top: -50px;
+.admin-manage-trainer-page {
+  display: flex;
+  align-items: end;
+  justify-content: flex-start;
+  height: 100vh;
+  margin-top: -50px;
 }
 
 .manage-trainer-column {
-    flex: 1;
-    padding: 15px;
+  flex: 1;
+  padding: 15px;
 }
 
 .manage-trainer-title {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .manage-trainer-title h2 {
-    margin-right: 480px;
+  margin-right: 480px;
 }
 
-.add-trainer-button{
-    background-color: #80C7FB;
-    color: black;
-    width: 200px;
-    height: 30x;
-    border-radius: 25px;
-    border-width: 0px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 12px 10px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 0px;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 10px;
+.add-trainer-button {
+  background-color: #80c7fb;
+  color: black;
+  width: 200px;
+  height: 30x;
+  border-radius: 25px;
+  border-width: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-.add-trainer-button:hover{
-    background-color: #0672CB;
-    color: white;
+.add-trainer-button:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .manage-trainer-panel-outer {
-    height: 540px;
-    width: 80%;
-    background: #d7d7d7;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    margin-top: 5px;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+  height: 540px;
+  width: 80%;
+  background: #d7d7d7;
+  color: #707070;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 5px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .manage-trainer-panel {
-    height: 500px;
-    background: #d7d7d7;
-    color: #707070;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    margin-top: 5px;
-    align-items: center;
-    overflow-y: auto;
+  height: 500px;
+  background: #d7d7d7;
+  color: #707070;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 5px;
+  align-items: center;
+  overflow-y: auto;
 }
 
 /* CSS FOR TRAINER INFORMATION TABLE ------------------------------------------------------------------------- */
 
 .trainer-info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
 }
 
-.trainer-info-table-th, .trainer-info-table-td {
-    border: 1px solid #d7d7d7;
-    padding: 8px;
-    text-align: center;
+.trainer-info-table-th,
+.trainer-info-table-td {
+  border: 1px solid #d7d7d7;
+  padding: 8px;
+  text-align: center;
 }
 
 .trainer-info-table-td.action-column {
@@ -102,52 +106,58 @@
   max-width: 670px;
 }
 
-
 .trainer-info-table-th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .trainer-info-table-button {
-    background-color: #80C7FB;
-    color: black;
-    width: 150px;
-    height: 30x;
-    border-radius: 25px;
-    border-width: 0px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 12px 10px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 0px;
-    border-radius: 8px;
-    text-align: center;
-    margin: 5px;
+  background-color: #80c7fb;
+  color: black;
+  width: 150px;
+  height: 30x;
+  border-radius: 25px;
+  border-width: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .trainer-info-table-button:hover {
-    background-color: #0672CB;
-    color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .delete-trainer-button {
-    background-color: #ed2157;
-    color: black;
-    width: 150px;
-    height: 30x;
-    border-radius: 25px;
-    border-width: 0px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 12px 10px;
-    transition: background-color 500ms;
-    transition: color 500ms;
-    border-width: 0px;
-    border-radius: 8px;
-    text-align: center;
-    margin: 5px;
+  background-color: #ed2157;
+  color: black;
+  width: 150px;
+  height: 30x;
+  border-radius: 25px;
+  border-width: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 10px;
+  transition: background-color 500ms;
+  transition: color 500ms;
+  border-width: 0px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .delete-trainer-button:hover {
-    background-color: #B30B37;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }

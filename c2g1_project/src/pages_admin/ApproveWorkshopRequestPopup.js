@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/adminworkshoprequestpagepopups.css";
 import "boxicons/css/boxicons.min.css";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import useAxiosPatch from "../api/useAxiosPatch";
-
-const trainers = ["Mike", "Kowalski", "Rico", "June", "A2"];
 
 const ApproveWorkshopRequestPopup = ({
   selectedId,
@@ -20,6 +18,8 @@ const ApproveWorkshopRequestPopup = ({
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const popupRef = useRef(null);
 
   const handleItemClick = (item) => {
     const newSelectedItems = selectedItems.includes(item)
@@ -60,12 +60,28 @@ const ApproveWorkshopRequestPopup = ({
     handleError
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [popupRef, onClose]);
+
   return (
     <div
+      ref={popupRef}
       data-cy="approve-wsrq-popup"
       className="approve-workshop-request-popup open-approve-workshop-request-popup"
     >
       <h2>Approve Workshop</h2>
+      {/* need to create an ID for specific workshop request */}
+      <p>Workshop: {selectedId}</p> 
       <p>Assign trainer(s) to this workshop.</p>
       <div data-cy="select-trainer" className="select-menu-container">
         <div

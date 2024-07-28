@@ -131,15 +131,63 @@ header .current-date {
   transform: translate(-50%, -50%);
 }
 
-
-
-.days li.workshop-start::before {
-  background: #3bc452;
-  outline: 5px solid #3bc452;
+.workshop-in-between::before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #b7b7b7; /* Your workshop in-between color */
 }
 
-.days li.workshop-end::before {
-  background: #ff8800;
+.pre-workshop-day::before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #dddddd; /* Your pre-workshop day color */
+}
+
+.workshop-start::before {
+  content: "";
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #3bc452; /* Your workshop start color */
+}
+
+
+.days li.workshop-in-between.active::before {
+  outline: 5px solid #6e93f7;
+  background-color: #b7b7b7;
+}
+
+.days li.pre-workshop-day.active::before {
+  outline: 5px solid #6e93f7;
+  background-color: #dddddd;
+}
+
+.days li.workshop-start.active::before {
+  outline: 5px solid #6e93f7;
+  background-color: #3bc452;
+}
+
+.days li.workshop-end.active::before {
+  outline: 5px solid #6e93f7;
+  background-color: #ff8800;
+}
+
+
+
+.workshop-end::before {
+    content: "";
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #ff8800; /* Your workshop end color */
 }
 
 .days li:not(.active):hover::before {
@@ -154,7 +202,7 @@ header .current-date {
   background: #279a3a;
 }
 
-.days li.active::before {
+.active::before {
   background: #6e93f7;
   box-shadow: #6e93f7;
 }
@@ -174,7 +222,8 @@ header .current-date {
 }
 
 .workshop-start:hover .calendar-details,
-.workshop-end:hover .calendar-details { 
+.workshop-end:hover .calendar-details,
+.workshop-in-between:hover .calendar-details { 
   display: block;
 }
 
@@ -194,4 +243,27 @@ header .current-date {
 
 .details p {
   white-space: nowrap;
+}
+
+.calendar-legend {
+  margin-top: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.legend-color {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
 }

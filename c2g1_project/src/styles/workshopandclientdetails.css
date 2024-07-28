@@ -30,14 +30,18 @@
 }
 
 .details-popup header{
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 25px 30px 10px;
   justify-content: space-between;
 }
 
-header .icons{
-  display: flex;
+header .icons {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
 }
 
 header .icons span{

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../styles/adminhomepage.css";
 import "../styles/adminmanagetrainerpage.css";
 import "boxicons/css/boxicons.min.css";
-import TopLeftSidebar from "../components/TopLeftSideBar";
+import TopLeftSidebar from "../components/AdminTopLeftSideBar";
 import EditTrainerDetailsPopup from "./EditTrainerDetailsPopup";
 import TrainerActivityPopup from "./TrainerActivityPopup";
 import AddTrainerPopup from "./AddTrainerPopup";
-import TrainerScheduleCalendar from "../components/TrainerScheduleCalendar";
+import TrainerScheduleCalendar from "../components/ColourCalendarPopup";
 import DeleteTrainerPopup from "./DeleteTrainerPopup";
+import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
@@ -20,18 +21,39 @@ const AdminManageTrainerPage = () => {
   const [isDeleteTrainerPopupOpen, setIsDeleteTrainerPopupOpen] = useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [fullname, setFullname] = useState(null);
+  const [username, setUsername] = useState(null);
   const [availability, setAvailability] = useState(null);
+  const [selectedWorkshops, setSelectedWorkshops] = useState([]);
+  const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] = useState(false);
+
 
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
     {},
     [],
-    true
+    true  
+  );
+  
+  const {
+    data: workshopdata,
+    loading: workshoploading,
+    error: workshoperror,
+    seturl: workshopseturl,
+    setParams: workshopsetParams,
+    refetch: workshoprefetch
+  } = useAxiosGet(
+    config.base_url + endpoints.admin.getApprovedWorkshops, // Ensure the correct endpoint is used here
+    {},
+    [],
+    true  
   );
 
-  const handleOpenTrainerDetailsPopup = (id) => {
+  const handleOpenTrainerDetailsPopup = (id, fullname, username) => {
     setSelectedId(id);
     setIsTrainerDetailsPopupOpen(true);
+    setFullname(fullname);
+    setUsername(username);
   };
 
   const handleCloseTrainerDetailsPopup = () => {
@@ -39,11 +61,13 @@ const AdminManageTrainerPage = () => {
     setIsTrainerDetailsPopupOpen(false);
   };
 
-  const handleOpenTrainerActivityPopup = (index, id, availability) => {
+  const handleOpenTrainerActivityPopup = (index, id, fullname, username, availability) => {
     setIsTrainerActivityPopupOpen(true);
     setPopupIndex(index);
     setAvailability(availability);
     setSelectedId(id);
+    setFullname(fullname);
+    setUsername(username);
   };
 
   const handleCloseTrainerActivityPopup = () => {
@@ -68,7 +92,9 @@ const AdminManageTrainerPage = () => {
     setIsAddTrainerPopupOpen(false);
   };
 
-  const handleOpenTrainerScheduleCalendar = () => {
+  const handleOpenTrainerScheduleCalendar = (id, fullname) => {
+    setSelectedId(id);
+    setFullname(fullname);
     setIsTrainerScheduleCalendarOpen(true);
   };
 
@@ -76,8 +102,10 @@ const AdminManageTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  const handleOpenDeleteTrainerPopup = (id) => {
+  const handleOpenDeleteTrainerPopup = (id, fullname, username) => {
     setSelectedId(id);
+    setFullname(fullname);
+    setUsername(username);
     setIsDeleteTrainerPopupOpen(true);
   };
 
@@ -85,6 +113,21 @@ const AdminManageTrainerPage = () => {
     refetch();
     setIsDeleteTrainerPopupOpen(false);
   };
+
+  const handleOpenWorkshopAndClientDetails = (workshop) => {
+    if (Array.isArray(workshop) && workshop.length > 0){
+      setSelectedWorkshops(workshop);
+      setIsWorkshopAndClientDetailsOpen(true);
+    }
+  };
+  
+
+const handleCloseWorkshopAndClientDetails = () => {
+    setIsWorkshopAndClientDetailsOpen(false);
+  };
+
+  console.log(data);
+  
 
   const renderTrainerRows = () => {
     const rows = [];
@@ -99,13 +142,13 @@ const AdminManageTrainerPage = () => {
             <td className="trainer-info-table-td action-column">
               <button
                 className="trainer-info-table-button"
-                onClick={handleOpenTrainerScheduleCalendar}
+                onClick={() => handleOpenTrainerScheduleCalendar(trainer._id, trainer.fullname)}
               >
                 View Schedule
               </button>
               <button
                 className="trainer-info-table-button"
-                onClick={() => handleOpenTrainerDetailsPopup(trainer._id)}
+                onClick={() => handleOpenTrainerDetailsPopup(trainer._id, trainer.fullname, trainer.username)}
               >
                 Edit Details
               </button>
@@ -116,6 +159,8 @@ const AdminManageTrainerPage = () => {
                   handleOpenTrainerActivityPopup(
                     i,
                     trainer._id,
+                    trainer.fullname,
+                    trainer.username,
                     trainer.availability
                   )
                 }
@@ -125,7 +170,7 @@ const AdminManageTrainerPage = () => {
               <button
                 data-cy="delete-trainer-button"
                 className="delete-trainer-button"
-                onClick={() => handleOpenDeleteTrainerPopup(trainer._id)}
+                onClick={() => handleOpenDeleteTrainerPopup(trainer._id, trainer.fullname, trainer.username)}
               >
                 Delete Trainer
               </button>
@@ -139,15 +184,27 @@ const AdminManageTrainerPage = () => {
 
   return (
     <>
+      {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
+      )}
       {isAddTrainerPopupOpen && (
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
       )}
       {isTrainerScheduleCalendarOpen && (
-        <TrainerScheduleCalendar onClose={handleCloseTrainerScheduleCalendar} />
+        <TrainerScheduleCalendar 
+          trainerId={selectedId}
+          fullname={fullname} 
+          onClose={handleCloseTrainerScheduleCalendar}
+          ondateClick={handleOpenWorkshopAndClientDetails}
+          trainerdata={data}  
+          workshopdata={workshopdata}
+        />
       )}
       {isTrainerDetailsPopupOpen && (
         <EditTrainerDetailsPopup
           trainerId={selectedId}
+          fullname={fullname}
+          username={username}
           onClose={handleCloseTrainerDetailsPopup}
         />
       )}
@@ -157,12 +214,17 @@ const AdminManageTrainerPage = () => {
           onActivityChange={handleActivityChange}
           index={popupIndex}
           trainerId={selectedId}
+          fullname={fullname}
+          username={username}
           availability={availability}
         />
       )}
       {isDeleteTrainerPopupOpen && (
         <DeleteTrainerPopup onClose={handleCloseDeleteTrainerPopup}
-        trainerId={selectedId} />
+        trainerId={selectedId}
+        fullname={fullname}
+        username={username}
+        />
       )}
       <div className="admin-manage-trainer-page">
         <div className="top-panel">

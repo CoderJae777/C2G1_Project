@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/adminmanageworkshoppagepopup.css";
 import "boxicons/css/boxicons.min.css";
+// import useAxiosGet from "../api/useAxiosGet";
 import useAxiosPatch from "../api/useAxiosPatch";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
@@ -14,6 +15,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
   const [newWorkshopName, setNewWorkshopName] = useState(null);
   const [newWorkshopID, setNewWorkshopID] = useState(null);
   const [newWorkshopDetails, setNewWorkshopDetails] = useState(null);
+  const popupRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -25,10 +27,12 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
 
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
+    setIsOpen(!isOpen);
   };
 
   const handleItemClick2 = (item) => {
     setSelectedItem2(item === selectedItem ? null : item);
+    setIsOpen2(!isOpen2);
   };
 
   const handleWorkshopNameChange = (event) => {
@@ -85,8 +89,21 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
     }
   }, [selectedWorkshop.data]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [popupRef, onClose]);
+
   return selectedWorkshop.data !== null ? (
-    <div className="ws-details-popup open-ws-details-popup">
+    <div ref={popupRef} className="ws-details-popup open-ws-details-popup">
       <h2>Edit Details</h2>
       <input
         className="new-ws-name-input"

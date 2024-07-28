@@ -7,7 +7,7 @@ import { endpoints } from "../config/endpoints";
 import useAxiosGet from "../api/useAxiosGet";
 import DateAndTime from "./DateAndTime";
 
-const TopLeftSideBar = ({ hasNewRequests }) => {
+const AdminTopLeftSideBar = ({ hasNewRequests }) => {
   const [navOpen, setNavOpen] = useState(false);
   const nav = useNavigate();
 
@@ -76,7 +76,7 @@ const TopLeftSideBar = ({ hasNewRequests }) => {
           </div>
           <div className="welcome">
             <span data-cy="welcome" className="logo-name">
-              Hi Dil, Welcome Back!
+              Welcome Back, (insert username here)
             </span>
           </div>
           <div className="date">
@@ -179,4 +179,4 @@ const TopLeftSideBar = ({ hasNewRequests }) => {
   );
 };
 
-export default TopLeftSideBar;
+export default AdminTopLeftSideBar;

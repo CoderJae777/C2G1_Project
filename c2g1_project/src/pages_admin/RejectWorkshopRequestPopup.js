@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/adminworkshoprequestpagepopups.css";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
@@ -6,6 +6,7 @@ import useAxiosPatch from "../api/useAxiosPatch";
 
 const RejectWorkshopRequestPopup = ({ selectedId, onClose }) => {
   const [rejectReason, setRejectReason] = useState("");
+  const popupRef = useRef(null);
 
   const handleReasonChange = (event) => {
     setRejectReason(event.target.value);
@@ -32,12 +33,27 @@ const RejectWorkshopRequestPopup = ({ selectedId, onClose }) => {
     handleError
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [popupRef, onClose]);
+
   return (
     <div
+      ref={popupRef}
       data-cy="reject-wsrq-popup"
       className="reject-workshop-request-popup open-reject-workshop-request-popup"
     >
       <h2>Reject Workshop</h2>
+      <p>Workshop: {selectedId}</p> 
       <p>Please provide a reason for rejecting the workshop request.</p>
       <textarea
         className="reject-reason-input"

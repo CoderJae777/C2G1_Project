@@ -8,40 +8,48 @@
 }
 
 .trainer-schedule-calendar-popup {
-    width: 400px;
-    background: #fff;
-    border-radius: 6px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
-    text-align: center;
-    padding: 15px 25px;
-    color: #333;
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
+  width: 400px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 15px 25px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
 }
 
 .trainer-schedule-calendar-popup {
-    visibility: visible;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
 }
 
-.trainer-schedule-calendar-popup header{
+.trainer-schedule-calendar-popup header {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: 25px 30px 10px;
-  justify-content: space-between;
 }
 
-header .icons{
+.trainer-info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header .icons {
   display: flex;
 }
 
-header .icons span{
-  height: 38px;
-  width: 38px;
+header .icons span {
+  /* height: 38px; */
+  /* width: 38px; */
+  /* max-width: 38px; */
+  width: 50%;
   margin: 0 1px;
   cursor: pointer;
   color: #878787;
@@ -52,35 +60,42 @@ header .icons span{
   border-radius: 50%;
 }
 
-.icons span:last-child{
+/* .icons span:last-child {
   margin-right: -10px;
-}
+} */
 
-header .icons span:hover{
+header .icons span:hover {
   background: #f2f2f2;
 }
 
 .trainer-schedule-calendar-popup .arrow-left,
 .trainer-schedule-calendar-popup .arrow-right,
 .trainer-schedule-calendar-popup .close-button {
-    display: flex;
-    height: 20px;
-    width: 20px;
-    color: black;
-    font-size: 14px;
-    border-radius: 50%;
-    background: #fff;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  height: 20px;
+  width: 20px;
+  color: black;
+  font-size: 14px;
+  border-radius: 50%;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
 }
 
 .trainer-schedule-calendar-popup .close-button {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
-header .current-date{
+header .current-date {
   font-size: 1.45rem;
   font-weight: 500;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
 }
 
 .calendar{
@@ -142,4 +157,9 @@ header .current-date{
 
 .days li:not(.active):hover::before{
   background: #f2f2f2;
+}
+
+.unavailable {
+  background-color: red;
+  color: white; /* Optional: Change text color for better contrast */
 }
