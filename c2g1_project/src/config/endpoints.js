@@ -40,6 +40,16 @@ const endpoints = {
     getAllAdminNotificiation: "/notif/getAllAdminNotification",
   },
   graph: {
+    // deprecated use
+    getWorkshopSummaryGraph: "/graph/getWorkshopSummaryGraph",
+    getTrainerGraph: "/graph/getTrainerGraph",
+    getTodayGraph: "/graph/getTodayGraph",
+    // currently in use
+    getYearsPieChartGraph: "/graph/getYearsPieChartGraph",
+    getTotalPieChartGraph: "/graph/getTotalPieChartGraph",
+    getWorkshopTypesGraph: "/graph/getWorkshopTypesGraph",
+    getClientTypeGraph: "/graph/getClientTypeGraph",
+    getWorkshopTrendDataGraph: "/graph/getWorkshopTrendDataGraph",
     // hardcoded data below
     getHCtotalPieData: "/graph/getHCtotalPieData",
     getHCyearsPieData: "/graph/getHCyearsPieData",

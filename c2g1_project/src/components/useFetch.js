@@ -6,7 +6,7 @@ const useFetch = () => {
   const [today_data, setTodayData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5001/products/trainerGraph", {
+    fetch("http://localhost:5001/graph/getTrainerGraph", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
