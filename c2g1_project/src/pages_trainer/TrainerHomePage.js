@@ -85,10 +85,12 @@ const TrainerHomePage = () => {
     config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
   );
 
-  // HI SEAN OVER HERE !! ----------------------------------------------------------------------------------------------
   const WorkshopUtilisations = useAxiosGet(
     config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
   );
+
+  const handleOpenUtilHrsDetailsPopup = (util) => {
+  }
 
   const handleRefresh = () => {
     WorkshopUtilisations.refetch();
@@ -205,14 +207,12 @@ const TrainerHomePage = () => {
           ) : (
             <div>Calculating all data... This may take awhile...</div>
           )} */}
-
-            {/* // HI SEAN OVER HERE !! ---------------------------------------------------------------------------------- */}
             <h4>Workshop Utilisation Hours</h4>
-            {WorkshopUtilisations.data.workshop_requests &&
-              WorkshopUtilisations.data.workshop_requests.length !== 0 && (
+            {WorkshopUtilisations.data.trainer_workshops &&
+              WorkshopUtilisations.data.trainer_workshops.length !== 0 && (
                 <div className="scrollable-list">
                   <ul>
-                    {WorkshopUtilisations.data.workshop_requests.map(
+                    {WorkshopUtilisations.data.trainer_workshops.map(
                       (util, index) => (
                         <div key={index}>
                           <button
@@ -226,7 +226,7 @@ const TrainerHomePage = () => {
                             <span>
                               {util.company + "_" + util.name}
                             </span>
-                            <span>Status: {util.status}</span>
+                            <span>Workshop Type: {util.workshop_data.workshop_name}</span>
                           </button>
                         </div>
                       )
