@@ -94,7 +94,7 @@ const WorkshopRequestDetailsPopup = ({ onClose, request }) => {
                 </table>
             </div>
             <div className="popup-buttons">
-                <button data-cy="clwsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
+                <button data-cy="clwsrqd-close-button" className="close-ws-status-details-button" type="button" onClick={onClose}>Close</button>
             </div>
         </div>
     );
