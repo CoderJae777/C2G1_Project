@@ -25,44 +25,44 @@ import {
 import useAxiosPatch from "../api/useAxiosPatch.jsx";
 
 const TrainerHomePage = () => {
-  const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
-    "View Trainer statistics"
-  );
-  const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
-    "Workshop Completed Over the Years"
-  );
+  // const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
+  //   "View Trainer statistics"
+  // );
+  // const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
+  //   "Workshop Completed Over the Years"
+  // );
 
-  const [key, setKey] = useState("workshops_completed_total");
-  const [key_ws, setKeyWS] = useState("completed");
+  // const [key, setKey] = useState("workshops_completed_total");
+  // const [key_ws, setKeyWS] = useState("completed");
 
-  const [domainMax, setDomainMax] = useState(0);
+  // const [domainMax, setDomainMax] = useState(0);
 
-  const viewworkshop = () => {
-    setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
-    setKey("workshops_completed_this_month");
-    setDomainMax(20);
-  };
-  const viewongoing = () => {
-    setTrainerGraphsTitle("Ongoing Workshops per Trainer");
-    setKey("ongoing_workshops");
-    setDomainMax(10);
-  };
-  const viewexperience = () => {
-    setTrainerGraphsTitle("Trainers' Experience");
-    setKey("experience");
-    setDomainMax(20);
-  };
-  const resetview = () => {
-    setTrainerGraphsTitle("View Trainer Statistics");
-    setKey("blank");
-    setDomainMax(0);
-  };
+  // const viewworkshop = () => {
+  //   setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
+  //   setKey("workshops_completed_this_month");
+  //   setDomainMax(20);
+  // };
+  // const viewongoing = () => {
+  //   setTrainerGraphsTitle("Ongoing Workshops per Trainer");
+  //   setKey("ongoing_workshops");
+  //   setDomainMax(10);
+  // };
+  // const viewexperience = () => {
+  //   setTrainerGraphsTitle("Trainers' Experience");
+  //   setKey("experience");
+  //   setDomainMax(20);
+  // };
+  // const resetview = () => {
+  //   setTrainerGraphsTitle("View Trainer Statistics");
+  //   setKey("blank");
+  //   setDomainMax(0);
+  // };
 
-  const viewtotal = () => {
-    setTrainerGraphsTitle("Total Workshops Completed per Trainer");
-    setKey("workshops_completed_total");
-    setDomainMax(100);
-  };
+  // const viewtotal = () => {
+  //   setTrainerGraphsTitle("Total Workshops Completed per Trainer");
+  //   setKey("workshops_completed_total");
+  //   setDomainMax(100);
+  // };
 
   const [workshop, setSelectedWorkshop] = useState("");
   const [hours1, setHours1] = useState(0);
@@ -84,6 +84,15 @@ const TrainerHomePage = () => {
   const allocatedWorkshops = useAxiosGet(
     config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
   );
+
+  // HI SEAN OVER HERE !! ----------------------------------------------------------------------------------------------
+  const WorkshopUtilisations = useAxiosGet(
+    config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
+  );
+
+  const handleRefresh = () => {
+    WorkshopUtilisations.refetch();
+  };
 
   const onSuccess = () => {
     window.location.reload();
@@ -163,8 +172,10 @@ const TrainerHomePage = () => {
         <div className="trainer-home-page-title"></div>
 
         {/* Workshop summary starts here */}
-        <div className="workshop-table">
-          {" "}
+        <div className="trainer-home-pg-top-left">
+          <div className="view-util-hrs">
+
+          {/* {" "}
           <div className="workshop-table-title">
             <h4>This is today's workshops' statistics: </h4>
           </div>
@@ -193,7 +204,37 @@ const TrainerHomePage = () => {
             </>
           ) : (
             <div>Calculating all data... This may take awhile...</div>
-          )}
+          )} */}
+
+            {/* // HI SEAN OVER HERE !! ---------------------------------------------------------------------------------- */}
+            <h4>Workshop Utilisation Hours</h4>
+            {WorkshopUtilisations.data.workshop_requests &&
+              WorkshopUtilisations.data.workshop_requests.length !== 0 && (
+                <div className="scrollable-list">
+                  <ul>
+                    {WorkshopUtilisations.data.workshop_requests.map(
+                      (util, index) => (
+                        <div key={index}>
+                          <button
+                            className="util-hrs-detail-panel"
+                            // onClick={() =>
+                            //   handleOpenUtilHrsDetailsPopup(
+                            //     util
+                            //   )
+                            // }
+                          >
+                            <span>
+                              {util.company + "_" + util.name}
+                            </span>
+                            <span>Status: {util.status}</span>
+                          </button>
+                        </div>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+          </div>
         </div>
         {/* Workshop summary ends here */}
         <div className="breakdown-of-attendance-div">
