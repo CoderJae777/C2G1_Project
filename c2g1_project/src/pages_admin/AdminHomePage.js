@@ -85,30 +85,30 @@ const AdminHomePage = () => {
   // HARDCODED DATA
   ///////////////////////////////////////////////////////////
   const totalPieDataLink = useAxiosGet(
-    config.base_url + endpoints.graph.getHCtotalPieData
+    config.base_url + endpoints.graph.getTotalPieChartGraph
   );
   const totalPieData = totalPieDataLink.data;
 
   // 2022 and 2023 has no pending workshops because it should have been resolved
   const yearPieDataLink = useAxiosGet(
-    config.base_url + endpoints.graph.getHCyearsPieData
+    config.base_url + endpoints.graph.getYearsPieChartGraph
   );
   const yearPieData = yearPieDataLink.data;
 
   const COLORS = ["#88D66C", "#FF4C4C", "#FFD35A"];
 
   const workshopTypesDataLink = useAxiosGet(
-    config.base_url + endpoints.graph.getHCWorkshopTypesData
+    config.base_url + endpoints.graph.getWorkshopTypesGraph
   );
   const workshopTypesData = workshopTypesDataLink.data;
 
   const clientTypesDataLink = useAxiosGet(
-    config.base_url + endpoints.graph.getHCClientTypesData
+    config.base_url + endpoints.graph.getClientTypeGraph
   );
   const clientTypesData = clientTypesDataLink.data;
 
   const workshopTrendDataLink = useAxiosGet(
-    config.base_url + endpoints.graph.getHCWorkshopTrendData
+    config.base_url + endpoints.graph.getWorkshopTrendDataGraph
   );
   const workshopTrendData = workshopTrendDataLink.data;
   ///////////////////////////////////////////////////////////
