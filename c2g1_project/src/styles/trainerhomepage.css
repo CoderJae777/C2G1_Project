@@ -101,7 +101,7 @@ body {
   justify-content: center; /* Centers items vertically */
   max-width: 1000px;
   width: 500px;
-  height: 400px;
+  height: 700px;
   background: #e3f2fd;
   color: black;
   border-radius: 20px;
@@ -350,6 +350,21 @@ body {
 
 .workshop_detail_panel:hover {
   background-color: #669fc9;
+}
+
+.unallocated-workshop{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  justify-content: space-between;
+  border-radius: 5px;
+  border-width: 0px;
+  background-color: #669fc9;
+  height: 50px;
+  margin-top: 5px;
+  width: 100%;
+  padding: 0px;
+  align-items: center;
 }
 
 .workshop-stats-title {

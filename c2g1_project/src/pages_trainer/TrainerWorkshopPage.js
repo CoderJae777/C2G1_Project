@@ -29,11 +29,41 @@ const TrainerWorkshopPage = () => {
         config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
       );
 
-    console.log(allocatedWorkshops)
-
-    const Teammates = useAxiosGet(
-        config.base_url + endpoints.trainer.getTeammates
+    const {
+        data: trainerdata,
+        loading: trainerloading,
+        error: trainererror,
+        seturl: trainerseturl,
+        setParams: trainersetParams,
+        refetch: trainerrefetch
+      } = useAxiosGet(
+        config.base_url + endpoints.trainer.getOthers,
+        {},
+        [],
+        true  
       );
+
+    console.log("trainerdata")
+    console.log(trainerdata)
+
+    const {
+        data: workshopdata,
+        loading: workshoploading,
+        error: workshoperror,
+        seturl: workshopseturl,
+        setParams: workshopsetParams,
+        refetch: workshoprefetch
+      } = useAxiosGet(
+        config.base_url + endpoints.trainer.getApprovedWorkshops,
+        {},
+        [],
+        true  
+      );
+
+    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
+        !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
+    
+    
 
     const convertDate = (dateString) => {
         const date = new Date(dateString);
@@ -45,6 +75,17 @@ const TrainerWorkshopPage = () => {
         return `${year}-${month}-${day}`;
     }
 
+    const getTrainersOfWorkshop = (workshop) => {
+        if (!workshop) return [];
+
+        const trainerNames = workshop.trainers.map(trainerId => {
+            const trainer = trainerdata.find(trainer => trainer._id === trainerId);
+            return trainer ? trainer.fullname : null;
+        }).filter(name => name); // Filter out any null/undefined values
+
+        return trainerNames.join(', ');
+    };
+
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
     const handleSortChange = (e) => {
@@ -54,19 +95,44 @@ const TrainerWorkshopPage = () => {
         setFilterText(e.target.value);
     };
 
-    const filteredAndSortedWorkshops = allocatedWorkshops.data.trainer_workshops ? allocatedWorkshops.data.trainer_workshops
-    .filter(workshop => 
-      workshop.workshop_data.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
-        workshop.company.toLowerCase().includes(filterText.toLowerCase()) ||
-        convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
-        convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase())
-        // || workshop.trainer.toLowerCase().includes(filterText.toLowerCase())
-    )
+    console.log("nonAllocatedWorkshops")
+    console.log(nonAllocatedWorkshops)
+
+    console.log("Allocated workshops")
+    console.log(allocatedWorkshops.data.trainer_workshops)
+
+    const completeworkshops = allocatedWorkshops.data.trainer_workshops ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops) : [];
+    console.log("completeworkshops")
+    console.log(completeworkshops)
+
+    const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
+    .filter(workshop => {
+        const trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
+        
+        const workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
+        
+        return (
+            workshopName.includes(filterText.toLowerCase()) ||
+            workshop.company.toLowerCase().includes(filterText.toLowerCase()) ||
+            convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
+            convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase()) ||
+            (new Date(workshop.start_date) <= new Date(filterText) && new Date(workshop.end_date) >= new Date(filterText)) || // filter includes in-between dates
+            trainerNames.includes(filterText.toLowerCase())
+        );
+    })
     .sort((a, b) => {
-      if (a[sortKey] < b[sortKey]) return -1;
-      if (a[sortKey] > b[sortKey]) return 1;
-      return 0;
+        if (sortKey == "trainer"){
+            if (getTrainersOfWorkshop(a).toLowerCase() <getTrainersOfWorkshop(b).toLowerCase()) return -1;
+            if (getTrainersOfWorkshop(a).toLowerCase() >getTrainersOfWorkshop(b).toLowerCase()) return 1;
+        }
+        if (a[sortKey] < b[sortKey]) return -1;
+        if (a[sortKey] > b[sortKey]) return 1;
+        return 0;
     }) : [];
+
+
+    console.log("filtered and sorted")
+    console.log(filteredAndSortedWorkshops)
 
     const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
         "View Trainer statistics"
@@ -111,9 +177,11 @@ const TrainerWorkshopPage = () => {
         setDomainMax(100);
     };
 
-    const handleOpenWorkshopAndClientDetails = (workshoplist) => {
-        setSelectedWorkshops(workshoplist);
-        setIsWorkshopAndClientDetailsOpen(true);
+    const handleOpenWorkshopAndClientDetails = (workshop) => {
+        if (allocatedWorkshops.data.trainer_workshops.includes(workshop)){
+            setSelectedWorkshops([workshop]);
+            setIsWorkshopAndClientDetailsOpen(true);
+        }
     };
 
     const handleCloseWorkshopAndClientDetails = () => {
@@ -127,6 +195,10 @@ const TrainerWorkshopPage = () => {
         else {
             setFilterText(date);
         }
+    }
+
+    const isunAllocatedWorkshop = (workshop) => {
+        return (allocatedWorkshops.data.trainer_workshops.includes(workshop) ? "" : "unallocated-workshop")
     }
 
     // CALLING DATA FROM JSON
@@ -161,53 +233,13 @@ const TrainerWorkshopPage = () => {
                     </div>
                     {today_data && today_data[0] ? (
                         <>
-                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect}/>
+                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect} trainerdata={trainerdata}/>
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>
-                    )}
+                    )}  
                 </div>
                 {/* Workshop summary ends here */}
-                <div className="breakdown-of-attendance-div">
-                    <div className="breakdown-of-attendance-title">
-                        <h5>Breakdown of Attendance in 2024</h5>
-                    </div>
-                    <AreaChart
-                        width={500}
-                        height={200}
-                        data={workshop_data}
-                        margin={{ top: 10, right: 80, left: 0, bottom: 0 }}
-                    >
-                        <defs>
-                            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#0083ca" stopOpacity={0.8} />
-                                <stop offset="95%" stopColor="#0083ca" stopOpacity={0} />
-                            </linearGradient>
-                            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-                                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-                            </linearGradient>
-                        </defs>
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <Tooltip />
-                        <Area
-                            type="monotone"
-                            dataKey="Expected_Attendance_2024_Per_Month"
-                            stroke="#82ca9d"
-                            fillOpacity={1}
-                            fill="url(#colorPv)"
-                        />
-                        <Area
-                            type="monotone"
-                            dataKey="Actual_Attendance_2024_Per_Month"
-                            stroke="#0083ca"
-                            fillOpacity={1}
-                            fill="url(#colorUv)"
-                        />
-                    </AreaChart>
-                </div>
             </div>
 
             {/* Graphs nonsense starts here */}
@@ -227,8 +259,7 @@ const TrainerWorkshopPage = () => {
                             />
                             <span>Sort:</span>
                             <select value={sortKey} onChange={handleSortChange}>
-                                <option value="workshop_name">Workshop Name</option>
-                                <option value="client_company">Client Company</option>
+                                <option value="company">Client Company</option>
                                 <option value="start_date">Start Date</option>
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
@@ -237,11 +268,12 @@ const TrainerWorkshopPage = () => {
                             <ul>
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>   
-                                        <button className="workshop_detail_panel" key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails([workshop])}> 
-                                            <span>Workshop Name: {workshop.workshop_data.workshop_name}</span>
+                                        <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
+                                            {/*<span>Workshop Name: {workshop.workshop_data.workshop_name}</span>*/}
                                             <span>Client: {workshop.company}</span>
-                                            {/*<span>Assigned Trainer: {workshop.trainers}</span>*/}
+                                            <span>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</span>
                                             <span>Start Date: {convertDate(workshop.start_date)}</span>
+                                            <span>End Date: {convertDate(workshop.end_date)}</span>
                                         </button>
                                     </div>
                                 ))}
