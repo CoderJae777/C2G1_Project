@@ -235,7 +235,7 @@ const TrainerHomePage = () => {
                             className="util-hrs-detail-panel"
                             onClick={() => handleOpenUtilHrsDetailsPopup(util)}
                           >
-                            <span>{util.company + "_" + util.name}</span>
+                            <span>{util.request_id}</span>
                             <span>
                               Workshop Type: {util.workshop_data.workshop_name}
                             </span>
@@ -312,7 +312,7 @@ const TrainerHomePage = () => {
               allocatedWorkshops.data.trainer_workshops.map(
                 (workshop, index) => (
                   <option key={workshop._id} value={workshop._id}>
-                    {workshop.workshop_data.workshop_name}
+                    {workshop.request_id + " " + workshop.workshop_data.workshop_name}
                   </option>
                 )
               )

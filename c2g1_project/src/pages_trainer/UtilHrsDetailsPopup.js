@@ -30,7 +30,7 @@ const UtilHrsDetailsPopup = ({ onClose, util }) => {
                     <tbody>
                         <tr>
                             <td><strong>Workshop ID:</strong></td>
-                            <td>{utilHrsDetails._id}</td>
+                            <td>{utilHrsDetails.request_id}</td>
                         </tr>
                         {utilHrsDetails.utilisation.map((item, index) => (
                             <React.Fragment key={index}>
