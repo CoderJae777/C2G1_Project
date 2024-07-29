@@ -11,6 +11,9 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
     const [days, setDays] = useState([]);
     const popupRef = useRef(null);
 
+    console.log("workshopdata")
+    console.log(workshopdata)
+
     const months = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"];
 

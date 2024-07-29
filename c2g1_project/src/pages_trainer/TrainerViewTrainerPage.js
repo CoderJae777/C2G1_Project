@@ -95,7 +95,7 @@ const TrainerViewTrainerPage = () => {
           fullname={fullname} 
           onClose={handleCloseTrainerScheduleCalendar}
           ondateClick={handleOpenWorkshopAndClientDetails}
-          trainerdata={allTrainers}
+          trainerdata={trainerdata}
           workshopdata={workshopdata}
         />
       )}
