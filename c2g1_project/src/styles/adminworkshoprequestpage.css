@@ -75,7 +75,7 @@
 /* CSS FOR APPROVED/REJECTED WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
 
 .ar-workshop-request-table {
-  width: 97%;
+  width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
@@ -88,8 +88,8 @@
 }
 
 .ar-workshop-request-table th.action-column {
-  width: 180px;
-  max-width: 180px;
+  width: 270px;
+  max-width: 270px;
 }
 
 .ar-workshop-request-table th {
@@ -99,7 +99,7 @@
 /* CSS FOR PENDING WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
 
 .workshop-request-table {
-  width: 97%;
+  width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
@@ -122,6 +122,7 @@
 
 /* CSS FOR ADMIN WORKSHOP REQUEST BUTTONS ------------------------------------------------------------------------- */
 
+.ar-view-workshop-details-button,
 .view-workshop-details-button,
 .approve-workshop-request-button,
 /* .allocate-trainer-to-workshop-button, */
@@ -144,6 +145,14 @@
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
+.ar-view-workshop-details-button.rejected {
+  background-color: palevioletred; /* Pale pink color for rejected workshops */
+}
+
+.ar-view-workshop-details-button.approved {
+  background-color: turquoise; /* Turquoise color for approved workshops */
+}
+
 .approve-workshop-request-button {
   background-color: #37cc5c;
 }
@@ -153,6 +162,7 @@
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+.ar-view-workshop-details-button:hover,
 .allocate-trainer-to-workshop-button:hover,
 .view-workshop-details-button:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,

@@ -350,25 +350,29 @@ const ClientHomePage = () => {
                 pendingWorkshops.data.workshop_requests.length !== 0 && (
                   <div className="scrollable-list">
                     <ul>
-                      {pendingWorkshops.data.workshop_requests.map(
-                        (request, index) => (
-                          <div key={index}>
-                            <button
-                              className="workshop-detail-panel"
-                              onClick={() =>
-                                handleOpenClientWorkshopStatusDetailsPopup(
-                                  request
-                                )
-                              }
-                            >
-                              <span>
-                                {request.request_id}
-                              </span>
-                              <span>Status: {request.status}</span>
-                            </button>
-                          </div>
-                        )
-                      )}
+                      {pendingWorkshops.data.workshop_requests.map((request, index) => (
+                        <div key={index}>
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.9 }}
+                            className={`workshop-detail-panel ${
+                              request.status === 'submitted'
+                                ? 'submitted'
+                                : request.status === 'approved'
+                                ? 'approved'
+                                : request.status === 'rejected'
+                                ? 'rejected'
+                                : ''
+                            }`}
+                            onClick={() =>
+                              handleOpenClientWorkshopStatusDetailsPopup(request)
+                            }
+                          >
+                            <span>{request.request_id}</span>
+                            <span>Status: {request.status}</span>
+                          </motion.button>
+                        </div>
+                      ))}
                     </ul>
                   </div>
                 )}
