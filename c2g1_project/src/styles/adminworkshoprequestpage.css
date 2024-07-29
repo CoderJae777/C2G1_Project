@@ -15,13 +15,25 @@
   margin-top: -50px;
 }
 
-.admin-workshop-request-page-bottom-panel {
+/* .admin-workshop-request-page-bottom-panel {
   flex: 1;
   padding: 15px;
+} */
+
+.admin-workshop-request-page-bottom-panel {
+  display: flex;
+}
+
+.bottom-panel-left-side {
+  flex: 0 0 40%;
+}
+
+.bottom-panel-right-side {
+  flex: 0 0 60%;
 }
 
 .admin-workshop-request-page-title {
-  width: 80%;
+  width: 97%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,13 +42,13 @@
   margin-right: auto;
 }
 
-.admin-workshop-request-page-title h2 {
+/* .admin-workshop-request-page-title h2 {
   margin-right: 480px;
-}
+} */
 
 .manage-workshop-request-panel-outer {
-  height: 540px;
-  width: 80%;
+  height: 580px;
+  width: 97%;
   background: #d7d7d7;
   color: #707070;
   border-radius: 20px;
@@ -49,7 +61,7 @@
 }
 
 .manage-workshop-request-panel {
-  height: 500px;
+  height: 540px;
   background: #d7d7d7;
   color: #707070;
   border-radius: 20px;
@@ -60,10 +72,34 @@
   overflow-y: auto;
 }
 
-/* CSS FOR WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
+/* CSS FOR APPROVED/REJECTED WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
+
+.ar-workshop-request-table {
+  width: 97%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.ar-workshop-request-table th,
+.ar-workshop-request-table td {
+  border: none;
+  padding: 10px;
+  text-align: center;
+}
+
+.ar-workshop-request-table th.action-column {
+  width: 180px;
+  max-width: 180px;
+}
+
+.ar-workshop-request-table th {
+  background-color: #f2f2f2;
+}
+
+/* CSS FOR PENDING WORKSHOP REQUEST TABLE ------------------------------------------------------------------------- */
 
 .workshop-request-table {
-  width: 100%;
+  width: 97%;
   border-collapse: collapse;
   margin-top: 10px;
 }
@@ -76,13 +112,15 @@
 }
 
 .workshop-request-table th.action-column {
-  width: 670px;
-  max-width: 670px;
+  width: 520px;
+  max-width: 520px;
 }
 
 .workshop-request-table th {
   background-color: #f2f2f2;
 }
+
+/* CSS FOR ADMIN WORKSHOP REQUEST BUTTONS ------------------------------------------------------------------------- */
 
 .view-workshop-details-button,
 .approve-workshop-request-button,
@@ -90,7 +128,7 @@
 .reject-workshop-request-button {
   background-color: #80c7fb;
   color: black;
-  width: 200px;
+  width: 150px;
   height: 30x;
   font-size: 16px;
   font-weight: bold;
