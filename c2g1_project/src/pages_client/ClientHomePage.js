@@ -362,7 +362,7 @@ const ClientHomePage = () => {
                               }
                             >
                               <span>
-                                {request.company + "_" + request.name}
+                                {request.request_id}
                               </span>
                               <span>Status: {request.status}</span>
                             </button>

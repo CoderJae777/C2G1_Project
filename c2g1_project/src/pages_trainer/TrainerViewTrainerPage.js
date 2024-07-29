@@ -120,7 +120,7 @@ const TrainerViewTrainerPage = () => {
                         .map((trainer, index) => (
                           <tr key={index}>
                             <td className="trainer-info-table-td">
-                              {request.company + "_" + request.name}
+                              {request.request_id}
                             </td>
                             <td className="trainer-info-table-td">
                               {trainer.fullname}

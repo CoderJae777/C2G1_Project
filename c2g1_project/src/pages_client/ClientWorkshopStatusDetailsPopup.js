@@ -22,8 +22,6 @@ const WorkshopRequestDetailsPopup = ({ onClose, request }) => {
         };
       }, [popupRef, onClose]);
 
-      console.log(workshopDetails)
-
     return (
         <div ref={popupRef} data-cy="clwsrqd-popup" className="cl-workshop-request-details-popup open-cl-workshop-request-details-popup">
             <h2>Workshop Request Details</h2>
@@ -32,7 +30,7 @@ const WorkshopRequestDetailsPopup = ({ onClose, request }) => {
                     <tbody>
                         <tr>
                             <td><strong>Workshop ID:</strong></td>
-                            <td>{workshopDetails._id}</td>
+                            <td>{workshopDetails.request_id}</td>
                         </tr>
                         <tr>
                             <td><strong>Client Company:</strong></td>
