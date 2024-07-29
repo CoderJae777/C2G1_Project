@@ -31,9 +31,23 @@ const TrainerWorkshopPage = () => {
 
     console.log(allocatedWorkshops)
 
-    const Teammates = useAxiosGet(
-        config.base_url + endpoints.trainer.getTeammates
+    const {
+        data: trainerdata,
+        loading: trainerloading,
+        error: trainererror,
+        seturl: trainerseturl,
+        setParams: trainersetParams,
+        refetch: trainerrefetch
+      } = useAxiosGet(
+        config.base_url + endpoints.trainer.getOthers,
+        {},
+        [],
+        true  
       );
+
+    console.log("test")
+    console.log(trainerdata)
+    
 
     const convertDate = (dateString) => {
         const date = new Date(dateString);
@@ -165,49 +179,9 @@ const TrainerWorkshopPage = () => {
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>
-                    )}
+                    )}  
                 </div>
                 {/* Workshop summary ends here */}
-                <div className="breakdown-of-attendance-div">
-                    <div className="breakdown-of-attendance-title">
-                        <h5>Breakdown of Attendance in 2024</h5>
-                    </div>
-                    <AreaChart
-                        width={500}
-                        height={200}
-                        data={workshop_data}
-                        margin={{ top: 10, right: 80, left: 0, bottom: 0 }}
-                    >
-                        <defs>
-                            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#0083ca" stopOpacity={0.8} />
-                                <stop offset="95%" stopColor="#0083ca" stopOpacity={0} />
-                            </linearGradient>
-                            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-                                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-                            </linearGradient>
-                        </defs>
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <Tooltip />
-                        <Area
-                            type="monotone"
-                            dataKey="Expected_Attendance_2024_Per_Month"
-                            stroke="#82ca9d"
-                            fillOpacity={1}
-                            fill="url(#colorPv)"
-                        />
-                        <Area
-                            type="monotone"
-                            dataKey="Actual_Attendance_2024_Per_Month"
-                            stroke="#0083ca"
-                            fillOpacity={1}
-                            fill="url(#colorUv)"
-                        />
-                    </AreaChart>
-                </div>
             </div>
 
             {/* Graphs nonsense starts here */}

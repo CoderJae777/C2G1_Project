@@ -25,7 +25,7 @@ const TrainerViewTrainerPage = () => {
     setParams: workshopsetParams,
     refetch: workshoprefetch
   } = useAxiosGet(
-    config.base_url + endpoints.admin.getApprovedWorkshops,
+    config.base_url + endpoints.trainer.getApprovedWorkshops,
     {},
     [],
     true  
@@ -33,12 +33,22 @@ const TrainerViewTrainerPage = () => {
 
   const verifyUser = useAxiosGet(config.base_url + endpoints.verify);
 
-  const { data, loading, error, setBody, refetch } = useAxiosGet(
-    config.base_url + endpoints.trainer.getTeammates,
+  const {
+    data: trainerdata,
+    loading: trainerloading,
+    error: trainererror,
+    seturl: trainerseturl,
+    setParams: trainersetParams,
+    refetch: trainerrefetch
+  } = useAxiosGet(
+    config.base_url + endpoints.trainer.getOthers,
     {},
     [],
-    true
+    true  
   );
+
+  console.log("test")
+  console.log(trainerdata)
 
   const handleOpenTrainerScheduleCalendar = (id, fullname) => {
     setSelectedId(id);
@@ -67,7 +77,7 @@ const TrainerViewTrainerPage = () => {
   };
 
   // Initialize allTrainers only if data.trainer_workshops is defined and is an array
-  const allTrainers = data && Array.isArray(data.trainer_workshops) ? combineTrainers(data.trainer_workshops) : [];
+  const allTrainers = trainerdata && Array.isArray(trainerdata.trainer_workshops) ? combineTrainers(trainerdata.trainer_workshops) : [];
 
   console.log("All trainers:");
   console.log(allTrainers);
@@ -103,7 +113,6 @@ const TrainerViewTrainerPage = () => {
               >
                 <thead>
                   <tr>
-                    <th className="trainer-info-table-th">Request Name</th>
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
@@ -113,15 +122,10 @@ const TrainerViewTrainerPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.trainer_workshops &&
-                    data.trainer_workshops.map((request) =>
-                      request.trainers
-                        .filter((trainer) => trainer._id !== verifyUser.data.id)
+                  {trainerdata &&
+                    trainerdata
                         .map((trainer, index) => (
                           <tr key={index}>
-                            <td className="trainer-info-table-td">
-                              {request.company + "_" + request.name}
-                            </td>
                             <td className="trainer-info-table-td">
                               {trainer.fullname}
                             </td>
@@ -141,7 +145,7 @@ const TrainerViewTrainerPage = () => {
                             </td>
                           </tr>
                         ))
-                    )}
+                    }
                 </tbody>
               </table>
             </div>
