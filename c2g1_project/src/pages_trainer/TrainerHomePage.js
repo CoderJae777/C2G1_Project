@@ -75,7 +75,8 @@ const TrainerHomePage = () => {
   const [utilisation3, setUtilisation3] = useState("");
   const [utilisation4, setUtilisation4] = useState("");
   const [selectedUtilHrsDetails, setSelectedUtilHrsDetails] = useState("");
-  const [isUtilHrsDetailsPopupOpen, setIsUtilHrsDetailsPopupOpen] = useState(false)
+  const [isUtilHrsDetailsPopupOpen, setIsUtilHrsDetailsPopupOpen] =
+    useState(false);
 
   // CALLING DATA FROM JSON
   const { trainer_data, workshop_data, today_data } = useFetch();
@@ -192,8 +193,7 @@ const TrainerHomePage = () => {
         {/* Workshop summary starts here */}
         <div className="trainer-home-pg-top-left">
           <div className="view-util-hrs">
-
-          {/* {" "}
+            {/* {" "}
           <div className="workshop-table-title">
             <h4>This is today's workshops' statistics: </h4>
           </div>
@@ -233,16 +233,12 @@ const TrainerHomePage = () => {
                         <div key={index}>
                           <button
                             className="util-hrs-detail-panel"
-                            onClick={() =>
-                              handleOpenUtilHrsDetailsPopup(
-                                util
-                              )
-                            }
+                            onClick={() => handleOpenUtilHrsDetailsPopup(util)}
                           >
+                            <span>{util.company + "_" + util.name}</span>
                             <span>
-                              {util.company + "_" + util.name}
+                              Workshop Type: {util.workshop_data.workshop_name}
                             </span>
-                            <span>Workshop Type: {util.workshop_data.workshop_name}</span>
                           </button>
                         </div>
                       )
@@ -293,7 +289,6 @@ const TrainerHomePage = () => {
         </div>
       </div>
 
-      {/* Graphs nonsense starts here */}
       <div className="right-column">
         <div className="admin-graphs">
           <h1>Update Work Hours</h1>
@@ -333,6 +328,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                className="work_hours_num_input"
                 placeholder="0"
                 value={hours1}
                 onChange={(e) => setHours1(e.target.value)}
@@ -351,6 +347,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                className="work_hours_num_input"
                 value={hours2}
                 placeholder="0"
                 onChange={(e) => setHours2(e.target.value)}
@@ -369,6 +366,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                className="work_hours_num_input"
                 value={hours3}
                 placeholder="0"
                 onChange={(e) => setHours3(e.target.value)}
@@ -387,6 +385,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_num">
               <h5>Work Hours</h5>
               <input
+                className="work_hours_num_input"
                 value={hours4}
                 placeholder="0"
                 onChange={(e) => setHours4(e.target.value)}
@@ -395,6 +394,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_desc">
               <h5>Utilisation Details</h5>
               <textarea
+              
                 value={utilisation4}
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation4(e.target.value)}
@@ -418,4 +418,4 @@ const TrainerHomePage = () => {
   );
 };
 
-export default TrainerHomePage
+export default TrainerHomePage;

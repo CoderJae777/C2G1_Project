@@ -405,7 +405,7 @@ const AdminHomePage = () => {
               <div className="chart-title">{trainerGraphsTitle}</div>
               <div className="buttons-container">
                 <button className="graph-button" onClick={viewTotal}>
-                  Workshops Completed (Total)
+                  Total Workshops Completed
                 </button>
                 <button
                   className="graph-button"
@@ -449,7 +449,7 @@ const AdminHomePage = () => {
                   left: 0,
                   bottom: 50,
                 }}
-                barSize={20}
+                barSize={50}
                 strokeWidth={2}
               >
                 <XAxis
