@@ -26,6 +26,15 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
+  const nonSubmitted = useAxiosGet(
+    config.base_url + endpoints.admin.getNonSubmittedWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
+  console.log(nonSubmitted.data);
+
   useEffect(() => {
     console.log("Data fetched:", data); // Debug log
     const lastFetchTime = localStorage.getItem("lastFetchTime");
@@ -103,58 +112,102 @@ const AdminWorkshopRequestPage = () => {
         <AdminTopLeftSideBar hasNewRequests={true} />
       </div>
       <div className="admin-workshop-request-page-bottom-panel">
-        <div className="admin-workshop-request-page-title">
-          <h2>Workshop Requests</h2>
-        </div>
-        <div className="manage-workshop-request-panel-outer">
-          <div className="manage-workshop-request-panel">
-            <table
-              data-cy="workshop-request-table"
-              className="workshop-request-table"
-            >
-              <thead>
-                <tr>
-                  <th>Workshop Name</th>
-                  <th>Workshop ID</th>
-                  <th>Type</th>
-                  <th className="action-column">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((request, index) => (
-                  <tr key={index} className="workshop-request-box">
-                    <td>{request.workshop_data.workshop_name}</td>
-                    <td>{request.workshop_data.workshop_ID}</td>
-                    <td>{request.workshop_data.workshop_type}</td>
-                    <td>
-                      <div className="workshop-request-buttons">
-                        <button
-                          data-cy="view-wsd-button"
-                          className="view-workshop-details-button"
-                          onClick={() => handleOpenDetailsPopup(request)}
-                        >
-                          View Details
-                        </button>
-                        <button
-                          data-cy="approve-wsrq-button"
-                          className="approve-workshop-request-button"
-                          onClick={() => handleOpenApprovePopup(request)}
-                        >
-                          Approve
-                        </button>
-                        <button
-                          data-cy="reject-wsrq-button"
-                          className="reject-workshop-request-button"
-                          onClick={() => handleOpenRejectPopup(request)}
-                        >
-                          Reject
-                        </button>
-                      </div>
-                    </td>
+        <div className="bottom-panel-left-side">
+          <div className="admin-workshop-request-page-title">
+            <h2>Approved/Rejected Workshop Requests</h2>
+          </div>
+          <div className="manage-workshop-request-panel-outer">
+            <div className="manage-workshop-request-panel">
+              <table
+                data-cy="ar-workshop-request-table"
+                className="ar-workshop-request-table"
+              >
+                <thead>
+                  <tr>
+                    <th>Workshop Name</th>
+                    <th>Workshop ID</th>
+                    <th>Type</th>
+                    <th className="action-column">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {nonSubmitted.data.map((request, index) => (
+                    <tr key={index} className="workshop-request-box">
+                      <td>{request.workshop_data.workshop_name}</td>
+                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.workshop_data.workshop_type}</td>
+                      <td>
+                        <div className="workshop-request-buttons">
+                          <button
+                            data-cy="view-wsd-button"
+                            className="view-workshop-details-button"
+                            onClick={() => handleOpenDetailsPopup(request)}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>  
+        <div className="bottom-panel-right-side">
+          <div className="admin-workshop-request-page-title">
+            <h2>Pending Workshop Requests</h2>
+          </div>
+          <div className="manage-workshop-request-panel-outer">
+            <div className="manage-workshop-request-panel">
+              <table
+                data-cy="workshop-request-table"
+                className="workshop-request-table"
+              >
+                <thead>
+                  <tr>
+                    <th>Workshop Name</th>
+                    <th>Workshop ID</th>
+                    <th>Type</th>
+                    <th className="action-column">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((request, index) => (
+                    <tr key={index} className="workshop-request-box">
+                      <td>{request.workshop_data.workshop_name}</td>
+                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.workshop_data.workshop_type}</td>
+                      <td>
+                        <div className="workshop-request-buttons">
+                          <button
+                            data-cy="view-wsd-button"
+                            className="view-workshop-details-button"
+                            onClick={() => handleOpenDetailsPopup(request)}
+                          >
+                            View Details
+                          </button>
+                          <button
+                            data-cy="approve-wsrq-button"
+                            className="approve-workshop-request-button"
+                            onClick={() => handleOpenApprovePopup(request)}
+                          >
+                            Approve
+                          </button>
+                          <button
+                            data-cy="reject-wsrq-button"
+                            className="reject-workshop-request-button"
+                            onClick={() => handleOpenRejectPopup(request)}
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

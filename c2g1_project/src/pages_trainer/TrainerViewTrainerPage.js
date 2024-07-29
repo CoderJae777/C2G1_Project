@@ -129,6 +129,12 @@ const TrainerViewTrainerPage = () => {
                         .map((trainer, index) => (
                           <tr key={index}>
                             <td className="trainer-info-table-td">
+<<<<<<< HEAD
+=======
+                              {request.request_id}
+                            </td>
+                            <td className="trainer-info-table-td">
+>>>>>>> c95821f542e2f76c0ae4b9899be2a17f0a5afb0c
                               {trainer.fullname}
                             </td>
                             <td className="trainer-info-table-td">
