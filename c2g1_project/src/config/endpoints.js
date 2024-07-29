@@ -18,13 +18,14 @@ const endpoints = {
     getWorkshopRequests: "/workshoprequest/getSubmitted",
     approveWorkshopRequest: "/workshoprequest/approve/",
     rejectWorkshopRequest: "/workshoprequest/reject/",
-    deleteTrainer:"/auth/trainers/delete/",
-    getWorkshopData:"/workshopdata",
-    getSingleWorkshopData:"/workshopdata/",
-    updateWorkshopData:"/workshopdata/"
+    deleteTrainer: "/auth/trainers/delete/",
+    getWorkshopData: "/workshopdata",
+    getSingleWorkshopData: "/workshopdata/",
+    updateWorkshopData: "/workshopdata/",
+    getApprovedWorkshops: "/workshoprequest/getApproved",
   },
   client: {
-    getAvailableWorkshopData:"/workshopdata/available",
+    getAvailableWorkshopData: "/workshopdata/available",
     getPendingWorkshopRequests: "/auth/pendingworkshops",
     createWorkshop: "/workshoprequest",
   },
@@ -32,11 +33,31 @@ const endpoints = {
     getAllocatedWorkshopRequests: "/auth/allocatedworkshops",
     getSingleWorkshopRequest: "/workshoprequest/",
     getTeammates: "/auth/getteammates",
+    getOthers: "/auth/getothers",
     updateUtilisation: "/auth/updateutilisation/",
+    getApprovedWorkshops: "/workshoprequest/getApproved"
   },
-  notif:{
+  notif: {
     getAllAdminNotificiation: "/notif/getAllAdminNotification",
-  }
+  },
+  graph: {
+    // deprecated use
+    getWorkshopSummaryGraph: "/graph/getWorkshopSummaryGraph",
+    getTrainerGraph: "/graph/getTrainerGraph",
+    getTodayGraph: "/graph/getTodayGraph",
+    // currently in use
+    getYearsPieChartGraph: "/graph/getYearsPieChartGraph",
+    getTotalPieChartGraph: "/graph/getTotalPieChartGraph",
+    getWorkshopTypesGraph: "/graph/getWorkshopTypesGraph",
+    getClientTypeGraph: "/graph/getClientTypeGraph",
+    getWorkshopTrendDataGraph: "/graph/getWorkshopTrendDataGraph",
+    // hardcoded data below
+    getHCtotalPieData: "/graph/getHCtotalPieData",
+    getHCyearsPieData: "/graph/getHCyearsPieData",
+    getHCWorkshopTypesData: "/graph/getHCWorkshopTypesData",
+    getHCClientTypesData: "/graph/getHCClientTypesData",
+    getHCWorkshopTrendData: "/graph/getHCWorkshopTrendData",
+  },
 };
 
 export { endpoints };

@@ -23,46 +23,47 @@ import {
   LineChart,
 } from "recharts";
 import useAxiosPatch from "../api/useAxiosPatch.jsx";
+import UtilHrsDetailsPopup from "./UtilHrsDetailsPopup.js";
 
 const TrainerHomePage = () => {
-  const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
-    "View Trainer statistics"
-  );
-  const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
-    "Workshop Completed Over the Years"
-  );
+  // const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
+  //   "View Trainer statistics"
+  // );
+  // const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
+  //   "Workshop Completed Over the Years"
+  // );
 
-  const [key, setKey] = useState("workshops_completed_total");
-  const [key_ws, setKeyWS] = useState("completed");
+  // const [key, setKey] = useState("workshops_completed_total");
+  // const [key_ws, setKeyWS] = useState("completed");
 
-  const [domainMax, setDomainMax] = useState(0);
+  // const [domainMax, setDomainMax] = useState(0);
 
-  const viewworkshop = () => {
-    setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
-    setKey("workshops_completed_this_month");
-    setDomainMax(20);
-  };
-  const viewongoing = () => {
-    setTrainerGraphsTitle("Ongoing Workshops per Trainer");
-    setKey("ongoing_workshops");
-    setDomainMax(10);
-  };
-  const viewexperience = () => {
-    setTrainerGraphsTitle("Trainers' Experience");
-    setKey("experience");
-    setDomainMax(20);
-  };
-  const resetview = () => {
-    setTrainerGraphsTitle("View Trainer Statistics");
-    setKey("blank");
-    setDomainMax(0);
-  };
+  // const viewworkshop = () => {
+  //   setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
+  //   setKey("workshops_completed_this_month");
+  //   setDomainMax(20);
+  // };
+  // const viewongoing = () => {
+  //   setTrainerGraphsTitle("Ongoing Workshops per Trainer");
+  //   setKey("ongoing_workshops");
+  //   setDomainMax(10);
+  // };
+  // const viewexperience = () => {
+  //   setTrainerGraphsTitle("Trainers' Experience");
+  //   setKey("experience");
+  //   setDomainMax(20);
+  // };
+  // const resetview = () => {
+  //   setTrainerGraphsTitle("View Trainer Statistics");
+  //   setKey("blank");
+  //   setDomainMax(0);
+  // };
 
-  const viewtotal = () => {
-    setTrainerGraphsTitle("Total Workshops Completed per Trainer");
-    setKey("workshops_completed_total");
-    setDomainMax(100);
-  };
+  // const viewtotal = () => {
+  //   setTrainerGraphsTitle("Total Workshops Completed per Trainer");
+  //   setKey("workshops_completed_total");
+  //   setDomainMax(100);
+  // };
 
   const [workshop, setSelectedWorkshop] = useState("");
   const [hours1, setHours1] = useState(0);
@@ -73,6 +74,8 @@ const TrainerHomePage = () => {
   const [utilisation2, setUtilisation2] = useState("");
   const [utilisation3, setUtilisation3] = useState("");
   const [utilisation4, setUtilisation4] = useState("");
+  const [selectedUtilHrsDetails, setSelectedUtilHrsDetails] = useState("");
+  const [isUtilHrsDetailsPopupOpen, setIsUtilHrsDetailsPopupOpen] = useState(false)
 
   // CALLING DATA FROM JSON
   const { trainer_data, workshop_data, today_data } = useFetch();
@@ -84,6 +87,24 @@ const TrainerHomePage = () => {
   const allocatedWorkshops = useAxiosGet(
     config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
   );
+
+  const WorkshopUtilisations = useAxiosGet(
+    config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
+  );
+
+  const handleOpenUtilHrsDetailsPopup = (util) => {
+    setSelectedUtilHrsDetails(util);
+    setIsUtilHrsDetailsPopupOpen(true);
+  };
+
+  const handleCloseUtilHrsDetailsPopup = () => {
+    setIsUtilHrsDetailsPopupOpen(false);
+    setSelectedUtilHrsDetails(null);
+  };
+
+  const handleRefresh = () => {
+    WorkshopUtilisations.refetch();
+  };
 
   const onSuccess = () => {
     window.location.reload();
@@ -156,6 +177,12 @@ const TrainerHomePage = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {isUtilHrsDetailsPopupOpen && (
+        <UtilHrsDetailsPopup
+          util={selectedUtilHrsDetails}
+          onClose={handleCloseUtilHrsDetailsPopup}
+        />
+      )}
       <div className="top-panel">
         <TopLeftSideBar />
       </div>
@@ -163,8 +190,10 @@ const TrainerHomePage = () => {
         <div className="trainer-home-page-title"></div>
 
         {/* Workshop summary starts here */}
-        <div className="workshop-table">
-          {" "}
+        <div className="trainer-home-pg-top-left">
+          <div className="view-util-hrs">
+
+          {/* {" "}
           <div className="workshop-table-title">
             <h4>This is today's workshops' statistics: </h4>
           </div>
@@ -193,7 +222,35 @@ const TrainerHomePage = () => {
             </>
           ) : (
             <div>Calculating all data... This may take awhile...</div>
-          )}
+          )} */}
+            <h4>Workshop Utilisation Hours</h4>
+            {WorkshopUtilisations.data.trainer_workshops &&
+              WorkshopUtilisations.data.trainer_workshops.length !== 0 && (
+                <div className="scrollable-list">
+                  <ul>
+                    {WorkshopUtilisations.data.trainer_workshops.map(
+                      (util, index) => (
+                        <div key={index}>
+                          <button
+                            className="util-hrs-detail-panel"
+                            onClick={() =>
+                              handleOpenUtilHrsDetailsPopup(
+                                util
+                              )
+                            }
+                          >
+                            <span>
+                              {util.company + "_" + util.name}
+                            </span>
+                            <span>Workshop Type: {util.workshop_data.workshop_name}</span>
+                          </button>
+                        </div>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+          </div>
         </div>
         {/* Workshop summary ends here */}
         <div className="breakdown-of-attendance-div">

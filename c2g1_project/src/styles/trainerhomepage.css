@@ -51,7 +51,7 @@ body {
   width: 500px;
 } */
 
-.workshop-table {
+.trainer-home-pg-top-left {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   max-width: 1000px;
@@ -64,6 +64,34 @@ body {
   text-align: center;
   margin-top: 20px;
   align-items: center;
+}
+
+.util-hrs-detail-panel {
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: #80c7fb;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.util-hrs-detail-panel span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  max-width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.util-hrs-detail-panel:hover {
+  background-color: #669fc9;
 }
 
 .workshop-calendar {
@@ -82,12 +110,12 @@ body {
   margin-top: 20px;
 }
 
-.workshop-table-title {
+/* .util-hrs-panel-title {
   grid-row-start: 1;
   padding: 5px;
   color: #0672cb;
   margin-bottom: 10px;
-}
+} */
 .workshopstoday {
   grid-row-start: 2;
   border-style: solid;
