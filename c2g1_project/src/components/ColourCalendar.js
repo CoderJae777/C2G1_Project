@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import '../styles/colourcalendar.css';
 import 'boxicons/css/boxicons.min.css';
 
-const ColourCalendar = ({workshopdata, ondateClick}) => {
+const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [date, setDate] = useState(new Date());
     const [currYear, setCurrYear] = useState(date.getFullYear());
     const [currMonth, setCurrMonth] = useState(date.getMonth());
     const [days, setDays] = useState([]);
     
+    console.log("workshopdata")
     console.log(workshopdata)
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
@@ -30,9 +31,32 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
     const workshopEnds = workshopdata.map(workshop => convertDate(workshop.end_date));
 
     const getWorkshopByDate = (date) => {
-        return workshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date);
+        return workshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date
+        || (new Date(workshop.start_date) <= new Date(date) && new Date(workshop.end_date) >= new Date(date)));
     };
     
+    
+    const preWorkshopDates = workshopdata.flatMap(workshop => {
+        const start = new Date(workshop.start_date);
+        const preStart = new Date(start);
+        preStart.setDate(start.getDate() - 7);
+        const dates = [];
+        for (let d = preStart; d < start; d.setDate(d.getDate() + 1)) {
+          dates.push(convertDate(d));
+        }
+        return dates;
+      });
+
+      const getTrainersOfWorkshop = (workshop) => {
+        if (!workshop) return [];
+
+        const trainerNames = workshop.trainers.map(trainerId => {
+            const trainer = trainerdata.find(trainer => trainer._id === trainerId);
+            return trainer ? trainer.fullname : null;
+        }).filter(name => name); // Filter out any null/undefined values
+
+        return trainerNames.join(', ');
+    };
     
 
     useEffect(() => {
@@ -49,16 +73,15 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
 
 
     const getclassNames = (i) => {
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-                        && currYear === new Date().getFullYear() ? "active" : "";
+        let isToday = i === date.getDate() && currMonth === new Date().getMonth()
+            && currYear === new Date().getFullYear() ? "active" : "";
         const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`; //YYYY-MM-DD
-        //const formattedDay = `${("0" + i).slice(-2)}/${("0" + (currMonth + 1)).slice(-2)}/${currYear}`; //DD/MM/YYYY
-        //const formattedDay = `${("0" + (currMonth + 1)).slice(-2)}/${("0" + i).slice(-2)}/${currYear}`; //MM/DD/YYYY
-        // Check if the formatted day exists in workshopDates array
         let isWorkshopStart = workshopStarts.includes(formattedDay) ? "workshop-start" : "";
         let isWorkshopEnd = workshopEnds.includes(formattedDay) ? "workshop-end" : "";
-        // Add more for diff categories
-        let classNames = `${isToday} ${isWorkshopStart} ${isWorkshopEnd}`.trim();
+        let isWorkshopInBetween = getWorkshopByDate(formattedDay).length > 0 ? "workshop-in-between" : "";
+        let isPreWorkshop = preWorkshopDates.includes(formattedDay) ? "pre-workshop-day" : "";
+
+        let classNames = `${isToday} ${isWorkshopStart} ${isWorkshopEnd} ${isWorkshopInBetween} ${isPreWorkshop}`.trim();
         return classNames
     }
 
@@ -77,19 +100,18 @@ const ColourCalendar = ({workshopdata, ondateClick}) => {
         let currentdate = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`
         let workshopDetails = getWorkshopByDate(currentdate)
         liTag.push(
-        <li className={classNames} key={`curr${i}`}>
-            <button className='day-number' onClick={() => ondateClick(currentdate)}>{i}</button> 
-            <div className='calendar-details'>
-                {workshopDetails.map(workshop => 
-                    <div className='details'>
-                        <p>Workshop: {workshop.workshop_data.workshop_name}</p>
-                        <p>Client: {workshop.company}</p>
-                        <p>Assigned Trainer: {workshop.trainer}</p>
-                    </div>
-                    )
-                }
-            </div>
-        </li>
+            <li className={classNames} key={`curr${i}`}>
+                <button className='day-number' onClick={() => ondateClick(currentdate)}>{i}</button> 
+                <div className='calendar-details'>
+                    {workshopDetails.map((workshop, index) =>
+                        <div className='details' key={workshop.id || index}>
+                            {/*<p>Workshop: {workshop.workshop_data.workshop_name}</p>*/}
+                            <p>Client: {workshop.company}</p>
+                            <p>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</p>
+                        </div>
+                    )}
+                </div>
+            </li>
         );
     }
 

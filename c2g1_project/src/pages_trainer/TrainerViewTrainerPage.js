@@ -47,8 +47,10 @@ const TrainerViewTrainerPage = () => {
     true  
   );
 
-  console.log("test")
+  console.log("trainerdata")
   console.log(trainerdata)
+  console.log("workshopdata")
+  console.log(workshopdata)
 
   const handleOpenTrainerScheduleCalendar = (id, fullname) => {
     setSelectedId(id);

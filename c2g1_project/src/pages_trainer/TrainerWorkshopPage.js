@@ -29,8 +29,6 @@ const TrainerWorkshopPage = () => {
         config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
       );
 
-    console.log(allocatedWorkshops)
-
     const {
         data: trainerdata,
         loading: trainerloading,
@@ -45,8 +43,25 @@ const TrainerWorkshopPage = () => {
         true  
       );
 
-    console.log("test")
+    console.log("trainerdata")
     console.log(trainerdata)
+
+    const {
+        data: workshopdata,
+        loading: workshoploading,
+        error: workshoperror,
+        seturl: workshopseturl,
+        setParams: workshopsetParams,
+        refetch: workshoprefetch
+      } = useAxiosGet(
+        config.base_url + endpoints.trainer.getApprovedWorkshops,
+        {},
+        [],
+        true  
+      );
+
+    const workshopdata2 = workshopdata[0];
+    
     
 
     const convertDate = (dateString) => {
@@ -68,6 +83,12 @@ const TrainerWorkshopPage = () => {
         setFilterText(e.target.value);
     };
 
+    console.log("workshopdata")
+    console.log(workshopdata)
+
+    console.log("Allocated workshops")
+    console.log(allocatedWorkshops)
+
     const filteredAndSortedWorkshops = allocatedWorkshops.data.trainer_workshops ? allocatedWorkshops.data.trainer_workshops
     .filter(workshop => 
       workshop.workshop_data.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
@@ -81,6 +102,9 @@ const TrainerWorkshopPage = () => {
       if (a[sortKey] > b[sortKey]) return 1;
       return 0;
     }) : [];
+
+    console.log("filtered and sorted")
+    console.log(filteredAndSortedWorkshops)
 
     const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
         "View Trainer statistics"
@@ -143,6 +167,13 @@ const TrainerWorkshopPage = () => {
         }
     }
 
+    const combineTrainers = (workshops) => {
+    return workshops.flatMap(workshop => workshop.trainers);
+  };
+
+  // Initialize allTrainers only if data.trainer_workshops is defined and is an array
+  const allTrainers = trainerdata && Array.isArray(trainerdata.trainer_workshops) ? combineTrainers(trainerdata.trainer_workshops) : [];
+
     // CALLING DATA FROM JSON
     const { trainer_data, workshop_data, today_data } = useFetch();
 
@@ -175,7 +206,7 @@ const TrainerWorkshopPage = () => {
                     </div>
                     {today_data && today_data[0] ? (
                         <>
-                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect}/>
+                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect} trainerdata={allTrainers}/>
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>

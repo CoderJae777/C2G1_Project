@@ -34,8 +34,12 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
     const workshopStarts = currentTrainerWorkshopdata.map(workshop => convertDate(workshop.start_date));
     const workshopEnds = currentTrainerWorkshopdata.map(workshop => convertDate(workshop.end_date));
 
+    console.log("currentTrainerWorkshopdata")
+    console.log(currentTrainerWorkshopdata)
+
     const getWorkshopByDate = (date) => {
-        return currentTrainerWorkshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date || (new Date(workshop.start_date) <= new Date(date) && new Date(workshop.end_date) >= new Date(date)));
+        return currentTrainerWorkshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date 
+        || (new Date(workshop.start_date) <= new Date(date) && new Date(workshop.end_date) >= new Date(date)));
     };
 
     const preWorkshopDates = currentTrainerWorkshopdata.flatMap(workshop => {
@@ -147,6 +151,7 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
         }
     };
 
+    console.log("workshopdata2")
     console.log(workshopdata2);
     console.log(trainerdata);
 
