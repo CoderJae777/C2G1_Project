@@ -126,7 +126,7 @@ const AdminWorkshopRequestPage = () => {
                   <tr>
                     <th>Workshop Name</th>
                     <th>Workshop ID</th>
-                    <th>Type</th>
+                    <th>Status</th>
                     <th className="action-column">Actions</th>
                   </tr>
                 </thead>
@@ -135,16 +135,18 @@ const AdminWorkshopRequestPage = () => {
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
                       <td>{request.workshop_data.workshop_ID}</td>
-                      <td>{request.workshop_data.workshop_type}</td>
+                      <td>{request.status}</td>
                       <td>
                         <div className="workshop-request-buttons">
-                          <button
-                            data-cy="view-wsd-button"
-                            className="view-workshop-details-button"
-                            onClick={() => handleOpenDetailsPopup(request)}
-                          >
-                            View Details
-                          </button>
+                        <button
+                          data-cy="view-wsd-button"
+                          className={`ar-view-workshop-details-button ${
+                            request.status === 'rejected' ? 'rejected' : request.status === 'approved' ? 'approved' : ''
+                          }`}
+                          onClick={() => handleOpenDetailsPopup(request)}
+                        >
+                          View Details
+                        </button>
                         </div>
                       </td>
                     </tr>

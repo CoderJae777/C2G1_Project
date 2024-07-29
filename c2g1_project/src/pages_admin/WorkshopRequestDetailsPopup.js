@@ -1,9 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+import useAxiosGet from '../api/useAxiosGet';
 import '../styles/adminworkshoprequestpagepopups.css';
+import { config } from '../config/config';
+import { endpoints } from '../config/endpoints';
 
 const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
     const [workshopDetails, setWorkshopDetails] = useState(workshop);
+    const [trainerUsernames, setTrainerUsernames] = useState({});
     const popupRef = useRef(null);
+
+    const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet();
 
     useEffect(() => {
         setWorkshopDetails(workshop);
@@ -15,12 +21,29 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                 onClose();
             }
         };
-    
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-      }, [popupRef, onClose]);
+    }, [popupRef, onClose]);
+
+    useEffect(() => {
+        if (workshopDetails.status === 'approved' && workshopDetails.trainers.length > 0) {
+            setUrl(config.base_url + endpoints.admin.getTrainers);
+            refetch();
+        }
+    }, [workshopDetails, setUrl, refetch]);
+
+    useEffect(() => {
+        if (data) {
+            const trainers = data.reduce((acc, trainer) => {
+                acc[trainer._id] = trainer.username;
+                return acc;
+            }, {});
+            setTrainerUsernames(trainers);
+        }
+    }, [data]);
 
     return (
         <div ref={popupRef} data-cy="wsrqd-popup" className="workshop-request-details-popup open-workshop-request-details-popup">
@@ -28,10 +51,6 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
             <div className="workshop-details-content">
                 <table className="details-table">
                     <tbody>
-                        {/* <tr>
-                            <td><strong>Workshop ID:</strong></td>
-                            <td>{workshopDetails.workshopId}</td>
-                        </tr> */}
                         <tr>
                             <td><strong>Client Company:</strong></td>
                             <td>{workshopDetails.company}</td>
@@ -52,14 +71,6 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                             <td><strong>Client Phone Number:</strong></td>
                             <td>{workshopDetails.phone_number}</td>
                         </tr>
-                        {/* <tr>
-                            <td><strong>Client Type:</strong></td>
-                            <td>{workshopDetails.client_type}</td>
-                        </tr> */}
-                        {/* <tr>
-                            <td><strong>Duration:</strong></td>
-                            <td>{workshopDetails.duration}</td>
-                        </tr> */}
                         <tr>
                             <td><strong>Start Date:</strong></td>
                             <td>{workshopDetails.start_date}</td>
@@ -88,6 +99,30 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                             <td><strong>Message:</strong></td>
                             <td>{workshopDetails.request_message}</td>
                         </tr>
+                        {workshopDetails.status === 'approved' && (
+                            <tr>
+                                <td><strong>Trainers Allocated:</strong></td>
+                                <td>
+                                    {workshopDetails.trainers.length > 0 ? (
+                                        <ul className="trainer-list-ar-ws-popup">
+                                            {workshopDetails.trainers.map((trainerId, index) => (
+                                                <li key={index}>
+                                                    {trainerUsernames[trainerId] || trainerId}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        'No trainers allocated'
+                                    )}
+                                </td>
+                            </tr>
+                        )}
+                        {workshopDetails.status === 'rejected' && (
+                            <tr>
+                                <td><strong>Reject Reason:</strong></td>
+                                <td>{workshopDetails.reject_reason}</td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>

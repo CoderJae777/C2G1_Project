@@ -106,7 +106,7 @@
   border-width: 0px;
   background-color: #80c7fb;
   height: 50px;
-  width: 100%;
+  width: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,7 +126,20 @@
 }
 
 .workshop-detail-panel:hover {
-  background-color: #669fc9;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.workshop-detail-panel.submitted {
+  background-color: #e4e81c;
+}
+
+.workshop-detail-panel.approved {
+  background-color: turquoise;
+}
+
+.workshop-detail-panel.rejected {
+  background-color: palevioletred;
 }
 
 .dropdown {
