@@ -26,6 +26,15 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
+  const nonSubmitted = useAxiosGet(
+    config.base_url + endpoints.admin.getNonSubmittedWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
+  console.log(nonSubmitted.data);
+
   useEffect(() => {
     console.log("Data fetched:", data); // Debug log
     const lastFetchTime = localStorage.getItem("lastFetchTime");
@@ -122,7 +131,7 @@ const AdminWorkshopRequestPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((request, index) => (
+                  {nonSubmitted.data.map((request, index) => (
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
                       <td>{request.workshop_data.workshop_ID}</td>
