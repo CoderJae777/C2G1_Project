@@ -60,7 +60,8 @@ const TrainerWorkshopPage = () => {
         true  
       );
 
-    const workshopdata2 = workshopdata[0];
+    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
+        !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
     
     
 
@@ -74,6 +75,17 @@ const TrainerWorkshopPage = () => {
         return `${year}-${month}-${day}`;
     }
 
+    const getTrainersOfWorkshop = (workshop) => {
+        if (!workshop) return [];
+
+        const trainerNames = workshop.trainers.map(trainerId => {
+            const trainer = trainerdata.find(trainer => trainer._id === trainerId);
+            return trainer ? trainer.fullname : null;
+        }).filter(name => name); // Filter out any null/undefined values
+
+        return trainerNames.join(', ');
+    };
+
     const [sortKey, setSortKey] = useState('workshop_name');
     const [filterText, setFilterText] = useState('');
     const handleSortChange = (e) => {
@@ -83,25 +95,41 @@ const TrainerWorkshopPage = () => {
         setFilterText(e.target.value);
     };
 
-    console.log("workshopdata")
-    console.log(workshopdata)
+    console.log("nonAllocatedWorkshops")
+    console.log(nonAllocatedWorkshops)
 
     console.log("Allocated workshops")
-    console.log(allocatedWorkshops)
+    console.log(allocatedWorkshops.data.trainer_workshops)
 
-    const filteredAndSortedWorkshops = allocatedWorkshops.data.trainer_workshops ? allocatedWorkshops.data.trainer_workshops
-    .filter(workshop => 
-      workshop.workshop_data.workshop_name.toLowerCase().includes(filterText.toLowerCase()) ||
-        workshop.company.toLowerCase().includes(filterText.toLowerCase()) ||
-        convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
-        convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase())
-        // || workshop.trainer.toLowerCase().includes(filterText.toLowerCase())
-    )
+    const completeworkshops = allocatedWorkshops.data.trainer_workshops ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops) : [];
+    console.log("completeworkshops")
+    console.log(completeworkshops)
+
+    const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
+    .filter(workshop => {
+        const trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
+        
+        const workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
+        
+        return (
+            workshopName.includes(filterText.toLowerCase()) ||
+            workshop.company.toLowerCase().includes(filterText.toLowerCase()) ||
+            convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
+            convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase()) ||
+            (new Date(workshop.start_date) <= new Date(filterText) && new Date(workshop.end_date) >= new Date(filterText)) || // filter includes in-between dates
+            trainerNames.includes(filterText.toLowerCase())
+        );
+    })
     .sort((a, b) => {
-      if (a[sortKey] < b[sortKey]) return -1;
-      if (a[sortKey] > b[sortKey]) return 1;
-      return 0;
+        if (sortKey == "trainer"){
+            if (getTrainersOfWorkshop(a).toLowerCase() <getTrainersOfWorkshop(b).toLowerCase()) return -1;
+            if (getTrainersOfWorkshop(a).toLowerCase() >getTrainersOfWorkshop(b).toLowerCase()) return 1;
+        }
+        if (a[sortKey] < b[sortKey]) return -1;
+        if (a[sortKey] > b[sortKey]) return 1;
+        return 0;
     }) : [];
+
 
     console.log("filtered and sorted")
     console.log(filteredAndSortedWorkshops)
@@ -149,9 +177,11 @@ const TrainerWorkshopPage = () => {
         setDomainMax(100);
     };
 
-    const handleOpenWorkshopAndClientDetails = (workshoplist) => {
-        setSelectedWorkshops(workshoplist);
-        setIsWorkshopAndClientDetailsOpen(true);
+    const handleOpenWorkshopAndClientDetails = (workshop) => {
+        if (allocatedWorkshops.data.trainer_workshops.includes(workshop)){
+            setSelectedWorkshops([workshop]);
+            setIsWorkshopAndClientDetailsOpen(true);
+        }
     };
 
     const handleCloseWorkshopAndClientDetails = () => {
@@ -167,12 +197,9 @@ const TrainerWorkshopPage = () => {
         }
     }
 
-    const combineTrainers = (workshops) => {
-    return workshops.flatMap(workshop => workshop.trainers);
-  };
-
-  // Initialize allTrainers only if data.trainer_workshops is defined and is an array
-  const allTrainers = trainerdata && Array.isArray(trainerdata.trainer_workshops) ? combineTrainers(trainerdata.trainer_workshops) : [];
+    const isunAllocatedWorkshop = (workshop) => {
+        return (allocatedWorkshops.data.trainer_workshops.includes(workshop) ? "" : "unallocated-workshop")
+    }
 
     // CALLING DATA FROM JSON
     const { trainer_data, workshop_data, today_data } = useFetch();
@@ -206,7 +233,7 @@ const TrainerWorkshopPage = () => {
                     </div>
                     {today_data && today_data[0] ? (
                         <>
-                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect} trainerdata={allTrainers}/>
+                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect} trainerdata={trainerdata}/>
                         </>
                     ) : (
                         <div>Calculating all data... This may take awhile...</div>
@@ -232,8 +259,7 @@ const TrainerWorkshopPage = () => {
                             />
                             <span>Sort:</span>
                             <select value={sortKey} onChange={handleSortChange}>
-                                <option value="workshop_name">Workshop Name</option>
-                                <option value="client_company">Client Company</option>
+                                <option value="company">Client Company</option>
                                 <option value="start_date">Start Date</option>
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
@@ -242,11 +268,12 @@ const TrainerWorkshopPage = () => {
                             <ul>
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>   
-                                        <button className="workshop_detail_panel" key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails([workshop])}> 
-                                            <span>Workshop Name: {workshop.workshop_data.workshop_name}</span>
+                                        <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
+                                            {/*<span>Workshop Name: {workshop.workshop_data.workshop_name}</span>*/}
                                             <span>Client: {workshop.company}</span>
-                                            {/*<span>Assigned Trainer: {workshop.trainers}</span>*/}
+                                            <span>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</span>
                                             <span>Start Date: {convertDate(workshop.start_date)}</span>
+                                            <span>End Date: {convertDate(workshop.end_date)}</span>
                                         </button>
                                     </div>
                                 ))}
