@@ -29,8 +29,7 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
 
     const currentTrainer = trainerdata.find(trainer => trainer._id === trainerId);
 
-    const workshopdata2 = workshopdata[0];
-    const currentTrainerWorkshopdata = workshopdata2.filter(workshop =>
+    const currentTrainerWorkshopdata = workshopdata.filter(workshop =>
         workshop.trainers.some(trainer => trainer === trainerId)
     );
 
@@ -41,8 +40,10 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
     console.log(currentTrainerWorkshopdata)
 
     const getWorkshopByDate = (date) => {
-        return currentTrainerWorkshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date 
+        let out = currentTrainerWorkshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date 
         || (new Date(workshop.start_date) <= new Date(date) && new Date(workshop.end_date) >= new Date(date)));
+        console.log(out[0])
+        return out
     };
 
     const preWorkshopDates = currentTrainerWorkshopdata.flatMap(workshop => {
@@ -122,11 +123,12 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
             let workshopDetails = getWorkshopByDate(currentdate)
             liTag.push(
                 <li className={classNames} key={`curr${i}`}>
-                    <button className='day-number' onClick={() => ondateClick(getWorkshopByDate(currentdate))}>{i}</button>
+                    <button className='day-number' onClick={() => ondateClick(getWorkshopByDate(currentdate)[0])}>{i}</button>
                     <div className='calendar-details'>
                         {workshopDetails.map((workshop, index) =>
                             <div className='details' key={workshop.id || index}>
                                 {/*<p>Workshop: {workshop.workshop_data.workshop_name}</p>*/}
+                                <p>Request ID: {workshop.request_id}</p>
                                 <p>Client: {workshop.company}</p>
                                 <p>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</p>
                             </div>
@@ -165,8 +167,6 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
         }
     };
 
-    console.log("workshopdata2")
-    console.log(workshopdata2);
     console.log(trainerdata);
 
     useEffect(() => {

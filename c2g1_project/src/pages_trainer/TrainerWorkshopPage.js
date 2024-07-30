@@ -59,8 +59,10 @@ const TrainerWorkshopPage = () => {
         [],
         true  
       );
-
-    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
+      
+      console.log("workshopdata")
+      console.log(workshopdata)
+    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata.filter(workshop =>
         !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
     
     
@@ -107,9 +109,9 @@ const TrainerWorkshopPage = () => {
 
     const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
     .filter(workshop => {
-        const trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
-        
-        const workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
+        let trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
+        let request_id = workshop.request_id ? workshop.request_id.toLowerCase() : ""
+        let workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
         
         return (
             workshopName.includes(filterText.toLowerCase()) ||
@@ -117,13 +119,18 @@ const TrainerWorkshopPage = () => {
             convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
             convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase()) ||
             (new Date(workshop.start_date) <= new Date(filterText) && new Date(workshop.end_date) >= new Date(filterText)) || // filter includes in-between dates
-            trainerNames.includes(filterText.toLowerCase())
+            trainerNames.includes(filterText.toLowerCase()) ||
+            request_id.includes(filterText.toLowerCase())
         );
     })
     .sort((a, b) => {
         if (sortKey == "trainer"){
             if (getTrainersOfWorkshop(a).toLowerCase() <getTrainersOfWorkshop(b).toLowerCase()) return -1;
             if (getTrainersOfWorkshop(a).toLowerCase() >getTrainersOfWorkshop(b).toLowerCase()) return 1;
+        }
+        if (sortKey == "request_id"){
+            if (a[sortKey] > b[sortKey]) return -1;
+            if (a[sortKey] < b[sortKey]) return 1;
         }
         if (a[sortKey] < b[sortKey]) return -1;
         if (a[sortKey] > b[sortKey]) return 1;
@@ -216,7 +223,7 @@ const TrainerWorkshopPage = () => {
             transition={{ duration: 0.5 }}
         >
             {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
-                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshops} />
             )}
             
             <div className="top-panel">
@@ -248,7 +255,7 @@ const TrainerWorkshopPage = () => {
                     
                     {/* Right column MAIN DIV NUMBER 1 */}
                     <div className="workshop-stats">
-                        <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
+                        <h4 className="workshop-stats-title">{workshopgraphsTitle}</h4>
                         <div className="filter">
                             <span>Filter:</span>
                             <input
@@ -259,7 +266,7 @@ const TrainerWorkshopPage = () => {
                             />
                             <span>Sort:</span>
                             <select value={sortKey} onChange={handleSortChange}>
-                                <option value="company">Client Company</option>
+                                <option value="request_id">Request ID</option>
                                 <option value="start_date">Start Date</option>
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
@@ -271,6 +278,7 @@ const TrainerWorkshopPage = () => {
                                             <span>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</span>
                                             <span>Start Date: {convertDate(workshop.start_date)}</span>
                                             <span>End Date: {convertDate(workshop.end_date)}</span>
+                                            <span>Request ID: {workshop.request_id}</span>
                                             <span className="allocated-only">Client: {workshop.company}</span>
                                             <span className="allocated-only">Workshop Name: {workshop.workshop_data.workshop_name}</span>
                                         </button>

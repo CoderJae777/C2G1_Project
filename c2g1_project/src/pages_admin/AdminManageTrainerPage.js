@@ -9,6 +9,7 @@ import AddTrainerPopup from "./AddTrainerPopup";
 import TrainerScheduleCalendar from "../components/ColourCalendarPopup";
 import DeleteTrainerPopup from "./DeleteTrainerPopup";
 import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails";
+import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
@@ -115,7 +116,8 @@ const AdminManageTrainerPage = () => {
   };
 
   const handleOpenWorkshopAndClientDetails = (workshop) => {
-    if (Array.isArray(workshop) && workshop.length > 0){
+    if (workshop){
+      setIsTrainerScheduleCalendarOpen(false);
       setSelectedWorkshops(workshop);
       setIsWorkshopAndClientDetailsOpen(true);
     }
@@ -123,6 +125,7 @@ const AdminManageTrainerPage = () => {
   
 
 const handleCloseWorkshopAndClientDetails = () => {
+    setIsTrainerScheduleCalendarOpen(true);
     setIsWorkshopAndClientDetailsOpen(false);
   };
 
@@ -185,7 +188,7 @@ const handleCloseWorkshopAndClientDetails = () => {
   return (
     <>
       {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
-                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshops} />
       )}
       {isAddTrainerPopupOpen && (
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
