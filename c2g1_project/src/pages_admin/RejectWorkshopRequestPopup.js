@@ -4,7 +4,7 @@ import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 import useAxiosPatch from "../api/useAxiosPatch";
 
-const RejectWorkshopRequestPopup = ({ selectedId, onClose }) => {
+const RejectWorkshopRequestPopup = ({ selectedId, requestId, onClose }) => {
   const [rejectReason, setRejectReason] = useState("");
   const popupRef = useRef(null);
 
@@ -62,7 +62,7 @@ const RejectWorkshopRequestPopup = ({ selectedId, onClose }) => {
         className="reject-workshop-request-popup open-reject-workshop-request-popup"
       >
         <h2>Reject Workshop</h2>
-        <p>Workshop: {selectedId}</p> 
+        <p>Workshop ID: {requestId ? requestId : "None"}</p> 
         <p>Please provide a reason for rejecting the workshop request.</p>
         <textarea
           className="reject-reason-input"

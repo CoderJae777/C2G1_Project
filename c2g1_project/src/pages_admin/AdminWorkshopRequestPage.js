@@ -1,9 +1,9 @@
-// pages_admin/AdminWorkshopRequestPage.js
 import React, { useEffect, useState } from "react";
 import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ApproveRejectWRCalendarPopup from "./ApproveRejectWRCalendarPopup";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
 import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
@@ -13,6 +13,7 @@ import { endpoints } from "../config/endpoints";
 import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar";
 
 const AdminWorkshopRequestPage = () => {
+  const [isCalendarPopupOpen, setIsCalendarPopupOpen] = useState(false);
   const [isApprovePopupOpen, setIsApprovePopupOpen] = useState(false);
   const [isRejectPopupOpen, setIsRejectPopupOpen] = useState(false);
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
@@ -39,46 +40,44 @@ const AdminWorkshopRequestPage = () => {
   const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   useEffect(() => {
-    // console.log("Data fetched:", data); // Debug log
     const lastFetchTime = localStorage.getItem("lastFetchTime");
     const currentTime = new Date().getTime();
-    // console.log("Last Fetch Time:", lastFetchTime); // Debug log
-    // console.log("Current Time:", currentTime); // Debug log
 
     if (data.length > 0) {
       const latestRequestTime = new Date(data[0].createdAt).getTime();
-      // console.log("Latest Request Time:", latestRequestTime); // Debug log
 
       if (!lastFetchTime || latestRequestTime > parseInt(lastFetchTime)) {
-        // console.log("New request detected"); // Debug log
       }
 
       localStorage.setItem("lastFetchTime", currentTime);
     }
   }, [data]);
 
-  // State for keeping track of previous pending count
   const [previousPendingCount, setPreviousPendingCount] = useState(() => {
-    // Initialize from localStorage or default to 0
     return parseInt(localStorage.getItem("previousPendingCount") || "0");
   });
 
   useEffect(() => {
     if (data && data.length > previousPendingCount) {
-      // Notify about new workshop requests
       toast.info(`You have ${data.length} new / total workshop requests`, {
         position: "top-right",
         autoClose: 5000,
       });
-      // Update previous pending count in state and localStorage
       setPreviousPendingCount(data.length);
       localStorage.setItem("previousPendingCount", data.length.toString());
     } else if (data.length < previousPendingCount) {
-      // Update previousPendingCount if count decreases (e.g., request approval)
       setPreviousPendingCount(data.length);
       localStorage.setItem("previousPendingCount", data.length.toString());
     }
   }, [data, previousPendingCount]);
+
+  const handleOpenCalendarPopup = () => {
+    setIsCalendarPopupOpen(true);
+  };
+
+  const handleCloseCalendarPopup = () => {
+    setIsCalendarPopupOpen(false);
+  };
 
   const handleOpenApprovePopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
@@ -96,6 +95,7 @@ const AdminWorkshopRequestPage = () => {
 
   const handleOpenRejectPopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
+    setRequestId(selectedWorkshop.request_id);
     setIsRejectPopupOpen(true);
   };
 
@@ -116,6 +116,8 @@ const AdminWorkshopRequestPage = () => {
     setSelectedWorkshop(null);
   };
 
+  const approvedWorkshops = data.filter((request) => request.status === "approved");
+
   return verification.data !== null && verification.data.role === "admin" ? (
     <div className="admin-workshop-request-page">
       <ToastContainer />
@@ -131,6 +133,7 @@ const AdminWorkshopRequestPage = () => {
       {isRejectPopupOpen && (
         <RejectWorkshopRequestPopup
           selectedId={selectedId}
+          requestId={requestId}
           onClose={handleCloseRejectPopup}
         />
       )}
@@ -140,6 +143,12 @@ const AdminWorkshopRequestPage = () => {
           onClose={handleCloseDetailsPopup}
         />
       )}
+      {isCalendarPopupOpen && (
+        <ApproveRejectWRCalendarPopup
+          approvedWorkshops={approvedWorkshops}
+          onClose={handleCloseCalendarPopup}
+        />
+      )}
       <div className="top-panel">
         <AdminTopLeftSideBar hasNewRequests={true} />
       </div>
@@ -147,7 +156,7 @@ const AdminWorkshopRequestPage = () => {
         <div className="bottom-panel-left-side">
           <div className="admin-workshop-request-page-title">
             <h2>Approved/Rejected Workshop Requests</h2>
-            <button className="view-ar-ws-calendar-button">View Calendar</button>
+            <button className="view-ar-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -196,7 +205,7 @@ const AdminWorkshopRequestPage = () => {
         <div className="bottom-panel-right-side">
           <div className="admin-workshop-request-page-title">
             <h2>Pending Workshop Requests</h2>
-            <button className="view-p-ws-calendar-button">View Calendar</button>
+            <button className="view-p-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -253,7 +262,7 @@ const AdminWorkshopRequestPage = () => {
       </div>
     </div>
   ) : (
-    <div>Not logged in</div>
+    <div>Unauthorized access</div>
   );
 };
 

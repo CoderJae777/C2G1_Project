@@ -97,7 +97,6 @@ const ApproveWorkshopRequestPopup = ({
         className="approve-workshop-request-popup open-approve-workshop-request-popup"
       >
         <h2>Approve Workshop</h2>
-        {/* need to create an ID for specific workshop request */}
         <p>Workshop ID: {requestId ? requestId : "None"}</p> 
         <p>Assign trainer(s) to this workshop.</p>
         <div data-cy="select-trainer" className="select-menu-container">
