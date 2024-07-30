@@ -89,6 +89,7 @@ const AdminWorkshopRequestPage = () => {
   const handleCloseApprovePopup = () => {
     setIsApprovePopupOpen(false);
     refetch();
+    nonSubmitted.refetch();
   };
 
   const handleOpenRejectPopup = (selectedWorkshop) => {
@@ -99,6 +100,7 @@ const AdminWorkshopRequestPage = () => {
   const handleCloseRejectPopup = () => {
     setIsRejectPopupOpen(false);
     refetch();
+    nonSubmitted.refetch();
   };
 
   const handleOpenDetailsPopup = (workshop) => {
