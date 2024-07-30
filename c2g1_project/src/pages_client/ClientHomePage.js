@@ -326,18 +326,18 @@ const ClientHomePage = () => {
                 <motion.button
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="refresh_button"
-                  onClick={handleRefresh}
-                >
-                  Refresh
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
                   className="popwsreqbut"
                   onClick={populateForm}
                 >
                   Populate
+                </motion.button>{" "}
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="refresh_button"
+                  onClick={handleRefresh}
+                >
+                  Refresh
                 </motion.button>
               </div>
             </div>
@@ -552,7 +552,11 @@ const ClientHomePage = () => {
                 placeholderText="Workshop End Date"
                 className="ws_req_form_control"
                 minDate={startDate || new Date()} // Ensure end date cannot be before start date
-                maxDate={maxDate}
+                maxDate={
+                  startDate
+                    ? new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000)
+                    : maxDate
+                } // Set max end date to 30 days after start date
                 title="Select the workshop end date"
                 disabled={!startDate} // Disable end date picker until start date is selected
               />
