@@ -51,7 +51,7 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
       >
         <h2>Approved Workshop Requests</h2>
         <ColourCalendar 
-            workshopdata={approvedWorkshops.map(workshop => workshop.date)} // Ensure this is the right format
+            workshopdata={approvedWorkshops.map(workshop => workshop.date)}
             ondateClick={handleCalendarSelect}
             trainerdata={trainerdata}
         />

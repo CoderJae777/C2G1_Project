@@ -105,9 +105,11 @@ const AdminWorkshopRequestPage = () => {
     nonSubmitted.refetch();
   };
 
-  const handleOpenDetailsPopup = (workshop) => {
-    console.log(workshop);
-    setSelectedWorkshop(workshop);
+  const handleOpenDetailsPopup = (selectedWorkshop) => {
+    console.log(selectedWorkshop);
+    setSelectedWorkshop(selectedWorkshop);
+    setSelectedStartDate(selectedWorkshop.start_date);
+    setSelectedEndDate(selectedWorkshop.end_date);
     setIsDetailsPopupOpen(true);
   };
 
@@ -140,6 +142,10 @@ const AdminWorkshopRequestPage = () => {
       {isDetailsPopupOpen && selectedWorkshop && (
         <WorkshopRequestDetailsPopup
           workshop={selectedWorkshop}
+          selectedId={selectedId}
+          requestId={requestId}
+          selectedStartDate={selectedStartDate}
+          selectedEndDate={selectedEndDate}
           onClose={handleCloseDetailsPopup}
         />
       )}
