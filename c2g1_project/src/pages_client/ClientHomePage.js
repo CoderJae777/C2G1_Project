@@ -37,7 +37,7 @@ const ClientHomePage = () => {
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
-  const verify = useAxiosGet(config.base_url + endpoints.verify);
+  const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   const pendingWorkshops = useAxiosGet(
     config.base_url + endpoints.client.getPendingWorkshopRequests,
@@ -109,7 +109,7 @@ const ClientHomePage = () => {
       end_date: endDate.toISOString(),
       request_message: message,
       workshop_data_id: workshopId,
-      client_id: verify.data.id,
+      client_id: verification.data.id,
     });
     createWorkshop.refetch();
 
@@ -199,7 +199,7 @@ const ClientHomePage = () => {
 
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
 
-  return verify.data !== null && verify.data.role === "client" ? (
+  return verification.data !== null && verification.data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
       {isClientWorkshopStatusDetailsPopupOpen && (

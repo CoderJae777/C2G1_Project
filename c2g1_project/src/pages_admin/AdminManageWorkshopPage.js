@@ -9,7 +9,8 @@ import { endpoints } from "../config/endpoints.js";
 import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar.js";
 
 const AdminManageWorkshopPage = () => {
-  const [isEditWorkshopDetailsPopupOpen, setIsEditWorkshopDetailsPopupOpen] = useState(false);
+  const [isEditWorkshopDetailsPopupOpen, setIsEditWorkshopDetailsPopupOpen] =
+    useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
   const handleOpenEditWorkshopDetailsPopup = (id) => {
@@ -23,12 +24,14 @@ const AdminManageWorkshopPage = () => {
     []
   );
 
+  const verification = useAxiosGet(config.base_url + endpoints.verify);
+
   const handleCloseEditWorkshopDetailsPopup = () => {
     setIsEditWorkshopDetailsPopupOpen(false);
     refetch();
   };
 
-  return (
+  return verification.data !== null && verification.data.role === "admin" ? (
     <>
       <AdminTopLeftSideBar />{" "}
       <div className="workshoppage">
@@ -69,6 +72,8 @@ const AdminManageWorkshopPage = () => {
         </div>
       </div>
     </>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 
