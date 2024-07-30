@@ -5,6 +5,10 @@
   font-family: roboto;
 }
 
+.day-number-container {
+  position: relative;
+}
+
 .colour-calendar-popup {
   width: 100%; /* Make the calendar responsive to the parent width */
   max-width: 400px; /* Optional: set a maximum width */
@@ -164,7 +168,7 @@ header .current-date {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background-color: #3bc452; /* Your workshop start color */
+    background-color: #fff942; /* Your workshop start color */
 }
 
 
@@ -208,7 +212,7 @@ header .current-date {
 }
 
 .days li.workshop-start:hover::before {
-  background: #279a3a;
+  background: #ebe41d;
 }
 
 .days li.workshop-in-between:hover::before {
@@ -226,18 +230,24 @@ header .current-date {
 }
 
 .calendar-details {
+  font-size: 80%;
   color: black;
   display: none;
   position: absolute;
-  top: -500%; /* Position it above the day-number */
+  bottom: 150%; /* Position it above the day number */
   left: 50%;
-  transform: translateX(-50%); /* Center it horizontally */
-  background-color: #fff; 
+  transform: translateX(-50%);
+  background-color: #fff;
   padding: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 10; /* Ensure it appears above other elements */
+  z-index: 10;
 }
+
+.day-number-container:hover .calendar-details {
+  display: block;
+}
+
 
 .workshop-start:hover .calendar-details,
 .workshop-end:hover .calendar-details,
@@ -261,6 +271,7 @@ header .current-date {
 
 .details p {
   white-space: nowrap;
+  margin: 5px;
 }
 
 .calendar-legend {

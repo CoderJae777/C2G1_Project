@@ -9,6 +9,7 @@ import AddTrainerPopup from "./AddTrainerPopup";
 import TrainerScheduleCalendar from "../components/ColourCalendarPopup";
 import DeleteTrainerPopup from "./DeleteTrainerPopup";
 import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails";
+import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
 import useAxiosGet from "../api/useAxiosGet";
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
@@ -39,6 +40,13 @@ const AdminManageTrainerPage = () => {
     true
   );
 
+  const nonSubmitted = useAxiosGet(
+    config.base_url + endpoints.admin.getNonSubmittedWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
   const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   const {
@@ -54,6 +62,13 @@ const AdminManageTrainerPage = () => {
     [],
     true
   );
+
+  console.log("workshopdata")
+  console.log(workshopdata)
+
+  console.log("nonSubmitted")
+  console.log(nonSubmitted.data)
+  
 
   const handleOpenTrainerDetailsPopup = (id, fullname, username) => {
     setSelectedId(id);
@@ -127,13 +142,15 @@ const AdminManageTrainerPage = () => {
   };
 
   const handleOpenWorkshopAndClientDetails = (workshop) => {
-    if (Array.isArray(workshop) && workshop.length > 0) {
+    if (workshop){
+      setIsTrainerScheduleCalendarOpen(false);
       setSelectedWorkshops(workshop);
       setIsWorkshopAndClientDetailsOpen(true);
     }
   };
 
-  const handleCloseWorkshopAndClientDetails = () => {
+const handleCloseWorkshopAndClientDetails = () => {
+    setIsTrainerScheduleCalendarOpen(true);
     setIsWorkshopAndClientDetailsOpen(false);
   };
 
@@ -210,10 +227,7 @@ const AdminManageTrainerPage = () => {
   return verification.data !== null && verification.data.role === "admin" ? (
     <>
       {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
-        <WorkshopAndClientDetails
-          onClose={handleCloseWorkshopAndClientDetails}
-          workshops={selectedWorkshops}
-        />
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshops} />
       )}
       {isAddTrainerPopupOpen && (
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />

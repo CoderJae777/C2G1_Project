@@ -38,34 +38,26 @@ const TrainerWorkshopPage = () => {
     refetch: trainerrefetch,
   } = useAxiosGet(config.base_url + endpoints.trainer.getOthers, {}, [], true);
 
-  const {
-    data: workshopdata,
-    loading: workshoploading,
-    error: workshoperror,
-    seturl: workshopseturl,
-    setParams: workshopsetParams,
-    refetch: workshoprefetch,
-  } = useAxiosGet(
-    config.base_url + endpoints.trainer.getApprovedWorkshops,
-    {},
-    [],
-    true
-  );
-
-  console.log(workshopdata);
-
-  const nonAllocatedWorkshops =
-    allocatedWorkshops.data.trainer_workshops &&
-    allocatedWorkshops.data &&
-    workshopdata &&
-    workshopdata.length > 0
-      ? workshopdata.filter(
-          (workshop) =>
-            !allocatedWorkshops.data.trainer_workshops.some(
-              (allocatedworkshop) => allocatedworkshop._id === workshop._id
-            )
-        )
-      : [];
+    const {
+        data: workshopdata,
+        loading: workshoploading,
+        error: workshoperror,
+        seturl: workshopseturl,
+        setParams: workshopsetParams,
+        refetch: workshoprefetch
+      } = useAxiosGet(
+        config.base_url + endpoints.trainer.getApprovedWorkshops,
+        {},
+        [],
+        true  
+      );
+      
+      console.log("workshopdata")
+      console.log(workshopdata)
+    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata.filter(workshop =>
+        !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
+    
+    
 
   const convertDate = (dateString) => {
     const date = new Date(dateString);
@@ -103,60 +95,45 @@ const TrainerWorkshopPage = () => {
     setFilterText(e.target.value);
   };
 
-  console.log("nonAllocatedWorkshops");
-  console.log(nonAllocatedWorkshops);
+    console.log("nonAllocatedWorkshops")
+    console.log(nonAllocatedWorkshops)
 
-  console.log("Allocated workshops");
-  console.log(allocatedWorkshops.data.trainer_workshops);
+    console.log("Allocated workshops")
+    console.log(allocatedWorkshops.data.trainer_workshops)
 
-  const completeworkshops = allocatedWorkshops.data.trainer_workshops
-    ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops)
-    : [];
-  console.log("completeworkshops");
-  console.log(completeworkshops);
+    const completeworkshops = allocatedWorkshops.data.trainer_workshops ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops) : [];
+    console.log("completeworkshops")
+    console.log(completeworkshops)
 
-  const filteredAndSortedWorkshops = completeworkshops
-    ? completeworkshops
-        .filter((workshop) => {
-          const trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
-
-          const workshopName =
-            typeof workshop.workshop_data === "string"
-              ? ""
-              : workshop.workshop_data.workshop_name.toLowerCase();
-
-          return (
+    const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
+    .filter(workshop => {
+        let trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
+        let request_id = workshop.request_id ? workshop.request_id.toLowerCase() : ""
+        let workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
+        
+        return (
             workshopName.includes(filterText.toLowerCase()) ||
             workshop.company.toLowerCase().includes(filterText.toLowerCase()) ||
-            convertDate(workshop.start_date)
-              .toLowerCase()
-              .includes(filterText.toLowerCase()) ||
-            convertDate(workshop.end_date)
-              .toLowerCase()
-              .includes(filterText.toLowerCase()) ||
-            (new Date(workshop.start_date) <= new Date(filterText) &&
-              new Date(workshop.end_date) >= new Date(filterText)) || // filter includes in-between dates
-            trainerNames.includes(filterText.toLowerCase())
-          );
-        })
-        .sort((a, b) => {
-          if (sortKey == "trainer") {
-            if (
-              getTrainersOfWorkshop(a).toLowerCase() <
-              getTrainersOfWorkshop(b).toLowerCase()
-            )
-              return -1;
-            if (
-              getTrainersOfWorkshop(a).toLowerCase() >
-              getTrainersOfWorkshop(b).toLowerCase()
-            )
-              return 1;
-          }
-          if (a[sortKey] < b[sortKey]) return -1;
-          if (a[sortKey] > b[sortKey]) return 1;
-          return 0;
-        })
-    : [];
+            convertDate(workshop.start_date).toLowerCase().includes(filterText.toLowerCase()) ||
+            convertDate(workshop.end_date).toLowerCase().includes(filterText.toLowerCase()) ||
+            (new Date(workshop.start_date) <= new Date(filterText) && new Date(workshop.end_date) >= new Date(filterText)) || // filter includes in-between dates
+            trainerNames.includes(filterText.toLowerCase()) ||
+            request_id.includes(filterText.toLowerCase())
+        );
+    })
+    .sort((a, b) => {
+        if (sortKey == "trainer"){
+            if (getTrainersOfWorkshop(a).toLowerCase() <getTrainersOfWorkshop(b).toLowerCase()) return -1;
+            if (getTrainersOfWorkshop(a).toLowerCase() >getTrainersOfWorkshop(b).toLowerCase()) return 1;
+        }
+        if (sortKey == "request_id"){
+            if (a[sortKey] > b[sortKey]) return -1;
+            if (a[sortKey] < b[sortKey]) return 1;
+        }
+        if (a[sortKey] < b[sortKey]) return -1;
+        if (a[sortKey] > b[sortKey]) return 1;
+        return 0;
+    }) : [];
 
   console.log("filtered and sorted");
   console.log(filteredAndSortedWorkshops);
@@ -202,9 +179,9 @@ const TrainerWorkshopPage = () => {
     setDomainMax(100);
   };
 
-  const handleOpenWorkshopAndClientDetails = (workshop) => {
+  const handleOpenWorkshopAndClientDetails = (workshop) => { 
     if (allocatedWorkshops.data.trainer_workshops.includes(workshop)) {
-      setSelectedWorkshops([workshop]);
+      setSelectedWorkshops(workshop);
       setIsWorkshopAndClientDetailsOpen(true);
     }
   };
@@ -234,25 +211,22 @@ const TrainerWorkshopPage = () => {
     config.base_url + endpoints.verify
   );
 
-  return data !== null && data.role === "trainer" ? (
-    <motion.div
-      className="trainer-home-page"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
-        <WorkshopAndClientDetails
-          onClose={handleCloseWorkshopAndClientDetails}
-          workshops={selectedWorkshops}
-        />
-      )}
-
-      <div className="top-panel">
-        <TopLeftSideBar />
-      </div>
-      <div className="left-column">
-        <div className="trainer-home-page-title"></div>
+    return data !== null && data.role === "trainer" ?  (
+        <motion.div
+            className="trainer-home-page"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+                <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshops} />
+            )}
+            
+            <div className="top-panel">
+                <TopLeftSideBar />
+            </div>
+            <div className="left-column">
+                <div className="trainer-home-page-title"></div>
 
         {/* Workshop summary starts here */}
         <div className="workshop-calendar">
@@ -275,64 +249,49 @@ const TrainerWorkshopPage = () => {
         {/* Workshop summary ends here */}
       </div>
 
-      {/* Graphs nonsense starts here */}
-      <div className="right-column">
-        <div className="admin-graphs">
-          {/* Right column MAIN DIV NUMBER 1 */}
-          <div className="workshop-stats">
-            <h5 className="workshop-stats-title">{workshopgraphsTitle}</h5>
-            <div className="filter">
-              <span>Filter:</span>
-              <input
-                type="text"
-                placeholder="Type to filter"
-                value={filterText}
-                onChange={handleFilterChange}
-              />
-              <span>Sort:</span>
-              <select value={sortKey} onChange={handleSortChange}>
-                <option value="company">Client Company</option>
-                <option value="start_date">Start Date</option>
-                <option value="trainer">Assigned Trainer</option>
-              </select>
+            {/* Graphs nonsense starts here */}
+            <div className="right-column">
+                <div className="admin-graphs">
+                    
+                    {/* Right column MAIN DIV NUMBER 1 */}
+                    <div className="workshop-stats">
+                        <h4 className="workshop-stats-title">{workshopgraphsTitle}</h4>
+                        <div className="filter">
+                            <span>Filter:</span>
+                            <input
+                                type="text"
+                                placeholder="Type to filter"
+                                value={filterText}
+                                onChange={handleFilterChange}
+                            />
+                            <span>Sort:</span>
+                            <select value={sortKey} onChange={handleSortChange}>
+                                <option value="request_id">Request ID</option>
+                                <option value="start_date">Start Date</option>
+                                <option value="trainer">Assigned Trainer</option>
+                            </select>
+                        </div>                        
+                        <ul className ="scrollable_list">
+                                {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
+                                    <div>   
+                                        <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
+                                            <span>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</span>
+                                            <span>Start Date: {convertDate(workshop.start_date)}</span>
+                                            <span>End Date: {convertDate(workshop.end_date)}</span>
+                                            <span>Request ID: {workshop.request_id}</span>
+                                            <span className="allocated-only">Client: {workshop.company}</span>
+                                            <span className="allocated-only">Workshop Name: {workshop.workshop_data.workshop_name}</span>
+                                        </button>
+                                    </div>
+                                ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <ul className="scrollable_list">
-              {allocatedWorkshops.data.trainer_workshops &&
-                filteredAndSortedWorkshops.map((workshop, index) => (
-                  <div>
-                    <button
-                      className={`workshop_detail_panel ${isunAllocatedWorkshop(
-                        workshop
-                      )}`}
-                      key={workshop.id}
-                      onClick={() =>
-                        handleOpenWorkshopAndClientDetails(workshop)
-                      }
-                    >
-                      <span>
-                        Assigned Trainers: {getTrainersOfWorkshop(workshop)}
-                      </span>
-                      <span>
-                        Start Date: {convertDate(workshop.start_date)}
-                      </span>
-                      <span>End Date: {convertDate(workshop.end_date)}</span>
-                      <span className="allocated-only">
-                        Client: {workshop.company}
-                      </span>
-                      <span className="allocated-only">
-                        Workshop Name: {workshop.workshop_data.workshop_name}
-                      </span>
-                    </button>
-                  </div>
-                ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  ) : (
-    <div>Not logged in</div>
-  );
+        </motion.div>
+    ): (
+        <div>Not logged in</div>
+      );
 };
 
 export default TrainerWorkshopPage;

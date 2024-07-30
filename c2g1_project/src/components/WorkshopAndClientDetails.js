@@ -1,72 +1,110 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/workshopandclientdetails.css';
 import 'boxicons/css/boxicons.min.css';
 
+const WorkshopAndClientDetails = ({ workshop, onClose }) => {
+    console.log("test")
+    console.log(workshop)
+    const [workshopDetails, setWorkshopDetails] = useState(workshop);
+    const popupRef = useRef(null);
 
-const WorkshopAndClientDetails = ({ onClose, workshops }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [currentWorkshopIndex, setCurrentWorkshopIndex] = useState(0);
+    useEffect(() => {
+        setWorkshopDetails(workshop);
+    }, [workshop]);
 
-    console.log(workshops);
-
-    const handlePrevNext = (direction) => {
-        let newIndex;
-        if (direction === "prev") {
-            newIndex = currentWorkshopIndex - 1;
-            if (newIndex < 0) {
-                newIndex = workshops.length - 1;
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                onClose();
             }
-        } else if (direction === "next") {
-            newIndex = currentWorkshopIndex + 1;
-            if (newIndex >= workshops.length) {
-                newIndex = 0;
-            }
-        }
-        setCurrentWorkshopIndex(newIndex);
-    };
+        };
 
-    const workshop = workshops[currentWorkshopIndex];
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [popupRef, onClose]);
+
+    useEffect(() => {
+        document.body.classList.add('popup-open');
+        return () => {
+            document.body.classList.remove('popup-open');
+        };
+    }, []);
 
     return (
-        <div className="details-popup">
-            <p className="current-date">{`Workshop ${currentWorkshopIndex + 1} of ${workshops.length}`}</p>
-            <header>
-                <div className='title-row'>
-                    <div className="icons">
-                        <span id="prev" className="arrow-left" onClick={() => handlePrevNext("prev")}>
-                            <div className="fa-solid fa-chevron-left">
-                                <box-icon name='chevron-left'></box-icon>
-                            </div>
-                        </span>
-                        <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
-                            <div className="fa-solid fa-chevron-right">
-                                <box-icon name='chevron-right'></box-icon>
-                            </div>
-                        </span>
-                        <span className="close-button" onClick={onClose}>
-                        <div className="fa-solid fa-x check-icon">
-                            <box-icon name='x'></box-icon>
+        <>
+            <div className="popup-overlay popup-open"></div>
+            <div ref={popupRef} className="details-popup open-details-popup">
+                <header>
+                    <div className='title-row'>
+                        <div className="icons">
+                            <span className="close-button" onClick={onClose}>
+                                <div className="fa-solid fa-x check-icon">
+                                    <box-icon name='x'></box-icon>
+                                </div>
+                            </span>
                         </div>
-                    </span>
                     </div>
+                </header>
+                <div className="workshop-details-content">
+                    <table className="details-table">
+                        <tbody>
+                            <tr className="spaced-row">
+                                <td><strong>Client Company:</strong></td>
+                                <td>{workshopDetails.company}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Client Name:</strong></td>
+                                <td>{workshopDetails.name}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Client Type:</strong></td>
+                                <td>{workshopDetails.company_role}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Client Email:</strong></td>
+                                <td>{workshopDetails.email}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Client Phone Number:</strong></td>
+                                <td>{workshopDetails.phone_number}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Start Date:</strong></td>
+                                <td>{workshopDetails.start_date}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>End Date:</strong></td>
+                                <td>{workshopDetails.end_date}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Deal Size:</strong></td>
+                                <td>{workshopDetails.deal_potential}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Country:</strong></td>
+                                <td>{workshopDetails.country}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Venue:</strong></td>
+                                <td>{workshopDetails.venue}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Attendees:</strong></td>
+                                <td>{workshopDetails.pax}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Comments:</strong></td>
+                                <td>{workshopDetails.request_message}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </header>
-            <div>
-                <div className="workshop-detail">ID: {workshop.workshop_data.workshop_ID}</div>
-                <div className="workshop-detail">Workshop Name: {workshop.workshop_data.workshop_name}</div>
-                <div className="workshop-detail">Workshop Type: {workshop.workshop_data.workshop_type}</div>
-                <div className="workshop-detail">Client Company: {workshop.company}</div>
-                <div className="workshop-detail">Client Type: {workshop.company_role}</div>
-                <div className="workshop-detail">Duration: {workshop.duration}</div>
-                <div className="workshop-detail">Start Date: {workshop.start_date}</div>
-                <div className="workshop-detail">Deal Size: {workshop.deal_potential}</div>
-                <div className="workshop-detail">Country: {workshop.country}</div>
-                <div className="workshop-detail">Venue: {workshop.venue}</div>
-                <div className="workshop-detail">Attendees: {workshop.pax}</div>
-                <div className="workshop-detail">Comments: {workshop.request_message}</div>
             </div>
-        </div>
+        </>
     );
 };
 
 export default WorkshopAndClientDetails;
+
