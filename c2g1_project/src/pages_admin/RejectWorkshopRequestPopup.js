@@ -46,35 +46,45 @@ const RejectWorkshopRequestPopup = ({ selectedId, onClose }) => {
     };
   }, [popupRef, onClose]);
 
+  useEffect(() => {
+    document.body.classList.add('popup-open');
+    return () => {
+        document.body.classList.remove('popup-open');
+    };
+  }, []);  
+
   return (
-    <div
-      ref={popupRef}
-      data-cy="reject-wsrq-popup"
-      className="reject-workshop-request-popup open-reject-workshop-request-popup"
-    >
-      <h2>Reject Workshop</h2>
-      <p>Workshop: {selectedId}</p> 
-      <p>Please provide a reason for rejecting the workshop request.</p>
-      <textarea
-        className="reject-reason-input"
-        value={rejectReason}
-        onChange={handleReasonChange}
-        placeholder=" Enter reason here"
-      />
-      <div className="popup-buttons">
-        <button className="submit-button" type="button" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button
-          data-cy="reject-wsrq-cancel-button"
-          className="cancel-button"
-          type="button"
-          onClick={onClose}
-        >
-          Cancel
-        </button>
+    <>
+      <div className="popup-overlay popup-open"></div>
+      <div
+        ref={popupRef}
+        data-cy="reject-wsrq-popup"
+        className="reject-workshop-request-popup open-reject-workshop-request-popup"
+      >
+        <h2>Reject Workshop</h2>
+        <p>Workshop: {selectedId}</p> 
+        <p>Please provide a reason for rejecting the workshop request.</p>
+        <textarea
+          className="reject-reason-input"
+          value={rejectReason}
+          onChange={handleReasonChange}
+          placeholder=" Enter reason here"
+        />
+        <div className="popup-buttons">
+          <button className="submit-button" type="button" onClick={handleSubmit}>
+            Submit
+          </button>
+          <button
+            data-cy="reject-wsrq-cancel-button"
+            className="cancel-button"
+            type="button"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

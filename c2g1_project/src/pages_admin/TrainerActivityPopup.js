@@ -81,55 +81,65 @@ const TrainerActivityPopup = ({
     return () => {
         document.removeEventListener('mousedown', handleClickOutside);
     };
-}, [popupRef, onClose]);
+  }, [popupRef, onClose]);
+
+  useEffect(() => {
+    document.body.classList.add('popup-open');
+    return () => {
+        document.body.classList.remove('popup-open');
+    };
+  }, []);
 
   return (
-    <div ref={popupRef} data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
-      <h2>Select Activity</h2>
-      <p>Trainer Name: {fullname}</p>
-      <p>Trainer ID: {username}</p>
-      <div className="select-menu-container">
-        <div
-          className={`select-btn ${isOpen ? "open" : ""}`}
-          onClick={toggleDropdown}
-        >
-          <span className="btn-text">
-            {selectedItem ? selectedItem : "Select Activity"}
-          </span>
-          <span className="arrow-dwn">
-            <div className="fa-solid fa-chevron-down">
-              <box-icon name="chevron-down"></box-icon>
-            </div>
-          </span>
+    <>
+      <div className="popup-overlay popup-open"></div>
+      <div ref={popupRef} data-cy="trainer-activity-popup" className="trainer-activity-popup open-trainer-activity-popup">
+        <h2>Select Activity</h2>
+        <p>Trainer Name: {fullname}</p>
+        <p>Trainer ID: {username}</p>
+        <div className="select-menu-container">
+          <div
+            className={`select-btn ${isOpen ? "open" : ""}`}
+            onClick={toggleDropdown}
+          >
+            <span className="btn-text">
+              {selectedItem ? selectedItem : "Select Activity"}
+            </span>
+            <span className="arrow-dwn">
+              <div className="fa-solid fa-chevron-down">
+                <box-icon name="chevron-down"></box-icon>
+              </div>
+            </span>
+          </div>
+          {isOpen && (
+            <ul className="list-items">
+              {["Active", "Inactive"].map((trainer, index) => (
+                <li
+                  key={index}
+                  className={`item ${selectedItem === trainer ? "checked" : ""}`}
+                  onClick={() => handleItemClick(trainer)}
+                >
+                  <span className="checkbox">
+                    <div className="fa-solid fa-check check-icon">
+                      <box-icon name="check"></box-icon>
+                    </div>
+                  </span>
+                  <span className="item-text">{trainer}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        {isOpen && (
-          <ul className="list-items">
-            {["Active", "Inactive"].map((trainer, index) => (
-              <li
-                key={index}
-                className={`item ${selectedItem === trainer ? "checked" : ""}`}
-                onClick={() => handleItemClick(trainer)}
-              >
-                <span className="checkbox">
-                  <div className="fa-solid fa-check check-icon">
-                    <box-icon name="check"></box-icon>
-                  </div>
-                </span>
-                <span className="item-text">{trainer}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className="popup-buttons">
+          <button className="submit-button" type="button" onClick={handleSubmit}>
+            Submit
+          </button>
+          <button data-cy="trainer-activity-cancel-button" className="cancel-button" type="button" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </div>
-      <div className="popup-buttons">
-        <button className="submit-button" type="button" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button data-cy="trainer-activity-cancel-button" className="cancel-button" type="button" onClick={onClose}>
-          Cancel
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

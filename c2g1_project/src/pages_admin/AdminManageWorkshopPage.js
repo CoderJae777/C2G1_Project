@@ -9,8 +9,7 @@ import { endpoints } from "../config/endpoints.js";
 import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar.js";
 
 const AdminManageWorkshopPage = () => {
-  const [isEditWorkshopDetailsPopupOpen, setIsEditWorkshopDetailsPopupOpen] =
-    useState(false);
+  const [isEditWorkshopDetailsPopupOpen, setIsEditWorkshopDetailsPopupOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
   const handleOpenEditWorkshopDetailsPopup = (id) => {
