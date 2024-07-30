@@ -83,7 +83,7 @@ const TrainerWorkshopPage = () => {
             return trainer ? trainer.fullname : null;
         }).filter(name => name); // Filter out any null/undefined values
 
-        return trainerNames.join(', ');
+        return trainerNames.join(', ').concat(',');
     };
 
     const [sortKey, setSortKey] = useState('workshop_name');
@@ -268,11 +268,11 @@ const TrainerWorkshopPage = () => {
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>   
                                         <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
-                                            {/*<span>Workshop Name: {workshop.workshop_data.workshop_name}</span>*/}
-                                            <span>Client: {workshop.company}</span>
                                             <span>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</span>
                                             <span>Start Date: {convertDate(workshop.start_date)}</span>
                                             <span>End Date: {convertDate(workshop.end_date)}</span>
+                                            <span className="allocated-only">Client: {workshop.company}</span>
+                                            <span className="allocated-only">Workshop Name: {workshop.workshop_data.workshop_name}</span>
                                         </button>
                                     </div>
                                 ))}

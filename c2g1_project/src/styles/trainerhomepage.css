@@ -331,13 +331,13 @@ body {
 
 .workshop_detail_panel {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   justify-content: space-between;
   border-radius: 5px;
   border-width: 0px;
   background-color: #80c7fb;
-  height: 50px;
+  height: 60px;
   margin-top: 5px;
   width: 100%;
   padding: 0px;
@@ -353,18 +353,12 @@ body {
 }
 
 .unallocated-workshop{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  justify-content: space-between;
-  border-radius: 5px;
-  border-width: 0px;
   background-color: #669fc9;
   height: 50px;
-  margin-top: 5px;
-  width: 100%;
-  padding: 0px;
-  align-items: center;
+}
+
+.unallocated-workshop .allocated-only{
+  display: none;
 }
 
 .workshop-stats-title {
