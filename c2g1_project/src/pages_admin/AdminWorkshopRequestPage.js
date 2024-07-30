@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
 import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
@@ -33,26 +35,49 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
-  console.log(nonSubmitted.data);
+  // console.log(nonSubmitted.data);
 
   useEffect(() => {
-    console.log("Data fetched:", data); // Debug log
+    // console.log("Data fetched:", data); // Debug log
     const lastFetchTime = localStorage.getItem("lastFetchTime");
     const currentTime = new Date().getTime();
-    console.log("Last Fetch Time:", lastFetchTime); // Debug log
-    console.log("Current Time:", currentTime); // Debug log
+    // console.log("Last Fetch Time:", lastFetchTime); // Debug log
+    // console.log("Current Time:", currentTime); // Debug log
 
     if (data.length > 0) {
       const latestRequestTime = new Date(data[0].createdAt).getTime();
-      console.log("Latest Request Time:", latestRequestTime); // Debug log
+      // console.log("Latest Request Time:", latestRequestTime); // Debug log
 
       if (!lastFetchTime || latestRequestTime > parseInt(lastFetchTime)) {
-        console.log("New request detected"); // Debug log
+        // console.log("New request detected"); // Debug log
       }
 
       localStorage.setItem("lastFetchTime", currentTime);
     }
   }, [data]);
+
+  // State for keeping track of previous pending count
+  const [previousPendingCount, setPreviousPendingCount] = useState(() => {
+    // Initialize from localStorage or default to 0
+    return parseInt(localStorage.getItem("previousPendingCount") || "0");
+  });
+
+  useEffect(() => {
+    if (data && data.length > previousPendingCount) {
+      // Notify about new workshop requests
+      toast.info(`You have ${data.length} new / total workshop requests`, {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      // Update previous pending count in state and localStorage
+      setPreviousPendingCount(data.length);
+      localStorage.setItem("previousPendingCount", data.length.toString());
+    } else if (data.length < previousPendingCount) {
+      // Update previousPendingCount if count decreases (e.g., request approval)
+      setPreviousPendingCount(data.length);
+      localStorage.setItem("previousPendingCount", data.length.toString());
+    }
+  }, [data, previousPendingCount]);
 
   const handleOpenApprovePopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
@@ -77,6 +102,7 @@ const AdminWorkshopRequestPage = () => {
   };
 
   const handleOpenDetailsPopup = (workshop) => {
+    console.log(workshop);
     setSelectedWorkshop(workshop);
     setIsDetailsPopupOpen(true);
   };
@@ -88,6 +114,7 @@ const AdminWorkshopRequestPage = () => {
 
   return (
     <div className="admin-workshop-request-page">
+      <ToastContainer />
       {isApprovePopupOpen && (
         <ApproveWorkshopRequestPopup
           selectedId={selectedId}
