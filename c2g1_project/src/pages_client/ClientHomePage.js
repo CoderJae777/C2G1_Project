@@ -555,6 +555,7 @@ const ClientHomePage = () => {
                 maxDate={
                   startDate
                     ? new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000)
+                    // days * hours * minutes * seconds * milliseconds = 30 days LOL
                     : maxDate
                 } // Set max end date to 30 days after start date
                 title="Select the workshop end date"

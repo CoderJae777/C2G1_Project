@@ -86,7 +86,7 @@ test("Test: SignUpPage form inputs are reflected correctly and submit button wor
   expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
   expect(screen.getByPlaceholderText("Fullname")).toBeInTheDocument();
   expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
-  expect(screen.getByText("-- Country --")).toBeInTheDocument();
+  expect(screen.getByText("Select Your Country")).toBeInTheDocument();
 
   // Fill the form
   fireEvent.change(screen.getByPlaceholderText("Username"), {
@@ -101,7 +101,7 @@ test("Test: SignUpPage form inputs are reflected correctly and submit button wor
   fireEvent.change(screen.getByPlaceholderText("Email"), {
     target: { value: "jesttestuser@example.com" },
   });
-  fireEvent.change(screen.getByDisplayValue("-- Country --"), {
+  fireEvent.change(screen.getByDisplayValue("Select Your Country"), {
     target: { value: "USA" },
   });
 
@@ -119,6 +119,7 @@ test("Test: SignUpPage form inputs are reflected correctly and submit button wor
 
   // Check if setBody function is called with the form data
   expect(mockSetBody).toHaveBeenCalledWith({
+    "client_type": "",
     username: "jest_test_user",
     password: "jest_test_user",
     fullname: "Jest Test User",
