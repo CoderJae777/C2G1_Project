@@ -9,8 +9,6 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
   const popupRef = useRef(null);
   const [filterText, setFilterText] = useState("");
 
-  console.log("HERE" + approvedWorkshops);
-
   const {
     data: trainerdata,
     loading: trainerloading,
@@ -19,8 +17,6 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
     setParams: trainersetParams,
     refetch: trainerrefetch,
   } = useAxiosGet(config.base_url + endpoints.admin.getTrainers, {}, [], true);
-
-  // console.log(trainerdata);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -52,7 +48,7 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
       >
         <h2>Approved Workshop Requests</h2>
         <ColourCalendar 
-            workshopdata={approvedWorkshops.map(workshop => workshop.date)}
+            workshopdata={approvedWorkshops.filter(workshop => workshop.start_date)} // Filter out invalid data
             ondateClick={handleCalendarSelect}
             trainerdata={trainerdata}
         />
