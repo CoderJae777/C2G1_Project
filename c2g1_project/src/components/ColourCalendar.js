@@ -8,11 +8,6 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
     const [currYear, setCurrYear] = useState(date.getFullYear());
     const [currMonth, setCurrMonth] = useState(date.getMonth());
     const [days, setDays] = useState([]);
-    
-    console.log("workshopdata")
-    console.log(workshopdata)
-    console.log("trainerdata")
-    console.log(trainerdata)
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
@@ -51,8 +46,6 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
 
       const getTrainersOfWorkshop = (workshop) => {
         if (!workshop) return [];
-        console.log("test")
-        console.log(workshop)
         const trainerNames = workshop.trainers.map(trainerId => {
             const trainer = trainerdata.find(trainer => trainer._id === trainerId);
             return trainer ? trainer.fullname : null;

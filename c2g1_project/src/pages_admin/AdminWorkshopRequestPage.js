@@ -37,9 +37,6 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
-  console.log("nonSubmitted")
-  console.log(nonSubmitted.data)
-
   const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   useEffect(() => {
@@ -109,7 +106,6 @@ const AdminWorkshopRequestPage = () => {
   };
 
   const handleOpenDetailsPopup = (selectedWorkshop) => {
-    console.log(selectedWorkshop);
     setSelectedWorkshop(selectedWorkshop);
     setSelectedStartDate(selectedWorkshop.start_date);
     setSelectedEndDate(selectedWorkshop.end_date);
@@ -121,7 +117,7 @@ const AdminWorkshopRequestPage = () => {
     setSelectedWorkshop(null);
   };
 
-  const approvedWorkshops = data.filter((request) => request.status === "approved");
+  const approvedWorkshops = nonSubmitted.data.filter((request) => request.status === "approved");
 
   return verification.data !== null && verification.data.role === "admin" ? (
     <div className="admin-workshop-request-page">
