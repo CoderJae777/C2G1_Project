@@ -111,6 +111,11 @@ const AdminHomePage = () => {
     config.base_url + endpoints.graph.getWorkshopTrendDataGraph
   );
   const workshopTrendData = workshopTrendDataLink.data || [];
+
+  const trainerUtilDataLink = useAxiosGet(
+    config.base_url + endpoints.graph.getTrainerUtilGraph
+  );
+  const trainerUtilData = trainerUtilDataLink.data || [];
   ///////////////////////////////////////////////////////////
   // Functions
   ///////////////////////////////////////////////////////////
@@ -152,8 +157,6 @@ const AdminHomePage = () => {
       prev === "workshopTypes" ? "clientTypes" : "workshopTypes"
     );
   };
-
-  const { trainer_data, today_data } = useFetch();
 
   const { data, loading, error, setBody, refetch } = useAxiosGet(
     config.base_url + endpoints.verify
@@ -219,7 +222,7 @@ const AdminHomePage = () => {
                         ? totalPieData
                         : yearPieData[selectedYear] || []
                     }
-                    cx={350} // x coord  of piechart 
+                    cx={350} // x coord  of piechart
                     cy={200} // y coord of piechart
                     labelLine={true}
                     label={renderCustomLabel}
