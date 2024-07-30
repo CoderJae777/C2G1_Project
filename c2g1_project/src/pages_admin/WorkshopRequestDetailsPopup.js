@@ -45,91 +45,101 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
         }
     }, [data]);
 
+    useEffect(() => {
+        document.body.classList.add('popup-open');
+        return () => {
+            document.body.classList.remove('popup-open');
+        };
+    }, []);    
+
     return (
-        <div ref={popupRef} data-cy="wsrqd-popup" className="workshop-request-details-popup open-workshop-request-details-popup">
-            <h2>Workshop Request Details</h2>
-            <div className="workshop-details-content">
-                <table className="details-table">
-                    <tbody>
-                        <tr>
-                            <td><strong>Client Company:</strong></td>
-                            <td>{workshopDetails.company}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Client Name:</strong></td>
-                            <td>{workshopDetails.name}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Client Role:</strong></td>
-                            <td>{workshopDetails.company_role}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Client Email:</strong></td>
-                            <td>{workshopDetails.email}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Client Phone Number:</strong></td>
-                            <td>{workshopDetails.phone_number}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Start Date:</strong></td>
-                            <td>{workshopDetails.start_date}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>End Date:</strong></td>
-                            <td>{workshopDetails.end_date}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Deal Size:</strong></td>
-                            <td>{workshopDetails.deal_potential}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Country:</strong></td>
-                            <td>{workshopDetails.country}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Venue:</strong></td>
-                            <td>{workshopDetails.venue}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Attendees:</strong></td>
-                            <td>{workshopDetails.pax}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Message:</strong></td>
-                            <td>{workshopDetails.request_message}</td>
-                        </tr>
-                        {workshopDetails.status === 'approved' && (
-                            <tr>
-                                <td><strong>Trainers Allocated:</strong></td>
-                                <td>
-                                    {workshopDetails.trainers.length > 0 ? (
-                                        <ul className="trainer-list-ar-ws-popup">
-                                            {workshopDetails.trainers.map((trainerId, index) => (
-                                                <li key={index}>
-                                                    {trainerUsernames[trainerId] || trainerId}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        'No trainers allocated'
-                                    )}
-                                </td>
+        <>
+            <div className="popup-overlay popup-open"></div>
+            <div ref={popupRef} data-cy="wsrqd-popup" className="workshop-request-details-popup open-workshop-request-details-popup">
+                <h2>Workshop Request Details</h2>
+                <div className="workshop-details-content">
+                    <table className="details-table">
+                        <tbody>
+                            <tr className="spaced-row">
+                                <td><strong>Client Company:</strong></td>
+                                <td>{workshopDetails.company}</td>
                             </tr>
-                        )}
-                        {workshopDetails.status === 'rejected' && (
-                            <tr>
-                                <td><strong>Reject Reason:</strong></td>
-                                <td>{workshopDetails.reject_reason}</td>
+                            <tr className="spaced-row">
+                                <td><strong>Client Name:</strong></td>
+                                <td>{workshopDetails.name}</td>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                            <tr className="spaced-row">
+                                <td><strong>Client Role:</strong></td>
+                                <td>{workshopDetails.company_role}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Client Email:</strong></td>
+                                <td>{workshopDetails.email}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Client Phone Number:</strong></td>
+                                <td>{workshopDetails.phone_number}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Start Date:</strong></td>
+                                <td>{workshopDetails.start_date}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>End Date:</strong></td>
+                                <td>{workshopDetails.end_date}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Deal Size:</strong></td>
+                                <td>{workshopDetails.deal_potential}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Country:</strong></td>
+                                <td>{workshopDetails.country}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Venue:</strong></td>
+                                <td>{workshopDetails.venue}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Attendees:</strong></td>
+                                <td>{workshopDetails.pax}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Message:</strong></td>
+                                <td>{workshopDetails.request_message}</td>
+                            </tr>
+                            {workshopDetails.status === 'approved' && (
+                                <tr className="spaced-row">
+                                    <td><strong>Trainers Allocated:</strong></td>
+                                    <td>
+                                        {workshopDetails.trainers.length > 0 ? (
+                                            <ul className="trainer-list-ar-ws-popup">
+                                                {workshopDetails.trainers.map((trainerId, index) => (
+                                                    <li key={index}>
+                                                        {trainerUsernames[trainerId.username] || trainerId.username}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            'No trainers allocated'
+                                        )}
+                                    </td>
+                                </tr>
+                            )}
+                            {workshopDetails.status === 'rejected' && (
+                                <tr className="spaced-row">
+                                    <td><strong>Reject Reason:</strong></td>
+                                    <td>{workshopDetails.reject_reason}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="popup-buttons">
+                    <button data-cy="wsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
+                </div>
             </div>
-            <div className="popup-buttons">
-                <button data-cy="wsrqd-close-button" className="close-ws-request-button" type="button" onClick={onClose}>Close</button>
-            </div>
-        </div>
+        </>
     );
 };
 

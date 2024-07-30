@@ -61,8 +61,16 @@ const EditTrainerDetailsPopup = ({ onClose, fullname, username, trainerId }) => 
         };
     }, [popupRef, onClose]);
 
+    useEffect(() => {
+        document.body.classList.add('popup-open');
+        return () => {
+            document.body.classList.remove('popup-open');
+        };
+    }, []); 
+
     return (
         <>
+            <div className="popup-overlay popup-open"></div>
             <div ref={popupRef} data-cy="edit-trainer-details-popup" className="trainer-role-popup open-trainer-role-popup">
                 <h2>Edit Details</h2>
                     <p>Trainer Name: {fullname}</p>
