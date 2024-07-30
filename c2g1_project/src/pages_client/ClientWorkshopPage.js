@@ -12,8 +12,14 @@ import ws6img from "../images/ws6img.png";
 import ws7img from "../images/ws7img.png";
 import ws8img from "../images/ws8img.png";
 import ClientTopLeftSideBar from "../components/ClientTopLeftSideBar.js";
+import { config } from "../config/config.js";
+import { endpoints } from "../config/endpoints.js";
+import useAxiosGet from "../api/useAxiosGet.jsx";
+
 const ClientWorkshopPage = () => {
-  return (
+  const verification = useAxiosGet(config.base_url + endpoints.verify);
+
+  return verification.data !== null && verification.data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
       <motion.div
@@ -127,6 +133,8 @@ const ClientWorkshopPage = () => {
         </div>
       </motion.div>
     </>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 

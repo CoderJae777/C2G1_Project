@@ -107,7 +107,7 @@ const AdminTopLeftSideBar = ({ hasNewRequests }) => {
                   <span className="link">Home</span>
                 </a>
               </li>
-              <li className="list">
+              {/* <li className="list">
                 <a
                   href="#"
                   data-cy="nav-btn"
@@ -117,7 +117,7 @@ const AdminTopLeftSideBar = ({ hasNewRequests }) => {
                   <i className="bx bx-bar-chart-alt-2 icon"></i>
                   <span className="link">Profile</span>
                 </a>
-              </li>
+              </li> */}
               <li className="list">
                 <a
                   href="#"
@@ -153,12 +153,12 @@ const AdminTopLeftSideBar = ({ hasNewRequests }) => {
               </li>
             </ul>
             <div className="bottom-content">
-              <li className="list">
+              {/* <li className="list">
                 <a href="#" data-cy="nav-btn" className="nav-link">
                   <i className="bx bx-cog icon"></i>
                   <span className="link">Settings</span>
                 </a>
-              </li>
+              </li> */}
               <li className="list">
                 <a
                   href="#"

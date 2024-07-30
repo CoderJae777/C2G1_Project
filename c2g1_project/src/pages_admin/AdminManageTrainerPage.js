@@ -15,40 +15,60 @@ import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
 
 const AdminManageTrainerPage = () => {
-  const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] = useState(false);
-  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] = useState(false);
+  const [isTrainerDetailsPopupOpen, setIsTrainerDetailsPopupOpen] =
+    useState(false);
+  const [isTrainerActivityPopupOpen, setIsTrainerActivityPopupOpen] =
+    useState(false);
   const [isAddTrainerPopupOpen, setIsAddTrainerPopupOpen] = useState(false);
-  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] = useState(false);
-  const [isDeleteTrainerPopupOpen, setIsDeleteTrainerPopupOpen] = useState(false);
+  const [isTrainerScheduleCalendarOpen, setIsTrainerScheduleCalendarOpen] =
+    useState(false);
+  const [isDeleteTrainerPopupOpen, setIsDeleteTrainerPopupOpen] =
+    useState(false);
   const [popupIndex, setPopupIndex] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
   const [fullname, setFullname] = useState(null);
   const [username, setUsername] = useState(null);
   const [availability, setAvailability] = useState(null);
   const [selectedWorkshops, setSelectedWorkshops] = useState([]);
-  const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] = useState(false);
-
+  const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] =
+    useState(false);
 
   const { data, loading, error, seturl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.admin.getTrainers,
     {},
     [],
-    true  
+    true
   );
-  
+
+  const nonSubmitted = useAxiosGet(
+    config.base_url + endpoints.admin.getNonSubmittedWorkshopRequests,
+    {},
+    [],
+    true
+  );
+
+  const verification = useAxiosGet(config.base_url + endpoints.verify);
+
   const {
     data: workshopdata,
     loading: workshoploading,
     error: workshoperror,
     seturl: workshopseturl,
     setParams: workshopsetParams,
-    refetch: workshoprefetch
+    refetch: workshoprefetch,
   } = useAxiosGet(
     config.base_url + endpoints.admin.getApprovedWorkshops, // Ensure the correct endpoint is used here
     {},
     [],
-    true  
+    true
   );
+
+  console.log("workshopdata")
+  console.log(workshopdata)
+
+  console.log("nonSubmitted")
+  console.log(nonSubmitted.data)
+  
 
   const handleOpenTrainerDetailsPopup = (id, fullname, username) => {
     setSelectedId(id);
@@ -62,7 +82,13 @@ const AdminManageTrainerPage = () => {
     setIsTrainerDetailsPopupOpen(false);
   };
 
-  const handleOpenTrainerActivityPopup = (index, id, fullname, username, availability) => {
+  const handleOpenTrainerActivityPopup = (
+    index,
+    id,
+    fullname,
+    username,
+    availability
+  ) => {
     setIsTrainerActivityPopupOpen(true);
     setPopupIndex(index);
     setAvailability(availability);
@@ -122,15 +148,11 @@ const AdminManageTrainerPage = () => {
       setIsWorkshopAndClientDetailsOpen(true);
     }
   };
-  
 
 const handleCloseWorkshopAndClientDetails = () => {
     setIsTrainerScheduleCalendarOpen(true);
     setIsWorkshopAndClientDetailsOpen(false);
   };
-
-  console.log(data);
-  
 
   const renderTrainerRows = () => {
     const rows = [];
@@ -145,13 +167,24 @@ const handleCloseWorkshopAndClientDetails = () => {
             <td className="trainer-info-table-td action-column">
               <button
                 className="trainer-info-table-button"
-                onClick={() => handleOpenTrainerScheduleCalendar(trainer._id, trainer.fullname)}
+                onClick={() =>
+                  handleOpenTrainerScheduleCalendar(
+                    trainer._id,
+                    trainer.fullname
+                  )
+                }
               >
                 View Schedule
               </button>
               <button
                 className="trainer-info-table-button"
-                onClick={() => handleOpenTrainerDetailsPopup(trainer._id, trainer.fullname, trainer.username)}
+                onClick={() =>
+                  handleOpenTrainerDetailsPopup(
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username
+                  )
+                }
               >
                 Edit Details
               </button>
@@ -173,7 +206,13 @@ const handleCloseWorkshopAndClientDetails = () => {
               <button
                 data-cy="delete-trainer-button"
                 className="delete-trainer-button"
-                onClick={() => handleOpenDeleteTrainerPopup(trainer._id, trainer.fullname, trainer.username)}
+                onClick={() =>
+                  handleOpenDeleteTrainerPopup(
+                    trainer._id,
+                    trainer.fullname,
+                    trainer.username
+                  )
+                }
               >
                 Delete Trainer
               </button>
@@ -185,7 +224,7 @@ const handleCloseWorkshopAndClientDetails = () => {
     return rows;
   };
 
-  return (
+  return verification.data !== null && verification.data.role === "admin" ? (
     <>
       {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
                 <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshops} />
@@ -194,12 +233,12 @@ const handleCloseWorkshopAndClientDetails = () => {
         <AddTrainerPopup onClose={handleCloseAddTrainerPopup} />
       )}
       {isTrainerScheduleCalendarOpen && (
-        <TrainerScheduleCalendar 
+        <TrainerScheduleCalendar
           trainerId={selectedId}
-          fullname={fullname} 
+          fullname={fullname}
           onClose={handleCloseTrainerScheduleCalendar}
           ondateClick={handleOpenWorkshopAndClientDetails}
-          trainerdata={data}  
+          trainerdata={data}
           workshopdata={workshopdata}
         />
       )}
@@ -223,10 +262,11 @@ const handleCloseWorkshopAndClientDetails = () => {
         />
       )}
       {isDeleteTrainerPopupOpen && (
-        <DeleteTrainerPopup onClose={handleCloseDeleteTrainerPopup}
-        trainerId={selectedId}
-        fullname={fullname}
-        username={username}
+        <DeleteTrainerPopup
+          onClose={handleCloseDeleteTrainerPopup}
+          trainerId={selectedId}
+          fullname={fullname}
+          username={username}
         />
       )}
       <div className="admin-manage-trainer-page">
@@ -245,24 +285,29 @@ const handleCloseWorkshopAndClientDetails = () => {
           </div>
           <div className="manage-trainer-panel-outer">
             <div className="manage-trainer-panel">
-              <table data-cy="trainer-info-table" className="trainer-info-table">
+              <table
+                data-cy="trainer-info-table"
+                className="trainer-info-table"
+              >
                 <thead>
                   <tr>
                     <th className="trainer-info-table-th">Name</th>
                     <th className="trainer-info-table-th">Role</th>
                     <th className="trainer-info-table-th">Trainer ID</th>
-                    <th className="trainer-info-table-th action-column">Actions</th>
+                    <th className="trainer-info-table-th action-column">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {renderTrainerRows()}
-                </tbody>
+                <tbody>{renderTrainerRows()}</tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
     </>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 

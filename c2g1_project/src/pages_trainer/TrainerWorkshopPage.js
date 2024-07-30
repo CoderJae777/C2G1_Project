@@ -11,40 +11,32 @@ import TopLeftSideBar from "../components/TrainerTopLeftSideBar.js";
 import WorkshopAndClientDetails from "../components/WorkshopAndClientDetails.js";
 import ColourCalendar from "../components/ColourCalendar.js";
 import {
-    Area,
-    AreaChart,
-    Tooltip,
-    BarChart,
-    XAxis,
-    YAxis,
-    Legend,
-    CartesianGrid,
-    Bar,
-    Line,
-    LineChart,
+  Area,
+  AreaChart,
+  Tooltip,
+  BarChart,
+  XAxis,
+  YAxis,
+  Legend,
+  CartesianGrid,
+  Bar,
+  Line,
+  LineChart,
 } from "recharts";
 
 const TrainerWorkshopPage = () => {
-    const allocatedWorkshops = useAxiosGet(
-        config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
-      );
+  const allocatedWorkshops = useAxiosGet(
+    config.base_url + endpoints.trainer.getAllocatedWorkshopRequests
+  );
 
-    const {
-        data: trainerdata,
-        loading: trainerloading,
-        error: trainererror,
-        seturl: trainerseturl,
-        setParams: trainersetParams,
-        refetch: trainerrefetch
-      } = useAxiosGet(
-        config.base_url + endpoints.trainer.getOthers,
-        {},
-        [],
-        true  
-      );
-
-    console.log("trainerdata")
-    console.log(trainerdata)
+  const {
+    data: trainerdata,
+    loading: trainerloading,
+    error: trainererror,
+    seturl: trainerseturl,
+    setParams: trainersetParams,
+    refetch: trainerrefetch,
+  } = useAxiosGet(config.base_url + endpoints.trainer.getOthers, {}, [], true);
 
     const {
         data: workshopdata,
@@ -67,35 +59,41 @@ const TrainerWorkshopPage = () => {
     
     
 
-    const convertDate = (dateString) => {
-        const date = new Date(dateString);
-        
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based, so add 1
-        const day = String(date.getDate()).padStart(2, '0');
-        
-        return `${year}-${month}-${day}`;
-    }
+  const convertDate = (dateString) => {
+    const date = new Date(dateString);
 
-    const getTrainersOfWorkshop = (workshop) => {
-        if (!workshop) return [];
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based, so add 1
+    const day = String(date.getDate()).padStart(2, "0");
 
-        const trainerNames = workshop.trainers.map(trainerId => {
-            const trainer = trainerdata.find(trainer => trainer._id === trainerId);
-            return trainer ? trainer.fullname : null;
-        }).filter(name => name); // Filter out any null/undefined values
+    return `${year}-${month}-${day}`;
+  };
 
-        return trainerNames.join(', ').concat(',');
-    };
+  const getTrainersOfWorkshop = (workshop) => {
+    if (!workshop) return [];
 
-    const [sortKey, setSortKey] = useState('workshop_name');
-    const [filterText, setFilterText] = useState('');
-    const handleSortChange = (e) => {
-        setSortKey(e.target.value);
-    };
-    const handleFilterChange = (e) => {
-        setFilterText(e.target.value);
-    };
+    const trainerNames = workshop.trainers
+      .map((trainerId) => {
+        const trainer = trainerdata.find(
+          (trainer) => trainer._id === trainerId
+        );
+        return trainer ? trainer.fullname : null;
+      })
+      .filter((name) => name); // Filter out any null/undefined values
+
+    if (trainerNames.length === 0) return "None";
+
+    return trainerNames.join(", ").concat(",");
+  };
+
+  const [sortKey, setSortKey] = useState("workshop_name");
+  const [filterText, setFilterText] = useState("");
+  const handleSortChange = (e) => {
+    setSortKey(e.target.value);
+  };
+  const handleFilterChange = (e) => {
+    setFilterText(e.target.value);
+  };
 
     console.log("nonAllocatedWorkshops")
     console.log(nonAllocatedWorkshops)
@@ -137,83 +135,81 @@ const TrainerWorkshopPage = () => {
         return 0;
     }) : [];
 
+  console.log("filtered and sorted");
+  console.log(filteredAndSortedWorkshops);
 
-    console.log("filtered and sorted")
-    console.log(filteredAndSortedWorkshops)
+  const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
+    "View Trainer statistics"
+  );
+  const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState("Workshops");
 
-    const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
-        "View Trainer statistics"
-    );
-    const [workshopgraphsTitle, setWorkshopGraphsTitle] = useState(
-        "Workshops"
-    );
+  const [selectedWorkshops, setSelectedWorkshops] = useState([]);
 
-    const [selectedWorkshops, setSelectedWorkshops] = useState([]);
+  const [key, setKey] = useState("workshops_completed_total");
+  const [key_ws, setKeyWS] = useState("completed");
 
-    const [key, setKey] = useState("workshops_completed_total");
-    const [key_ws, setKeyWS] = useState("completed");
+  const [domainMax, setDomainMax] = useState(0);
+  const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] =
+    useState(false);
 
-    const [domainMax, setDomainMax] = useState(0);
-    const [isWorkshopAndClientDetailsOpen, setIsWorkshopAndClientDetailsOpen] =
-        useState(false);
+  const viewworkshop = () => {
+    setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
+    setKey("workshops_completed_this_month");
+    setDomainMax(20);
+  };
+  const viewongoing = () => {
+    setTrainerGraphsTitle("Ongoing Workshops per Trainer");
+    setKey("ongoing_workshops");
+    setDomainMax(10);
+  };
+  const viewexperience = () => {
+    setTrainerGraphsTitle("Trainers' Experience");
+    setKey("experience");
+    setDomainMax(20);
+  };
+  const resetview = () => {
+    setTrainerGraphsTitle("View Trainer Statistics");
+    setKey("blank");
+    setDomainMax(0);
+  };
 
-    const viewworkshop = () => {
-        setTrainerGraphsTitle("Workshops Completed This Month per Trainer");
-        setKey("workshops_completed_this_month");
-        setDomainMax(20);
-    };
-    const viewongoing = () => {
-        setTrainerGraphsTitle("Ongoing Workshops per Trainer");
-        setKey("ongoing_workshops");
-        setDomainMax(10);
-    };
-    const viewexperience = () => {
-        setTrainerGraphsTitle("Trainers' Experience");
-        setKey("experience");
-        setDomainMax(20);
-    };
-    const resetview = () => {
-        setTrainerGraphsTitle("View Trainer Statistics");
-        setKey("blank");
-        setDomainMax(0);
-    };
+  const viewtotal = () => {
+    setTrainerGraphsTitle("Total Workshops Completed per Trainer");
+    setKey("workshops_completed_total");
+    setDomainMax(100);
+  };
 
-    const viewtotal = () => {
-        setTrainerGraphsTitle("Total Workshops Completed per Trainer");
-        setKey("workshops_completed_total");
-        setDomainMax(100);
-    };
-
-    const handleOpenWorkshopAndClientDetails = (workshop) => {
-        if (allocatedWorkshops.data.trainer_workshops.includes(workshop)){
-            setSelectedWorkshops([workshop]);
-            setIsWorkshopAndClientDetailsOpen(true);
-        }
-    };
-
-    const handleCloseWorkshopAndClientDetails = () => {
-        setIsWorkshopAndClientDetailsOpen(false);
-    };
-
-    const handleCalendarSelect = (date) => {
-        if (date === filterText) {
-            setFilterText("");
-        }
-        else {
-            setFilterText(date);
-        }
+  const handleOpenWorkshopAndClientDetails = (workshop) => { 
+    if (allocatedWorkshops.data.trainer_workshops.includes(workshop)) {
+      setSelectedWorkshops(workshop);
+      setIsWorkshopAndClientDetailsOpen(true);
     }
+  };
 
-    const isunAllocatedWorkshop = (workshop) => {
-        return (allocatedWorkshops.data.trainer_workshops.includes(workshop) ? "" : "unallocated-workshop")
+  const handleCloseWorkshopAndClientDetails = () => {
+    setIsWorkshopAndClientDetailsOpen(false);
+  };
+
+  const handleCalendarSelect = (date) => {
+    if (date === filterText) {
+      setFilterText("");
+    } else {
+      setFilterText(date);
     }
+  };
 
-    // CALLING DATA FROM JSON
-    const { trainer_data, workshop_data, today_data } = useFetch();
+  const isunAllocatedWorkshop = (workshop) => {
+    return allocatedWorkshops.data.trainer_workshops.includes(workshop)
+      ? ""
+      : "unallocated-workshop";
+  };
 
-    const { data, loading, error, setBody, refetch } = useAxiosGet(
-        config.base_url + endpoints.verify
-    );
+  // CALLING DATA FROM JSON
+  const { trainer_data, workshop_data, today_data } = useFetch();
+
+  const { data, loading, error, setBody, refetch } = useAxiosGet(
+    config.base_url + endpoints.verify
+  );
 
     return data !== null && data.role === "trainer" ?  (
         <motion.div
@@ -232,22 +228,26 @@ const TrainerWorkshopPage = () => {
             <div className="left-column">
                 <div className="trainer-home-page-title"></div>
 
-                {/* Workshop summary starts here */}
-                <div className="workshop-calendar">
-                    {" "}
-                    <div className="workshop-table-title">
-                        <h4>Workshop Dates</h4>
-                    </div>
-                    {today_data && today_data[0] ? (
-                        <>
-                            <ColourCalendar  workshopdata = {filteredAndSortedWorkshops} ondateClick={handleCalendarSelect} trainerdata={trainerdata}/>
-                        </>
-                    ) : (
-                        <div>Calculating all data... This may take awhile...</div>
-                    )}  
-                </div>
-                {/* Workshop summary ends here */}
-            </div>
+        {/* Workshop summary starts here */}
+        <div className="workshop-calendar">
+          {" "}
+          <div className="workshop-table-title">
+            <h4>Workshop Dates</h4>
+          </div>
+          {today_data && today_data[0] ? (
+            <>
+              <ColourCalendar
+                workshopdata={filteredAndSortedWorkshops}
+                ondateClick={handleCalendarSelect}
+                trainerdata={trainerdata}
+              />
+            </>
+          ) : (
+            <div>Calculating all data... This may take awhile...</div>
+          )}
+        </div>
+        {/* Workshop summary ends here */}
+      </div>
 
             {/* Graphs nonsense starts here */}
             <div className="right-column">
@@ -295,4 +295,3 @@ const TrainerWorkshopPage = () => {
 };
 
 export default TrainerWorkshopPage;
-

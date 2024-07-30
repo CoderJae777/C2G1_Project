@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
-import TopLeftSideBar from "./TopLeftSideBar";
+import TopLeftSideBar from "./AdminTopLeftSideBar";
 import useAxiosGet from "../api/useAxiosGet";
 
 // Mock useNavigate and useAxiosGet from react-router-dom and custom hook
@@ -44,15 +44,15 @@ test("test: TopLeftSideBar renders correctly and contains all navigation buttons
     </BrowserRouter>
   );
   expect(screen.getByText("Home")).toBeInTheDocument();
-  expect(screen.getByText("Profile")).toBeInTheDocument();
+  // expect(screen.getByText("Profile")).toBeInTheDocument();
   expect(screen.getByText("Workshop Requests")).toBeInTheDocument();
   expect(screen.getByText("Manage Trainers")).toBeInTheDocument();
   expect(screen.getByText("Manage Workshops")).toBeInTheDocument();
-  expect(screen.getByText("Settings")).toBeInTheDocument();
+  // expect(screen.getByText("Settings")).toBeInTheDocument();
   expect(screen.getByText("Logout")).toBeInTheDocument();
 });
 
-test("test: TopLeftSideBar 'Home' button navigates to home page", () => {
+test("test: AdminTopLeftSideBar 'Home' button navigates to home page", () => {
   const mockNavigate = setupMocks();
   render(
     <BrowserRouter>
@@ -63,18 +63,18 @@ test("test: TopLeftSideBar 'Home' button navigates to home page", () => {
   expect(mockNavigate).toHaveBeenCalledWith("/AdminHomePage");
 });
 
-test("test: TopLeftSideBar 'Profile' button navigates to profile page", () => {
-  const mockNavigate = setupMocks();
-  render(
-    <BrowserRouter>
-      <TopLeftSideBar hasNewRequests={false} />
-    </BrowserRouter>
-  );
-  fireEvent.click(screen.getByText("Profile"));
-  expect(mockNavigate).toHaveBeenCalledWith("/ProfilePage");
-});
+// test("test: AdminTopLeftSideBar 'Profile' button navigates to profile page", () => {
+//   const mockNavigate = setupMocks();
+//   render(
+//     <BrowserRouter>
+//       <TopLeftSideBar hasNewRequests={false} />
+//     </BrowserRouter>
+//   );
+//   fireEvent.click(screen.getByText("Profile"));
+//   expect(mockNavigate).toHaveBeenCalledWith("/ProfilePage");
+// });
 
-test("test: TopLeftSideBar 'Workshop Requests' button navigates to workshop requests page", () => {
+test("test: AdminTopLeftSideBar 'Workshop Requests' button navigates to workshop requests page", () => {
   const mockNavigate = setupMocks();
   render(
     <BrowserRouter>
@@ -96,7 +96,7 @@ test("test: TopLeftSideBar 'Manage Trainers' button navigates to manage trainers
   expect(mockNavigate).toHaveBeenCalledWith("/AdminManageTrainerPage");
 });
 
-test("test: TopLeftSideBar 'Manage Workshops' button navigates to manage workshops page", () => {
+test("test: AdminTopLeftSideBar 'Manage Workshops' button navigates to manage workshops page", () => {
   const mockNavigate = setupMocks();
   render(
     <BrowserRouter>
@@ -107,7 +107,7 @@ test("test: TopLeftSideBar 'Manage Workshops' button navigates to manage worksho
   expect(mockNavigate).toHaveBeenCalledWith("/AdminManageWorkshopPage");
 });
 
-test("test: TopLeftSideBar 'Logout' button calls logout endpoint", () => {
+test("test: AdminTopLeftSideBar 'Logout' button calls logout endpoint", () => {
   const mockNavigate = setupMocks();
 
   render(

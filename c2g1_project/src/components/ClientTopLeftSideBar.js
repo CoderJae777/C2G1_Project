@@ -102,14 +102,14 @@ const ClientTopLeftSideBar = () => {
               </li>
             </ul>
             <div className="bottom-content">
-              <li className="list">
+              {/* <li className="list">
                 <a href="#" className="nav-link">
                   <i className="bx bx-cog icon"></i>
                   <span className="link" onClick={handleSettingsPage}>
                     Settings
                   </span>
                 </a>
-              </li>
+              </li> */}
               <li className="list">
                 <a href="#" className="nav-link" onClick={handleNavBarSignOut}>
                   <i className="bx bx-log-out icon"></i>

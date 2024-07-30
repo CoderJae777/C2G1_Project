@@ -35,7 +35,10 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
-  // console.log(nonSubmitted.data);
+  console.log("nonSubmitted")
+  console.log(nonSubmitted.data)
+
+  const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   useEffect(() => {
     // console.log("Data fetched:", data); // Debug log
@@ -114,7 +117,7 @@ const AdminWorkshopRequestPage = () => {
     setSelectedWorkshop(null);
   };
 
-  return (
+  return verification.data !== null && verification.data.role === "admin" ? (
     <div className="admin-workshop-request-page">
       <ToastContainer />
       {isApprovePopupOpen && (
@@ -167,15 +170,19 @@ const AdminWorkshopRequestPage = () => {
                       <td>{request.status}</td>
                       <td>
                         <div className="workshop-request-buttons">
-                        <button
-                          data-cy="view-wsd-button"
-                          className={`ar-view-workshop-details-button ${
-                            request.status === 'rejected' ? 'rejected' : request.status === 'approved' ? 'approved' : ''
-                          }`}
-                          onClick={() => handleOpenDetailsPopup(request)}
-                        >
-                          View Details
-                        </button>
+                          <button
+                            data-cy="view-wsd-button"
+                            className={`ar-view-workshop-details-button ${
+                              request.status === "rejected"
+                                ? "rejected"
+                                : request.status === "approved"
+                                ? "approved"
+                                : ""
+                            }`}
+                            onClick={() => handleOpenDetailsPopup(request)}
+                          >
+                            View Details
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -184,7 +191,7 @@ const AdminWorkshopRequestPage = () => {
               </table>
             </div>
           </div>
-        </div>  
+        </div>
         <div className="bottom-panel-right-side">
           <div className="admin-workshop-request-page-title">
             <h2>Pending Workshop Requests</h2>
@@ -243,6 +250,8 @@ const AdminWorkshopRequestPage = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div>Not logged in</div>
   );
 };
 

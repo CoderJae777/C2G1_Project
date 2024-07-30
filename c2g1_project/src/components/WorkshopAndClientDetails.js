@@ -10,7 +10,7 @@ const WorkshopAndClientDetails = ({ workshop, onClose }) => {
 
     useEffect(() => {
         setWorkshopDetails(workshop);
-    }, workshop);
+    }, [workshop]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {

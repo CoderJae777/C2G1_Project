@@ -37,7 +37,7 @@ const ClientHomePage = () => {
 
   const [showSummary, setShowSummary] = useState(false); // State for showing summary modal
 
-  const verify = useAxiosGet(config.base_url + endpoints.verify);
+  const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   const pendingWorkshops = useAxiosGet(
     config.base_url + endpoints.client.getPendingWorkshopRequests,
@@ -109,7 +109,7 @@ const ClientHomePage = () => {
       end_date: endDate.toISOString(),
       request_message: message,
       workshop_data_id: workshopId,
-      client_id: verify.data.id,
+      client_id: verification.data.id,
     });
     createWorkshop.refetch();
 
@@ -140,14 +140,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-      // emailjs
-      //   .send(serviceId, templateId, templateParams, publicKey)
-      //   .then((response) => {
-      //     console.log("Email sent successfully!", response);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error sending email:", error);
-      //   });
+    // emailjs
+    //   .send(serviceId, templateId, templateParams, publicKey)
+    //   .then((response) => {
+    //     console.log("Email sent successfully!", response);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error sending email:", error);
+    //   });
     setShowSummary(false);
   };
 
@@ -199,7 +199,7 @@ const ClientHomePage = () => {
 
   const maxDate = new Date(2025, 11, 31); // December 31, 2025
 
-  return verify.data !== null && verify.data.role === "client" ? (
+  return verification.data !== null && verification.data.role === "client" ? (
     <>
       <ClientTopLeftSideBar />
       {isClientWorkshopStatusDetailsPopupOpen && (
@@ -326,18 +326,18 @@ const ClientHomePage = () => {
                 <motion.button
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="refresh_button"
-                  onClick={handleRefresh}
-                >
-                  Refresh
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
                   className="popwsreqbut"
                   onClick={populateForm}
                 >
                   Populate
+                </motion.button>{" "}
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="refresh_button"
+                  onClick={handleRefresh}
+                >
+                  Refresh
                 </motion.button>
               </div>
             </div>
@@ -350,29 +350,33 @@ const ClientHomePage = () => {
                 pendingWorkshops.data.workshop_requests.length !== 0 && (
                   <div className="scrollable-list">
                     <ul>
-                      {pendingWorkshops.data.workshop_requests.map((request, index) => (
-                        <div key={index}>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.9 }}
-                            className={`workshop-detail-panel ${
-                              request.status === 'submitted'
-                                ? 'submitted'
-                                : request.status === 'approved'
-                                ? 'approved'
-                                : request.status === 'rejected'
-                                ? 'rejected'
-                                : ''
-                            }`}
-                            onClick={() =>
-                              handleOpenClientWorkshopStatusDetailsPopup(request)
-                            }
-                          >
-                            <span>{request.request_id}</span>
-                            <span>Status: {request.status}</span>
-                          </motion.button>
-                        </div>
-                      ))}
+                      {pendingWorkshops.data.workshop_requests.map(
+                        (request, index) => (
+                          <div key={index}>
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.9 }}
+                              className={`workshop-detail-panel ${
+                                request.status === "submitted"
+                                  ? "submitted"
+                                  : request.status === "approved"
+                                  ? "approved"
+                                  : request.status === "rejected"
+                                  ? "rejected"
+                                  : ""
+                              }`}
+                              onClick={() =>
+                                handleOpenClientWorkshopStatusDetailsPopup(
+                                  request
+                                )
+                              }
+                            >
+                              <span>{request.request_id}</span>
+                              <span>Status: {request.status}</span>
+                            </motion.button>
+                          </div>
+                        )
+                      )}
                     </ul>
                   </div>
                 )}
@@ -464,16 +468,21 @@ const ClientHomePage = () => {
               />
             </div>
             <div className="ws_req_form_pax">
-              <input
+              <select
                 required
-                type="number"
-                placeholder="Number of Pax"
                 value={pax}
                 onChange={(e) => setPax(e.target.value)}
                 className="ws_req_form_control"
-                title="Enter the number of participants"
-                min="0"
-              />
+                title="Select the number of participants"
+              >
+                <option value="" disabled>
+                  Select Number of Pax
+                </option>
+                <option value="<10">&lt;10</option>
+                <option value="10-20">10 - 20</option>
+                <option value="21-50">21 - 50</option>
+                <option value=">50">&gt;50</option>
+              </select>
             </div>
             <div className="ws_req_form_deal_size">
               <input
@@ -543,7 +552,12 @@ const ClientHomePage = () => {
                 placeholderText="Workshop End Date"
                 className="ws_req_form_control"
                 minDate={startDate || new Date()} // Ensure end date cannot be before start date
-                maxDate={maxDate}
+                maxDate={
+                  startDate
+                    ? new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000)
+                    // days * hours * minutes * seconds * milliseconds = 30 days LOL
+                    : maxDate
+                } // Set max end date to 30 days after start date
                 title="Select the workshop end date"
                 disabled={!startDate} // Disable end date picker until start date is selected
               />
