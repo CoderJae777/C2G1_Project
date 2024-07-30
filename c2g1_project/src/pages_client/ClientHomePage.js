@@ -140,14 +140,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-      // emailjs
-      //   .send(serviceId, templateId, templateParams, publicKey)
-      //   .then((response) => {
-      //     console.log("Email sent successfully!", response);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error sending email:", error);
-      //   });
+    // emailjs
+    //   .send(serviceId, templateId, templateParams, publicKey)
+    //   .then((response) => {
+    //     console.log("Email sent successfully!", response);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error sending email:", error);
+    //   });
     setShowSummary(false);
   };
 
@@ -350,29 +350,33 @@ const ClientHomePage = () => {
                 pendingWorkshops.data.workshop_requests.length !== 0 && (
                   <div className="scrollable-list">
                     <ul>
-                      {pendingWorkshops.data.workshop_requests.map((request, index) => (
-                        <div key={index}>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.9 }}
-                            className={`workshop-detail-panel ${
-                              request.status === 'submitted'
-                                ? 'submitted'
-                                : request.status === 'approved'
-                                ? 'approved'
-                                : request.status === 'rejected'
-                                ? 'rejected'
-                                : ''
-                            }`}
-                            onClick={() =>
-                              handleOpenClientWorkshopStatusDetailsPopup(request)
-                            }
-                          >
-                            <span>{request.request_id}</span>
-                            <span>Status: {request.status}</span>
-                          </motion.button>
-                        </div>
-                      ))}
+                      {pendingWorkshops.data.workshop_requests.map(
+                        (request, index) => (
+                          <div key={index}>
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.9 }}
+                              className={`workshop-detail-panel ${
+                                request.status === "submitted"
+                                  ? "submitted"
+                                  : request.status === "approved"
+                                  ? "approved"
+                                  : request.status === "rejected"
+                                  ? "rejected"
+                                  : ""
+                              }`}
+                              onClick={() =>
+                                handleOpenClientWorkshopStatusDetailsPopup(
+                                  request
+                                )
+                              }
+                            >
+                              <span>{request.request_id}</span>
+                              <span>Status: {request.status}</span>
+                            </motion.button>
+                          </div>
+                        )
+                      )}
                     </ul>
                   </div>
                 )}
@@ -464,16 +468,21 @@ const ClientHomePage = () => {
               />
             </div>
             <div className="ws_req_form_pax">
-              <input
+              <select
                 required
-                type="number"
-                placeholder="Number of Pax"
                 value={pax}
                 onChange={(e) => setPax(e.target.value)}
                 className="ws_req_form_control"
-                title="Enter the number of participants"
-                min="0"
-              />
+                title="Select the number of participants"
+              >
+                <option value="" disabled>
+                  Select Number of Pax
+                </option>
+                <option value="<10">&lt;10</option>
+                <option value="10-20">10 - 20</option>
+                <option value="21-50">21 - 50</option>
+                <option value=">50">&gt;50</option>
+              </select>
             </div>
             <div className="ws_req_form_deal_size">
               <input
