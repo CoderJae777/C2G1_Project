@@ -426,26 +426,7 @@ const AdminHomePage = () => {
               <BarChart
                 width={800}
                 height={250}
-                data={[
-                  {
-                    name: "John",
-                    workshops_completed_total: 30,
-                    total_trainer_utilization: 70,
-                    ongoing_workshops: 2,
-                  },
-                  {
-                    name: "Jill",
-                    workshops_completed_total: 40,
-                    total_trainer_utilization: 80,
-                    ongoing_workshops: 3,
-                  },
-                  {
-                    name: "Jack",
-                    workshops_completed_total: 50,
-                    total_trainer_utilization: 90,
-                    ongoing_workshops: 2,
-                  },
-                ]}
+                data={trainerUtilData}
                 margin={{
                   top: 30,
                   right: 50,
