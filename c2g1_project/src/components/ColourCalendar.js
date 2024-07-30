@@ -76,12 +76,14 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth()
             && currYear === new Date().getFullYear() ? "active" : "";
         const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`; //YYYY-MM-DD
-        let isWorkshopStart = workshopStarts.includes(formattedDay) ? "workshop-start" : "";
-        let isWorkshopEnd = workshopEnds.includes(formattedDay) ? "workshop-end" : "";
-        let isWorkshopInBetween = getWorkshopByDate(formattedDay).length > 0 ? "workshop-in-between" : "";
-        let isPreWorkshop = preWorkshopDates.includes(formattedDay) ? "pre-workshop-day" : "";
+        let todayworkshops = getWorkshopByDate(formattedDay)
+        //let isWorkshopStart = workshopStarts.includes(formattedDay) ? "workshop-start" : "";
+        //let isWorkshopEnd = workshopEnds.includes(formattedDay) ? "workshop-end" : "";
+        let isWorkshopInBetween = todayworkshops.length > 0 ? "workshop-in-between" : "";
+        let isMultipleWorkshops = todayworkshops.length > 1 ? "multiple-workshops" : "";
+        //let isPreWorkshop = preWorkshopDates.includes(formattedDay) ? "pre-workshop-day" : "";
 
-        let classNames = `${isToday} ${isWorkshopStart} ${isWorkshopEnd} ${isWorkshopInBetween} ${isPreWorkshop}`.trim();
+        let classNames = `${isToday} ${isWorkshopInBetween} ${isMultipleWorkshops}`.trim();
         return classNames
     }
 
@@ -180,20 +182,12 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
         </div>
         <div className="calendar-legend">
                     <div className="legend-item">
-                        <span className="legend-color workshop-start"></span>
-                        <span className="legend-text">Workshop Start</span>
-                    </div>
-                    <div className="legend-item">
-                        <span className="legend-color workshop-end"></span>
-                        <span className="legend-text">Workshop End</span>
-                    </div>
-                    <div className="legend-item">
                         <span className="legend-color workshop-in-between"></span>
-                        <span className="legend-text">Conducting Workshop</span>
+                        <span className="legend-text">One Workshop</span>
                     </div>
                     <div className="legend-item">
-                        <span className="legend-color pre-workshop-day"></span>
-                        <span className="legend-text">7 Days before Workshop</span>
+                        <span className="legend-color multiple-workshops"></span>
+                        <span className="legend-text">Multiple Workshops</span>
                     </div>
                 </div>  
     </div>
