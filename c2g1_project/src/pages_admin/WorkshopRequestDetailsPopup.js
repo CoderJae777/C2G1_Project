@@ -107,7 +107,7 @@ const WorkshopRequestDetailsPopup = ({ workshop, onClose }) => {
                                         <ul className="trainer-list-ar-ws-popup">
                                             {workshopDetails.trainers.map((trainerId, index) => (
                                                 <li key={index}>
-                                                    {trainerUsernames[trainerId] || trainerId}
+                                                    {trainerUsernames[trainerId.username] || trainerId.username}
                                                 </li>
                                             ))}
                                         </ul>
