@@ -144,6 +144,7 @@ const AdminWorkshopRequestPage = () => {
         <div className="bottom-panel-left-side">
           <div className="admin-workshop-request-page-title">
             <h2>Approved/Rejected Workshop Requests</h2>
+            <button className="view-ar-ws-calendar-button">View Calendar</button>
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -163,7 +164,7 @@ const AdminWorkshopRequestPage = () => {
                   {nonSubmitted.data.map((request, index) => (
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
-                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.request_id}</td>
                       <td>{request.status}</td>
                       <td>
                         <div className="workshop-request-buttons">
@@ -192,6 +193,7 @@ const AdminWorkshopRequestPage = () => {
         <div className="bottom-panel-right-side">
           <div className="admin-workshop-request-page-title">
             <h2>Pending Workshop Requests</h2>
+            <button className="view-p-ws-calendar-button">View Calendar</button>
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -211,7 +213,7 @@ const AdminWorkshopRequestPage = () => {
                   {data.map((request, index) => (
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
-                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.request_id}</td>
                       <td>{request.workshop_data.workshop_type}</td>
                       <td>
                         <div className="workshop-request-buttons">

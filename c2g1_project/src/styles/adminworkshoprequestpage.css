@@ -122,6 +122,8 @@
 
 /* CSS FOR ADMIN WORKSHOP REQUEST BUTTONS ------------------------------------------------------------------------- */
 
+.view-p-ws-calendar-button,
+.view-ar-ws-calendar-button,
 .ar-view-workshop-details-button,
 .view-workshop-details-button,
 .approve-workshop-request-button,
@@ -162,6 +164,8 @@
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+.view-p-ws-calendar-button:hover,
+.view-ar-ws-calendar-button:hover,
 .ar-view-workshop-details-button:hover,
 .allocate-trainer-to-workshop-button:hover,
 .view-workshop-details-button:hover {

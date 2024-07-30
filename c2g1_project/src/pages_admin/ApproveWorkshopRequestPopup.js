@@ -39,6 +39,13 @@ const ApproveWorkshopRequestPopup = ({
     true
   );
 
+  const workshopRequest = useAxiosGet(
+    config.base_url + endpoints.admin.getWorkshopRequest + selectedId,
+    {},
+    [],
+    true
+  );
+
   const handleSubmit = () => {
     setBody({
       trainerIds: selectedItems,
@@ -90,7 +97,7 @@ const ApproveWorkshopRequestPopup = ({
       >
         <h2>Approve Workshop</h2>
         {/* need to create an ID for specific workshop request */}
-        <p>Workshop: {selectedId}</p> 
+        <p>Workshop: {workshopRequest.request_id}</p> 
         <p>Assign trainer(s) to this workshop.</p>
         <div data-cy="select-trainer" className="select-menu-container">
           <div
