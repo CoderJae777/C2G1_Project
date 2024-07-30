@@ -8,6 +8,7 @@ import useAxiosPatch from "../api/useAxiosPatch";
 
 const ApproveWorkshopRequestPopup = ({
   selectedId,
+  requestId,
   selectedStartDate,
   selectedEndDate,
   onClose,
@@ -97,7 +98,7 @@ const ApproveWorkshopRequestPopup = ({
       >
         <h2>Approve Workshop</h2>
         {/* need to create an ID for specific workshop request */}
-        <p>Workshop: {workshopRequest.request_id}</p> 
+        <p>Workshop ID: {requestId ? requestId : "None"}</p> 
         <p>Assign trainer(s) to this workshop.</p>
         <div data-cy="select-trainer" className="select-menu-container">
           <div

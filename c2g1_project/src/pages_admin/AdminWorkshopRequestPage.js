@@ -18,6 +18,7 @@ const AdminWorkshopRequestPage = () => {
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [requestId, setRequestId] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
 
@@ -81,6 +82,7 @@ const AdminWorkshopRequestPage = () => {
 
   const handleOpenApprovePopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
+    setRequestId(selectedWorkshop.request_id);
     setSelectedStartDate(selectedWorkshop.start_date);
     setSelectedEndDate(selectedWorkshop.end_date);
     setIsApprovePopupOpen(true);
@@ -120,6 +122,7 @@ const AdminWorkshopRequestPage = () => {
       {isApprovePopupOpen && (
         <ApproveWorkshopRequestPopup
           selectedId={selectedId}
+          requestId={requestId}
           selectedStartDate={selectedStartDate}
           selectedEndDate={selectedEndDate}
           onClose={handleCloseApprovePopup}
