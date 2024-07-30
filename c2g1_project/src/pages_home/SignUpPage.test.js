@@ -8,6 +8,9 @@ import {
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import SignUpPage from "./SignUpPage";
+import { config } from "../config/config";
+import { endpoints } from "../config/endpoints";
+import useAxiosPost from "../api/useAxiosPost";
 
 // Mock useNavigate from react-router-dom
 jest.mock("react-router-dom", () => ({
@@ -47,6 +50,16 @@ test("Test: SignUpPage rendered correctly", async () => {
     setBody: mockSetBody,
     refetch: mockRefetch,
   });
+
+  const { data, loading, error, setBody, refetch } = useAxiosPost(
+    config.base_url + endpoints.signup,
+    {},
+    [],
+  );
+
+  expect(data).toBeNull();
+  expect(loading).toBeFalsy();
+  expect(error).toBeNull();
 
   render(
     <BrowserRouter>
