@@ -323,7 +323,7 @@ body {
 
 .scrollable_list {
   padding: 10px;
-  max-height: 1000px;
+  max-height: 550px;
   overflow-y: auto;
   border: 1px solid #ccc;
   outline: none;

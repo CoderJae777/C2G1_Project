@@ -264,8 +264,7 @@ const TrainerWorkshopPage = () => {
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
                         </div>                        
-                        <div className ="scrollable_list">
-                            <ul>
+                        <ul className ="scrollable_list">
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>   
                                         <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
@@ -277,8 +276,7 @@ const TrainerWorkshopPage = () => {
                                         </button>
                                     </div>
                                 ))}
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
