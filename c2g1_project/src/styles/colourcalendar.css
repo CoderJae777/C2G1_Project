@@ -137,7 +137,16 @@ header .current-date {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #b7b7b7; /* Your workshop in-between color */
+  background-color: #9ffa9a; 
+}
+
+.multiple-workshops::before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #49cf42; 
 }
 
 .pre-workshop-day::before {
@@ -146,7 +155,7 @@ header .current-date {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #dddddd; /* Your pre-workshop day color */
+  background-color: #dddddd; 
 }
 
 .workshop-start::before {
@@ -161,7 +170,7 @@ header .current-date {
 
 .days li.workshop-in-between.active::before {
   outline: 5px solid #6e93f7;
-  background-color: #b7b7b7;
+  background-color: #9ffa9a;
 }
 
 .days li.pre-workshop-day.active::before {
@@ -201,6 +210,15 @@ header .current-date {
 .days li.workshop-start:hover::before {
   background: #279a3a;
 }
+
+.days li.workshop-in-between:hover::before {
+  background: #7dd378;
+}
+
+.days li.multiple-workshops:hover::before {
+  background: #3ab334;
+}
+
 
 .active::before {
   background: #6e93f7;
