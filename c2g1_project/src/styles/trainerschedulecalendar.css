@@ -30,6 +30,7 @@ body.popup-open {
 }
 
 .trainer-schedule-calendar-popup {
+  height: 565px;
   width: 400px;
   background: #fff;
   border-radius: 6px;
