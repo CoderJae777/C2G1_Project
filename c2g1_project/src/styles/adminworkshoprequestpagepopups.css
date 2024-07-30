@@ -7,6 +7,28 @@
     box-sizing: border-box;
 }
 
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    z-index: 999;
+}
+
+body.popup-open .popup-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.popup-open {
+    overflow: hidden;
+}
+
 .workshop-request-details-popup,
 .approve-workshop-request-popup,
 .allocate-trainer-popup,
@@ -32,6 +54,7 @@
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
+    z-index: 1000;
 }
 
 .workshop-request-details-popup h2,
@@ -48,7 +71,7 @@
 .allocate-trainer-popup button,
 .reject-workshop-request-popup button{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 10px;
     padding: 10px 0;
     border: 0;
     outline: none;
@@ -61,12 +84,21 @@
 .details-table ul {
     list-style-type: none;
     padding: 0;            
-    margin: 0;             
+    margin: 0;            
 }
 
 /* .details-table ul li {
     margin-bottom: 8px;
 } */
+
+/* .details-table .spaced-row {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+} */
+
+.details-table .spaced-row td {
+    padding-bottom: 5px;
+}
 
 .popup-buttons{
     display: flex;

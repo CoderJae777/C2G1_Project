@@ -62,7 +62,18 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
         return trainerNames.join(', ');
     };
 
-    
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [popupRef, onClose]);
 
     useEffect(() => {
         renderCalendar();
@@ -150,66 +161,76 @@ const ColourCalendarPopup = ({ onClose, fullname, trainerId, trainerdata, ondate
     console.log(workshopdata2);
     console.log(trainerdata);
 
+    useEffect(() => {
+        document.body.classList.add('popup-open');
+        return () => {
+            document.body.classList.remove('popup-open');
+        };
+    }, []);
+
     return (
-        <div ref={popupRef} data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
-            <header>
-                <div className="trainer-info-container">
-                    <div className="trainer-info">
-                        <p>Trainer: {fullname}</p>
-                    </div>
-                    <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
-                        <div className="fa-solid fa-x x-icon">
-                            <box-icon name='x'></box-icon>
+        <>
+            <div className="popup-overlay popup-open"></div>
+            <div ref={popupRef} data-cy="trainer-schedule-calendar-popup" className="trainer-schedule-calendar-popup">
+                <header>
+                    <div className="trainer-info-container">
+                        <div className="trainer-info">
+                            <p>Trainer: {fullname}</p>
                         </div>
-                    </span>
-                </div>
-                <div className='title-row'>
-                    <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
-                    <div className="icons">
-                        <span id="prev" className="arrow-left">
-                            <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
-                                <box-icon name='chevron-left'></box-icon>
-                            </div>
-                        </span>
-                        <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
-                            <div className="fa-solid fa-chevron-right">
-                                <box-icon name='chevron-right'></box-icon>
+                        <span data-cy="tsc-close-button" className="close-button" onClick={onClose}>
+                            <div className="fa-solid fa-x x-icon">
+                                <box-icon name='x'></box-icon>
                             </div>
                         </span>
                     </div>
+                    <div className='title-row'>
+                        <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
+                        <div className="icons">
+                            <span id="prev" className="arrow-left">
+                                <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
+                                    <box-icon name='chevron-left'></box-icon>
+                                </div>
+                            </span>
+                            <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
+                                <div className="fa-solid fa-chevron-right">
+                                    <box-icon name='chevron-right'></box-icon>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </header>
+                <div className="calendar">
+                    <ul className="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul className="days">{days}</ul>
                 </div>
-            </header>
-            <div className="calendar">
-                <ul className="weeks">
-                    <li>Sun</li>
-                    <li>Mon</li>
-                    <li>Tue</li>
-                    <li>Wed</li>
-                    <li>Thu</li>
-                    <li>Fri</li>
-                    <li>Sat</li>
-                </ul>
-                <ul className="days">{days}</ul>
+                <div className="calendar-legend">
+                    <div className="legend-item">
+                        <span className="legend-color workshop-start"></span>
+                        <span className="legend-text">Workshop Start</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color workshop-end"></span>
+                        <span className="legend-text">Workshop End</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color workshop-in-between"></span>
+                        <span className="legend-text">Conducting Workshop</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color pre-workshop-day"></span>
+                        <span className="legend-text">7 Days before Workshop</span>
+                    </div>
+                </div>
             </div>
-            <div className="calendar-legend">
-                <div className="legend-item">
-                    <span className="legend-color workshop-start"></span>
-                    <span className="legend-text">Workshop Start</span>
-                </div>
-                <div className="legend-item">
-                    <span className="legend-color workshop-end"></span>
-                    <span className="legend-text">Workshop End</span>
-                </div>
-                <div className="legend-item">
-                    <span className="legend-color workshop-in-between"></span>
-                    <span className="legend-text">Conducting Workshop</span>
-                </div>
-                <div className="legend-item">
-                    <span className="legend-color pre-workshop-day"></span>
-                    <span className="legend-text">7 Days before Workshop</span>
-                </div>
-            </div>
-        </div>
+        </>
     );
     
 };

@@ -41,37 +41,47 @@ const DeleteTrainerPopup = ({ onClose, fullname, username, trainerId }) => {
     return () => {
         document.removeEventListener('mousedown', handleClickOutside);
     };
-}, [popupRef, onClose]);
+  }, [popupRef, onClose]);
+
+  useEffect(() => {
+    document.body.classList.add('popup-open');
+    return () => {
+        document.body.classList.remove('popup-open');
+    };
+  }, []);
 
   return (
-    <div
-      ref={popupRef}
-      data-cy="trainer-activity-popup"
-      className="trainer-activity-popup open-trainer-activity-popup"
-    >
-      <h2>Delete Trainer</h2>
-      <p>Trainer Name: {fullname}</p>
-      <p>Trainer ID: {username}</p>
-      <p>Are you sure you want to delete this trainer?</p>
-      <div className="popup-buttons">
-        <button
-          data-cy="confirm-delete-trainer-button"
-          className="delete-button"
-          type="button"
-          onClick={handleDelete}
-        >
-          Delete
-        </button>
-        <button
-          data-cy="delete-trainer-cancel-button"
-          className="cancel-button"
-          type="button"
-          onClick={onClose}
-        >
-          Cancel
-        </button>
+    <>
+      <div className="popup-overlay popup-open"></div>
+      <div
+        ref={popupRef}
+        data-cy="trainer-activity-popup"
+        className="trainer-activity-popup open-trainer-activity-popup"
+      >
+        <h2>Delete Trainer</h2>
+        <p>Trainer Name: {fullname}</p>
+        <p>Trainer ID: {username}</p>
+        <p>Are you sure you want to delete this trainer?</p>
+        <div className="popup-buttons">
+          <button
+            data-cy="confirm-delete-trainer-button"
+            className="delete-button"
+            type="button"
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
+          <button
+            data-cy="delete-trainer-cancel-button"
+            className="cancel-button"
+            type="button"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

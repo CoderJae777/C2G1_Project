@@ -100,111 +100,121 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
     return () => {
         document.removeEventListener('mousedown', handleClickOutside);
     };
-}, [popupRef, onClose]);
+  }, [popupRef, onClose]);
+
+  useEffect(() => {
+    document.body.classList.add('popup-open');
+    return () => {
+        document.body.classList.remove('popup-open');
+    };
+  }, []);
 
   return selectedWorkshop.data !== null ? (
-    <div ref={popupRef} className="ws-details-popup open-ws-details-popup">
-      <h2>Edit Details</h2>
-      <input
-        className="new-ws-name-input"
-        type="text"
-        value={newWorkshopName}
-        onChange={handleWorkshopNameChange}
-        placeholder="Enter new workshop name"
-      />
-      <input
-        className="new-ws-id-input"
-        type="text"
-        
-        value={newWorkshopID}
-        onChange={handleWorkshopIDChange}
-        placeholder="Enter new workshop ID"
-      />
-      <div className="select-menu-container">
-        <div
-          className={`select-btn ${isOpen ? "open" : ""}`}
-          onClick={toggleDropdown}
-        >
-          <span className="btn-text">
-            {selectedItem ? selectedItem : "Select Type"}
-          </span>
-          <span className="arrow-dwn-type">
-            <div className="fa-solid fa-chevron-down">
-              <box-icon name="chevron-down"></box-icon>
-            </div>
-          </span>
+    <>
+      <div className="popup-overlay popup-open"></div>
+      <div ref={popupRef} className="ws-details-popup open-ws-details-popup">
+        <h2>Edit Details</h2>
+        <input
+          className="new-ws-name-input"
+          type="text"
+          value={newWorkshopName}
+          onChange={handleWorkshopNameChange}
+          placeholder="Enter new workshop name"
+        />
+        <input
+          className="new-ws-id-input"
+          type="text"
+          
+          value={newWorkshopID}
+          onChange={handleWorkshopIDChange}
+          placeholder="Enter new workshop ID"
+        />
+        <div className="select-menu-container">
+          <div
+            className={`select-btn ${isOpen ? "open" : ""}`}
+            onClick={toggleDropdown}
+          >
+            <span className="btn-text">
+              {selectedItem ? selectedItem : "Select Type"}
+            </span>
+            <span className="arrow-dwn-type">
+              <div className="fa-solid fa-chevron-down">
+                <box-icon name="chevron-down"></box-icon>
+              </div>
+            </span>
+          </div>
+          {isOpen && (
+            <ul className="list-items">
+              {[
+                "Business Value Discovery",
+                "AI Platform",
+                "Infrastructure and Demo",
+              ].map((wstypes, index) => (
+                <li
+                  key={index}
+                  className={`item ${selectedItem === wstypes ? "checked" : ""}`}
+                  onClick={() => handleItemClick(wstypes)}
+                >
+                  <span className="checkbox">
+                    <div className="fa-solid fa-check check-icon">
+                      <box-icon name="check"></box-icon>
+                    </div>
+                  </span>
+                  <span className="item-text">{wstypes}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        {isOpen && (
-          <ul className="list-items">
-            {[
-              "Business Value Discovery",
-              "AI Platform",
-              "Infrastructure and Demo",
-            ].map((wstypes, index) => (
-              <li
-                key={index}
-                className={`item ${selectedItem === wstypes ? "checked" : ""}`}
-                onClick={() => handleItemClick(wstypes)}
-              >
-                <span className="checkbox">
-                  <div className="fa-solid fa-check check-icon">
-                    <box-icon name="check"></box-icon>
-                  </div>
-                </span>
-                <span className="item-text">{wstypes}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div className="select-menu-container">
-        <div
-          className={`select-btn ${isOpen2 ? "open" : ""}`}
-          onClick={toggleDropdown2}
-        >
-          <span className="btn-text">
-            {selectedItem2 ? selectedItem2 : "Select Availability"}
-          </span>
-          <span className="arrow-dwn-avail">
-            <div className="fa-solid fa-chevron-down">
-              <box-icon name="chevron-down"></box-icon>
-            </div>
-          </span>
+        <div className="select-menu-container">
+          <div
+            className={`select-btn ${isOpen2 ? "open" : ""}`}
+            onClick={toggleDropdown2}
+          >
+            <span className="btn-text">
+              {selectedItem2 ? selectedItem2 : "Select Availability"}
+            </span>
+            <span className="arrow-dwn-avail">
+              <div className="fa-solid fa-chevron-down">
+                <box-icon name="chevron-down"></box-icon>
+              </div>
+            </span>
+          </div>
+          {isOpen2 && (
+            <ul className="list-items">
+              {["Available", "Unavailable"].map((wsavail, index) => (
+                <li
+                  key={index}
+                  className={`item ${selectedItem2 === wsavail ? "checked" : ""}`}
+                  onClick={() => handleItemClick2(wsavail)}
+                >
+                  <span className="checkbox">
+                    <div className="fa-solid fa-check check-icon">
+                      <box-icon name="check"></box-icon>
+                    </div>
+                  </span>
+                  <span className="item-text">{wsavail}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        {isOpen2 && (
-          <ul className="list-items">
-            {["Available", "Unavailable"].map((wsavail, index) => (
-              <li
-                key={index}
-                className={`item ${selectedItem2 === wsavail ? "checked" : ""}`}
-                onClick={() => handleItemClick2(wsavail)}
-              >
-                <span className="checkbox">
-                  <div className="fa-solid fa-check check-icon">
-                    <box-icon name="check"></box-icon>
-                  </div>
-                </span>
-                <span className="item-text">{wsavail}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <textarea
+          className="change-workshop-details-input"
+          placeholder=" Enter new workshop details here"
+          value={newWorkshopDetails}
+          onChange={handleWorkshopDetailsChange}
+        />
+        <div className="popup-buttons">
+          <button className="submit-button" type="button" onClick={handleSubmit}>
+            Submit
+          </button>
+          <button className="cancel-button" type="button" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </div>
-      <textarea
-        className="change-workshop-details-input"
-        placeholder=" Enter new workshop details here"
-        value={newWorkshopDetails}
-        onChange={handleWorkshopDetailsChange}
-      />
-      <div className="popup-buttons">
-        <button className="submit-button" type="button" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button className="cancel-button" type="button" onClick={onClose}>
-          Cancel
-        </button>
-      </div>
-    </div>
+    </>
   ) : (
     <div>LOADING</div>
   );
