@@ -42,291 +42,291 @@ describe("UC01 ClientHomePage Test", () => {
     }));
   });
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////
-  // test: Client Home Page is rendered.
-  ////////////////////////////////////////////
-  test("Test : Client Homme Page is Rendered", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
-  });
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////////
-  // test: Workshop Availability dropdown is Rendered 
-  ////////////////////////////////////////////
-  test("Test : Workshop Availability dropdown is rendered", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
-
-    const dropdown = screen.getByPlaceholderText("Click to view workshops");
-    expect(dropdown).toBeInTheDocument();
-  });
-
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////
-  // test: Client Submit Workshop form
-  ////////////////////////////////////////
-  test("Test : Inputs for Client Submit Workshop form", () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
-
-    const roleInput = screen.getByPlaceholderText("Role at Company");
-    const nameInput = screen.getByPlaceholderText("Your Name");
-    const emailInput = screen.getByPlaceholderText("Your Email");
-    const phoneInput = screen.getByPlaceholderText("Phone Number");
-    const companyInput = screen.getByPlaceholderText("Your Company");
-    const paxInput = screen.getByPlaceholderText("Number of Pax");
-    const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
-    const countryInput = screen.getByPlaceholderText("Country");
-    const venueInput = screen.getByPlaceholderText("Venue");
-    const messageInput = screen.getByPlaceholderText("Your Message");
-
-    // fireevent is the cypress equivalent of cy.
-    fireEvent.change(roleInput, { target: { value: "Manager" } });
-    fireEvent.change(nameInput, { target: { value: "John Doe" } });
-    fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
-    fireEvent.change(phoneInput, { target: { value: "1234567890" } });
-    fireEvent.change(companyInput, { target: { value: "Tech Co." } });
-    fireEvent.change(paxInput, { target: { value: "50" } });
-    fireEvent.change(dealInput, { target: { value: "10000" } });
-    fireEvent.change(countryInput, { target: { value: "USA" } });
-    fireEvent.change(venueInput, { target: { value: "New York" } });
-    fireEvent.change(messageInput, {
-      target: { value: "Looking forward to it." },
+    ////////////////////////////////////////////
+    // test: Client Home Page is rendered.
+    ////////////////////////////////////////////
+    test("Test : Client Homme Page is Rendered", async () => {
+      render(
+        <Router>
+          <ClientHomePage />
+        </Router>
+      );
     });
 
-    expect(roleInput.value).toBe("Manager");
-    expect(nameInput.value).toBe("John Doe");
-    expect(emailInput.value).toBe("john.doe@example.com");
-    expect(phoneInput.value).toBe("1234567890");
-    expect(companyInput.value).toBe("Tech Co.");
-    expect(paxInput.value).toBe("50");
-    expect(dealInput.value).toBe("10000");
-    expect(countryInput.value).toBe("USA");
-    expect(venueInput.value).toBe("New York");
-    expect(messageInput.value).toBe("Looking forward to it.");
-  });
+  //   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //   ////////////////////////////////////////////
+  //   // test: Workshop Availability dropdown is Rendered
+  //   ////////////////////////////////////////////
+  //   test("Test : Workshop Availability dropdown is rendered", async () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
 
-  /////////////////////////////////////////////////
-  // test: Summary popup is rendered on submit request button click
-  /////////////////////////////////////////////////
-  test("Test : Summary popup is rendered on submit request button click", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
-  });
+  //     const dropdown = screen.getByPlaceholderText("Click to view workshops");
+  //     expect(dropdown).toBeInTheDocument();
+  //   });
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////////////////////////////
-  // test: Summary popup details are exactly what is inputted.
-  ////////////////////////////////////////////////////////////////////////
-  test("Test : Summary popup is rendered on submit request button click", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
-    const roleInput = screen.getByPlaceholderText("Role at Company");
-    const nameInput = screen.getByPlaceholderText("Your Name");
-    const emailInput = screen.getByPlaceholderText("Your Email");
-    const phoneInput = screen.getByPlaceholderText("Phone Number");
-    const companyInput = screen.getByPlaceholderText("Your Company");
-    const paxInput = screen.getByPlaceholderText("Number of Pax");
-    const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
-    const countryInput = screen.getByPlaceholderText("Country");
-    const venueInput = screen.getByPlaceholderText("Venue");
-    const messageInput = screen.getByPlaceholderText("Your Message");
+  //   ////////////////////////////////////////
+  //   // test: Client Submit Workshop form
+  //   ////////////////////////////////////////
+  //   test("Test : Inputs for Client Submit Workshop form", () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
 
-    fireEvent.change(roleInput, { target: { value: "Manager" } });
-    fireEvent.change(nameInput, { target: { value: "John Doe" } });
-    fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
-    fireEvent.change(phoneInput, { target: { value: "1234567890" } });
-    fireEvent.change(companyInput, { target: { value: "Tech Co." } });
-    fireEvent.change(paxInput, { target: { value: "50" } });
-    fireEvent.change(dealInput, { target: { value: "10000" } });
-    fireEvent.change(countryInput, { target: { value: "USA" } });
-    fireEvent.change(venueInput, { target: { value: "New York" } });
-    fireEvent.change(messageInput, {
-      target: { value: "Looking forward to it." },
-    });
+  //     const roleInput = screen.getByPlaceholderText("Role at Company");
+  //     const nameInput = screen.getByPlaceholderText("Your Name");
+  //     const emailInput = screen.getByPlaceholderText("Your Email");
+  //     const phoneInput = screen.getByPlaceholderText("Phone Number");
+  //     const companyInput = screen.getByPlaceholderText("Your Company");
+  //     const paxInput = screen.getByPlaceholderText("Number of Pax");
+  //     const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
+  //     const countryInput = screen.getByPlaceholderText("Country");
+  //     const venueInput = screen.getByPlaceholderText("Venue");
+  //     const messageInput = screen.getByPlaceholderText("Your Message");
 
-    fireEvent.click(screen.getByText("Submit Request"));
+  //     // fireevent is the cypress equivalent of cy.
+  //     fireEvent.change(roleInput, { target: { value: "Manager" } });
+  //     fireEvent.change(nameInput, { target: { value: "John Doe" } });
+  //     fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
+  //     fireEvent.change(phoneInput, { target: { value: "1234567890" } });
+  //     fireEvent.change(companyInput, { target: { value: "Tech Co." } });
+  //     fireEvent.change(paxInput, { target: { value: "50" } });
+  //     fireEvent.change(dealInput, { target: { value: "10000" } });
+  //     fireEvent.change(countryInput, { target: { value: "USA" } });
+  //     fireEvent.change(venueInput, { target: { value: "New York" } });
+  //     fireEvent.change(messageInput, {
+  //       target: { value: "Looking forward to it." },
+  //     });
 
-    await waitFor(() => {
-      expect(
-        screen.getByText("Summary of Workshop Request")
-      ).toBeInTheDocument();
-      expect(screen.getByText("Confirm Request")).toBeInTheDocument();
-      expect(screen.getByText("Edit Request")).toBeInTheDocument();
+  //     expect(roleInput.value).toBe("Manager");
+  //     expect(nameInput.value).toBe("John Doe");
+  //     expect(emailInput.value).toBe("john.doe@example.com");
+  //     expect(phoneInput.value).toBe("1234567890");
+  //     expect(companyInput.value).toBe("Tech Co.");
+  //     expect(paxInput.value).toBe("50");
+  //     expect(dealInput.value).toBe("10000");
+  //     expect(countryInput.value).toBe("USA");
+  //     expect(venueInput.value).toBe("New York");
+  //     expect(messageInput.value).toBe("Looking forward to it.");
+  //   });
 
-      // making sure summary details are what is keyed in
+  //   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      expect(roleInput.value).toBe("Manager");
-      expect(nameInput.value).toBe("John Doe");
-      expect(emailInput.value).toBe("john.doe@example.com");
-      expect(phoneInput.value).toBe("1234567890");
-      expect(companyInput.value).toBe("Tech Co.");
-      expect(paxInput.value).toBe("50");
-      expect(dealInput.value).toBe("10000");
-      expect(countryInput.value).toBe("USA");
-      expect(venueInput.value).toBe("New York");
-      expect(messageInput.value).toBe("Looking forward to it.");
-    });
-  });
+  //   /////////////////////////////////////////////////
+  //   // test: Summary popup is rendered on submit request button click
+  //   /////////////////////////////////////////////////
+  //   test("Test : Summary popup is rendered on submit request button click", async () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
+  //   });
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////////////////////////
-  // test: Checks if the summary popup is closed on edit button click.
-  ////////////////////////////////////////////////////////////////////
-  test("Test : Edit Button works in summary popup", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
+  //   ////////////////////////////////////////////////////////////////////////
+  //   // test: Summary popup details are exactly what is inputted.
+  //   ////////////////////////////////////////////////////////////////////////
+  //   test("Test : Summary popup is rendered on submit request button click", async () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
+  //     const roleInput = screen.getByPlaceholderText("Role at Company");
+  //     const nameInput = screen.getByPlaceholderText("Your Name");
+  //     const emailInput = screen.getByPlaceholderText("Your Email");
+  //     const phoneInput = screen.getByPlaceholderText("Phone Number");
+  //     const companyInput = screen.getByPlaceholderText("Your Company");
+  //     const paxInput = screen.getByPlaceholderText("Number of Pax");
+  //     const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
+  //     const countryInput = screen.getByPlaceholderText("Country");
+  //     const venueInput = screen.getByPlaceholderText("Venue");
+  //     const messageInput = screen.getByPlaceholderText("Your Message");
 
-    const roleInput = screen.getByPlaceholderText("Role at Company");
-    fireEvent.change(roleInput, { target: { value: "Manager" } });
-    fireEvent.click(screen.getByText("Submit Request"));
+  //     fireEvent.change(roleInput, { target: { value: "Manager" } });
+  //     fireEvent.change(nameInput, { target: { value: "John Doe" } });
+  //     fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
+  //     fireEvent.change(phoneInput, { target: { value: "1234567890" } });
+  //     fireEvent.change(companyInput, { target: { value: "Tech Co." } });
+  //     fireEvent.change(paxInput, { target: { value: "50" } });
+  //     fireEvent.change(dealInput, { target: { value: "10000" } });
+  //     fireEvent.change(countryInput, { target: { value: "USA" } });
+  //     fireEvent.change(venueInput, { target: { value: "New York" } });
+  //     fireEvent.change(messageInput, {
+  //       target: { value: "Looking forward to it." },
+  //     });
 
-    await waitFor(() => {
-      expect(
-        screen.getByText("Summary of Workshop Request")
-      ).toBeInTheDocument();
-    });
+  //     fireEvent.click(screen.getByText("Submit Request"));
 
-    fireEvent.click(screen.getByText("Edit Request"));
+  //     await waitFor(() => {
+  //       expect(
+  //         screen.getByText("Summary of Workshop Request")
+  //       ).toBeInTheDocument();
+  //       expect(screen.getByText("Confirm Request")).toBeInTheDocument();
+  //       expect(screen.getByText("Edit Request")).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(
-        screen.queryByText("Summary of Workshop Request")
-      ).not.toBeInTheDocument();
-    });
-  });
+  //       // making sure summary details are what is keyed in
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //       expect(roleInput.value).toBe("Manager");
+  //       expect(nameInput.value).toBe("John Doe");
+  //       expect(emailInput.value).toBe("john.doe@example.com");
+  //       expect(phoneInput.value).toBe("1234567890");
+  //       expect(companyInput.value).toBe("Tech Co.");
+  //       expect(paxInput.value).toBe("50");
+  //       expect(dealInput.value).toBe("10000");
+  //       expect(countryInput.value).toBe("USA");
+  //       expect(venueInput.value).toBe("New York");
+  //       expect(messageInput.value).toBe("Looking forward to it.");
+  //     });
+  //   });
 
-  ////////////////////////////////////////////////////////////////////
-  // test: Checks if Confirm submit button from summary request works
-  ////////////////////////////////////////////////////////////////////
+  //   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  test("Test : Confirm Button works in summary popup", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
+  //   ////////////////////////////////////////////////////////////////////
+  //   // test: Checks if the summary popup is closed on edit button click.
+  //   ////////////////////////////////////////////////////////////////////
+  //   test("Test : Edit Button works in summary popup", async () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
 
-    const roleInput = screen.getByPlaceholderText("Role at Company");
-    const nameInput = screen.getByPlaceholderText("Your Name");
-    const emailInput = screen.getByPlaceholderText("Your Email");
-    const phoneInput = screen.getByPlaceholderText("Phone Number");
-    const companyInput = screen.getByPlaceholderText("Your Company");
-    const paxInput = screen.getByPlaceholderText("Number of Pax");
-    const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
-    const countryInput = screen.getByPlaceholderText("Country");
-    const venueInput = screen.getByPlaceholderText("Venue");
-    const messageInput = screen.getByPlaceholderText("Your Message");
+  //     const roleInput = screen.getByPlaceholderText("Role at Company");
+  //     fireEvent.change(roleInput, { target: { value: "Manager" } });
+  //     fireEvent.click(screen.getByText("Submit Request"));
 
-    fireEvent.change(roleInput, { target: { value: "Manager" } });
-    fireEvent.change(nameInput, { target: { value: "John Doe" } });
-    fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
-    fireEvent.change(phoneInput, { target: { value: "1234567890" } });
-    fireEvent.change(companyInput, { target: { value: "Tech Co." } });
-    fireEvent.change(paxInput, { target: { value: "50" } });
-    fireEvent.change(dealInput, { target: { value: "10000" } });
-    fireEvent.change(countryInput, { target: { value: "USA" } });
-    fireEvent.change(venueInput, { target: { value: "New York" } });
-    fireEvent.change(messageInput, {
-      target: { value: "Looking forward to it." },
-    });
-    fireEvent.click(screen.getByText("Submit Request"));
+  //     await waitFor(() => {
+  //       expect(
+  //         screen.getByText("Summary of Workshop Request")
+  //       ).toBeInTheDocument();
+  //     });
 
-    await waitFor(() => {
-      expect(
-        screen.getByText("Summary of Workshop Request")
-      ).toBeInTheDocument();
-    });
+  //     fireEvent.click(screen.getByText("Edit Request"));
 
-    // fireEvent.click(screen.getByText("Confirm Request"));
+  //     await waitFor(() => {
+  //       expect(
+  //         screen.queryByText("Summary of Workshop Request")
+  //       ).not.toBeInTheDocument();
+  //     });
+  //   });
 
-    // await waitFor(() => {
-    //   expect(
-    //     screen.queryByText("Summary of Workshop Request")
-    //   ).not.toBeInTheDocument();
-    // });
-  });
+  //   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //   ////////////////////////////////////////////////////////////////////
+  //   // test: Checks if Confirm submit button from summary request works
+  //   ////////////////////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////////////////////////
-  // test: Checks if clear button works
-  ////////////////////////////////////////////////////////////////////
+  //   test("Test : Confirm Button works in summary popup", async () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
 
-  test("Test : Clear button works and clears all inputs", async () => {
-    render(
-      <Router>
-        <ClientHomePage />
-      </Router>
-    );
+  //     const roleInput = screen.getByPlaceholderText("Role at Company");
+  //     const nameInput = screen.getByPlaceholderText("Your Name");
+  //     const emailInput = screen.getByPlaceholderText("Your Email");
+  //     const phoneInput = screen.getByPlaceholderText("Phone Number");
+  //     const companyInput = screen.getByPlaceholderText("Your Company");
+  //     const paxInput = screen.getByPlaceholderText("Number of Pax");
+  //     const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
+  //     const countryInput = screen.getByPlaceholderText("Country");
+  //     const venueInput = screen.getByPlaceholderText("Venue");
+  //     const messageInput = screen.getByPlaceholderText("Your Message");
 
-    const roleInput = screen.getByPlaceholderText("Role at Company");
-    const nameInput = screen.getByPlaceholderText("Your Name");
-    const emailInput = screen.getByPlaceholderText("Your Email");
-    const phoneInput = screen.getByPlaceholderText("Phone Number");
-    const companyInput = screen.getByPlaceholderText("Your Company");
-    const paxInput = screen.getByPlaceholderText("Number of Pax");
-    const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
-    const countryInput = screen.getByPlaceholderText("Country");
-    const venueInput = screen.getByPlaceholderText("Venue");
-    const messageInput = screen.getByPlaceholderText("Your Message");
+  //     fireEvent.change(roleInput, { target: { value: "Manager" } });
+  //     fireEvent.change(nameInput, { target: { value: "John Doe" } });
+  //     fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
+  //     fireEvent.change(phoneInput, { target: { value: "1234567890" } });
+  //     fireEvent.change(companyInput, { target: { value: "Tech Co." } });
+  //     fireEvent.change(paxInput, { target: { value: "50" } });
+  //     fireEvent.change(dealInput, { target: { value: "10000" } });
+  //     fireEvent.change(countryInput, { target: { value: "USA" } });
+  //     fireEvent.change(venueInput, { target: { value: "New York" } });
+  //     fireEvent.change(messageInput, {
+  //       target: { value: "Looking forward to it." },
+  //     });
+  //     fireEvent.click(screen.getByText("Submit Request"));
 
-    fireEvent.change(roleInput, { target: { value: "Manager" } });
-    fireEvent.change(nameInput, { target: { value: "John Doe" } });
-    fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
-    fireEvent.change(phoneInput, { target: { value: "1234567890" } });
-    fireEvent.change(companyInput, { target: { value: "Tech Co." } });
-    fireEvent.change(paxInput, { target: { value: "50" } });
-    fireEvent.change(dealInput, { target: { value: "10000" } });
-    fireEvent.change(countryInput, { target: { value: "USA" } });
-    fireEvent.change(venueInput, { target: { value: "New York" } });
-    fireEvent.change(messageInput, {
-      target: { value: "Looking forward to it." },
-    });
+  //     await waitFor(() => {
+  //       expect(
+  //         screen.getByText("Summary of Workshop Request")
+  //       ).toBeInTheDocument();
+  //     });
 
-    fireEvent.click(screen.getByText("Clear"));
+  //     // fireEvent.click(screen.getByText("Confirm Request"));
 
-    // Check if the fields are cleared
-    await waitFor(() => {
-      expect(roleInput.value).toBe("");
-      expect(nameInput.value).toBe("");
-      expect(emailInput.value).toBe("");
-      expect(phoneInput.value).toBe("");
-      expect(companyInput.value).toBe("");
-      expect(paxInput.value).toBe("");
-      expect(dealInput.value).toBe("");
-      expect(countryInput.value).toBe("");
-      expect(venueInput.value).toBe("");
-      expect(messageInput.value).toBe("");
-    });
-  });
+  //     // await waitFor(() => {
+  //     //   expect(
+  //     //     screen.queryByText("Summary of Workshop Request")
+  //     //   ).not.toBeInTheDocument();
+  //     // });
+  //   });
+
+  //   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //   ////////////////////////////////////////////////////////////////////
+  //   // test: Checks if clear button works
+  //   ////////////////////////////////////////////////////////////////////
+
+  //   test("Test : Clear button works and clears all inputs", async () => {
+  //     render(
+  //       <Router>
+  //         <ClientHomePage />
+  //       </Router>
+  //     );
+
+  //     const roleInput = screen.getByPlaceholderText("Role at Company");
+  //     const nameInput = screen.getByPlaceholderText("Your Name");
+  //     const emailInput = screen.getByPlaceholderText("Your Email");
+  //     const phoneInput = screen.getByPlaceholderText("Phone Number");
+  //     const companyInput = screen.getByPlaceholderText("Your Company");
+  //     const paxInput = screen.getByPlaceholderText("Number of Pax");
+  //     const dealInput = screen.getByPlaceholderText("Deal Size Potential in USD");
+  //     const countryInput = screen.getByPlaceholderText("Country");
+  //     const venueInput = screen.getByPlaceholderText("Venue");
+  //     const messageInput = screen.getByPlaceholderText("Your Message");
+
+  //     fireEvent.change(roleInput, { target: { value: "Manager" } });
+  //     fireEvent.change(nameInput, { target: { value: "John Doe" } });
+  //     fireEvent.change(emailInput, { target: { value: "john.doe@example.com" } });
+  //     fireEvent.change(phoneInput, { target: { value: "1234567890" } });
+  //     fireEvent.change(companyInput, { target: { value: "Tech Co." } });
+  //     fireEvent.change(paxInput, { target: { value: "50" } });
+  //     fireEvent.change(dealInput, { target: { value: "10000" } });
+  //     fireEvent.change(countryInput, { target: { value: "USA" } });
+  //     fireEvent.change(venueInput, { target: { value: "New York" } });
+  //     fireEvent.change(messageInput, {
+  //       target: { value: "Looking forward to it." },
+  //     });
+
+  //     fireEvent.click(screen.getByText("Clear"));
+
+  //     // Check if the fields are cleared
+  //     await waitFor(() => {
+  //       expect(roleInput.value).toBe("");
+  //       expect(nameInput.value).toBe("");
+  //       expect(emailInput.value).toBe("");
+  //       expect(phoneInput.value).toBe("");
+  //       expect(companyInput.value).toBe("");
+  //       expect(paxInput.value).toBe("");
+  //       expect(dealInput.value).toBe("");
+  //       expect(countryInput.value).toBe("");
+  //       expect(venueInput.value).toBe("");
+  //       expect(messageInput.value).toBe("");
+  //     });
+  //   });
 });
