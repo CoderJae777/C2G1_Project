@@ -32,6 +32,15 @@ const WorkshopAndClientDetails = ({ workshop, onClose }) => {
         };
     }, []);
 
+    const getWorkshopDataDetails = (workshop) => {
+        if (workshop.workshop_data_details){
+            return workshop.workshop_data_details;
+        }
+        else{
+            return workshop.workshop_data;
+        }
+    }
+
     return (
         <>
             <div className="popup-overlay popup-open"></div>
@@ -50,6 +59,14 @@ const WorkshopAndClientDetails = ({ workshop, onClose }) => {
                 <div className="workshop-details-content">
                     <table className="details-table">
                         <tbody>
+                            <tr className="spaced-row">
+                                <td><strong>Request ID:</strong></td>
+                                <td>{workshopDetails.request_id}</td>
+                            </tr>
+                            <tr className="spaced-row">
+                                <td><strong>Workshop Name:</strong></td>
+                                <td>{getWorkshopDataDetails(workshop).workshop_name}</td>
+                            </tr>
                             <tr className="spaced-row">
                                 <td><strong>Client Company:</strong></td>
                                 <td>{workshopDetails.company}</td>

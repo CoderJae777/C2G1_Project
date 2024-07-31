@@ -66,9 +66,11 @@ const TrainerViewTrainerPage = () => {
 
   const handleOpenWorkshopAndClientDetails = (workshop) => {  
     if (workshop){
-      setIsTrainerScheduleCalendarOpen(false);
-      setSelectedWorkshops(workshop);
-      setIsWorkshopAndClientDetailsOpen(true);
+      if (workshop.trainers.includes(verifyUser.data.id)){ //prevent user from viewing nonallocated workshop details
+        setIsTrainerScheduleCalendarOpen(false);
+        setSelectedWorkshops(workshop);
+        setIsWorkshopAndClientDetailsOpen(true);
+      }
     }
   };
 
