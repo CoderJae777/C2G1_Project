@@ -24,6 +24,7 @@ const endpoints = {
     deleteTrainer: "/auth/trainers/delete/",
     updateWorkshopData: "/workshopdata/",
     getApprovedWorkshops: "/workshoprequest/getApproved",
+    reallocateTrainers: "/workshoprequest/reallocateTrainers/",
   },
   client: {
     getAvailableWorkshopData: "/workshopdata/available",

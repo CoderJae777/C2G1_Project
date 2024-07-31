@@ -115,6 +115,7 @@ const AdminWorkshopRequestPage = () => {
   const handleCloseDetailsPopup = () => {
     setIsDetailsPopupOpen(false);
     setSelectedWorkshop(null);
+    nonSubmitted.refetch();
   };
 
   const approvedWorkshops = nonSubmitted.data.filter((request) => request.status === "approved");
@@ -128,6 +129,7 @@ const AdminWorkshopRequestPage = () => {
           requestId={requestId}
           selectedStartDate={selectedStartDate}
           selectedEndDate={selectedEndDate}
+          selectedWorkshop={selectedWorkshop}
           onClose={handleCloseApprovePopup}
         />
       )}
