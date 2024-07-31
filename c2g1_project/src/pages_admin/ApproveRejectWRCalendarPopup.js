@@ -18,6 +18,8 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
     refetch: trainerrefetch,
   } = useAxiosGet(config.base_url + endpoints.admin.getTrainers, {}, [], true);
 
+  console.log(trainerdata);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {

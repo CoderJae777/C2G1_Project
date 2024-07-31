@@ -111,6 +111,11 @@ const AdminHomePage = () => {
     config.base_url + endpoints.graph.getWorkshopTrendDataGraph
   );
   const workshopTrendData = workshopTrendDataLink.data || [];
+
+  const trainerUtilDataLink = useAxiosGet(
+    config.base_url + endpoints.graph.getTrainerUtilGraph
+  );
+  const trainerUtilData = trainerUtilDataLink.data || [];
   ///////////////////////////////////////////////////////////
   // Functions
   ///////////////////////////////////////////////////////////
@@ -152,8 +157,6 @@ const AdminHomePage = () => {
       prev === "workshopTypes" ? "clientTypes" : "workshopTypes"
     );
   };
-
-  const { trainer_data, today_data } = useFetch();
 
   const { data, loading, error, setBody, refetch } = useAxiosGet(
     config.base_url + endpoints.verify
@@ -219,7 +222,7 @@ const AdminHomePage = () => {
                         ? totalPieData
                         : yearPieData[selectedYear] || []
                     }
-                    cx={350} // x coord  of piechart 
+                    cx={350} // x coord  of piechart
                     cy={200} // y coord of piechart
                     labelLine={true}
                     label={renderCustomLabel}
@@ -423,26 +426,7 @@ const AdminHomePage = () => {
               <BarChart
                 width={800}
                 height={250}
-                data={[
-                  {
-                    name: "John",
-                    workshops_completed_total: 30,
-                    total_trainer_utilization: 70,
-                    ongoing_workshops: 2,
-                  },
-                  {
-                    name: "Jill",
-                    workshops_completed_total: 40,
-                    total_trainer_utilization: 80,
-                    ongoing_workshops: 3,
-                  },
-                  {
-                    name: "Jack",
-                    workshops_completed_total: 50,
-                    total_trainer_utilization: 90,
-                    ongoing_workshops: 2,
-                  },
-                ]}
+                data={trainerUtilData}
                 margin={{
                   top: 30,
                   right: 50,
