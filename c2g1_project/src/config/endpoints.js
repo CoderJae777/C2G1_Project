@@ -36,7 +36,7 @@ const endpoints = {
     getTeammates: "/auth/getteammates",
     getOthers: "/auth/getothers",
     updateUtilisation: "/auth/updateutilisation/",
-    getApprovedWorkshops: "/workshoprequest/getApproved"
+    getApprovedWorkshops: "/workshoprequest/getApproved",
   },
   notif: {
     getAllAdminNotificiation: "/notif/getAllAdminNotification",
@@ -52,6 +52,7 @@ const endpoints = {
     getWorkshopTypesGraph: "/graph/getWorkshopTypesGraph",
     getClientTypeGraph: "/graph/getClientTypeGraph",
     getWorkshopTrendDataGraph: "/graph/getWorkshopTrendDataGraph",
+    getTrainerUtilGraph: "/graph/getTrainerUtilGraph",
     // hardcoded data below
     getHCtotalPieData: "/graph/getHCtotalPieData",
     getHCyearsPieData: "/graph/getHCyearsPieData",
