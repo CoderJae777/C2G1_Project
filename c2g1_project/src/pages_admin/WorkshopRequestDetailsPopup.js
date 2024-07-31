@@ -24,7 +24,7 @@ const WorkshopRequestDetailsPopup = ({
     onClose();
   };
   const handleError = (error) => {
-    console.log(error);
+    onClose();
   };
 
   const updateTrainers = useAxiosPatch(
