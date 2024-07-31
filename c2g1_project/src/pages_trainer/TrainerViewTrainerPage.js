@@ -32,6 +32,8 @@ const TrainerViewTrainerPage = () => {
   );
 
   const verifyUser = useAxiosGet(config.base_url + endpoints.verify);
+  console.log("verifyuser")
+  console.log(verifyUser)
 
   const {
     data: trainerdata,
@@ -62,14 +64,16 @@ const TrainerViewTrainerPage = () => {
     setIsTrainerScheduleCalendarOpen(false);
   };
 
-  const handleOpenWorkshopAndClientDetails = (workshop) => {
-    if (Array.isArray(workshop) && workshop.length > 0){
+  const handleOpenWorkshopAndClientDetails = (workshop) => {  
+    if (workshop){
+      setIsTrainerScheduleCalendarOpen(false);
       setSelectedWorkshops(workshop);
       setIsWorkshopAndClientDetailsOpen(true);
     }
   };
 
   const handleCloseWorkshopAndClientDetails = () => {
+    setIsTrainerScheduleCalendarOpen(true);
     setIsWorkshopAndClientDetailsOpen(false);
   };
 
@@ -86,8 +90,8 @@ const TrainerViewTrainerPage = () => {
 
   return verifyUser && verifyUser.data && verifyUser.data.role === "trainer" ? (
     <>
-      {isWorkshopAndClientDetailsOpen && selectedWorkshops.length > 0 && (
-        <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshops={selectedWorkshops} />
+      {isWorkshopAndClientDetailsOpen && selectedWorkshops && (
+        <WorkshopAndClientDetails onClose={handleCloseWorkshopAndClientDetails} workshop={selectedWorkshops} />
       )}
       {isTrainerScheduleCalendarOpen && (
         <TrainerScheduleCalendar 
