@@ -100,7 +100,7 @@ const TrainerViewTrainerPage = () => {
           onClose={handleCloseTrainerScheduleCalendar}
           ondateClick={handleOpenWorkshopAndClientDetails}
           trainerdata={trainerdata}
-          workshopdata={workshopdata}
+          workshopdata={workshopdata[0]}
         />
       )}
       <div className="admin-manage-trainer-page">
