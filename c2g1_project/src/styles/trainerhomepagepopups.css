@@ -20,13 +20,35 @@
     color: #333;
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
-    z-index: 2;
+    z-index: 1000;
 }
 
 .open-tr-ws-util-hrs-details-popup {
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    z-index: 999;
+}
+
+body.popup-open .popup-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.popup-open {
+    overflow: hidden;
 }
 
 .tr-ws-util-hrs-details-popup h2 {

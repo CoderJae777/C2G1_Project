@@ -41,6 +41,26 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            onClose();
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [popupRef, onClose]);
+
+  useEffect(() => {
+    document.body.classList.add('popup-open');
+    return () => {
+        document.body.classList.remove('popup-open');
+    };
+  }, []);
+
   return (
     <>
       <div className="popup-overlay popup-open"></div>
