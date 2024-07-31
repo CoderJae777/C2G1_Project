@@ -8,6 +8,7 @@ import useAxiosPatch from "../api/useAxiosPatch";
 
 const ApproveWorkshopRequestPopup = ({
   selectedId,
+  requestId,
   selectedStartDate,
   selectedEndDate,
   onClose,
@@ -35,6 +36,13 @@ const ApproveWorkshopRequestPopup = ({
       startTime: selectedStartDate,
       endTime: selectedEndDate,
     },
+    [],
+    true
+  );
+
+  const workshopRequest = useAxiosGet(
+    config.base_url + endpoints.admin.getWorkshopRequest + selectedId,
+    {},
     [],
     true
   );
@@ -89,8 +97,7 @@ const ApproveWorkshopRequestPopup = ({
         className="approve-workshop-request-popup open-approve-workshop-request-popup"
       >
         <h2>Approve Workshop</h2>
-        {/* need to create an ID for specific workshop request */}
-        <p>Workshop: {selectedId}</p> 
+        <p>Workshop ID: {requestId ? requestId : "None"}</p> 
         <p>Assign trainer(s) to this workshop.</p>
         <div data-cy="select-trainer" className="select-menu-container">
           <div
