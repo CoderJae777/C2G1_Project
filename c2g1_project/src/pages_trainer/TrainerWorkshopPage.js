@@ -54,7 +54,7 @@ const TrainerWorkshopPage = () => {
       
       console.log("workshopdata")
       console.log(workshopdata)
-    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata.filter(workshop =>
+    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
         !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
     
     
@@ -71,7 +71,8 @@ const TrainerWorkshopPage = () => {
 
   const getTrainersOfWorkshop = (workshop) => {
     if (!workshop) return [];
-
+    console.log("getTrainersOfWorkshop")
+    console.log(workshop)
     const trainerNames = workshop.trainers
       .map((trainerId) => {
         const trainer = trainerdata.find(
@@ -107,6 +108,8 @@ const TrainerWorkshopPage = () => {
 
     const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
     .filter(workshop => {
+      console.log("test")
+        console.log(workshop);
         let trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
         let request_id = workshop.request_id ? workshop.request_id.toLowerCase() : ""
         let workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
@@ -225,14 +228,14 @@ const TrainerWorkshopPage = () => {
             <div className="top-panel">
                 <TopLeftSideBar />
             </div>
-            <div className="left-column">
+            <div className="trainer-left-column">
                 <div className="trainer-home-page-title"></div>
 
         {/* Workshop summary starts here */}
         <div className="workshop-calendar">
           {" "}
-          <div className="workshop-table-title">
-            <h4>Workshop Dates</h4>
+          <div className="workshop-calendar-title">
+            <h3>Workshop Dates</h3>
           </div>
           {today_data && today_data[0] ? (
             <>
@@ -250,12 +253,12 @@ const TrainerWorkshopPage = () => {
       </div>
 
             {/* Graphs nonsense starts here */}
-            <div className="right-column">
+            <div className="trainer-right-column">
                 <div className="admin-graphs">
                     
                     {/* Right column MAIN DIV NUMBER 1 */}
                     <div className="workshop-stats">
-                        <h4 className="workshop-stats-title">{workshopgraphsTitle}</h4>
+                        <h3 className="workshop-list-title">{workshopgraphsTitle}</h3>
                         <div className="filter">
                             <span>Filter:</span>
                             <input

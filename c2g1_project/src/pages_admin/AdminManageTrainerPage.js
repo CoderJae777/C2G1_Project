@@ -239,7 +239,7 @@ const handleCloseWorkshopAndClientDetails = () => {
           onClose={handleCloseTrainerScheduleCalendar}
           ondateClick={handleOpenWorkshopAndClientDetails}
           trainerdata={data}
-          workshopdata={workshopdata}
+          workshopdata={workshopdata[0]}
         />
       )}
       {isTrainerDetailsPopupOpen && (
