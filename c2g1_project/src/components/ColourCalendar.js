@@ -35,10 +35,10 @@ const ColourCalendar = ({ workshopdata, ondateClick, trainerdata }) => {
         console.log('Trainer data:', trainerdata);
     
         const trainerNames = workshop.trainers.map(trainerObj => {
-            const trainerId = trainerObj._id;
-            console.log('Looking for trainer with ID:', trainerId);
-            const trainer = trainerdata.find(trainer => trainer._id === trainerId);
-            console.log('Trainer found:', trainer);
+            const trainerId = trainerObj._id;   
+            console.log('Looking for trainer with ID:', trainerId); // string
+            const trainer = trainerdata.find(trainer => trainer._id == trainerId);
+            console.log('Trainer found:', trainer); // object
             return trainer ? trainer.fullname : null;
         }).filter(name => name);
     

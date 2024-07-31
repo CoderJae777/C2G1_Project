@@ -161,7 +161,7 @@ const AdminWorkshopRequestPage = () => {
       </div>
       <div className="admin-workshop-request-page-bottom-panel">
         <div className="bottom-panel-left-side">
-          <div className="admin-workshop-request-page-title">
+          <div className="admin-workshop-request-page-title-left">
             <h2>Approved/Rejected Workshop Requests</h2>
             <button className="view-ar-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
           </div>
@@ -210,9 +210,9 @@ const AdminWorkshopRequestPage = () => {
           </div>
         </div>
         <div className="bottom-panel-right-side">
-          <div className="admin-workshop-request-page-title">
+          <div className="admin-workshop-request-page-title-right">
             <h2>Pending Workshop Requests</h2>
-            <button className="view-p-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
+            {/* <button className="view-p-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button> */}
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
