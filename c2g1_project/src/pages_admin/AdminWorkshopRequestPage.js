@@ -1,9 +1,9 @@
-// pages_admin/AdminWorkshopRequestPage.js
 import React, { useEffect, useState } from "react";
 import "../styles/adminworkshoprequestpage.css";
 import "boxicons/css/boxicons.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ApproveRejectWRCalendarPopup from "./ApproveRejectWRCalendarPopup";
 import ApproveWorkshopRequestPopup from "./ApproveWorkshopRequestPopup";
 import RejectWorkshopRequestPopup from "./RejectWorkshopRequestPopup";
 import WorkshopRequestDetailsPopup from "./WorkshopRequestDetailsPopup";
@@ -13,11 +13,13 @@ import { endpoints } from "../config/endpoints";
 import AdminTopLeftSideBar from "../components/AdminTopLeftSideBar";
 
 const AdminWorkshopRequestPage = () => {
+  const [isCalendarPopupOpen, setIsCalendarPopupOpen] = useState(false);
   const [isApprovePopupOpen, setIsApprovePopupOpen] = useState(false);
   const [isRejectPopupOpen, setIsRejectPopupOpen] = useState(false);
   const [isDetailsPopupOpen, setIsDetailsPopupOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [requestId, setRequestId] = useState(null);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
 
@@ -38,49 +40,48 @@ const AdminWorkshopRequestPage = () => {
   const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   useEffect(() => {
-    // console.log("Data fetched:", data); // Debug log
     const lastFetchTime = localStorage.getItem("lastFetchTime");
     const currentTime = new Date().getTime();
-    // console.log("Last Fetch Time:", lastFetchTime); // Debug log
-    // console.log("Current Time:", currentTime); // Debug log
 
     if (data.length > 0) {
       const latestRequestTime = new Date(data[0].createdAt).getTime();
-      // console.log("Latest Request Time:", latestRequestTime); // Debug log
 
       if (!lastFetchTime || latestRequestTime > parseInt(lastFetchTime)) {
-        // console.log("New request detected"); // Debug log
       }
 
       localStorage.setItem("lastFetchTime", currentTime);
     }
   }, [data]);
 
-  // State for keeping track of previous pending count
   const [previousPendingCount, setPreviousPendingCount] = useState(() => {
-    // Initialize from localStorage or default to 0
     return parseInt(localStorage.getItem("previousPendingCount") || "0");
   });
 
   useEffect(() => {
     if (data && data.length > previousPendingCount) {
-      // Notify about new workshop requests
       toast.info(`You have ${data.length} new / total workshop requests`, {
         position: "top-right",
         autoClose: 5000,
       });
-      // Update previous pending count in state and localStorage
       setPreviousPendingCount(data.length);
       localStorage.setItem("previousPendingCount", data.length.toString());
     } else if (data.length < previousPendingCount) {
-      // Update previousPendingCount if count decreases (e.g., request approval)
       setPreviousPendingCount(data.length);
       localStorage.setItem("previousPendingCount", data.length.toString());
     }
   }, [data, previousPendingCount]);
 
+  const handleOpenCalendarPopup = () => {
+    setIsCalendarPopupOpen(true);
+  };
+
+  const handleCloseCalendarPopup = () => {
+    setIsCalendarPopupOpen(false);
+  };
+
   const handleOpenApprovePopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
+    setRequestId(selectedWorkshop.request_id);
     setSelectedStartDate(selectedWorkshop.start_date);
     setSelectedEndDate(selectedWorkshop.end_date);
     setIsApprovePopupOpen(true);
@@ -94,6 +95,7 @@ const AdminWorkshopRequestPage = () => {
 
   const handleOpenRejectPopup = (selectedWorkshop) => {
     setSelectedId(selectedWorkshop._id);
+    setRequestId(selectedWorkshop.request_id);
     setIsRejectPopupOpen(true);
   };
 
@@ -103,16 +105,20 @@ const AdminWorkshopRequestPage = () => {
     nonSubmitted.refetch();
   };
 
-  const handleOpenDetailsPopup = (workshop) => {
-    console.log(workshop);
-    setSelectedWorkshop(workshop);
+  const handleOpenDetailsPopup = (selectedWorkshop) => {
+    setSelectedWorkshop(selectedWorkshop);
+    setSelectedStartDate(selectedWorkshop.start_date);
+    setSelectedEndDate(selectedWorkshop.end_date);
     setIsDetailsPopupOpen(true);
   };
 
   const handleCloseDetailsPopup = () => {
     setIsDetailsPopupOpen(false);
     setSelectedWorkshop(null);
+    nonSubmitted.refetch();
   };
+
+  const approvedWorkshops = nonSubmitted.data.filter((request) => request.status === "approved");
 
   return verification.data !== null && verification.data.role === "admin" ? (
     <div className="admin-workshop-request-page">
@@ -120,21 +126,34 @@ const AdminWorkshopRequestPage = () => {
       {isApprovePopupOpen && (
         <ApproveWorkshopRequestPopup
           selectedId={selectedId}
+          requestId={requestId}
           selectedStartDate={selectedStartDate}
           selectedEndDate={selectedEndDate}
+          selectedWorkshop={selectedWorkshop}
           onClose={handleCloseApprovePopup}
         />
       )}
       {isRejectPopupOpen && (
         <RejectWorkshopRequestPopup
           selectedId={selectedId}
+          requestId={requestId}
           onClose={handleCloseRejectPopup}
         />
       )}
       {isDetailsPopupOpen && selectedWorkshop && (
         <WorkshopRequestDetailsPopup
           workshop={selectedWorkshop}
+          selectedId={selectedId}
+          requestId={requestId}
+          selectedStartDate={selectedStartDate}
+          selectedEndDate={selectedEndDate}
           onClose={handleCloseDetailsPopup}
+        />
+      )}
+      {isCalendarPopupOpen && (
+        <ApproveRejectWRCalendarPopup
+          approvedWorkshops={approvedWorkshops}
+          onClose={handleCloseCalendarPopup}
         />
       )}
       <div className="top-panel">
@@ -142,8 +161,9 @@ const AdminWorkshopRequestPage = () => {
       </div>
       <div className="admin-workshop-request-page-bottom-panel">
         <div className="bottom-panel-left-side">
-          <div className="admin-workshop-request-page-title">
+          <div className="admin-workshop-request-page-title-left">
             <h2>Approved/Rejected Workshop Requests</h2>
+            <button className="view-ar-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -163,7 +183,7 @@ const AdminWorkshopRequestPage = () => {
                   {nonSubmitted.data.map((request, index) => (
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
-                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.request_id}</td>
                       <td>{request.status}</td>
                       <td>
                         <div className="workshop-request-buttons">
@@ -190,8 +210,9 @@ const AdminWorkshopRequestPage = () => {
           </div>
         </div>
         <div className="bottom-panel-right-side">
-          <div className="admin-workshop-request-page-title">
+          <div className="admin-workshop-request-page-title-right">
             <h2>Pending Workshop Requests</h2>
+            {/* <button className="view-p-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button> */}
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -211,7 +232,7 @@ const AdminWorkshopRequestPage = () => {
                   {data.map((request, index) => (
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
-                      <td>{request.workshop_data.workshop_ID}</td>
+                      <td>{request.request_id}</td>
                       <td>{request.workshop_data.workshop_type}</td>
                       <td>
                         <div className="workshop-request-buttons">
@@ -248,7 +269,7 @@ const AdminWorkshopRequestPage = () => {
       </div>
     </div>
   ) : (
-    <div>Not logged in</div>
+    <div>Unauthorized access</div>
   );
 };
 

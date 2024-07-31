@@ -2,132 +2,108 @@ import React, { useState, useEffect } from 'react';
 import '../styles/colourcalendar.css';
 import 'boxicons/css/boxicons.min.css';
 
-const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
-    const [isOpen, setIsOpen] = useState(false);
+const ColourCalendar = ({ workshopdata, ondateClick, trainerdata }) => {
     const [date, setDate] = useState(new Date());
     const [currYear, setCurrYear] = useState(date.getFullYear());
     const [currMonth, setCurrMonth] = useState(date.getMonth());
     const [days, setDays] = useState([]);
-    
-    console.log("workshopdata")
-    console.log(workshopdata)
-    console.log("trainerdata")
-    console.log(trainerdata)
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
     const convertDate = (dateString) => {
+        if (!dateString) return null;
         const date = new Date(dateString);
-        
         const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based, so add 1
+        const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
-        
         return `${year}-${month}-${day}`;
-    }
-    
-
-    //workshopdata: array of objects
-    const workshopStarts = workshopdata.map(workshop => convertDate(workshop.start_date));
-    const workshopEnds = workshopdata.map(workshop => convertDate(workshop.end_date));
+    };
 
     const getWorkshopByDate = (date) => {
-        return workshopdata.filter(workshop => convertDate(workshop.start_date) === date || convertDate(workshop.end_date) === date
-        || (new Date(workshop.start_date) <= new Date(date) && new Date(workshop.end_date) >= new Date(date)));
+        return workshopdata.filter(workshop => {
+            const startDate = convertDate(workshop.start_date);
+            const endDate = convertDate(workshop.end_date);
+            return startDate === date || endDate === date
+                || (new Date(workshop.start_date) <= new Date(date) && new Date(workshop.end_date) >= new Date(date));
+        });
     };
-    
-    
-    const preWorkshopDates = workshopdata.flatMap(workshop => {
-        const start = new Date(workshop.start_date);
-        const preStart = new Date(start);
-        preStart.setDate(start.getDate() - 7);
-        const dates = [];
-        for (let d = preStart; d < start; d.setDate(d.getDate() + 1)) {
-          dates.push(convertDate(d));
-        }
-        return dates;
-      });
 
-      const getTrainersOfWorkshop = (workshop) => {
-        if (!workshop) return [];
-        console.log("test")
-        console.log(workshop)
-        const trainerNames = workshop.trainers.map(trainerId => {
-            const trainer = trainerdata.find(trainer => trainer._id === trainerId);
-            return trainer ? trainer.fullname : null;
-        }).filter(name => name); // Filter out any null/undefined values
-
+    const getTrainersOfWorkshop = (workshop) => {
+        if (!workshop || !trainerdata) return '';
+        // console.log('Processing workshop:', workshop);
+        // console.log('Trainer data:', trainerdata);
+    
+        const trainerNames = workshop.trainers.map(trainerObj => {
+            // const trainerId = trainerObj._id;   
+            // console.log('Looking for trainer with ID:', trainerId); // string
+            // const trainer = trainerdata.find(trainer => trainer._id == trainerId);
+            // console.log('Trainer found:', trainer); // object
+            // return trainer ? trainer.fullname : null;
+            return trainerObj ? trainerObj.fullname : null;
+        }).filter(name => name);
+    
         return trainerNames.join(', ');
     };
-    
 
     useEffect(() => {
         renderCalendar();
-    }, [currYear, currMonth, workshopdata]);
+    }, [currYear, currMonth, workshopdata, trainerdata]);
 
     const renderCalendar = () => {
-    const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
-    const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
-    const lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
-    const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
-    let liTag = [];
+        const firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
+        const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
+        const lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
+        const lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+        let liTag = [];
 
+        const getclassNames = (i) => {
+            let isToday = i === date.getDate() && currMonth === new Date().getMonth()
+                && currYear === new Date().getFullYear() ? "active" : "";
+            const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`;
+            let todayworkshops = getWorkshopByDate(formattedDay);
+            let isWorkshopInBetween = todayworkshops.length > 0 ? "workshop-in-between" : "";
+            let isMultipleWorkshops = todayworkshops.length > 1 ? "multiple-workshops" : "";
 
+            let classNames = `${isToday} ${isWorkshopInBetween} ${isMultipleWorkshops}`.trim();
+            return classNames;
+        };
 
-    const getclassNames = (i) => {
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth()
-            && currYear === new Date().getFullYear() ? "active" : "";
-        const formattedDay = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`; //YYYY-MM-DD
-        let todayworkshops = getWorkshopByDate(formattedDay)
-        //let isWorkshopStart = workshopStarts.includes(formattedDay) ? "workshop-start" : "";
-        //let isWorkshopEnd = workshopEnds.includes(formattedDay) ? "workshop-end" : "";
-        let isWorkshopInBetween = todayworkshops.length > 0 ? "workshop-in-between" : "";
-        let isMultipleWorkshops = todayworkshops.length > 1 ? "multiple-workshops" : "";
-        //let isPreWorkshop = preWorkshopDates.includes(formattedDay) ? "pre-workshop-day" : "";
+        for (let i = firstDayofMonth; i > 0; i--) {
+            liTag.push(
+                <li className="inactive" key={`prev${i}`}>
+                    {lastDateofLastMonth - i + 1}
+                </li>
+            );
+        }
 
-        let classNames = `${isToday} ${isWorkshopInBetween} ${isMultipleWorkshops}`.trim();
-        return classNames
-    }
-
-    //adding days to calendar
-    for (let i = firstDayofMonth; i > 0; i--) {
-        liTag.push(
-        <li className="inactive" key={`prev${i}`}>
-            {lastDateofLastMonth - i + 1}
-        </li>
-        );
-    }
-
-    for (let i = 1; i <= lastDateofMonth; i++) {
-        let classNames = getclassNames(i);
-        //workshop details is an array of objects
-        let currentdate = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`
-        let workshopDetails = getWorkshopByDate(currentdate)
-        liTag.push(
-            <li className={classNames} key={`curr${i}`}>
-                <button className='day-number' onClick={() => ondateClick(currentdate)}>{i}</button> 
-                <div className='calendar-details'>
-                    {workshopDetails.map((workshop, index) =>
-                    <div>
-                        <div className='details' key={workshop.id || index}>
-                            {/*<p>Workshop: {workshop.workshop_data.workshop_name}</p>*/}
-                            <p>Request ID: {workshop.request_id}</p>
-                            <p>Client: {workshop.company}</p>
-                            <p>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</p>
+        for (let i = 1; i <= lastDateofMonth; i++) {
+            let classNames = getclassNames(i);
+            let currentdate = `${currYear}-${("0" + (currMonth + 1)).slice(-2)}-${("0" + i).slice(-2)}`;
+            let workshopDetails = getWorkshopByDate(currentdate);
+            liTag.push(
+                <li className={classNames} key={`curr${i}`}>
+                    <button className='day-number' onClick={() => ondateClick(currentdate)}>{i}</button> 
+                    <div className='calendar-details'>
+                        {workshopDetails.map((workshop, index) =>
+                        <div key={workshop.id || index}>
+                            <div className='details'>
+                                <p>Request ID: {workshop.request_id}</p>
+                                <p>Client: {workshop.company}</p>
+                                <p>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</p>
+                            </div>
                         </div>
+                        )}
                     </div>
-                    )}
-                </div>
-            </li>
-        );
-    }
+                </li>
+            );
+        }
 
-    for (let i = lastDayofMonth; i < 6; i++) {
-        liTag.push(<li className="inactive" key={`next${i}`}>{i - lastDayofMonth + 1}</li>);
-    }
+        for (let i = lastDayofMonth; i < 6; i++) {
+            liTag.push(<li className="inactive" key={`next${i}`}>{i - lastDayofMonth + 1}</li>);
+        }
 
-    setDays(liTag);
+        setDays(liTag);
     };
 
     const handlePrevNext = (direction) => {
@@ -152,51 +128,48 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
         }
     };
 
-
     return (
-    <div data-cy="colour-calendar-popup" className="colour-calendar-popup">
-        <header>
-            <div className="icons"> 
-                {/* <span id="prev" className="material-symbols-rounded" onClick={() => handlePrevNext("prev")}>chevron_left</span>
-                <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>chevron_right</span> */}
-                <span id="prev" className="arrow-left">
-                    <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
-                        <box-icon name='chevron-left'></box-icon>
-                    </div>
-                </span>
-                <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
-                <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
-                    <div className="fa-solid fa-chevron-right">
-                        <box-icon name='chevron-right'></box-icon>
-                    </div>
-                </span>
+        <div data-cy="colour-calendar-popup" className="colour-calendar-popup">
+            <header>
+                <div className="icons">
+                    <span id="prev" className="arrow-left">
+                        <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
+                            <box-icon name='chevron-left'></box-icon>
+                        </div>
+                    </span>
+                    <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
+                    <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
+                        <div className="fa-solid fa-chevron-right">
+                            <box-icon name='chevron-right'></box-icon>
+                        </div>
+                    </span>
+                </div>
+            </header>
+            <div className="calendar-container">
+                <div className="calendar">
+                    <ul className="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul className="days">{days}</ul>
+                </div>
             </div>
-        </header>
-        <div className="calendar-container">       
-            <div className="calendar">
-                <ul className="weeks">
-                    <li>Sun</li>
-                    <li>Mon</li>
-                    <li>Tue</li>
-                    <li>Wed</li>
-                    <li>Thu</li>
-                    <li>Fri</li>
-                    <li>Sat</li>
-                </ul>
-                <ul className="days">{days}</ul>
+            <div className="calendar-legend">
+                <div className="legend-item">
+                    <span className="legend-color workshop-in-between"></span>
+                    <span className="legend-text">One Workshop</span>
+                </div>
+                <div className="legend-item">
+                    <span className="legend-color multiple-workshops"></span>
+                    <span className="legend-text">Multiple Workshops</span>
+                </div>
             </div>
         </div>
-        <div className="calendar-legend">
-                    <div className="legend-item">
-                        <span className="legend-color workshop-in-between"></span>
-                        <span className="legend-text">One Workshop</span>
-                    </div>
-                    <div className="legend-item">
-                        <span className="legend-color multiple-workshops"></span>
-                        <span className="legend-text">Multiple Workshops</span>
-                    </div>
-                </div>  
-    </div>
     );
 };
 

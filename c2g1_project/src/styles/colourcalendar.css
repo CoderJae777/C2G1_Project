@@ -90,9 +90,9 @@ header .current-date {
 }
 
 .calendar .days {
-  cursor: default;
-  margin-bottom: 0px;
-  position: relative;
+  cursor: default !important;
+  margin-bottom: 0px !important;
+  position: relative !important;
 }
 
 .calendar li {

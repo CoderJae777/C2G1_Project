@@ -32,7 +32,8 @@
   flex: 0 0 60%;
 }
 
-.admin-workshop-request-page-title {
+.admin-workshop-request-page-title-left,
+.admin-workshop-request-page-title-right {
   width: 97%;
   display: flex;
   justify-content: space-between;
@@ -40,6 +41,14 @@
   padding: 0 20px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.admin-workshop-request-page-title-right {
+  padding-top: 12px;
+}
+
+.admin-workshop-request-page-title-right h2 {
+  padding-bottom: 10px;
 }
 
 /* .admin-workshop-request-page-title h2 {
@@ -122,6 +131,8 @@
 
 /* CSS FOR ADMIN WORKSHOP REQUEST BUTTONS ------------------------------------------------------------------------- */
 
+.view-p-ws-calendar-button,
+.view-ar-ws-calendar-button,
 .ar-view-workshop-details-button,
 .view-workshop-details-button,
 .approve-workshop-request-button,
@@ -162,6 +173,8 @@
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+.view-p-ws-calendar-button:hover,
+.view-ar-ws-calendar-button:hover,
 .ar-view-workshop-details-button:hover,
 .allocate-trainer-to-workshop-button:hover,
 .view-workshop-details-button:hover {
