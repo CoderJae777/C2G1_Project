@@ -187,7 +187,7 @@ const TrainerHomePage = () => {
       <div className="top-panel">
         <TopLeftSideBar />
       </div>
-      <div className="left-column">
+      <div className="trainer-left-column">
         <div className="trainer-home-page-title"></div>
 
         {/* Workshop summary starts here */}
@@ -251,48 +251,9 @@ const TrainerHomePage = () => {
               )}
           </div>
         </div>
-        {/* Workshop summary ends here */}
-        <div className="breakdown-of-attendance-div">
-          <h5>Breakdown of Attendance in 2024</h5>
-          <AreaChart
-            width={500}
-            height={200}
-            data={workshop_data}
-            margin={{ top: 10, right: 80, left: 0, bottom: 0 }}
-          >
-            <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#0083ca" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#0083ca" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Tooltip />
-            <Area
-              type="monotone"
-              dataKey="Expected_Attendance_2024_Per_Month"
-              stroke="#82ca9d"
-              fillOpacity={1}
-              fill="url(#colorPv)"
-            />
-            <Area
-              type="monotone"
-              dataKey="Actual_Attendance_2024_Per_Month"
-              stroke="#0083ca"
-              fillOpacity={1}
-              fill="url(#colorUv)"
-            />
-          </AreaChart>
-        </div>
       </div>
 
-      <div className="right-column">
+      <div className="trainer-right-column">
         <div className="admin-graphs">
           <h1>Update Work Hours</h1>
           <select

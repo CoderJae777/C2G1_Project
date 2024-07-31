@@ -54,7 +54,7 @@ const TrainerWorkshopPage = () => {
       
       console.log("workshopdata")
       console.log(workshopdata)
-    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata.filter(workshop =>
+    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
         !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
     
     
@@ -71,7 +71,8 @@ const TrainerWorkshopPage = () => {
 
   const getTrainersOfWorkshop = (workshop) => {
     if (!workshop) return [];
-
+    console.log("getTrainersOfWorkshop")
+    console.log(workshop)
     const trainerNames = workshop.trainers
       .map((trainerId) => {
         const trainer = trainerdata.find(
@@ -107,6 +108,8 @@ const TrainerWorkshopPage = () => {
 
     const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
     .filter(workshop => {
+      console.log("test")
+        console.log(workshop);
         let trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
         let request_id = workshop.request_id ? workshop.request_id.toLowerCase() : ""
         let workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
