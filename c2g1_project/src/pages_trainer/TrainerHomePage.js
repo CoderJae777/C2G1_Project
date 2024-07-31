@@ -226,7 +226,7 @@ const TrainerHomePage = () => {
             <h4>Workshop Utilisation Hours</h4>
             {WorkshopUtilisations.data.trainer_workshops &&
               WorkshopUtilisations.data.trainer_workshops.length !== 0 && (
-                <div className="scrollable-list">
+                <div className="utilisation-scrollable-list">
                   <ul>
                     {WorkshopUtilisations.data.trainer_workshops.map(
                       (util, index) => (
@@ -237,7 +237,10 @@ const TrainerHomePage = () => {
                           >
                             <span>{util.request_id}</span>
                             <span>
-                              Workshop Type: {util.workshop_data.workshop_name}
+                              {util.company}
+                            </span>
+                            <span>
+                              {util.workshop_data.workshop_name}
                             </span>
                           </button>
                         </div>

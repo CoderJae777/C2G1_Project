@@ -35,6 +35,9 @@ const AdminWorkshopRequestPage = () => {
     true
   );
 
+  console.log("nonSubmitted")
+  console.log(nonSubmitted.data)
+
   const verification = useAxiosGet(config.base_url + endpoints.verify);
 
   useEffect(() => {

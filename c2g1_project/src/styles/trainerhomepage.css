@@ -284,7 +284,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding: 0px;
   align-self: center;
 }
 
@@ -331,13 +331,13 @@ body {
 
 .workshop_detail_panel {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
   justify-content: space-between;
   border-radius: 5px;
   border-width: 0px;
   background-color: #80c7fb;
-  height: 60px;
+  height: 75px;
   margin-top: 5px;
   width: 100%;
   padding: 0px;
@@ -361,6 +361,7 @@ body {
   display: none;
 }
 
+
 .workshop-stats-title {
   padding: 10px;
 }
@@ -373,6 +374,27 @@ body {
   margin-right: 10px;
 }
 
-.filter input {
+.filter input,
+.filter select {
   margin-right: 20px;
+  border-width: 3px;
+  border-radius: 10px;
+  border-color: #80C7FB;
+  margin: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.work_hours_num_input,
+.work_hours_desc_area{
+  border-width: 3px;
+  border-radius: 10px;
+  border-color: #80C7FB;
+  margin: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.utilisation-scrollable-list{
+  margin-right: 25px;
 }

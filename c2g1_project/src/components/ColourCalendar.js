@@ -11,6 +11,8 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
     
     console.log("workshopdata")
     console.log(workshopdata)
+    console.log("trainerdata")
+    console.log(trainerdata)
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
@@ -49,7 +51,8 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
 
       const getTrainersOfWorkshop = (workshop) => {
         if (!workshop) return [];
-
+        console.log("test")
+        console.log(workshop)
         const trainerNames = workshop.trainers.map(trainerId => {
             const trainer = trainerdata.find(trainer => trainer._id === trainerId);
             return trainer ? trainer.fullname : null;
@@ -106,11 +109,14 @@ const ColourCalendar = ({workshopdata, ondateClick, trainerdata}) => {
                 <button className='day-number' onClick={() => ondateClick(currentdate)}>{i}</button> 
                 <div className='calendar-details'>
                     {workshopDetails.map((workshop, index) =>
+                    <div>
                         <div className='details' key={workshop.id || index}>
                             {/*<p>Workshop: {workshop.workshop_data.workshop_name}</p>*/}
+                            <p>Request ID: {workshop.request_id}</p>
                             <p>Client: {workshop.company}</p>
                             <p>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</p>
                         </div>
+                    </div>
                     )}
                 </div>
             </li>
