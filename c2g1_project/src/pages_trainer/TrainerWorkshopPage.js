@@ -51,9 +51,7 @@ const TrainerWorkshopPage = () => {
         [],
         true  
       );
-      
-      console.log("workshopdata")
-      console.log(workshopdata)
+      console.log("HERE", trainerdata)
     const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
         !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
     
@@ -71,8 +69,8 @@ const TrainerWorkshopPage = () => {
 
   const getTrainersOfWorkshop = (workshop) => {
     if (!workshop) return [];
-    console.log("getTrainersOfWorkshop")
-    console.log(workshop)
+    // console.log("getTrainersOfWorkshop")
+    // console.log(workshop)
     const trainerNames = workshop.trainers
       .map((trainerId) => {
         const trainer = trainerdata.find(
@@ -87,6 +85,8 @@ const TrainerWorkshopPage = () => {
     return trainerNames.join(", ").concat(",");
   };
 
+  // console.log(trainerdata)
+
   const [sortKey, setSortKey] = useState("workshop_name");
   const [filterText, setFilterText] = useState("");
   const handleSortChange = (e) => {
@@ -96,20 +96,20 @@ const TrainerWorkshopPage = () => {
     setFilterText(e.target.value);
   };
 
-    console.log("nonAllocatedWorkshops")
-    console.log(nonAllocatedWorkshops)
+    // console.log("nonAllocatedWorkshops")
+    // console.log(nonAllocatedWorkshops)
 
-    console.log("Allocated workshops")
-    console.log(allocatedWorkshops.data.trainer_workshops)
+    // console.log("Allocated workshops")
+    // console.log(allocatedWorkshops.data.trainer_workshops)
 
     const completeworkshops = allocatedWorkshops.data.trainer_workshops ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops) : [];
-    console.log("completeworkshops")
-    console.log(completeworkshops)
+    // console.log("completeworkshops")
+    // console.log(completeworkshops)
 
     const filteredAndSortedWorkshops = completeworkshops ? completeworkshops
     .filter(workshop => {
-      console.log("test")
-        console.log(workshop);
+      // console.log("test")
+      //   console.log(workshop);
         let trainerNames = getTrainersOfWorkshop(workshop).toLowerCase();
         let request_id = workshop.request_id ? workshop.request_id.toLowerCase() : ""
         let workshopName = typeof workshop.workshop_data === 'string' ? "" : workshop.workshop_data.workshop_name.toLowerCase();
@@ -138,8 +138,8 @@ const TrainerWorkshopPage = () => {
         return 0;
     }) : [];
 
-  console.log("filtered and sorted");
-  console.log(filteredAndSortedWorkshops);
+  // console.log("filtered and sorted");
+  // console.log(filteredAndSortedWorkshops);
 
   const [trainergraphsTitle, setTrainerGraphsTitle] = useState(
     "View Trainer statistics"

@@ -31,15 +31,16 @@ const ColourCalendar = ({ workshopdata, ondateClick, trainerdata }) => {
 
     const getTrainersOfWorkshop = (workshop) => {
         if (!workshop || !trainerdata) return '';
-        console.log('Processing workshop:', workshop);
-        console.log('Trainer data:', trainerdata);
+        // console.log('Processing workshop:', workshop);
+        // console.log('Trainer data:', trainerdata);
     
         const trainerNames = workshop.trainers.map(trainerObj => {
-            const trainerId = trainerObj._id;   
-            console.log('Looking for trainer with ID:', trainerId); // string
-            const trainer = trainerdata.find(trainer => trainer._id == trainerId);
-            console.log('Trainer found:', trainer); // object
-            return trainer ? trainer.fullname : null;
+            // const trainerId = trainerObj._id;   
+            // console.log('Looking for trainer with ID:', trainerId); // string
+            // const trainer = trainerdata.find(trainer => trainer._id == trainerId);
+            // console.log('Trainer found:', trainer); // object
+            // return trainer ? trainer.fullname : null;
+            return trainerObj ? trainerObj.fullname : null;
         }).filter(name => name);
     
         return trainerNames.join(', ');
