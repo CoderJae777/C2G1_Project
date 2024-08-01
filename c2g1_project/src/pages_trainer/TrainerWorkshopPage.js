@@ -52,7 +52,7 @@ const TrainerWorkshopPage = () => {
         true  
       );
       console.log("HERE", trainerdata)
-    const nonAllocatedWorkshops = allocatedWorkshops.data.trainer_workshops && workshopdata && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
+    const nonAllocatedWorkshops = workshopdata && allocatedWorkshops.data.trainer_workshops && workshopdata.length > 0 ? workshopdata[0].filter(workshop =>
         !allocatedWorkshops.data.trainer_workshops.some(allocatedworkshop => allocatedworkshop._id === workshop._id)) : [];
     
     
@@ -102,7 +102,7 @@ const TrainerWorkshopPage = () => {
     // console.log("Allocated workshops")
     // console.log(allocatedWorkshops.data.trainer_workshops)
 
-    const completeworkshops = allocatedWorkshops.data.trainer_workshops ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops) : [];
+    const completeworkshops = allocatedWorkshops.data && allocatedWorkshops.data.trainer_workshops ? nonAllocatedWorkshops.concat(allocatedWorkshops.data.trainer_workshops) : [];
     // console.log("completeworkshops")
     // console.log(completeworkshops)
 
@@ -277,7 +277,7 @@ const TrainerWorkshopPage = () => {
                         <ul className ="scrollable_list">
                                 {allocatedWorkshops.data.trainer_workshops && filteredAndSortedWorkshops.map((workshop, index) => (   
                                     <div>   
-                                        <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop.id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
+                                        <button className={`workshop_detail_panel ${isunAllocatedWorkshop(workshop)}`}  key={workshop._id} onClick={() => handleOpenWorkshopAndClientDetails(workshop)}> 
                                             <span>Assigned Trainers: {getTrainersOfWorkshop(workshop)}</span>
                                             <span>Start Date: {convertDate(workshop.start_date)}</span>
                                             <span>End Date: {convertDate(workshop.end_date)}</span>

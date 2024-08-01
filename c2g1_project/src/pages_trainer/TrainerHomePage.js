@@ -257,6 +257,7 @@ const TrainerHomePage = () => {
         <div className="admin-graphs">
           <h1>Update Work Hours</h1>
           <select
+            data-testid="workshop-select"
             id="request-workshop-sel"
             value={workshop}
             onChange={(e) => {
@@ -301,6 +302,7 @@ const TrainerHomePage = () => {
             <div className="work_hours_desc">
               <h5>Utilisation Details</h5>
               <textarea
+                data-testid="detail-input"
                 value={utilisation1}
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation1(e.target.value)}
@@ -321,6 +323,7 @@ const TrainerHomePage = () => {
               <h5>Utilisation Details</h5>
               <textarea
                 value={utilisation2}
+                data-testid="detail-input"
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation2(e.target.value)}
               ></textarea>
@@ -340,6 +343,7 @@ const TrainerHomePage = () => {
               <h5>Utilisation Details</h5>
               <textarea
                 value={utilisation3}
+                data-testid="detail-input"
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation3(e.target.value)}
               ></textarea>
@@ -360,6 +364,7 @@ const TrainerHomePage = () => {
               <textarea
               
                 value={utilisation4}
+                data-testid="detail-input"
                 className="work_hours_desc_area"
                 onChange={(e) => setUtilisation4(e.target.value)}
               ></textarea>
