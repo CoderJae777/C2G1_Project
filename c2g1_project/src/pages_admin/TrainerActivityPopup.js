@@ -99,6 +99,7 @@ const TrainerActivityPopup = ({
         <p>Trainer ID: {username}</p>
         <div className="select-menu-container">
           <div
+            data-cy="trainer-activity-select-button"
             className={`select-btn ${isOpen ? "open" : ""}`}
             onClick={toggleDropdown}
           >
@@ -115,6 +116,7 @@ const TrainerActivityPopup = ({
             <ul className="list-items">
               {["Active", "Inactive"].map((trainer, index) => (
                 <li
+                  data-cy="trainer-activity-option"
                   key={index}
                   className={`item ${selectedItem === trainer ? "checked" : ""}`}
                   onClick={() => handleItemClick(trainer)}

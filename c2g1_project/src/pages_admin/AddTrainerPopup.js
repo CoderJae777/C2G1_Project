@@ -96,6 +96,7 @@ const AddTrainerPopup = ({ onClose }) => {
         <h2>Add Trainer</h2>
         <p>Please fill in the details for adding a new trainer.</p>
         <input
+          data-cy="trainer-name-input"
           className="trainer-name-input"
           type="text"
           value={trainerName}
@@ -103,6 +104,7 @@ const AddTrainerPopup = ({ onClose }) => {
           placeholder="Enter trainer name"
         />
         <input
+          data-cy="trainer-id-input"
           className="trainer-id-input"
           type="text"
           value={trainerId}
@@ -110,6 +112,7 @@ const AddTrainerPopup = ({ onClose }) => {
           placeholder="Enter trainer ID"
         />
         <input
+          data-cy="trainer-email-input"
           className="trainer-email-input"
           type="text"
           value={trainerEmail}
@@ -117,6 +120,7 @@ const AddTrainerPopup = ({ onClose }) => {
           placeholder="Enter trainer email"
         />
         <input
+          data-cy="trainer-pw-input"
           className="trainer-pw-input"
           type="text"
           value={trainerPassword}
@@ -125,6 +129,7 @@ const AddTrainerPopup = ({ onClose }) => {
         />
         <div className="select-menu-container">
           <div
+            data-cy="select-role-btn"
             className={`select-btn ${isOpen ? "open" : ""}`}
             onClick={toggleDropdown}
           >
@@ -141,6 +146,7 @@ const AddTrainerPopup = ({ onClose }) => {
             <ul className="list-items">
               {["Training Lead", "Training Assistant"].map((role, index) => (
                 <li
+                  data-cy="role-option"
                   key={index}
                   className={`item ${selectedRole === role ? "checked" : ""}`}
                   onClick={() => handleRoleSelect(role)}
@@ -157,7 +163,7 @@ const AddTrainerPopup = ({ onClose }) => {
           )}
         </div>
         <div className="popup-buttons">
-          <button className="submit-button" type="button" onClick={handleSubmit}>
+          <button data-cy="add-trainer-submit-button" className="submit-button" type="button" onClick={handleSubmit}>
             Submit
           </button>
           <button data-cy="add-trainer-cancel-button" className="cancel-button" type="button" onClick={onClose}>
