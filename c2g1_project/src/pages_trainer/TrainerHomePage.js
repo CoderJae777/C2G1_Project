@@ -371,7 +371,7 @@ const TrainerHomePage = () => {
               className="update-hrs-button"
               onClick={handleSubmit}
             >
-              Submit Request
+              Submit Utilisation
             </button>
           </div>
         </div>
