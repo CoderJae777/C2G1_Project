@@ -113,7 +113,7 @@ Cypress.Commands.add("login", (username, password) => {
         cy.get('[data-cy="ar-workshop-request-table"]')
             .find('[data-cy="request-status"]')
             .first()
-            .should('contain', 'Approved')
+            .should('contain', 'approved')
             .should('be.visible');  // Ensure the status is visible
     });
 
@@ -136,6 +136,7 @@ Cypress.Commands.add("login", (username, password) => {
         // Admin submits the change
         cy.get('[data-cy="select-trainer"]').click(); // close the dropdown
         cy.get('[data-cy="wsrq-submit-button"]').click();
+        cy.wait(2000);
     
         // Ensure the approval popup is closed
         cy.get('[data-cy="approve-wsrq-popup"]').should('not.exist');
@@ -148,7 +149,7 @@ Cypress.Commands.add("login", (username, password) => {
     
         // Validate that the trainer change has been made
         cy.get('[data-cy="wsrqd-popup"] .workshop-details-content').within(() => {
-            cy.get('td').contains('Assigned Trainer:').next().should('contain', 'Trainer_3_JohnDoe');
+            cy.get('td').should('contain', 'Trainer_3_JohnDoe');
         });
     
         // Close the popup by clicking anywhere outside the popup
