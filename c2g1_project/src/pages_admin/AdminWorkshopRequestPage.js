@@ -163,7 +163,7 @@ const AdminWorkshopRequestPage = () => {
         <div className="bottom-panel-left-side">
           <div className="admin-workshop-request-page-title-left">
             <h2>Approved/Rejected Workshop Requests</h2>
-            <button className="view-ar-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
+            <button data-cy="view-calendar-button" className="view-ar-ws-calendar-button" onClick={handleOpenCalendarPopup}>View Calendar</button>
           </div>
           <div className="manage-workshop-request-panel-outer">
             <div className="manage-workshop-request-panel">
@@ -184,7 +184,7 @@ const AdminWorkshopRequestPage = () => {
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
                       <td>{request.request_id}</td>
-                      <td className={request.status === "approved" ? "status-approved" : request.status === "rejected" ? "status-rejected" : ""}>
+                      <td data-cy="request-status" className={request.status === "approved" ? "status-approved" : request.status === "rejected" ? "status-rejected" : ""}>
                         {request.status}
                       </td>
                       <td>

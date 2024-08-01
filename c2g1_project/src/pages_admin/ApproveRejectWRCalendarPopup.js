@@ -66,6 +66,7 @@ const ApproveRejectWRCalendarPopup = ({ approvedWorkshops, onClose }) => {
       <div className="popup-overlay popup-open"></div>
       <div
         ref={popupRef}
+        data-cy="ar-wsrq-calendar-popup"
         className="ar-wsrq-calendar-popup open-ar-wsrq-calendar-popup"
       >
         <h2>Approved Workshop Requests</h2>
