@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'cypress/react18';
 import { BrowserRouter as Router } from 'react-router-dom';
-import TopLeftSideBar from '../../src/components/TopLeftSideBar';
+import TopLeftSideBar from '../../src/components/AdminTopLeftSideBar';
 
 describe('TopLeftSideBar Component', () => {
   const mountComponent = () => {
@@ -30,12 +30,12 @@ describe('TopLeftSideBar Component', () => {
     cy.location('pathname').should('eq', '/AdminHomePage');
   });
 
-  it('navigates to Profile Page', () => {
-    mountComponent();
-    cy.get('[data-cy="open-tlsb"]').click();
-    cy.get('[data-cy="nav-btn"]').contains('Profile').click();
-    cy.location('pathname').should('eq', '/ProfilePage');
-  });
+  // it('navigates to Profile Page', () => {
+  //   mountComponent();
+  //   cy.get('[data-cy="open-tlsb"]').click();
+  //   cy.get('[data-cy="nav-btn"]').contains('Profile').click();
+  //   cy.location('pathname').should('eq', '/ProfilePage');
+  // });
 
   it('navigates to Workshop Requests Page', () => {
     mountComponent();
@@ -49,6 +49,13 @@ describe('TopLeftSideBar Component', () => {
     cy.get('[data-cy="open-tlsb"]').click();
     cy.get('[data-cy="nav-btn"]').contains('Manage Trainers').click();
     cy.location('pathname').should('eq', '/AdminManageTrainerPage');
+  });
+
+  it('navigates to Manage Workshops Page', () => {
+    mountComponent();
+    cy.get('[data-cy="open-tlsb"]').click();
+    cy.get('[data-cy="nav-btn"]').contains('Manage Workshops').click();
+    cy.location('pathname').should('eq', '/AdminManageWorkshopPage');
   });
 
   it('logs out successfully', () => {

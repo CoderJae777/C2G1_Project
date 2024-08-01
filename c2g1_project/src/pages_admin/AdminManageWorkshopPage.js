@@ -50,12 +50,13 @@ const AdminManageWorkshopPage = () => {
                     {/* Replace with actual image if available, or use a placeholder */}
                     {/* <img src={`path/to/images/ws${workshop.workshop_ID}.png`} alt={workshop.workshop_name} /> */}
                   </div>
-                  <h4>{workshop.workshop_name}</h4>
-                  <h5>WSID: {workshop.workshop_ID}</h5>
-                  <h6>Type: {workshop.workshop_type}</h6>
-                  <h6>{workshop.workshop_details}</h6>
-                  <h6>{workshop.availability}</h6>
+                  <h4 data-cy="ws-name">{workshop.workshop_name}</h4>
+                  <h5 data-cy="ws-id">WSID: {workshop.workshop_ID}</h5>
+                  <h6 data-cy="ws-type">Type: {workshop.workshop_type}</h6>
+                  <h6 data-cy="ws-details">{workshop.workshop_details}</h6>
+                  <h6 data-cy="ws-avail">{workshop.availability}</h6>
                   <button
+                    data-cy="view-wsd-button"
                     className="edit-workshop-details-button"
                     onClick={() =>
                       handleOpenEditWorkshopDetailsPopup(workshop._id)
