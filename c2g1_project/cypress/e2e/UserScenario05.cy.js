@@ -20,7 +20,7 @@ Cypress.Commands.add("login", (username, password) => {
 describe("Trainer Home Page Tests", () => {
   before(() => {
     // User starts at home page
-    cy.visit("/").wait(3000);
+    cy.visit("/").wait(1500);
     cy.url().should("include", "/");
 
     // User navigates to Login Page via press book ws button
@@ -48,22 +48,22 @@ describe("Trainer Home Page Tests", () => {
   });
 
   it("Trainer logs in successfully and Trainer Home Page rendered", () => {
-    // Ensure "View Available Workshops" dropdown is visible and select an option
+    // Ensure "View Available Workshops" dropdown is visible and options are loaded
     cy.url().should("include", "/TrainerHomePage");
     cy.get("select#request-workshop-sel").should("be.visible");
-
-    // Select the first workshop in the dropdown
-    cy.get("select#request-workshop-sel option")
-      .eq(2)
-      .then((option) => {
-        const workshopValue = option.val();
-        cy.get("select#request-workshop-sel")
-          .select(workshopValue)
-          .should("have.value", workshopValue);
-      });
   });
 
   it("Form inputs work and submit button triggers submission", () => {
+    // Wait for the dropdown options to be populated
+    cy.get("select#request-workshop-sel option").should(
+      "have.length.greaterThan",
+      1
+    );
+
+    // Select the first actual workshop option (not the placeholder)
+    cy.get("select#request-workshop-sel")
+      .select(1)
+      .should("not.have.value", "Workshop");
     // Set the form inputs with specified values
     cy.get(".work_hours_row:nth-of-type(1) .work_hours_num_input")
       .clear()
@@ -103,17 +103,23 @@ describe("Trainer Home Page Tests", () => {
   });
 
   it("Checks popup and data matches form inputs", () => {
-    // Click on a specific workshop in the Utilisation list
     cy.get(".utilisation-scrollable-list button").first().click();
 
-    // Verify that the popup is displayed and contains the correct data
-    cy.get(".utilisation-details-popup").should("be.visible");
-    cy.get(".utilisation-details-popup .util-hours").should("contain", "10");
-    cy.get(".utilisation-details-popup .utilisation-details").should(
-      "contain",
-      "Preparing the presentation slides"
+    cy.get('[data-cy="trwsuhd-popup"]').should("be.visible");
+    cy.get('[data-cy="trwsuhd-popup"] .details-table td').contains(
+      "Workshop ID:"
     );
+    cy.get('[data-cy="trwsuhd-popup"] .details-table td').contains(
+      "Utilisation Hours 1:"
+    );
+    cy.get('[data-cy="trwsuhd-popup"] .details-table td').contains("10");
+    cy.get('[data-cy="trwsuhd-popup"] .details-table td').contains(
+      "Preparing the presentation slides"
+    ).wait(3000);
 
-    // Add additional checks for other hours and details if necessary
+    // Additional checks for other utilisation details can be added here
+
+    cy.get('[data-cy="trwsuhd-close-button"]').click();
+    cy.get('[data-cy="trwsuhd-popup"]').should("not.exist");
   });
 });

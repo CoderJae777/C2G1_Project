@@ -20,7 +20,7 @@ Cypress.Commands.add("login", (username, password) => {
 describe("User Scenario 01 Demo", () => {
   before(() => {
     // User starts at home page
-    cy.visit("/").wait(3000);
+    cy.visit("/").wait(1500);
     cy.url().should("include", "/");
 
     // Client browse the home page
@@ -52,35 +52,35 @@ describe("User Scenario 01 Demo", () => {
 
   it("Testing Form inputs, Submit Request Button and Summary Popup", () => {
     // Ensure "View Available Workshops" dropdown is visible and select an option
-    cy.get(".view-avail-ws-select").should("be.visible").select("0").wait(1500);
+    cy.get(".view-avail-ws-select").should("be.visible").select("0").wait(300);
 
     // Auto populates the workshop
-    cy.get(".popwsreqbut").should("be.visible").wait(1500).click().wait(1500);
+    cy.get(".popwsreqbut").should("be.visible").wait(500).click().wait(500);
 
     // Fill out the form
     cy.get("form").within(() => {
       cy.get('input[placeholder="Role at Company"]')
         .type("President")
-        .wait(1000);
-      cy.get('input[placeholder="Your Name"]').type("John Doe").wait(1000);
+        .wait(300);
+      cy.get('input[placeholder="Your Name"]').type("John Doe").wait(300);
       cy.get('input[placeholder="Your Email"]')
         .type("john.doe@gmail.com")
-        .wait(1000);
-      cy.get('input[placeholder="Phone Number"]').type("1234567890").wait(1000);
+        .wait(300);
+      cy.get('input[placeholder="Phone Number"]').type("1234567890").wait(300);
       cy.get('input[placeholder="Your Company"]')
         .type("Doe Enterprises")
-        .wait(1000);
+        .wait(300);
       cy.get('select[title="Select the number of participants"]')
         .should("be.visible")
         .select("10 - 20");
 
       cy.get('input[placeholder="Deal Size Potential in USD"]')
         .type("1000")
-        .wait(1000);
-      cy.get('input[placeholder="Country"]').type("USA").wait(1000);
-      cy.get('input[placeholder="Venue"]').type("Central Hall").wait(1000);
+        .wait(300);
+      cy.get('input[placeholder="Country"]').type("USA").wait(300);
+      cy.get('input[placeholder="Venue"]').type("Central Hall").wait(300);
 
-      cy.get('input[placeholder="Workshop Start Date"]').click().wait(500);
+      cy.get('input[placeholder="Workshop Start Date"]').click().wait(300);
       cy.get(".react-datepicker").should("be.visible");
       cy.get(
         ".react-datepicker__day--today:not(.react-datepicker__day--disabled)"
@@ -88,7 +88,7 @@ describe("User Scenario 01 Demo", () => {
         .first()
         .click();
 
-      cy.get('input[placeholder="Workshop End Date"]').click().wait(500);
+      cy.get('input[placeholder="Workshop End Date"]').click().wait(300);
       cy.get(".react-datepicker").should("be.visible");
       cy.get(
         ".react-datepicker__day--today:not(.react-datepicker__day--disabled)"
@@ -151,24 +151,104 @@ describe("User Scenario 01 Demo", () => {
       cy.get("button").contains("Confirm Request").click();
     });
 
-    cy.get(".summary-modal").should("not.exist").wait(3000);
+    cy.get(".summary-modal").should("not.exist").wait(1500);
   });
 
-  it("Testing Workshop Request Status Visibility and Functionality", () => {
-    // Ensure that the "View Request Status" section is visible
-    cy.get(".view-req-st")
-      .should("be.visible")
-      .within(() => {
-        // Ensure that there are pending workshop requests
-        cy.get(".scrollable-list")
-          .children()
-          .should("have.length.greaterThan", 0);
+  it("Should open and verify contents of the Workshop Request Details Popup", () => {
+    // Check that the list of requests is visible and click on the first request
+    cy.get(".scrollable-list .workshop-detail-panel").first().click();
 
-        // Check for specific statuses and request IDs
-        cy.get(".workshop-detail-panel").each((panel) => {
-          cy.wrap(panel).should("contain.text", "submitted");
-          // Optionally check other statuses like "approved", "rejected", etc.
+    // Ensure the popup is visible with a custom timeout in case of delay
+    cy.get('[data-cy="clwsrqd-popup"]', { timeout: 10000 }).should(
+      "be.visible"
+    ).wait(2000);
+
+    // Verify the contents of the popup
+    cy.get('[data-cy="clwsrqd-popup"] .details-table').within(() => {
+      cy.get("tr")
+        .eq(0)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Workshop ID:");
+          cy.get("td").eq(1).should("have.text", "WR0001");
         });
-      });
+      cy.get("tr")
+        .eq(1)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Client Company:");
+          cy.get("td").eq(1).should("have.text", "Doe Enterprises");
+        });
+      cy.get("tr")
+        .eq(2)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Client Name:");
+          cy.get("td").eq(1).should("have.text", "John Doe");
+        });
+      cy.get("tr")
+        .eq(3)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Client Role:");
+          cy.get("td").eq(1).should("have.text", "President");
+        });
+      cy.get("tr")
+        .eq(4)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Client Email:");
+          cy.get("td").eq(1).should("have.text", "john.doe@gmail.com");
+        });
+      cy.get("tr")
+        .eq(5)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Client Phone Number:");
+          cy.get("td").eq(1).should("have.text", "1234567890");
+        });
+      cy.get("tr")
+        .eq(6)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Start Date:");
+          cy.get("td").eq(1).should("have.text", '2024-07-31T16:00:00.000Z'); // 01/08/2024
+        });
+      cy.get("tr")
+        .eq(7)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "End Date:");
+          cy.get("td").eq(1).should("have.text", "2024-08-01T16:00:00.000Z"); // 02/08/2024
+        });
+      cy.get("tr")
+        .eq(8)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Deal Size:");
+          cy.get("td").eq(1).should("have.text", "100000");
+        });
+      cy.get("tr")
+        .eq(9)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Country:");
+          cy.get("td").eq(1).should("have.text", "USA");
+        });
+      cy.get("tr")
+        .eq(10)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Venue:");
+          cy.get("td").eq(1).should("have.text", "Central Hall");
+        });
+      cy.get("tr")
+        .eq(11)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Attendees:");
+          cy.get("td").eq(1).should("have.text", "10-20");
+        });
+      cy.get("tr")
+        .eq(12)
+        .within(() => {
+          cy.get("td").eq(0).should("have.text", "Message:");
+          cy.get("td")
+            .eq(1)
+            .should("have.text", "Looking forward to the workshop!");
+        });
+    });
+
+    // Close the popup
+    cy.get('[data-cy="clwsrqd-close-button"]').click();
+    cy.get('[data-cy="clwsrqd-popup"]').should("not.exist");
   });
 });
