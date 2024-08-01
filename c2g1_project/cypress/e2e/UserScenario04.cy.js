@@ -98,5 +98,5 @@ Cypress.Commands.add("login", (username, password) => {
             cy.get('[data-cy="ws-avail"]').contains('Unavailable').should('exist');
         });
     });
-  });
+});
   

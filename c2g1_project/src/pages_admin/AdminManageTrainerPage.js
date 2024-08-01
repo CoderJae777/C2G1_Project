@@ -161,11 +161,12 @@ const handleCloseWorkshopAndClientDetails = () => {
         const trainer = data[i];
         rows.push(
           <tr key={i}>
-            <td className="trainer-info-table-td">{trainer.fullname}</td>
-            <td className="trainer-info-table-td">{trainer.trainer_role}</td>
-            <td className="trainer-info-table-td">{trainer.username}</td>
-            <td className="trainer-info-table-td action-column">
+            <td data-cy="trainer-name" className="trainer-info-table-td">{trainer.fullname}</td>
+            <td data-cy="trainer-role" className="trainer-info-table-td">{trainer.trainer_role}</td>
+            <td data-cy="trainer-username" className="trainer-info-table-td">{trainer.username}</td>
+            <td data-cy="trainer-avail" className="trainer-info-table-td action-column">
               <button
+                data-cy="trainer-schedule-button"
                 className="trainer-info-table-button"
                 onClick={() =>
                   handleOpenTrainerScheduleCalendar(
@@ -177,6 +178,7 @@ const handleCloseWorkshopAndClientDetails = () => {
                 View Schedule
               </button>
               <button
+                data-cy="trainer-details-button"
                 className="trainer-info-table-button"
                 onClick={() =>
                   handleOpenTrainerDetailsPopup(
@@ -276,6 +278,7 @@ const handleCloseWorkshopAndClientDetails = () => {
         <div className="manage-trainer-column">
           <div className="manage-trainer-title">
             <button
+              data-cy="add-trainer-button"
               className="add-trainer-button"
               onClick={handleOpenAddTrainerPopup}
             >

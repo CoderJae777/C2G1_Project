@@ -76,7 +76,7 @@ const EditTrainerDetailsPopup = ({ onClose, fullname, username, trainerId }) => 
                     <p>Trainer Name: {fullname}</p>
                     <p>Trainer ID: {username}</p>
                 <div className="select-menu-container">
-                    <div className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
+                    <div data-cy="select-trainer-role-button" className={`select-btn ${isOpen ? 'open' : ''}`} onClick={toggleDropdown}>
                         <span className="btn-text">{selectedItem ? selectedItem : 'Select Role'}</span>
                         <span className="arrow-dwn">
                             <div className="fa-solid fa-chevron-down">
@@ -88,6 +88,7 @@ const EditTrainerDetailsPopup = ({ onClose, fullname, username, trainerId }) => 
                         <ul className="list-items">
                             {['Training Lead', 'Training Assistant'].map((trainer, index) => (
                                 <li
+                                    data-cy="trainer-role-option"
                                     key={index}
                                     className={`item ${selectedItem === trainer ? 'checked' : ''}`}
                                     onClick={() => handleItemClick(trainer)}
@@ -111,7 +112,7 @@ const EditTrainerDetailsPopup = ({ onClose, fullname, username, trainerId }) => 
                     placeholder="Enter new password"
                 />
                 <div className="popup-buttons">
-                    <button className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
+                    <button data-cy="edit-trainer-details-submit-button" className="submit-button" type="button" onClick={handleSubmit}>Submit</button>
                     <button data-cy="edit-trainer-details-cancel-button" className="cancel-button" type="button" onClick={onClose}>Cancel</button>
                 </div>
             </div>
