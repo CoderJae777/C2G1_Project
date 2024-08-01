@@ -115,6 +115,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
       <div ref={popupRef} className="ws-details-popup open-ws-details-popup">
         <h2>Edit Details</h2>
         <input
+          data-cy="ws-name-input"
           className="new-ws-name-input"
           type="text"
           value={newWorkshopName}
@@ -122,15 +123,16 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
           placeholder="Enter new workshop name"
         />
         <input
+          data-cy="ws-id-input"
           className="new-ws-id-input"
           type="text"
-          
           value={newWorkshopID}
           onChange={handleWorkshopIDChange}
           placeholder="Enter new workshop ID"
         />
         <div className="select-menu-container">
           <div
+            data-cy="ws-type-select"
             className={`select-btn ${isOpen ? "open" : ""}`}
             onClick={toggleDropdown}
           >
@@ -151,6 +153,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
                 "Infrastructure and Demo",
               ].map((wstypes, index) => (
                 <li
+                  data-cy="ws-type-item"
                   key={index}
                   className={`item ${selectedItem === wstypes ? "checked" : ""}`}
                   onClick={() => handleItemClick(wstypes)}
@@ -171,7 +174,9 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
             className={`select-btn ${isOpen2 ? "open" : ""}`}
             onClick={toggleDropdown2}
           >
-            <span className="btn-text">
+            <span 
+              data-cy="ws-avail-select"
+              className="btn-text">
               {selectedItem2 ? selectedItem2 : "Select Availability"}
             </span>
             <span className="arrow-dwn-avail">
@@ -184,6 +189,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
             <ul className="list-items">
               {["Available", "Unavailable"].map((wsavail, index) => (
                 <li
+                  data-cy="ws-avail-item"
                   key={index}
                   className={`item ${selectedItem2 === wsavail ? "checked" : ""}`}
                   onClick={() => handleItemClick2(wsavail)}
@@ -206,7 +212,7 @@ const EditWorkshopDetailsPopup = ({ onClose, selectedId }) => {
           onChange={handleWorkshopDetailsChange}
         />
         <div className="popup-buttons">
-          <button className="submit-button" type="button" onClick={handleSubmit}>
+          <button data-cy="edit-ws-details-submit-btn" className="submit-button" type="button" onClick={handleSubmit}>
             Submit
           </button>
           <button className="cancel-button" type="button" onClick={onClose}>
