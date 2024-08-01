@@ -184,18 +184,14 @@ const AdminWorkshopRequestPage = () => {
                     <tr key={index} className="workshop-request-box">
                       <td>{request.workshop_data.workshop_name}</td>
                       <td>{request.request_id}</td>
-                      <td>{request.status}</td>
+                      <td className={request.status === "approved" ? "status-approved" : request.status === "rejected" ? "status-rejected" : ""}>
+                        {request.status}
+                      </td>
                       <td>
                         <div className="workshop-request-buttons">
                           <button
                             data-cy="view-wsd-button"
-                            className={`ar-view-workshop-details-button ${
-                              request.status === "rejected"
-                                ? "rejected"
-                                : request.status === "approved"
-                                ? "approved"
-                                : ""
-                            }`}
+                            className="view-workshop-details-button"
                             onClick={() => handleOpenDetailsPopup(request)}
                           >
                             View Details

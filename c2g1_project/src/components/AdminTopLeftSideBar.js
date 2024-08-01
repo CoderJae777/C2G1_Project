@@ -75,9 +75,9 @@ const AdminTopLeftSideBar = ({ hasNewRequests }) => {
             <span className="logo-name">Menu</span>
           </div>
           <div className="welcome">
-            <span data-cy="welcome" className="logo-name">
+            {/* <span data-cy="welcome" className="logo-name">
               Welcome Back, (insert username here)
-            </span>
+            </span> */}
           </div>
           <div className="date">
             <span className="logo-name">

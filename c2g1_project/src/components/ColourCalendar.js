@@ -30,21 +30,34 @@ const ColourCalendar = ({ workshopdata, ondateClick, trainerdata }) => {
     };
 
     const getTrainersOfWorkshop = (workshop) => {
-        if (!workshop || !trainerdata) return '';
+        if (!workshop || !trainerdata || workshop == []) return '';
         // console.log('Processing workshop:', workshop);
         // console.log('Trainer data:', trainerdata);
-    
-        const trainerNames = workshop.trainers.map(trainerObj => {
-            // const trainerId = trainerObj._id;   
-            // console.log('Looking for trainer with ID:', trainerId); // string
-            // const trainer = trainerdata.find(trainer => trainer._id == trainerId);
-            // console.log('Trainer found:', trainer); // object
-            // return trainer ? trainer.fullname : null;
-            return trainerObj ? trainerObj.fullname : null;
-        }).filter(name => name);
-    
-        return trainerNames.join(', ');
+        if (typeof workshop.trainers[0] === 'string'){
+            const trainerNames = workshop.trainers
+            .map((trainerId) => {
+                const trainer = trainerdata.find(
+                (trainer) => trainer._id === trainerId
+                );
+                return trainer ? trainer.fullname : null;
+            })
+            .filter((name) => name); // Filter out any null/undefined values
+            return trainerNames.join(', ');
+        }
+        else {
+            const trainerNames = workshop.trainers.map(trainerObj => {
+                // const trainerId = trainerObj._id;   
+                // console.log('Looking for trainer with ID:', trainerId); // string
+                // const trainer = trainerdata.find(trainer => trainer._id == trainerId);
+                // console.log('Trainer found:', trainer); // object
+                // return trainer ? trainer.fullname : null;
+                return trainerObj ? trainerObj.fullname : null;
+            }).filter(name => name);
+            return trainerNames.join(', ');
+        }
     };
+
+    
 
     useEffect(() => {
         renderCalendar();

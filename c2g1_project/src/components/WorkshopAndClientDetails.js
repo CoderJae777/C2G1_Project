@@ -47,6 +47,7 @@ const WorkshopAndClientDetails = ({ workshop, onClose }) => {
             <div ref={popupRef} className="details-popup open-details-popup">
                 <header>
                     <div className='title-row'>
+                        <h1>Workshop Details</h1>
                         <div className="icons">
                             <span className="close-button" onClick={onClose}>
                                 <div className="fa-solid fa-x check-icon">
