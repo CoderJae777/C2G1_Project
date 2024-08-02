@@ -105,8 +105,8 @@ const ClientHomePage = () => {
       deal_potential: dealPotential,
       country: country,
       venue: venue,
-      start_date: startDate.toISOString(),
-      end_date: endDate.toISOString(),
+      start_date: startDate.toLocaleString(),
+      end_date: endDate.toLocaleString(),
       request_message: message,
       workshop_data_id: workshopId,
       client_id: verification.data.id,
@@ -555,8 +555,8 @@ const ClientHomePage = () => {
                 maxDate={
                   startDate
                     ? new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000)
-                    // days * hours * minutes * seconds * milliseconds = 30 days LOL
-                    : maxDate
+                    : // days * hours * minutes * seconds * milliseconds = 30 days LOL
+                      maxDate
                 } // Set max end date to 30 days after start date
                 title="Select the workshop end date"
                 disabled={!startDate} // Disable end date picker until start date is selected
