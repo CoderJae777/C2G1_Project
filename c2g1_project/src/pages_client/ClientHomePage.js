@@ -105,8 +105,8 @@ const ClientHomePage = () => {
       deal_potential: dealPotential,
       country: country,
       venue: venue,
-      start_date: startDate.toLocaleString(),
-      end_date: endDate.toLocaleString(),
+      start_date: startDate.toLocaleDateString("en-US"),
+      end_date: endDate.toLocaleDateString("en-US"),
       request_message: message,
       workshop_data_id: workshopId,
       client_id: verification.data.id,
@@ -130,8 +130,8 @@ const ClientHomePage = () => {
       workshopId: workshopId,
       workshopName: workshopName,
       role: companyRole,
-      startDate: startDate.toLocaleDateString(),
-      endDate: endDate.toLocaleDateString(),
+      startDate: startDate.toLocaleDateString("en-US"),
+      endDate: endDate.toLocaleDateString("en-US"),
       venue: venue,
       workshopType: workshopType,
     };
@@ -155,6 +155,11 @@ const ClientHomePage = () => {
     // Close summary modal and allow user to continue editing
     setShowSummary(false);
   };
+
+  try {
+    console.log(typeof(startDate.toLocaleDateString("en-US")));
+    console.log(endDate.toLocaleDateString("en-US"));
+  } catch {}
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.client.getAvailableWorkshopData,
