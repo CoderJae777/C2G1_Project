@@ -130,8 +130,8 @@ const ClientHomePage = () => {
       workshopId: workshopId,
       workshopName: workshopName,
       role: companyRole,
-      startDate: startDate.toLocaleDateString(),
-      endDate: endDate.toLocaleDateString(),
+      startDate: startDate.toLocaleDateString("en-US"),
+      endDate: endDate.toLocaleDateString("en-US"),
       venue: venue,
       workshopType: workshopType,
     };
@@ -155,6 +155,11 @@ const ClientHomePage = () => {
     // Close summary modal and allow user to continue editing
     setShowSummary(false);
   };
+
+  try {
+    console.log(startDate.toLocaleDateString("en-US"));
+    console.log(endDate.toLocaleDateString("en-US"));
+  } catch {}
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.client.getAvailableWorkshopData,
