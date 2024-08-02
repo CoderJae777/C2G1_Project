@@ -42,7 +42,7 @@ test('test: ClientTopLeftSideBar renders correctly and contains all navigation b
       <ClientTopLeftSideBar />
     </BrowserRouter>
   );
-  expect(screen.getByText("Welcome Back, (insert username here)")).toBeInTheDocument();
+  expect(screen.getByText("Welcome Back!")).toBeInTheDocument();
   expect(screen.getByText("Home")).toBeInTheDocument();
   expect(screen.getByText("See all workshops")).toBeInTheDocument();
   // expect(screen.getByText("Settings")).toBeInTheDocument();

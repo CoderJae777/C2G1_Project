@@ -124,6 +124,7 @@ describe('TrainerHomePage', () => {
     cleanup();
     jest.clearAllMocks();
   });
+  //
 
   test('renders the component', () => {
     render(
