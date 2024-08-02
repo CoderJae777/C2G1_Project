@@ -145,13 +145,13 @@ const ColourCalendar = ({ workshopdata, ondateClick, trainerdata }) => {
         <div data-cy="colour-calendar-popup" className="colour-calendar-popup">
             <header>
                 <div className="icons">
-                    <span id="prev" className="arrow-left">
-                        <div className="fa-solid fa-chevron-left" onClick={() => handlePrevNext("prev")}>
+                    <span id="prev" role="button1" className="arrow-left" onClick={() => handlePrevNext("prev")}>
+                        <div className="fa-solid fa-chevron-left">
                             <box-icon name='chevron-left'></box-icon>
                         </div>
                     </span>
                     <p className="current-date">{`${months[currMonth]} ${currYear}`}</p>
-                    <span id="next" className="arrow-right" onClick={() => handlePrevNext("next")}>
+                    <span id="next" role="button2" className="arrow-right" onClick={() => handlePrevNext("next")}>
                         <div className="fa-solid fa-chevron-right">
                             <box-icon name='chevron-right'></box-icon>
                         </div>
