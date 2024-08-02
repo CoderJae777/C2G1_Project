@@ -13,6 +13,8 @@ import useFetch from '../components/useFetch';
 import useAxiosGet from '../api/useAxiosGet';
 import useAxiosPatch from '../api/useAxiosPatch';
 import '@testing-library/jest-dom/extend-expect';
+import { config } from "../config/config";
+import { endpoints } from "../config/endpoints";
 
 // Mock the custom hooks
 jest.mock('../components/useFetch');
@@ -35,8 +37,8 @@ const mockVerifyData = {
 const mockGetAllocatedWorkshopRequests = {
     data: {
         trainer_workshops: [
-          { _id: '1', request_id: 'REQ1', workshop_data: { workshop_name: 'Workshop 1' }, company: "Company A" },
-          { _id: '2', request_id: 'REQ2', workshop_data: { workshop_name: 'Workshop 2' }, company: "Company B" },
+          { _id: '1', request_id: 'REQ1', workshop_data: { workshop_name: 'Workshop 1' }, company: "Company A", utilisation:[{hours: 0, utilisation_details:"Detail 1"},{hours: 0, utilisation_details:"Detail 2"},{hours: 0, utilisation_details:"Detail 3"},{hours: 0, utilisation_details:"Detail 4"}] },
+          { _id: '2', request_id: 'REQ2', workshop_data: { workshop_name: 'Workshop 2' }, company: "Company B", utilisation:[{hours: 0, utilisation_details:"Detail 1"},{hours: 0, utilisation_details:"Detail 2"},{hours: 0, utilisation_details:"Detail 3"},{hours: 0, utilisation_details:"Detail 4"}] },
         ],
       },
     loading: false,
@@ -122,6 +124,7 @@ describe('TrainerHomePage', () => {
     cleanup();
     jest.clearAllMocks();
   });
+  //
 
   test('renders the component', () => {
     render(
@@ -190,6 +193,51 @@ describe('TrainerHomePage', () => {
       </Router>
     );
     expect(screen.getByText('Company A')).toBeInTheDocument();
+  });
+
+  test('renders utilisation popup', () => {
+
+    render(
+      <Router>
+        <TrainerHomePage />
+      </Router>
+    );
+    fireEvent.click(screen.getByText('Company A'));
+    expect(screen.getByText('Utilisation Hours 1:')).toBeInTheDocument();
+  });
+
+  test("shows 'Not logged in' if user is not a trainer", () => {
+    useAxiosGet.mockImplementation((url) => {
+      if (url && url.includes("verify")) {
+        return {
+          data: { id: 1, role: "admin" },
+          loading: false,
+          error: null,
+          setBody: jest.fn(),
+          setUrl: jest.fn(),
+          refetch: jest.fn(),
+      };
+      }
+      else if (url && url.includes("allocatedworkshops")){
+          return mockGetAllocatedWorkshopRequests;
+      }
+      else if (url && url.includes("workshoprequest")){
+        return mockgetSingleWorkshopRequest;
+      }
+      return {data: null,
+          loading: false,
+          error: null,
+          setBody: jest.fn(),
+          setUrl: jest.fn(),
+          refetch: jest.fn(),};
+    });
+
+    render(
+      <Router>
+        <TrainerHomePage />
+      </Router>
+    );
+    expect(screen.getByText("Not logged in")).toBeInTheDocument();
   });
   
 });
