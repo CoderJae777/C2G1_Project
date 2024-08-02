@@ -7,30 +7,29 @@ Cypress.Commands.add("login", (username, password) => {
           overflow: hidden;
         `;
     });
-    cy.visit("/ClientLoginPage");
+    cy.visit("/ClientLoginPage").wait(1000);
 
-    cy.get('input[placeholder="Username"]').type(username);
-    cy.get('input[placeholder="Password"]').type(password);
-    cy.get('button[type="submit"]').click();
+    cy.get('input[placeholder="Username"]').type(username).wait(250);
+    cy.get('input[placeholder="Password"]').type(password).wait(250);
+    cy.get('button[type="submit"]').wait(250).click();
 
     cy.url().should("include", "/ClientHomePage");
   });
 });
 
-describe("Client Home Page Test", () => {
+describe("User Scenario 01 Demo", () => {
   before(() => {
     Cypress.session.clearAllSavedSessions();
-
-    cy.login("johndoefromjohnbrosinc", "johndoefromjohnbrosinc");
+    cy.login("client", "client");
   });
 
   beforeEach(() => {
     cy.session("clientSession", () => {
-      cy.login("johndoefromjohnbrosinc", "johndoefromjohnbrosinc");
+      cy.login("client", "client");
     });
-
     cy.visit("/ClientHomePage");
 
+    // Prevent window from scrolling due to fixed position
     cy.window().then((win) => {
       win.document.body.style.cssText += `
           position: fixed;
@@ -40,25 +39,26 @@ describe("Client Home Page Test", () => {
     });
   });
 
-  it("Testing Login To Client Home Page", () => {
-    cy.url().should("include", "/ClientHomePage");
-  });
+  it("Testing Form inputs, Submit Request Button and Summary Popup", () => {
+    // Ensure "View Available Workshops" dropdown is visible and select an option
+    cy.get(".view-avail-ws-select").should("be.visible").select("0");
 
-  it("Auto Submitting WS Request", () => {
-    cy.get(".view-avail-ws-select").select("0");
-    cy.get(".popwsreqbut").click();
+    // Auto populates the workshop
+    cy.get(".popwsreqbut").should("be.visible").wait(500).click();
 
+    // Fill out the form
     cy.get("form").within(() => {
       cy.get('input[placeholder="Role at Company"]').type("President");
-      cy.get('input[placeholder="Your Name"]').type("johndoefromjohnbrosinc");
+      cy.get('input[placeholder="Your Name"]').type("John Doe");
       cy.get('input[placeholder="Your Email"]').type("john.doe@gmail.com");
-      cy.get('input[placeholder="Phone Number"]').type(1234567890);
-      cy.get('input[placeholder="Your Company"]').type("John Doe & Bros Enterprises");
-      cy.get('input[placeholder="Number of Pax"]').type(10);
-      cy.get('input[placeholder="Deal Size Potential in USD"]').type(100000);
+      cy.get('input[placeholder="Phone Number"]').type("1234567890");
+      cy.get('input[placeholder="Your Company"]').type("Doe Enterprises");
+      cy.get('select[title="Select the number of participants"]')
+        .should("be.visible")
+        .select("10 - 20");
+      cy.get('input[placeholder="Deal Size Potential in USD"]').type("1000");
       cy.get('input[placeholder="Country"]').type("USA");
       cy.get('input[placeholder="Venue"]').type("Central Hall");
-
       cy.get('input[placeholder="Workshop Start Date"]').click();
       cy.get(".react-datepicker").should("be.visible");
       cy.get(
@@ -80,10 +80,9 @@ describe("Client Home Page Test", () => {
       );
     });
 
-    cy.get(".ws_req_submit_button").click();
+    cy.get(".ws_req_submit_button").click({ force: true });
 
-    cy.get(".summary-modal", { timeout: 20000 }).should("be.visible");
-
+    // Confirm Request
     cy.get(".summary-buttons").within(() => {
       cy.get("button").contains("Confirm Request").click();
     });

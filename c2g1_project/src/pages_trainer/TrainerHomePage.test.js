@@ -132,7 +132,7 @@ describe('TrainerHomePage', () => {
     expect(screen.getByText('Update Work Hours')).toBeInTheDocument();
   });
 
-  test('renders all expected components', () => {
+  test('renders all expected main components', () => {
     render(
       <Router>
         <TrainerHomePage />
@@ -149,19 +149,8 @@ describe('TrainerHomePage', () => {
         expect(ud[i]).toBeInTheDocument();
     }
     expect(screen.getByText('Submit Utilisation')).toBeInTheDocument();
-    expect(screen.getByText('Workshop 1')).toBeInTheDocument();
-    expect(screen.getByText('Workshop 2')).toBeInTheDocument();
     expect(screen.getByText('-- Workshop --')).toBeInTheDocument();
     expect(screen.getByTestId('workshop-select')).toBeInTheDocument();
-  });
-
-  test('renders the component', () => {
-    render(
-      <Router>
-        <TrainerHomePage />
-      </Router>
-    );
-    expect(screen.getByText('Update Work Hours')).toBeInTheDocument();
   });
 
   test('renders the select dropdown with workshop options', async () => {

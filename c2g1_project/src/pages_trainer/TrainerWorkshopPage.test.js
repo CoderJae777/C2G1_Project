@@ -133,7 +133,7 @@ describe("TrainerWorkshopPage", () => {
 
     // Ensure sort select and options are present
     const sortSelect = screen.getByDisplayValue("Request ID");
-    fireEvent.change(sortSelect, { target: { value: "start_date" } });
+    fireEvent.change(sortSelect, { target: { value: "earliest_start" } });
 
     // Verify the workshops are sorted by start date
     await waitFor(() => {

@@ -62,7 +62,7 @@ const ClientTopLeftSideBar = () => {
           </div>
           <div className="welcome">
             <span data-cy="welcome" className="logo-name">
-              Welcome Back, (insert username here)
+              Welcome Back!
             </span>
           </div>
           <div className="date">
