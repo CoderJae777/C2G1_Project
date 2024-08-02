@@ -105,8 +105,8 @@ const ClientHomePage = () => {
       deal_potential: dealPotential,
       country: country,
       venue: venue,
-      start_date: startDate.toLocaleString(),
-      end_date: endDate.toLocaleString(),
+      start_date: startDate.toLocaleDateString("en-US"),
+      end_date: endDate.toLocaleDateString("en-US"),
       request_message: message,
       workshop_data_id: workshopId,
       client_id: verification.data.id,
@@ -157,7 +157,7 @@ const ClientHomePage = () => {
   };
 
   try {
-    console.log(startDate.toLocaleDateString("en-US"));
+    console.log(typeof(startDate.toLocaleDateString("en-US")));
     console.log(endDate.toLocaleDateString("en-US"));
   } catch {}
 
