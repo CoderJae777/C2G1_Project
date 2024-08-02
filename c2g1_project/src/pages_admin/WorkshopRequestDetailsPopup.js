@@ -227,6 +227,7 @@ const WorkshopRequestDetailsPopup = ({
         {workshopDetails.status === "approved" && (
           <div data-cy="select-trainer" className="select-menu-container">
             <div
+              data-cy="select-trainer-btn"
               className={`select-btn ${isOpen ? "open" : ""}`}
               onClick={toggleDropdown}
             >
@@ -245,6 +246,7 @@ const WorkshopRequestDetailsPopup = ({
               <ul data-cy="trainer-list" className="list-items">
                 {workshop.trainers.map((trainer, index) => (
                   <li
+                    data-cy="trainer-item"
                     key={index}
                     className={`item ${
                       selectedItems.includes(trainer._id) ? "checked" : ""
@@ -286,7 +288,7 @@ const WorkshopRequestDetailsPopup = ({
         <div className="popup-buttons">
           {workshopDetails.status === "approved" && (
             <button
-              data-cy="approve-wsrq-submit-button"
+              data-cy="wsrq-submit-button"
               className="submit-button"
               type="button"
               onClick={handleSubmit}
@@ -297,7 +299,7 @@ const WorkshopRequestDetailsPopup = ({
           )}
           {(workshopDetails.status === "approved" || workshopDetails.status === "pending") && (
             <button
-              data-cy="approve-wsrq-cancel-button"
+              data-cy="wsrq-cancel-button"
               className="cancel-button"
               type="button"
               onClick={onClose}

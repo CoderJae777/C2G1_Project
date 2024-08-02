@@ -72,7 +72,7 @@ body {
   border-width: 0px;
   background-color: #80c7fb;
   height: 50px;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -388,7 +388,9 @@ body {
 }
 
 .utilisation-scrollable-list{
-  margin-right: 25px;
+  max-height: 600px;
+  overflow-y: auto;
+  outline:none;
 }
 
 .workshop-calendar-title{

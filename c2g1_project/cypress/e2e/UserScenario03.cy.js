@@ -129,12 +129,13 @@ Cypress.Commands.add("login", (username, password) => {
         
         // Admin submits confirmation of deletion
         cy.get('[data-cy="confirm-delete-trainer-button"]').click();
-        cy.wait(2000);
+        cy.wait(1000);
         
         // Verify the trainer is no longer in the trainer list
         // cy.get('[data-cy="trainer-info-table"]').should('not.contain', 'trainer');
+        // Verify there are only 2 trainers left in the trainer list
         cy.get('[data-cy="trainer-info-table"]')
-            .find('tr') // Assuming each trainer is in a table row
-            .should('not.contain.text', 'trainer');
+        .find('tr')
+        .should('have.length', 3); // 1 header + 2 trainers
     });
 });
