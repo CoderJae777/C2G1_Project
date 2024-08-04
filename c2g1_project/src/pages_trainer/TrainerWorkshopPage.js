@@ -129,10 +129,14 @@ const TrainerWorkshopPage = () => {
             if (getTrainersOfWorkshop(a).toLowerCase() <getTrainersOfWorkshop(b).toLowerCase()) return -1;
             if (getTrainersOfWorkshop(a).toLowerCase() >getTrainersOfWorkshop(b).toLowerCase()) return 1;
         }
-        if (sortKey == "request_id"){
-            if (a[sortKey] > b[sortKey]) return -1;
-            if (a[sortKey] < b[sortKey]) return 1;
+        else if (sortKey == "earliest_start"){
+            if (a["start_date"] > b["start_date"]) return 1;
+            if (a["start_date"] < b["start_date"]) return -1;
         }
+        else if (sortKey == "latest_start"){
+          if (a["start_date"] > b["start_date"]) return -1;
+          if (a["start_date"] < b["start_date"]) return 1;
+      }
         if (a[sortKey] < b[sortKey]) return -1;
         if (a[sortKey] > b[sortKey]) return 1;
         return 0;
@@ -270,7 +274,8 @@ const TrainerWorkshopPage = () => {
                             <span>Sort:</span>
                             <select value={sortKey} onChange={handleSortChange}>
                                 <option value="request_id">Request ID</option>
-                                <option value="start_date">Start Date</option>
+                                <option value="latest_start">Latest Start</option>
+                                <option value="earliest_start">Earliest Start</option>
                                 <option value="trainer">Assigned Trainer</option>
                             </select>
                         </div>                        

@@ -49,7 +49,7 @@ const WorkshopAndClientDetails = ({ workshop, onClose }) => {
                     <div className='title-row'>
                         <h1>Workshop Details</h1>
                         <div className="icons">
-                            <span className="close-button" onClick={onClose}>
+                            <span className="close-button" role="button" onClick={onClose}>
                                 <div className="fa-solid fa-x check-icon">
                                     <box-icon name='x'></box-icon>
                                 </div>

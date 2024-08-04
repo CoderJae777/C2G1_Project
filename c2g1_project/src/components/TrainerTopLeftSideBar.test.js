@@ -42,7 +42,7 @@ test('test: TrainerTopLeftSideBar renders correctly and contains all navigation 
       <TrainerTopLeftSideBar />
     </BrowserRouter>
   );
-  expect(screen.getByText("Welcome Back, (insert username here)")).toBeInTheDocument();
+  expect(screen.getByText("Welcome Back!")).toBeInTheDocument();
   expect(screen.getByText("Home")).toBeInTheDocument();
   expect(screen.getByText("View My Workshops")).toBeInTheDocument();
   expect(screen.getByText("View My Team")).toBeInTheDocument();

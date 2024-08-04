@@ -105,8 +105,8 @@ const ClientHomePage = () => {
       deal_potential: dealPotential,
       country: country,
       venue: venue,
-      start_date: startDate.toISOString(),
-      end_date: endDate.toISOString(),
+      start_date: startDate.toLocaleDateString("en-US"),
+      end_date: endDate.toLocaleDateString("en-US"),
       request_message: message,
       workshop_data_id: workshopId,
       client_id: verification.data.id,
@@ -130,8 +130,8 @@ const ClientHomePage = () => {
       workshopId: workshopId,
       workshopName: workshopName,
       role: companyRole,
-      startDate: startDate.toLocaleDateString(),
-      endDate: endDate.toLocaleDateString(),
+      startDate: startDate.toLocaleDateString("en-US"),
+      endDate: endDate.toLocaleDateString("en-US"),
       venue: venue,
       workshopType: workshopType,
     };
@@ -140,14 +140,14 @@ const ClientHomePage = () => {
     // Commented out to not spam the email
     /////////////////////////////////////////////////////////////////
 
-    // emailjs
-    //   .send(serviceId, templateId, templateParams, publicKey)
-    //   .then((response) => {
-    //     console.log("Email sent successfully!", response);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error sending email:", error);
-    //   });
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log("Email sent successfully!", response);
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
     setShowSummary(false);
   };
 
@@ -155,6 +155,11 @@ const ClientHomePage = () => {
     // Close summary modal and allow user to continue editing
     setShowSummary(false);
   };
+
+  try {
+    console.log(typeof(startDate.toLocaleDateString("en-US")));
+    console.log(endDate.toLocaleDateString("en-US"));
+  } catch {}
 
   const { data, loading, error, setUrl, setParams, refetch } = useAxiosGet(
     config.base_url + endpoints.client.getAvailableWorkshopData,
@@ -555,8 +560,8 @@ const ClientHomePage = () => {
                 maxDate={
                   startDate
                     ? new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000)
-                    // days * hours * minutes * seconds * milliseconds = 30 days LOL
-                    : maxDate
+                    : // days * hours * minutes * seconds * milliseconds = 30 days LOL
+                      maxDate
                 } // Set max end date to 30 days after start date
                 title="Select the workshop end date"
                 disabled={!startDate} // Disable end date picker until start date is selected
