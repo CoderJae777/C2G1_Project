@@ -154,7 +154,7 @@ describe("User Scenario 01 Demo", () => {
     cy.get(".summary-modal").should("not.exist").wait(1500);
   });
 
-  it("Should open and verify contents of the Workshop Request Details Popup", () => {
+  it("Click on recently submitted workshop request and verify the details", () => {
     // Check that the list of requests is visible and click on the first request
     cy.get(".scrollable-list .workshop-detail-panel").first().click();
 
