@@ -113,9 +113,9 @@ const ClientHomePage = () => {
     });
     createWorkshop.refetch();
 
-    const serviceId = "service_ks4czg2";
-    const templateId = "template_s99g3id";
-    const publicKey = "1T7xmpr5tqQhyh-GS";
+    const serviceId = "service_dvdgd1k";
+    const templateId = "template_y5sb2i2";
+    const publicKey = "wFwJ1xYLVkfwNbAUj";
     const templateParams = {
       from_name: name,
       from_email: email,

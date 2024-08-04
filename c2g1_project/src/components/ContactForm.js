@@ -12,10 +12,10 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Your EmailJS service ID, template ID, and Public Key
-    const serviceId = "service_ks4czg2";
-    const templateId = "template_oypb9n6"; // CONTACT US TEMPLATE --> change this if email is different
-    const publicKey = "1T7xmpr5tqQhyh-GS";
+    //EmailJS service ID, template ID, and Public Key
+    const serviceId = "service_dvdgd1k";
+    const templateId = "template_quyan3n";
+    const publicKey = "wFwJ1xYLVkfwNbAUj";
 
     // Create a new object that contains dynamic template params
     const templateParams = {
