@@ -89,8 +89,8 @@ test("Test: Mocked successful email sent", async () => {
 
   // Check if emailjs.send was called with the correct parameters
   expect(emailjs.send).toHaveBeenCalledWith(
-    "service_ks4czg2",
-    "template_oypb9n6",
+    "service_dvdgd1k",
+    "template_quyan3n",
     {
       from_name: "John Doe",
       from_email: "johndoe@example.com",
@@ -99,7 +99,7 @@ test("Test: Mocked successful email sent", async () => {
       phone: "1234567890",
       company_name: "Example Corp",
     },
-    "1T7xmpr5tqQhyh-GS"
+    "wFwJ1xYLVkfwNbAUj"
   );
 
   // Wait for alert message
