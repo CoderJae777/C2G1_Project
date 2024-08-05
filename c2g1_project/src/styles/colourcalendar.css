@@ -262,6 +262,19 @@ header .current-date {
   border-radius: 50%;
   height: 30px;
   width: 30px;
+  margin-top: 0px;
+  padding: 0px;
+}
+
+.colour-calendar-popup .day-number {
+  cursor: pointer;
+  position: relative; /* Ensure the calendar-details is positioned correctly */
+  background-color: transparent;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-top: 0px;
+  padding: 0px;
 }
 
 .details {

@@ -62,65 +62,6 @@ describe('ColourCalendarPopup', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-//   it('displays workshop details on hover', () => {
-//     render(
-//       <ColourCalendarPopup
-//         onClose={jest.fn()}
-//         fullname="Trainer One"
-//         trainerId="t1"
-//         trainerdata={mockTrainerData}
-//         ondateClick={jest.fn()}
-//         workshopdata={mockWorkshopData}
-//       />
-//     );
-
-//     // Find the day number element and its closest list item
-//     const dayNumberButton = screen.getByText('1');
-//     const dayListItem = dayNumberButton.closest('li');
-    
-//     if (!dayListItem) {
-//       throw new Error('Day list item not found');
-//     }
-
-//     const calendarDetails = dayListItem.querySelector('.calendar-details');
-
-//     if (!calendarDetails) {
-//       throw new Error('Calendar details not found');
-//     }
-
-//     // Function to check if the element is hidden
-//     const isElementHidden = (el) => {
-//       const style = window.getComputedStyle(el);
-//       return style.display === 'none';
-//     };
-
-//     // Initial state: details should be hidden
-//     expect(isElementHidden(calendarDetails)).toBe(true);
-
-//     // Simulate mouse over
-//     fireEvent.mouseOver(dayListItem);
-    
-//     // Delay to account for any CSS transition
-//     setTimeout(() => {
-//       // Check that the element becomes visible
-//       expect(isElementHidden(calendarDetails)).toBe(false);
-
-//       // Check for specific content
-//       expect(calendarDetails).toHaveTextContent('Request ID: req1');
-//       expect(calendarDetails).toHaveTextContent('Client: Company A');
-//       expect(calendarDetails).toHaveTextContent('Assigned Trainers: Trainer One');
-      
-//       // Simulate mouse out
-//       fireEvent.mouseOut(dayListItem);
-
-//       // Delay to account for any CSS transition
-//       setTimeout(() => {
-//         // Check that the element is hidden again
-//         expect(isElementHidden(calendarDetails)).toBe(true);
-//       }, 500); // Adjust delay as necessary
-//     }, 500); // Adjust delay as necessary
-//   });
-
   it('navigates to the previous month correctly', () => {
     render(
       <ColourCalendarPopup
