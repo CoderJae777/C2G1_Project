@@ -135,6 +135,15 @@ header .current-date {
   transform: translate(-50%, -50%);
 }
 
+.pre-workshop-day::before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #dddddd; 
+}
+
 .workshop-in-between::before {
   content: "";
   display: inline-block;
@@ -151,15 +160,6 @@ header .current-date {
   width: 20px;
   border-radius: 50%;
   background-color: #49cf42; 
-}
-
-.pre-workshop-day::before {
-  content: "";
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: #dddddd; 
 }
 
 .workshop-start::before {
