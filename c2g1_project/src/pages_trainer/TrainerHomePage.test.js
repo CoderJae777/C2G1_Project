@@ -15,6 +15,7 @@ import useAxiosPatch from '../api/useAxiosPatch';
 import '@testing-library/jest-dom/extend-expect';
 import { config } from "../config/config";
 import { endpoints } from "../config/endpoints";
+import * as fc from 'fast-check';
 
 // Mock the custom hooks
 jest.mock('../components/useFetch');
@@ -240,4 +241,112 @@ describe('TrainerHomePage', () => {
     expect(screen.getByText("Not logged in")).toBeInTheDocument();
   });
   
+});
+
+
+describe('TrainerHomePage Fuzzing', () => {
+  let renderResult;
+
+  beforeEach(() => {
+    // Set up the default mock implementations
+    mockUseFetch.mockReturnValue({
+      trainer_data: null,
+      workshop_data: null,
+      today_data: null,
+    });
+
+    useAxiosGet.mockImplementation((url) => {
+        if (url && url.includes("verify")) {
+          return mockVerifyData;
+        }
+        else if (url && url.includes("allocatedworkshops")){
+            return mockGetAllocatedWorkshopRequests;
+        }
+        else if (url && url.includes("workshoprequest")){
+          return mockgetSingleWorkshopRequest;
+        }
+        return {data: null,
+            loading: false,
+            error: null,
+            setBody: jest.fn(),
+            setUrl: jest.fn(),
+            refetch: jest.fn(),};
+      });
+
+    mockUseAxiosPatch.mockReturnValue({
+      data: null,
+      loading: false,
+      error: null,
+      setBody: jest.fn(),
+      setUrl: jest.fn(),
+      refetch: jest.fn(),
+    });
+    
+    renderResult = render(
+      <Router>
+        <TrainerHomePage />
+      </Router>
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+    jest.clearAllMocks();
+  });
+
+  test('renders the component', () => {
+    const { getByText } = renderResult;
+    expect(getByText('Update Work Hours')).toBeInTheDocument();
+  });
+
+  // Other tests...
+
+  test("fuzzing input", async () => {
+    const { getByRole, getAllByPlaceholderText, getAllByTestId, getByText, queryByText } = renderResult;
+    await waitFor(() => {
+      expect(getByRole('combobox')).toBeInTheDocument();
+    });
+
+    fc.assert(
+      fc.property(
+        fc.record({
+          hours1: fc.integer(),
+          hours2: fc.integer(),
+          hours3: fc.integer(),
+          hours4: fc.integer(),
+          utilisation1: fc.string(),
+          utilisation2: fc.string(),
+          utilisation3: fc.string(),
+          utilisation4: fc.string(),
+        }),
+        ({ hours1, hours2, hours3, hours4, utilisation1, utilisation2, utilisation3, utilisation4 }) => {
+
+          fireEvent.change(getByRole('combobox'), { target: { value: 1 } });
+          fireEvent.change(getAllByPlaceholderText('0')[0], { target: { value: hours1 } });
+          fireEvent.change(getAllByPlaceholderText('0')[1], { target: { value: hours2 } });
+          fireEvent.change(getAllByPlaceholderText('0')[2], { target: { value: hours3 } });
+          fireEvent.change(getAllByPlaceholderText('0')[3], { target: { value: hours4 } });
+
+          fireEvent.change(getAllByTestId('detail-input')[0], { target: { value: utilisation1 } });
+          fireEvent.change(getAllByTestId('detail-input')[1], { target: { value: utilisation2 } });
+          fireEvent.change(getAllByTestId('detail-input')[2], { target: { value: utilisation3 } });
+          fireEvent.change(getAllByTestId('detail-input')[3], { target: { value: utilisation4 } });
+          
+
+          console.log( hours1, hours2, hours3, hours4, utilisation1, utilisation2, utilisation3, utilisation4 )
+          fireEvent.click(getByText('Submit Utilisation'));
+          fireEvent.click(screen.getByText('Company A'));
+          expect(screen.getByText('Utilisation Hours 1:')).toBeInTheDocument();
+          expect(screen.queryAllByText(hours1)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(hours2)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(hours3)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(hours4)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(utilisation1)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(utilisation2)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(utilisation3)[0]).toBeInTheDocument;
+          expect(screen.queryAllByText(utilisation4)[0]).toBeInTheDocument;
+        }
+      )
+    );
+  });
 });

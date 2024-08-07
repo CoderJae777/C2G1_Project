@@ -257,6 +257,7 @@ const TrainerHomePage = () => {
         <div className="admin-graphs">
           <h1>Update Work Hours</h1>
           <select
+            role="combobox"
             data-testid="workshop-select"
             id="request-workshop-sel"
             value={workshop}
