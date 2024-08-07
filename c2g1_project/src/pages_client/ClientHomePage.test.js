@@ -1,6 +1,6 @@
 // ClientHomePage.test.js
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, cleanup } from "@testing-library/react";
 import ClientHomePage from "../pages_client/ClientHomePage";
 import { BrowserRouter as Router } from "react-router-dom"; // Router component from react-router-dom for handling routes in tests.
 // Custom hooks for making GET and POST requests.
@@ -8,6 +8,7 @@ import useAxiosGet from "../api/useAxiosGet";
 import useAxiosPost from "../api/useAxiosPost";
 // Ensure this import is here for the matchers
 import "@testing-library/jest-dom";
+import * as fc from 'fast-check';
 
 // jest.mock: Mocks the implementation of the useAxiosGet and useAxiosPost
 // hooks to prevent actual network requests.
@@ -20,12 +21,170 @@ const mockVerifyData = {
   data: { id: 1, role: "client" },
   loading: false,
   error: null,
+  setUrl: jest.fn(),
+  setParams: jest.fn(),
+  refetch: jest.fn(),
 };
+
+const mockAvailableWorkshopsData = {
+  data: [
+    {
+      workshop_ID: "WS123",
+      workshop_name: "Workshop A",
+      workshop_type: "Type 1"
+    },
+    {
+      workshop_ID: "WS456",
+      workshop_name: "Workshop B",
+      workshop_type: "Type 2"
+    }
+  ],
+  loading: false,
+  error: null,
+  setUrl: jest.fn(),
+  setParams: jest.fn(),
+  refetch: jest.fn(),
+};
+
+const mockPendingWorkshopsData = {
+  data: {
+    workshop_requests: [
+      {
+        request_id: "REQ001",
+        status: "submitted"
+      },
+      {
+        request_id: "REQ002",
+        status: "approved"
+      }
+    ]
+  },
+  loading: false,
+  error: null,
+  setUrl: jest.fn(),
+  setParams: jest.fn(),
+  refetch: jest.fn(),
+};
+
+const mockSetBody = jest.fn();
+const mockRefetch = jest.fn();
 
 // Start of ClientHomePage test suite
 // beforeEach: Runs before each test to set up the mock implementations for useAxiosGet and useAxiosPost.
 // useAxiosGet: Returns mockVerifyData if the URL contains "verify", otherwise returns an empty data array.
 // useAxiosPost: Returns mocked setBody and refetch functions.
+
+describe("ClientHomePage Fuzzing Tests", () => {
+  let renderResult;
+  beforeEach(() => {
+    useAxiosGet.mockImplementation((url) => {
+      if (url && url.includes("verify")) {
+        return mockVerifyData;
+      } else if (url && url.includes("getAvailableWorkshopData")) {
+        return mockAvailableWorkshopsData;
+      } else if (url && url.includes("getPendingWorkshopRequests")) {
+        return mockPendingWorkshopsData;
+      }
+      return { data: [], loading: false, error: null, setUrl: jest.fn(), setParams: jest.fn(), refetch: jest.fn() };
+    });
+  
+    useAxiosPost.mockImplementation(() => ({
+      setBody: mockSetBody,
+      refetch: mockRefetch,
+    }));
+
+    renderResult = render(
+      <Router>
+        <ClientHomePage/>
+      </Router>
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+    jest.clearAllMocks();
+  });
+
+  it("handle various inputs correctly", () => {
+    const {getByPlaceholderText, getAllByPlaceholderText, getAllByTestId, getByText } = renderResult;
+    fc.assert(
+      fc.property(
+        fc.record({
+          name: fc.string(),
+          email: fc.string(),
+          message: fc.string(),
+          phone: fc.string(),
+          company: fc.string(),
+          pax: fc.string(),
+          dealPotential: fc.string(),
+          country: fc.string(),
+          workshopId: fc.string(),
+          workshopName: fc.string(),
+          companyRole: fc.string(),
+          startDate: fc.date(),
+          endDate: fc.date(),
+          venue: fc.string(),
+          workshopType: fc.string(),
+        }),
+        (inputs) => {
+          const {
+            name,
+            email,
+            message,
+            phone,
+            company,
+            pax,
+            dealPotential,
+            country,
+            workshopId,
+            workshopName,
+            companyRole,
+            startDate,
+            endDate,
+            venue,
+            workshopType,
+          } = inputs;
+
+          const nameInput = screen.getByPlaceholderText(/Your Name/i);
+          const emailInput = screen.getByPlaceholderText(/Your Email/i);
+          const phoneInput = screen.getByPlaceholderText(/Phone Number/i);
+          const companyInput = screen.getByPlaceholderText(/Your Company/i);
+          const dealPotentialInput = screen.getByPlaceholderText(/Deal Size Potential in USD/i);
+          const countryInput = screen.getByPlaceholderText(/Country/i);
+          const venueInput = screen.getByPlaceholderText(/Venue/i);
+          const workshopTypeInput = screen.getByPlaceholderText(/Workshop Type/i);
+
+          // Populate the form fields with generated inputs
+          fireEvent.change(nameInput, { target: { value: name } });
+          fireEvent.change(emailInput, { target: { value: email } });
+          fireEvent.change(phoneInput, { target: { value: phone } });
+          fireEvent.change(companyInput, { target: { value: company } });
+          fireEvent.change(dealPotentialInput, { target: { value: dealPotential } });
+          fireEvent.change(countryInput, { target: { value: country } });
+          fireEvent.change(venueInput, { target: { value: venue } });
+          fireEvent.change(workshopTypeInput, { target: { value: workshopType } });
+
+          // Handle date picker changes
+          if (startDate && endDate) {
+            const startDateInput = screen.getByPlaceholderText(/Workshop Start Date/i);
+            const endDateInput = screen.getByPlaceholderText(/Workshop End Date/i);
+            fireEvent.change(startDateInput, { target: { value: startDate.toLocaleDateString("en-US") } });
+            fireEvent.change(endDateInput, { target: { value: endDate.toLocaleDateString("en-US") } });
+          }
+
+          // Submit the form
+          fireEvent.submit(screen.getByRole('button', { name: /Submit Request/i }));
+
+          // Assert behavior
+          waitFor(() => {
+            // Adjust the assertions based on what should happen after form submission
+            expect(screen.getByText(/Summary of Workshop Request/i)).toBeInTheDocument();
+          });
+        }
+      )
+    );
+  });
+});
 
 describe("UC01 ClientHomePage Test", () => {
   beforeEach(() => {
